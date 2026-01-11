@@ -1,0 +1,5 @@
+{
+  "name": "UnitEconomics Console",
+  "description": "A financial precision tool for AI SaaS teams to calculate per-customer gross margins and generate cap/overage policies.",
+  "requestFramePermissions": []
+}

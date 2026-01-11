@@ -7,6 +7,7 @@ Templates are runnable, full projects you can start from. Each template is self-
 | Template | Description | Entry |
 | --- | --- | --- |
 | `001-copyback-studio` | CopyBack Studio full-stack app | [`001-copyback-studio/`](001-copyback-studio/) |
+| `002-uniteconomics-console` | UnitEconomics Console analysis app | [`002-uniteconomics-console/`](002-uniteconomics-console/) |
 
 ## Usage
 

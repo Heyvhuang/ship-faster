@@ -1,52 +1,52 @@
 # Detailed Examples by Dimension
 
 ## Table of Contents
-- [1. 命名问题](#1-命名问题)
-- [2. 函数问题](#2-函数问题)
-- [3. 重复问题](#3-重复问题)
-- [4. 过度设计](#4-过度设计)
-- [5. 魔法数字](#5-魔法数字)
+- [1. Naming Issues](#1-naming-issues)
+- [2. Function Issues](#2-function-issues)
+- [3. Duplication Issues](#3-duplication-issues)
+- [4. Over-Engineering](#4-over-engineering)
+- [5. Magic Numbers](#5-magic-numbers)
 
 ---
 
-## 1. 命名问题
+## 1. Naming Issues
 
-### 无意义命名
+### Meaningless Names
 
 ```typescript
-// ❌ 
+// ❌
 const list = getUsers();           // list of what?
 const flag = checkPermission();    // what flag?
 const handler = () => {};          // handles what?
 
-// ✅ 
+// ✅
 const activeUsers = getUsers();
 const hasEditPermission = checkPermission();
 const onFormSubmit = () => {};
 ```
 
-### 命名不一致
+### Inconsistent Naming
 
 ```typescript
-// ❌ 同一概念多种命名
+// ❌ Multiple names for the same concept
 getUserData();
 fetchUserInfo();
 retrieveUserProfile();
 
-// ✅ 统一使用一种
+// ✅ Use one consistent naming
 getUser();
 getUserProfile();
 getUserSettings();
 ```
 
-### 布尔命名
+### Boolean Naming
 
 ```typescript
-// ❌ 
+// ❌
 const open = true;
 const disabled = false;
 
-// ✅ 带 is/has/can/should 前缀
+// ✅ Use is/has/can/should prefixes
 const isOpen = true;
 const isDisabled = false;
 const hasPermission = true;
@@ -55,21 +55,21 @@ const canEdit = true;
 
 ---
 
-## 2. 函数问题
+## 2. Function Issues
 
-### 函数过长
+### Functions Too Long
 
 ```typescript
-// ❌ 160 行的 processOrder 函数
+// ❌ 160-line processOrder function
 async function processOrder(order) {
-  // 验证逻辑 (40 行)
-  // 计算逻辑 (30 行)
-  // 库存检查 (25 行)
-  // 支付处理 (35 行)
-  // 通知发送 (30 行)
+  // Validation logic (40 lines)
+  // Calculation logic (30 lines)
+  // Inventory check (25 lines)
+  // Payment processing (35 lines)
+  // Notification sending (30 lines)
 }
 
-// ✅ 拆分为单一职责函数
+// ✅ Split into single-responsibility functions
 async function processOrder(order) {
   await validateOrder(order);
   const total = calculateTotal(order);
@@ -79,13 +79,13 @@ async function processOrder(order) {
 }
 ```
 
-### 参数过多
+### Too Many Parameters
 
 ```typescript
-// ❌ 
+// ❌
 function createUser(name, email, age, address, phone, role, department, manager) {}
 
-// ✅ 使用配置对象
+// ✅ Use configuration object
 interface CreateUserParams {
   name: string;
   email: string;
@@ -95,18 +95,18 @@ interface CreateUserParams {
 function createUser(params: CreateUserParams) {}
 ```
 
-### 副作用
+### Side Effects
 
 ```typescript
-// ❌ 函数名暗示只读，但有副作用
+// ❌ Function name implies read-only but has side effects
 function getUser(id) {
   const user = db.find(id);
-  user.lastAccess = new Date();  // 副作用！
-  db.save(user);                  // 副作用！
+  user.lastAccess = new Date();  // Side effect!
+  db.save(user);                  // Side effect!
   return user;
 }
 
-// ✅ 分离读写
+// ✅ Separate read and write
 function getUser(id) {
   return db.find(id);
 }
@@ -120,12 +120,12 @@ function recordUserAccess(id) {
 
 ---
 
-## 3. 重复问题
+## 3. Duplication Issues
 
-### 相似的验证逻辑
+### Similar Validation Logic
 
 ```typescript
-// ❌ 重复的验证模式
+// ❌ Repeated validation patterns
 function validateUser(user) {
   if (!user.name) throw new Error('Name required');
   if (!user.email) throw new Error('Email required');
@@ -138,7 +138,7 @@ function validateProduct(product) {
   if (!product.sku) throw new Error('SKU required');
 }
 
-// ✅ 提取通用验证器
+// ✅ Extract common validator
 function validateRequired(obj, fields) {
   for (const field of fields) {
     if (!obj[field]) throw new Error(`${field} required`);
@@ -149,10 +149,10 @@ validateRequired(user, ['name', 'email', 'age']);
 validateRequired(product, ['name', 'price', 'sku']);
 ```
 
-### 相似的错误处理
+### Similar Error Handling
 
 ```typescript
-// ❌ 重复的 try-catch 模式
+// ❌ Repeated try-catch patterns
 async function fetchUsers() {
   try {
     return await api.get('/users');
@@ -171,7 +171,7 @@ async function fetchProducts() {
   }
 }
 
-// ✅ 提取通用包装器
+// ✅ Extract common wrapper
 async function apiCall(endpoint, errorMessage) {
   try {
     return await api.get(endpoint);
@@ -187,12 +187,12 @@ const products = await apiCall('/products', 'Failed to fetch products');
 
 ---
 
-## 4. 过度设计
+## 4. Over-Engineering
 
-### 无用的抽象层
+### Useless Abstraction Layers
 
 ```typescript
-// ❌ 只有一个实现的接口
+// ❌ Interface with only one implementation
 interface IUserRepository {
   findById(id: string): User;
 }
@@ -201,16 +201,16 @@ class UserRepository implements IUserRepository {
   findById(id: string): User { /* ... */ }
 }
 
-// ✅ 直接使用类，需要时再抽象
+// ✅ Use class directly, abstract when needed
 class UserRepository {
   findById(id: string): User { /* ... */ }
 }
 ```
 
-### 过度防御
+### Over-Defensive Programming
 
 ```typescript
-// ❌ 过度防御的代码
+// ❌ Over-defensive code
 function add(a, b) {
   if (typeof a !== 'number') throw new Error('a must be number');
   if (typeof b !== 'number') throw new Error('b must be number');
@@ -221,39 +221,39 @@ function add(a, b) {
   return a + b;
 }
 
-// ✅ 合理的类型安全 (TypeScript)
+// ✅ Reasonable type safety (TypeScript)
 function add(a: number, b: number): number {
   return a + b;
 }
 ```
 
-### 从未使用的配置
+### Unused Configuration
 
 ```typescript
-// ❌ 
-if (config.enableNewFeature) {  // 一直是 true
+// ❌
+if (config.enableNewFeature) {  // Always true
   newFeature();
 } else {
-  oldFeature();  // 死代码
+  oldFeature();  // Dead code
 }
 
-// ✅ 删除死代码
+// ✅ Remove dead code
 newFeature();
 ```
 
 ---
 
-## 5. 魔法数字
+## 5. Magic Numbers
 
-### 业务逻辑中的数字
+### Numbers in Business Logic
 
 ```typescript
-// ❌ 
+// ❌
 if (user.age >= 18) {}
 if (order.total > 100) {}
 if (retryCount < 3) {}
 
-// ✅ 
+// ✅
 const LEGAL_AGE = 18;
 const FREE_SHIPPING_THRESHOLD = 100;
 const MAX_RETRY_ATTEMPTS = 3;
@@ -263,14 +263,14 @@ if (order.total > FREE_SHIPPING_THRESHOLD) {}
 if (retryCount < MAX_RETRY_ATTEMPTS) {}
 ```
 
-### 时间常量
+### Time Constants
 
 ```typescript
-// ❌ 
-setTimeout(fn, 86400000);  // 这是多久？
-setInterval(poll, 300000); // 这是多久？
+// ❌
+setTimeout(fn, 86400000);  // How long is this?
+setInterval(poll, 300000); // How long is this?
 
-// ✅ 
+// ✅
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 const FIVE_MINUTES_MS = 5 * 60 * 1000;
 
@@ -278,15 +278,15 @@ setTimeout(fn, ONE_DAY_MS);
 setInterval(poll, FIVE_MINUTES_MS);
 ```
 
-### HTTP 状态码
+### HTTP Status Codes
 
 ```typescript
-// ❌ 
+// ❌
 if (response.status === 200) {}
 if (response.status === 404) {}
 
-// ✅ 
+// ✅
 const HTTP_OK = 200;
 const HTTP_NOT_FOUND = 404;
-// 或使用常量库: import { StatusCodes } from 'http-status-codes';
+// Or use a constants library: import { StatusCodes } from 'http-status-codes';
 ```

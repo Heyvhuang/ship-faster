@@ -1,240 +1,240 @@
-# Cloudflare MCP 场景示例
+# Cloudflare MCP Scenarios
 
-20 个真实开发场景，每个标注所需工具和执行流程。
+20 real-world development scenarios, each marked with required tools and execution flow.
 
-## Observability（观测排障）
+## Observability
 
-### 1. Worker 5xx 暴涨定位
+### 1. Worker 5xx Spike Diagnosis
 ```
-用户：我这个 worker 昨天 18:00 开始 5xx 暴涨，给我定位最可能的原因和证据。
-执行：
-1. query_worker_observability：过滤 status >= 500，时间范围 17:30-19:00
-2. 找到首次报错时间点和错误信息
-3. auditlogs_by_account_id：查同时间段是否有部署/配置变更
-4. 汇总：根因 + 时间线 + 证据 + 修复建议
-```
-
-### 2. CPU 趋势分析
-```
-用户：把 worker `api-gateway` 最近 24h CPU time 的趋势拉出来，告诉我有没有异常峰值。
-执行：
-1. query_worker_observability：指标类型 CPU time，worker 名 api-gateway
-2. 按小时聚合，找出峰值时段
-3. 对比历史基线，判断是否异常
-4. 如有峰值，关联同时段日志找原因
+User: My worker has had a 5xx spike since 18:00 yesterday, help me find the most likely cause and evidence.
+Execute:
+1. query_worker_observability: filter status >= 500, time range 17:30-19:00
+2. Find the first error time point and message
+3. auditlogs_by_account_id: check for deployments/config changes in the same time window
+4. Summarize: root cause + timeline + evidence + fix recommendations
 ```
 
-## Builds（构建排障）
-
-### 3. 构建历史查看
+### 2. CPU Trend Analysis
 ```
-用户：列出 `frontend-app` 最近 5 次构建，最新一次为什么失败？
-执行：
-1. workers_builds_list_builds：worker 名 frontend-app，limit 5
-2. workers_builds_get_build：获取失败构建详情
-3. workers_builds_get_build_logs：拉取完整日志
-4. 提炼失败原因 + 修复建议
+User: Pull the CPU time trend for worker `api-gateway` over the last 24h and tell me if there are any abnormal spikes.
+Execute:
+1. query_worker_observability: metric type CPU time, worker name api-gateway
+2. Aggregate by hour, find peak time periods
+3. Compare with historical baseline to determine if abnormal
+4. If peaks found, correlate with logs from the same period to find the cause
 ```
 
-### 4. 构建日志分析
+## Builds
+
+### 3. Build History View
 ```
-用户：把 build UUID xxx 的 logs 拉出来，帮我提炼出失败的第一原因和可能修复。
-执行：
-1. workers_builds_get_build_logs：build ID
-2. 定位第一个 ERROR/FATAL
-3. 分析依赖问题/语法错误/配置问题
-4. 给出具体修复步骤
+User: List the last 5 builds for `frontend-app`, why did the latest one fail?
+Execute:
+1. workers_builds_list_builds: worker name frontend-app, limit 5
+2. workers_builds_get_build: get failed build details
+3. workers_builds_get_build_logs: pull complete logs
+4. Summarize failure reason + fix recommendations
 ```
 
-## Browser Rendering（页面抓取）
-
-### 5. 页面截图验证
+### 4. Build Log Analysis
 ```
-用户：把 https://my-site.com 截图给我，看看顶部 banner 有没有加载出来。
-执行：
-1. 确认有 active account（否则先 accounts_list + set_active_account）
-2. get_url_screenshot：URL
-3. 返回截图 + 观察结论
-```
-
-### 6. 页面转 Markdown
-```
-用户：把某个线上错误页面转成 markdown，我要贴到事故复盘里。
-执行：
-1. get_url_markdown：URL
-2. 清理格式，保留关键错误信息
-3. 返回可直接使用的 markdown
+User: Pull the logs for build UUID xxx, help me extract the first failure cause and possible fix.
+Execute:
+1. workers_builds_get_build_logs: build ID
+2. Find the first ERROR/FATAL
+3. Analyze dependency issues/syntax errors/config issues
+4. Provide specific fix steps
 ```
 
-## Audit Logs（审计追溯）
+## Browser Rendering
 
-### 7. DNS 变更追溯
+### 5. Page Screenshot Verification
 ```
-用户：昨天中午是谁改了 DNS 记录？给我审计记录。
-执行：
-1. auditlogs_by_account_id：时间范围昨天 11:00-14:00
-2. 过滤 action 类型为 DNS 相关
-3. 列出：时间 + 操作人 + 具体变更
-```
-
-### 8. 变更周报
-```
-用户：把过去 7 天和 Worker 相关的关键配置变更汇总成报告。
-执行：
-1. auditlogs_by_account_id：过去 7 天
-2. 过滤 Worker 相关 action
-3. 按日期分组汇总
-4. 格式化输出报告
+User: Take a screenshot of https://my-site.com, see if the top banner loaded.
+Execute:
+1. Confirm active account (otherwise accounts_list + set_active_account first)
+2. get_url_screenshot: URL
+3. Return screenshot + observation conclusions
 ```
 
-## KV 管理
-
-### 9. 列出 KV namespaces
+### 6. Page to Markdown
 ```
-用户：列出我账号里所有 KV namespaces，并找出名字像 `prod-*` 的。
-执行：
-1. accounts_list → set_active_account（如未设置）
+User: Convert an online error page to markdown, I want to paste it into the incident review.
+Execute:
+1. get_url_markdown: URL
+2. Clean up format, preserve key error information
+3. Return ready-to-use markdown
+```
+
+## Audit Logs
+
+### 7. DNS Change Traceback
+```
+User: Who changed the DNS records yesterday at noon? Give me the audit records.
+Execute:
+1. auditlogs_by_account_id: time range yesterday 11:00-14:00
+2. Filter action types for DNS-related
+3. List: time + operator + specific changes
+```
+
+### 4. Change Weekly Report
+```
+User: Summarize key Worker-related config changes over the past 7 days into a report.
+Execute:
+1. auditlogs_by_account_id: past 7 days
+2. Filter Worker-related actions
+3. Group by date
+4. Format report output
+```
+
+## KV Management
+
+### 9. List KV Namespaces
+```
+User: List all KV namespaces in my account, find ones with names like `prod-*`.
+Execute:
+1. accounts_list → set_active_account (if not set)
 2. kv_namespaces_list
-3. 过滤 name 匹配 prod-*
-4. 返回列表 + 统计
+3. Filter name matching prod-*
+4. Return list + statistics
 ```
 
-### 10. 创建 KV namespace
+### 10. Create KV Namespace
 ```
-用户：创建一个 KV namespace 叫 `feature-flags`，并告诉我后续怎么绑到 worker。
-执行：
-1. 展示计划：创建 namespace "feature-flags"
-2. 等待用户确认
-3. kv_namespace_create：name = feature-flags
-4. 返回创建结果 + wrangler.toml 绑定示例
+User: Create a KV namespace called `feature-flags`, and tell me how to bind it to a worker afterward.
+Execute:
+1. Show plan: create namespace "feature-flags"
+2. Wait for user confirmation
+3. kv_namespace_create: name = feature-flags
+4. Return creation result + wrangler.toml binding example
 ```
 
-### 11. 批量删除 KV（危险）
+### 11. Bulk Delete KV (Dangerous)
 ```
-用户：把 `temp-*` 开头的 KV namespace 全部删掉（先列出来让我确认）。
-执行：
+User: Delete all KV namespaces starting with `temp-*` (list them for confirmation first).
+Execute:
 1. kv_namespaces_list
-2. 过滤 temp-* 开头
-3. 列出将删除的 namespace（名称 + ID）
-4. ⚠️ 等待用户明确确认
-5. 逐个 kv_namespace_delete
-6. auditlogs_by_account_id 回验删除记录
+2. Filter temp-* prefix
+3. List namespaces to be deleted (name + ID)
+4. ⚠️ Wait for explicit user confirmation
+5. kv_namespace_delete one by one
+6. auditlogs_by_account_id to verify deletion records
 ```
 
-## R2 管理
+## R2 Management
 
-### 12. R2 清理建议
+### 12. R2 Cleanup Suggestions
 ```
-用户：列出 R2 buckets，找出最近可能不用的，给我清理建议。
-执行：
+User: List R2 buckets, find ones that might not be used recently, give me cleanup suggestions.
+Execute:
 1. r2_buckets_list
-2. 按创建时间/名称模式分析
-3. 标记可能废弃的（如 test-*、tmp-*）
-4. 给出清理建议（不直接删除）
+2. Analyze by creation time/name patterns
+3. Mark possibly abandoned ones (like test-*, tmp-*)
+4. Provide cleanup suggestions (don't delete directly)
 ```
 
-### 13. 创建 R2 bucket + 代码示例
+### 13. Create R2 Bucket + Code Example
 ```
-用户：创建一个 R2 bucket 叫 `uploads-prod`，并给我一个最小可用的 worker 代码片段读写它。
-执行：
-1. 展示计划：创建 bucket "uploads-prod"
-2. 等待确认
-3. r2_bucket_create：name = uploads-prod
-4. 返回创建结果 + Worker 代码示例（env.BUCKET.put/get）
+User: Create an R2 bucket called `uploads-prod`, and give me a minimal working worker code snippet to read/write it.
+Execute:
+1. Show plan: create bucket "uploads-prod"
+2. Wait for confirmation
+3. r2_bucket_create: name = uploads-prod
+4. Return creation result + Worker code example (env.BUCKET.put/get)
 ```
 
-## D1 管理
+## D1 Management
 
-### 14. D1 查询
+### 14. D1 Query
 ```
-用户：列出 D1 数据库，跑一下 `SELECT COUNT(*) FROM users;`。
-执行：
+User: List D1 databases, run `SELECT COUNT(*) FROM users;`.
+Execute:
 1. d1_databases_list
-2. 确认目标数据库
-3. d1_database_query：SELECT COUNT(*) FROM users
-4. 返回结果
+2. Confirm target database
+3. d1_database_query: SELECT COUNT(*) FROM users
+4. Return results
 ```
 
-### 15. D1 迁移演练（完整流程）
+### 15. D1 Migration Drill (Complete Flow)
 ```
-用户：我需要一个临时 D1 用来做迁移演练：创建、跑 schema、跑几条测试数据、最后删掉（每步都给我确认点）。
-执行：
-1. 展示计划：创建临时 DB → 建表 → 插入测试数据 → 删除
-2. 确认后 d1_database_create
-3. 确认后 d1_database_query：CREATE TABLE ...
-4. 确认后 d1_database_query：INSERT ...
-5. 确认后 d1_database_delete
-6. auditlogs 回验
+User: I need a temporary D1 for migration drills: create, run schema, insert test data, finally delete (give me confirmation points at each step).
+Execute:
+1. Show plan: create temp DB → create table → insert test data → delete
+2. Confirm then d1_database_create
+3. Confirm then d1_database_query: CREATE TABLE ...
+4. Confirm then d1_database_query: INSERT ...
+5. Confirm then d1_database_delete
+6. auditlogs verify
 ```
 
-## Hyperdrive 管理
+## Hyperdrive Management
 
-### 16. Hyperdrive 配置分析
+### 16. Hyperdrive Config Analysis
 ```
-用户：列出 Hyperdrive 配置，帮我找哪个连到生产库，并建议怎么改缓存策略。
-执行：
+User: List Hyperdrive configurations, help me find which one connects to production database, and suggest how to change caching strategy.
+Execute:
 1. hyperdrive_configs_list
-2. hyperdrive_config_get：逐个查看连接字符串
-3. 识别生产库连接
-4. 分析当前缓存配置 + 优化建议
+2. hyperdrive_config_get: check connection strings one by one
+3. Identify production database connections
+4. Analyze current caching configuration + optimization suggestions
 ```
 
-## Workers 代码
+## Workers Code
 
-### 17. Worker 源码检查
+### 17. Worker Source Code Check
 ```
-用户：拉取 worker `my-worker-script` 的源码，我怀疑它把某个 env 变量写错了。
-执行：
-1. workers_get_worker：获取 worker 详情
-2. workers_get_worker_code：获取源码
-3. 搜索 env. 相关引用
-4. 标注可疑位置
-```
-
-## Container Sandbox（沙箱）
-
-### 18. 跑测试
-```
-用户：在沙箱里 clone 这个 repo，跑测试，把失败的测试和报错贴出来。
-执行：
-1. container_initialize（注意：~10分钟生命周期）
-2. container_exec：git clone <repo>
-3. container_exec：pnpm install && pnpm test
-4. 提取失败测试 + 错误信息
-5. 汇总报告
+User: Pull the source code for worker `my-worker-script`, I suspect it has a wrong env variable.
+Execute:
+1. workers_get_worker: get worker details
+2. workers_get_worker_code: get source code
+3. Search for env. references
+4. Mark suspicious locations
 ```
 
-### 19. 数据分析
+## Container Sandbox
+
+### 18. Run Tests
 ```
-用户：用 Python 解析这段日志/指标导出，算一下 p95 和 error rate 的变化。
-执行：
+User: Clone this repo in the sandbox, run tests, paste the failed tests and errors.
+Execute:
+1. container_initialize (note: ~10 min lifecycle)
+2. container_exec: git clone <repo>
+3. container_exec: pnpm install && pnpm test
+4. Extract failed tests + error info
+5. Summarize report
+```
+
+### 19. Data Analysis
+```
+User: Parse this log/metrics export with Python, calculate the change in p95 and error rate.
+Execute:
 1. container_initialize
-2. container_file_write：写入日志数据
-3. container_file_write：写入分析脚本
-4. container_exec：python analyze.py
-5. 返回分析结果
+2. container_file_write: write log data
+3. container_file_write: write analysis script
+4. container_exec: python analyze.py
+5. Return analysis results
 ```
 
-## 综合流程
+## Comprehensive Flow
 
-### 20. 构建失败全链路排障
+### 20. Build Failure Full-Link Troubleshooting
 ```
-用户：给我做一个"从构建失败 → 找日志 → 修复建议 → 验证线上是否恢复"的自动化排障流程。
-执行：
-1. workers_builds_list_builds：找到失败构建
-2. workers_builds_get_build_logs：分析失败原因
-3. 给出修复建议
-4. （用户修复并重新部署后）
-5. workers_builds_list_builds：确认新构建成功
-6. query_worker_observability：确认无新报错
-7. get_url_screenshot：验证页面正常
-8. 汇总报告
+User: Create an automated troubleshooting flow from "build failure → find logs → fix suggestions → verify online recovery".
+Execute:
+1. workers_builds_list_builds: find failed build
+2. workers_builds_get_build_logs: analyze failure cause
+3. Provide fix suggestions
+4. (User fixes and redeploys)
+5. workers_builds_list_builds: confirm new build success
+6. query_worker_observability: confirm no new errors
+7. get_url_screenshot: verify page is normal
+8. Summarize report
 ```
 
-## 通用原则
+## General Principles
 
-1. **先查后改**：任何写操作前先 list/get 确认现状
-2. **明确确认**：写操作必须展示计划，等用户确认
-3. **执行后回验**：audit logs + observability 确认无异常
-4. **证据链**：排障结论必须有日志/指标/截图支撑
-5. **拆分请求**：复杂查询拆小，避免上下文过载
+1. **Query Before Modify**: List/get to confirm current state before any write operation
+2. **Explicit Confirmation**: Write operations must show plan, wait for user confirmation
+3. **Verify After Execution**: audit logs + observability confirm no anomalies
+4. **Evidence Chain**: Troubleshooting conclusions must have log/metric/screenshot support
+5. **Split Requests**: Complex queries into small ones to avoid context overflow

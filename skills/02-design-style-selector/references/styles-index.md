@@ -1,11 +1,11 @@
-# 风格文件索引
+# Style File Index
 
-将风格 prompt 文件放入 `styles/` 目录，命名格式：`[id]-[name].md`
+Place style prompt files in the `styles/` directory with the naming format: `[id]-[name].md`
 
-## 文件清单
+## File List
 
-| ID | 文件名 | 主题 |
-|----|--------|------|
+| ID | Filename | Theme |
+|----|----------|-------|
 | 01 | `01-monochrome.md` | Light |
 | 02 | `02-bauhaus.md` | Light |
 | 03 | `03-modern-dark.md` | Dark |
@@ -36,4 +36,3 @@
 | 28 | `28-organic.md` | Light |
 | 29 | `29-maximalism.md` | Light |
 | 30 | `30-retro.md` | Light |
-

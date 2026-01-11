@@ -2,7 +2,7 @@
   
 # 🚀 Ship Faster
 
-**Runnable templates, copy-ready packs, and agent skills for shipping small products.**
+**Skills-first workflows that ship end-to-end (idea → deploy); templates and packs are supporting assets.**
 **Skills can self-iterate via 99-evolution hooks (patch suggestions only, no auto-edits).**
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -13,7 +13,7 @@
 
 <br />
 
-[🌐 VoxYZ](https://voxyz.space) · [🎯 Demo](https://copyback.vercel.app/) · [📦 Templates](./templates/) · [🧩 Copy Packs](./packs/) · [🤖 Agent Skills](./skills/) · [🇨🇳 中文](./README.zh-CN.md)
+[🌐 VoxYZ](https://voxyz.space) · [🎯 Demo 001](https://copyback.vercel.app/) · [🎯 Demo 002](https://uniteconomics-console.vercel.app/) · [📦 Templates](./templates/) · [🧩 Copy Packs](./packs/) · [🤖 Agent Skills](./skills/) · [🇨🇳 中文](./README.zh-CN.md)
 
 <br />
 
@@ -36,6 +36,8 @@ cp -r skills/* ~/.claude/skills/
 
 > Side-effecting actions (deploy, payments, etc.) are gated behind explicit approvals.
 
+Skills are the mainline: run `00-workflow-ship-faster` to ship end-to-end. Templates and packs are optional supporting assets you can run or copy when needed.
+
 ---
 
 ## ✨ What is Ship Faster?
@@ -47,9 +49,9 @@ cp -r skills/* ~/.claude/skills/
 
 | Type | Description |
 |:-----|:------------|
-| 📦 **Runnable Templates** | Complete, production-ready full-stack projects |
-| 🧩 **Copy Packs** | Modular code bundles you can copy into your own project |
-| 🤖 **Agent Skills** | AI agent workflows for shipping faster (copy to `.claude/skills/`, or use as checklists) |
+| 🤖 **Agent Skills (mainline)** | Reusable workflows that ship end-to-end (idea → deploy) |
+| 📦 **Runnable Templates** | Supporting assets: complete, production-ready full-stack projects |
+| 🧩 **Copy Packs** | Supporting assets: modular code bundles you can copy into your own project |
 
 > 💡 The repo root is intentionally **not runnable**. Pick a template in `templates/` to run, or pick a pack in `packs/` to copy.
 
@@ -89,7 +91,8 @@ cp -r skills/* ~/.claude/skills/
 ship-faster/
 ├── 📁 templates/                 # Runnable full projects
 │   ├── README.md
-│   └── 001-copyback-studio/      # CopyBack Studio app
+│   ├── 001-copyback-studio/      # CopyBack Studio app
+│   └── 002-uniteconomics-console/ # UnitEconomics Console app
 ├── 📁 packs/                     # Copy-ready modular bundles
 │   ├── README.md
 │   └── 2026-01-10-create-saas-starter-pack/
@@ -112,6 +115,7 @@ Full-stack, production-ready projects you can clone and run immediately.
 | # | Template | Description | Stack | Link |
 |:-:|:---------|:------------|:------|:-----|
 | 001 | **CopyBack Studio** | Full-stack creative app | Next.js + Supabase | [→ Open](templates/001-copyback-studio/) |
+| 002 | **UnitEconomics Console** | Unit economics analysis console | Next.js + Gemini | [→ Open](templates/002-uniteconomics-console/) |
 
 ---
 

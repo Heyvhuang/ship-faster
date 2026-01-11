@@ -1,116 +1,116 @@
-# 审核检查清单
+# Audit Checklist
 
-## 目录
+## Table of Contents
 
-1. [README 功能与特性](#1-readme-功能与特性)
-2. [对外接口与合同](#2-对外接口与合同)
-3. [配置与环境变量](#3-配置与环境变量)
-4. [安全与权限](#4-安全与权限)
-5. [运行方式与脚本](#5-运行方式与脚本)
-6. [视图与模块行为](#6-视图与模块行为)
-7. [测试与质量保证](#7-测试与质量保证)
-8. [术语与命名](#8-术语与命名)
-
----
-
-## 1. README 功能与特性
-
-- [ ] README 中的功能/特性是否都有清晰实现或入口？
-- [ ] 是否有已下线或隐藏的功能仍写在 README 中？
-- [ ] 文档声明的支持平台/协议/格式是否与代码真实支持范围一致？
-- [ ] 版本号、依赖版本是否与 package.json/requirements.txt 一致？
-- [ ] 项目架构图是否反映当前目录结构？
-
-## 2. 对外接口与合同
-
-- [ ] 文档中的 API 示例、参数、返回值是否与 OpenAPI/proto/schema/TS types 一致？
-- [ ] 文档中声称存在的端点/方法，代码中是否真实存在？
-- [ ] 代码中已有的新接口，文档是否尚未更新？
-- [ ] 请求/响应字段名称是否一致？
-- [ ] 必填/可选参数是否标注正确？
-- [ ] 默认值是否与实现一致？
-- [ ] 错误码/状态码是否完整列出？
-
-## 3. 配置与环境变量
-
-- [ ] 文档列出的环境变量名称是否与代码中读取的一致？
-- [ ] 环境变量默认值是否与代码中的 fallback 一致？
-- [ ] 必填环境变量是否正确标注？
-- [ ] Feature Flags 是否在代码中真实存在？
-- [ ] 配置文件路径是否正确？
-- [ ] 配置项的类型（string/number/boolean）是否正确？
-
-## 4. 安全与权限
-
-- [ ] 认证方式是否与实现一致（JWT/Session/OAuth）？
-- [ ] 角色/权限/scope 定义是否与代码中的检查逻辑一致？
-- [ ] sandbox/contextIsolation 等安全设置是否如文档所述启用？
-- [ ] 加密/HTTPS 是否如文档所述配置？
-- [ ] CORS 策略是否与文档描述一致？
-- [ ] CSP 策略是否与文档描述一致？
-
-## 5. 运行方式与脚本
-
-- [ ] 启动命令是否与 package.json scripts 一致？
-- [ ] 构建命令是否能成功执行？
-- [ ] 测试命令是否与测试框架配置一致？
-- [ ] 部署命令是否与 CI/CD 配置一致？
-- [ ] 「快速开始」步骤是否能一键跑通？
-- [ ] 是否引用了已移除的脚本或目录？
-- [ ] 依赖安装命令是否正确？
-
-## 6. 视图与模块行为
-
-- [ ] 文档描述的关键页面/模块是否有对应组件存在？
-- [ ] 文档提到的按钮/开关/选项是否真实存在？
-- [ ] 组件行为是否与文档描述一致？
-- [ ] 路由路径是否与文档一致？
-- [ ] 截图是否反映当前 UI？
-
-## 7. 测试与质量保证
-
-- [ ] 测试框架是否与文档描述一致？
-- [ ] 测试命令是否能成功执行？
-- [ ] 覆盖率配置是否与文档声称一致？
-- [ ] CI 流程是否与文档描述一致？
-
-## 8. 术语与命名
-
-- [ ] 类型名/枚举名/模块名是否与文档用语一致？
-- [ ] 状态枚举值是否与文档中的中文描述一一对应？
-- [ ] 示例代码是否能编译/运行？
-- [ ] 引用的函数/类型/模块是否已被重命名或移动？
-- [ ] 链接是否有效（无 404）？
+1. [README Features](#1-readme-features)
+2. [External Interfaces and Contracts](#2-external-interfaces-and-contracts)
+3. [Configuration and Environment Variables](#3-configuration-and-environment-variables)
+4. [Security and Permissions](#4-security-and-permissions)
+5. [Running and Scripts](#5-running-and-scripts)
+6. [Views and Module Behavior](#6-views-and-module-behavior)
+7. [Testing and Quality Assurance](#7-testing-and-quality-assurance)
+8. [Terminology and Naming](#8-terminology-and-naming)
 
 ---
 
-## 项目类型特定检查
+## 1. README Features
 
-### Electron 项目
+- [ ] Are all features/functions in the README clearly implemented or have clear entry points?
+- [ ] Are there any deprecated or hidden features still documented in the README?
+- [ ] Do the supported platforms/protocols/formats declared in docs match what the code actually supports?
+- [ ] Are version numbers and dependency versions consistent with package.json/requirements.txt?
+- [ ] Does the project architecture diagram reflect the current directory structure?
 
-- [ ] main/renderer 进程边界是否与文档描述一致？
-- [ ] preload 脚本暴露的 API 是否与文档一致？
-- [ ] contextIsolation/nodeIntegration 设置是否如文档所述？
-- [ ] IPC 通道名称是否与文档一致？
-- [ ] 窗口配置是否与文档描述一致？
+## 2. External Interfaces and Contracts
 
-### Web 前端项目
+- [ ] Do API examples, parameters, and return values in docs match OpenAPI/proto/schema/TS types?
+- [ ] Do endpoints/methods claimed in docs actually exist in code?
+- [ ] Are new interfaces in code yet to be documented?
+- [ ] Are request/response field names consistent?
+- [ ] Are required/optional parameters correctly marked?
+- [ ] Do default values match the implementation?
+- [ ] Are error/status codes fully listed?
 
-- [ ] 路由配置是否与文档描述一致？
-- [ ] 状态管理方案是否与文档一致？
-- [ ] 组件库版本是否与文档一致？
-- [ ] 构建输出目录是否与文档一致？
+## 3. Configuration and Environment Variables
 
-### 后端 API 项目
+- [ ] Do environment variable names listed in docs match those read in code?
+- [ ] Do environment variable defaults match fallbacks in code?
+- [ ] Are required environment variables correctly marked?
+- [ ] Do feature flags actually exist in code?
+- [ ] Are configuration file paths correct?
+- [ ] Are configuration value types (string/number/boolean) correct?
 
-- [ ] 中间件顺序是否与文档描述一致？
-- [ ] 数据库 schema 是否与文档一致？
-- [ ] 缓存策略是否与文档描述一致？
-- [ ] 限流配置是否与文档一致？
+## 4. Security and Permissions
 
-### CLI 工具项目
+- [ ] Does authentication method match implementation (JWT/Session/OAuth)?
+- [ ] Do roles/permissions/scope definitions match checks in code?
+- [ ] Are sandbox/contextIsolation and other security settings enabled as documented?
+- [ ] Is encryption/HTTPS configured as documented?
+- [ ] Does CORS policy match documentation?
+- [ ] Does CSP policy match documentation?
 
-- [ ] 命令名称是否与文档一致？
-- [ ] 选项/参数是否与文档一致？
-- [ ] 输出格式是否与文档示例一致？
-- [ ] 退出码是否与文档描述一致？
+## 5. Running and Scripts
+
+- [ ] Do startup commands match package.json scripts?
+- [ ] Can build commands execute successfully?
+- [ ] Do test commands match test framework configuration?
+- [ ] Do deployment commands match CI/CD configuration?
+- [ ] Can "Quick Start" steps run successfully in one go?
+- [ ] Are there references to removed scripts or directories?
+- [ ] Are dependency installation commands correct?
+
+## 6. Views and Module Behavior
+
+- [ ] Do key pages/modules described in docs have corresponding components?
+- [ ] Do buttons/switches/options mentioned in docs actually exist?
+- [ ] Does component behavior match documentation?
+- [ ] Do routes match documentation?
+- [ ] Do screenshots reflect current UI?
+
+## 7. Testing and Quality Assurance
+
+- [ ] Does test framework match documentation?
+- [ ] Can test commands execute successfully?
+- [ ] Does coverage configuration match what's documented?
+- [ ] Does CI flow match documentation?
+
+## 8. Terminology and Naming
+
+- [ ] Do type names/enum names/module names match documentation terminology?
+- [ ] Do enum status values correspond one-to-one with Chinese descriptions in docs?
+- [ ] Can example code compile/run?
+- [ ] Have referenced functions/types/modules been renamed or moved?
+- [ ] Are links valid (no 404)?
+
+---
+
+## Project Type-Specific Checks
+
+### Electron Projects
+
+- [ ] Do main/renderer process boundaries match documentation?
+- [ ] Do preload script APIs match documentation?
+- [ ] Are contextIsolation/nodeIntegration settings as documented?
+- [ ] Do IPC channel names match documentation?
+- [ ] Do window configurations match documentation?
+
+### Web Frontend Projects
+
+- [ ] Does routing configuration match documentation?
+- [ ] Does state management solution match documentation?
+- [ ] Do component library versions match documentation?
+- [ ] Does build output directory match documentation?
+
+### Backend API Projects
+
+- [ ] Does middleware order match documentation?
+- [ ] Does database schema match documentation?
+- [ ] Does caching strategy match documentation?
+- [ ] Does rate limiting configuration match documentation?
+
+### CLI Tool Projects
+
+- [ ] Do command names match documentation?
+- [ ] Do options/arguments match documentation?
+- [ ] Does output format match documentation examples?
+- [ ] Do exit codes match documentation?

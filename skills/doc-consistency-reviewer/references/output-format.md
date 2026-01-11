@@ -1,150 +1,150 @@
-# 输出格式模板
+# Output Format Template
 
-## 报告文件结构
+## Report File Structure
 
 ```markdown
-# 文档一致性审核报告
+# Documentation Consistency Audit Report
 
-> 审核时间: YYYY-MM-DD
-> 项目: [项目名称]
-> 审核范围: README.md, docs/**/*.md
+> Audit Date: YYYY-MM-DD
+> Project: [Project Name]
+> Scope: README.md, docs/**/*.md
 
-## 问题列表
+## Issue List
 
-[问题项 1-N...]
+[Issue items 1-N...]
 
-## 审核结论
+## Audit Conclusion
 
-[结论汇总...]
+[Conclusion summary...]
 ```
 
 ---
 
-## 单个问题项模板
+## Single Issue Item Template
 
 ```markdown
-### [序号]. [一句话概括问题]
+### [序号]. [Brief summary of the issue]
 
-- **严重级别**: P0 / P1 / P2 / P3 / 待证据补充
-- **位置**:
-  - 文档: `<文件路径>:<行号>`
-  - 代码: `<文件路径>:<行号>`
-- **证据**:
-  - 文档片段:
+- **Severity**: P0 / P1 / P2 / P3 / Needs Evidence
+- **Location**:
+  - Documentation: `<file-path>:<line-number>`
+  - Code: `<file-path>:<line-number>`
+- **Evidence**:
+  - Documentation excerpt:
     ```
-    [简要引用相关描述]
+    [Brief quote of relevant description]
     ```
-  - 代码片段:
+  - Code excerpt:
     ```typescript
-    [简要引用关键实现/配置]
+    [Brief quote of key implementation/configuration]
     ```
-- **影响**:
-  - [会如何误导用户/调用方/开发者？可能产生什么后果？]
-- **建议（最小修正）**:
-  - [建议修改「文档」或「代码」中的哪一方？给出最小可行的修正方向]
-- **关联原则**:
-  - [以代码为真 / 合同优先 / 面向用户承诺优先 / 安全默认收紧 / 术语枚举一致 / 可运行可复现]
+- **Impact**:
+  - [How will this mislead users/integrators/developers? What consequences may arise?]
+- **Recommendation (Minimal Fix)**:
+  - [Which side (documentation or code) should be modified? Give minimal viable fix direction]
+- **Related Principles**:
+  - [Code as source of truth / Contracts first / User-facing commitment priority / Security defaults tighter / Terminology and enum consistency / Runnable and reproducible]
 ```
 
 ---
 
-## 审核结论模板
+## Audit Conclusion Template
 
 ```markdown
-## 审核结论
+## Audit Conclusion
 
-### 结论
+### Result
 
-- [ ] **通过** - 无 P0/P1 问题
-- [ ] **有条件通过** - 需先修复以下前置条件：
-  1. [必须先修复的问题]
+- [ ] **Pass** - No P0/P1 issues
+- [ ] **Conditional Pass** - The following prerequisites must be fixed first:
+  1. [Issues that must be fixed first]
   2. ...
-- [ ] **不通过** - 存在以下阻断项：
-  1. [阻断问题]
+- [ ] **Fail** - The following blockers exist:
+  1. [Blocker issues]
   2. ...
 
-### 汇总统计
+### Summary Statistics
 
-| 级别 | 数量 |
-|------|------|
+| Severity | Count |
+|----------|-------|
 | P0 Blocker | x |
 | P1 Major | x |
 | P2 Minor | x |
 | P3 Nit | x |
-| 待证据补充 | x |
-| **总计** | **x** |
+| Needs Evidence | x |
+| **Total** | **x** |
 
-### 建议修复优先级
+### Recommended Fix Priority
 
-1. **立即修复 (P0)**:
-   - #[问题序号]: [简述]
-2. **优先修复 (P1)**:
-   - #[问题序号]: [简述]
-3. **计划修复 (P2)**:
-   - #[问题序号]: [简述]
-4. **低优先级 (P3)**:
-   - 视排期统一处理
+1. **Fix Immediately (P0)**:
+   - #[Issue Number]: [Brief description]
+2. **Prioritize Fix (P1)**:
+   - #[Issue Number]: [Brief description]
+3. **Plan Fix (P2)**:
+   - #[Issue Number]: [Brief description]
+4. **Low Priority (P3)**:
+   - Handle according to schedule
 
-### 变更影响
+### Change Impact
 
-| 影响范围 | 是否需要 | 说明 |
-|----------|----------|------|
-| Demo 更新 | 是/否 | [具体说明] |
-| 截图更新 | 是/否 | [具体说明] |
-| 脚本更新 | 是/否 | [具体说明] |
-| Changelog | 是/否 | [具体说明] |
-| 对外通知 | 是/否 | [具体说明] |
+| Impact Area | Required | Description |
+|-------------|----------|-------------|
+| Demo Update | Yes/No | [Specific description] |
+| Screenshot Update | Yes/No | [Specific description] |
+| Script Update | Yes/No | [Specific description] |
+| Changelog | Yes/No | [Specific description] |
+| External Notification | Yes/No | [Specific description] |
 ```
 
 ---
 
-## 示例问题项
+## Example Issue Items
 
-### 1. contextIsolation 安全配置与文档描述不一致
+### 1. contextIsolation Security Configuration Inconsistency with Documentation
 
-- **严重级别**: P0
-- **位置**:
-  - 文档: `docs/security.md:45`
-  - 代码: `src/main/window.ts:23`
-- **证据**:
-  - 文档片段:
+- **Severity**: P0
+- **Location**:
+  - Documentation: `docs/security.md:45`
+  - Code: `src/main/window.ts:23`
+- **Evidence**:
+  - Documentation excerpt:
     ```
-    所有渲染进程均启用 contextIsolation，确保 preload 脚本与页面脚本隔离
+    All render processes have contextIsolation enabled, ensuring preload scripts are isolated from page scripts
     ```
-  - 代码片段:
+  - Code excerpt:
     ```typescript
     webPreferences: {
-      contextIsolation: false, // 实际未启用
+      contextIsolation: false, // Actually not enabled
       nodeIntegration: true
     }
     ```
-- **影响**:
-  - 用户/审计人员会误认为应用已启用安全隔离，实际存在 XSS 攻击风险
-- **建议（最小修正）**:
-  - 修改代码，将 `contextIsolation` 设为 `true`，并通过 preload 脚本暴露必要 API
-- **关联原则**:
-  - 安全默认收紧、以代码为真
+- **Impact**:
+  - Users/auditors will assume the app has security isolation enabled, but there's actually an XSS attack risk
+- **Recommendation (Minimal Fix)**:
+  - Modify code to set `contextIsolation` to `true` and expose necessary APIs via preload script
+- **Related Principles**:
+  - Security defaults tighter, Code as source of truth
 
 ---
 
-### 2. API 端点 /api/users 返回字段与文档不一致
+### 2. API Endpoint /api/users Response Fields Inconsistent with Documentation
 
-- **严重级别**: P1
-- **位置**:
-  - 文档: `docs/api.md:120`
-  - 代码: `src/routes/users.ts:45`
-- **证据**:
-  - 文档片段:
+- **Severity**: P1
+- **Location**:
+  - Documentation: `docs/api.md:120`
+  - Code: `src/routes/users.ts:45`
+- **Evidence**:
+  - Documentation excerpt:
     ```
-    返回字段: id, name, email, createdAt, updatedAt
+    Return fields: id, name, email, createdAt, updatedAt
     ```
-  - 代码片段:
+  - Code excerpt:
     ```typescript
     return { id, name, email, created_at, updated_at }; // snake_case
     ```
-- **影响**:
-  - 前端按文档使用 camelCase 会取不到值
-- **建议（最小修正）**:
-  - 更新文档，标注实际字段名为 snake_case
-- **关联原则**:
-  - 以代码为真、术语枚举一致
+- **Impact**:
+  - Frontend using camelCase per documentation will not get values
+- **Recommendation (Minimal Fix)**:
+  - Update documentation to note actual field names are snake_case
+- **Related Principles**:
+  - Code as source of truth, Terminology and enum consistency

@@ -2,7 +2,7 @@
   
 # 🚀 Ship Faster
 
-**帮你更快 Ship：可运行模板 + 可复制代码包 + Agent Skills**
+**Skills 为主线的一条链路（idea → deploy）；templates/packs 是配套素材。**
 **Skills 支持通过 99-evolution 钩子自我迭代（仅生成补丁建议，不自动改动）。**
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -13,7 +13,7 @@
 
 <br />
 
-[🌐 VoxYZ](https://voxyz.space) · [🎯 Demo](https://copyback.vercel.app/) · [📦 Templates](./templates/) · [🧩 Copy Packs](./packs/) · [Agent Skills](./skills/) · [🇺🇸 English](./README.md)
+[🌐 VoxYZ](https://voxyz.space) · [🎯 Demo 001](https://copyback.vercel.app/) · [🎯 Demo 002](https://uniteconomics-console.vercel.app/) · [📦 Templates](./templates/) · [🧩 Copy Packs](./packs/) · [Agent Skills](./skills/) · [🇺🇸 English](./README.md)
 
 <br />
 
@@ -36,6 +36,8 @@ cp -r skills/* ~/.claude/skills/
 
 > 所有会产生外部副作用的操作（部署、支付等）都需要显式审批门控。
 
+Skills 是主线：运行 `00-workflow-ship-faster` 即可端到端交付。Templates 和 packs 是可选配套素材，需要时再运行/复制即可。
+
 ---
 
 ## ✨ 这是什么？
@@ -46,9 +48,9 @@ cp -r skills/* ~/.claude/skills/
 
 | 类型 | 说明 |
 |:-----|:-----|
-| 📦 **Runnable Templates** | 完整的、可直接运行的全栈项目 |
-| 🧩 **Copy Packs** | 模块化代码包，复制即用 |
-| Agent Skills | 可复用的 AI 代理工作流（复制到 `.claude/skills/`） |
+| 🤖 **Agent Skills（主线）** | 可复用工作流，端到端交付（idea → deploy） |
+| 📦 **Runnable Templates** | 配套素材：完整可运行的全栈项目 |
+| 🧩 **Copy Packs** | 配套素材：模块化代码包，复制即用 |
 
 > 💡 仓库根目录**刻意不可运行**。请从 `templates/` 选择一个模板运行，或从 `packs/` 复制代码包到你的项目。
 
@@ -88,7 +90,8 @@ cp -r skills/* ~/.claude/skills/
 ship-faster/
 ├── 📁 templates/                 # 可运行的完整项目
 │   ├── README.md
-│   └── 001-copyback-studio/      # CopyBack Studio 应用
+│   ├── 001-copyback-studio/      # CopyBack Studio 应用
+│   └── 002-uniteconomics-console/ # UnitEconomics Console 应用
 ├── 📁 packs/                     # 可复制的模块化代码包
 │   ├── README.md
 │   └── 2026-01-10-create-saas-starter-pack/
@@ -110,6 +113,7 @@ ship-faster/
 | # | 模板 | 描述 | 技术栈 | 链接 |
 |:-:|:-----|:-----|:-------|:-----|
 | 001 | **CopyBack Studio** | 全栈创意应用 | Next.js + Supabase | [→ 打开](templates/001-copyback-studio/) |
+| 002 | **UnitEconomics Console** | 单页单位经济分析控制台 | Next.js + Gemini | [→ 打开](templates/002-uniteconomics-console/) |
 
 ---
 
