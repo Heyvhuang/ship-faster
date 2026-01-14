@@ -33,6 +33,16 @@ curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz 
 cp -r skills/* ~/.claude/skills/
 ```
 
+Windows（PowerShell）：
+
+```powershell
+New-Item -ItemType Directory -Force -Path "$HOME\\.claude\\skills" | Out-Null
+$zip = "$env:TEMP\\ship-faster-main.zip"
+Invoke-WebRequest -Uri "https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.zip" -OutFile $zip
+Expand-Archive -Path $zip -DestinationPath "$env:TEMP\\ship-faster" -Force
+Copy-Item -Recurse -Force "$env:TEMP\\ship-faster\\ship-faster-main\\skills\\*" "$HOME\\.claude\\skills\\"
+```
+
 2) 在 Claude Code/Opencode 等里运行 `workflow-project-intake`（从想法）或 `workflow-ship-faster`（从仓库）
 
 3) 产物目录：`.claude/runs/ship-faster/<run_id>/`（包含产物与日志；`ACTIVE` 指向当前 run）

@@ -33,6 +33,16 @@ curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz 
 cp -r skills/* ~/.claude/skills/
 ```
 
+Windows (PowerShell):
+
+```powershell
+New-Item -ItemType Directory -Force -Path "$HOME\\.claude\\skills" | Out-Null
+$zip = "$env:TEMP\\ship-faster-main.zip"
+Invoke-WebRequest -Uri "https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.zip" -OutFile $zip
+Expand-Archive -Path $zip -DestinationPath "$env:TEMP\\ship-faster" -Force
+Copy-Item -Recurse -Force "$env:TEMP\\ship-faster\\ship-faster-main\\skills\\*" "$HOME\\.claude\\skills\\"
+```
+
 2) Run `workflow-project-intake` (idea) or `workflow-ship-faster` (repo) in Claude Code/OpenCode
 
 3) Find outputs in `.claude/runs/ship-faster/<run_id>/` (artifacts + logs; `ACTIVE` points to current run)
