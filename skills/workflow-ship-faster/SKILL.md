@@ -204,6 +204,7 @@ Call `workflow-feature-shipper`:
 - Each feature first produces `feature-plan.md` (with acceptance criteria/non-goals)
 - Default split into PR-able small steps
 - After each batch (or before merge), recommend calling `review-merge-readiness` for conclusive review
+- If the batch touches React/Next.js rendering/data fetching/bundle size, also recommend `review-react-best-practices` (apply CRITICAL rules first)
 
 ### 6) Database Integration (Optional)
 

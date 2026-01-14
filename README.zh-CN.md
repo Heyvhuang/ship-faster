@@ -15,7 +15,7 @@
 
 <br />
 
-[VoxYZ](https://voxyz.space) · [Demo 001](https://copyback.vercel.app/) · [Demo 002](https://uniteconomics-console.vercel.app/) · [Templates](./templates/) · [Skills](./skills/) · [Manifest](./skills/manifest.json) · [English](./README.md)
+[VoxYZ](https://voxyz.space) · [Demo 001](https://copyback.vercel.app/) · [Demo 002](https://uniteconomics-console.vercel.app/) · [Docs](./docs/) · [Templates](./templates/) · [Skills](./skills/) · [Manifest](./skills/manifest.json) · [English](./README.md)
 
 </div>
 
@@ -43,13 +43,86 @@ Expand-Archive -Path $zip -DestinationPath "$env:TEMP\\ship-faster" -Force
 Copy-Item -Recurse -Force "$env:TEMP\\ship-faster\\ship-faster-main\\skills\\*" "$HOME\\.claude\\skills\\"
 ```
 
-2) 在 Claude Code/Opencode 等里运行 `workflow-project-intake`（从想法）或 `workflow-ship-faster`（从仓库）
+> 注意：这会把 skill 文件夹复制到 `~/.claude/skills/`。如果你已经装了其他 skills，同名目录会被覆盖。
 
-3) 产物目录：`.claude/runs/ship-faster/<run_id>/`（包含产物与日志；`ACTIVE` 指向当前 run）
+## 🧭 选择入口（复制即可）
+
+### 1) 我只有一个想法（从零开始）
+
+把下面这段发给你的 agent（Claude Code / OpenCode / 等）：
+
+```text
+Use workflow-project-intake.
+
+Idea: <我们要做什么?>
+Users: <给谁用?>
+Must-have: <3-5 条>
+Constraints: <时间 / 技术 / 设计 / 基建限制>
+Need: deploy? database? billing? seo?
+```
+
+### 2) 我有一个仓库（把它上线/打磨到可交付）
+
+```text
+Use workflow-ship-faster.
+
+Repo path: <绝对路径或 '.'>
+Constraints: <deadline / tech / non-goals>
+Need: deploy? database? billing? seo?
+```
+
+### 3) 我想快速交付一个功能（按 PR 尺寸迭代）
+
+```text
+Use workflow-feature-shipper.
+
+Repo path: <绝对路径或 '.'>
+Feature: <一句话描述>
+Acceptance criteria:
+- <bullet>
+- <bullet>
+Non-goals:
+- <bullet>
+```
+
+## 📁 产物在哪
+
+Ship Faster 会把每次运行写进磁盘，支持续跑 / 审计：
+
+- 产物：`.claude/runs/ship-faster/<run_id>/`（artifacts + logs）
+- 当前 run 指针：`.claude/runs/ship-faster/ACTIVE`
+- 续跑入口：`.claude/runs/ship-faster/<run_id>/00-index.md`
 
 ![运行产物结构](skills/assets/run-artifacts.png)
 
 > 所有会产生外部副作用的操作（部署、支付等）都需要显式审批门控。
+
+更多文档：
+- 快速开始：[`docs/quickstart.md`](docs/quickstart.md)
+- 核心概念（runs + approvals）：[`docs/concepts/runs-and-approvals.md`](docs/concepts/runs-and-approvals.md)
+- 配方（Next.js App Router 性能审计）：[`docs/recipes/nextjs-app-router-perf-audit.md`](docs/recipes/nextjs-app-router-perf-audit.md)
+
+<details>
+<summary><strong>🔄 更新 / 卸载</strong></summary>
+
+更新（覆盖同名 skill）：
+
+```bash
+curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=2 -C ~/.claude/skills ship-faster-main/skills/
+```
+
+只安装单个 skill（如果你已有很多 skills，推荐这种更安全）：
+
+```bash
+git clone https://github.com/Heyvhuang/ship-faster.git
+cd ship-faster
+cp -r skills/workflow-ship-faster ~/.claude/skills/
+```
+
+卸载：删除你安装过的 skill 目录（名称可参考 `skills/manifest.json`）。
+
+</details>
 
 Skills 是主线：运行 `workflow-ship-faster` 即可端到端交付。Templates 是可运行示例；内部 snippets 用于让 Agent 在集成实现时更快复用。
 
@@ -92,6 +165,7 @@ pnpm install && pnpm dev
 
 ```
 ship-faster/
+├── 📁 docs/                      # 文档入口（建议从这里开始）
 ├── 📁 templates/                 # 可运行的完整项目
 │   ├── README.md
 │   ├── 001-copyback-studio/      # CopyBack Studio 应用
@@ -151,6 +225,17 @@ Skills 内部用的可复制代码片段，用于让 Agent 执行更快。对普
 | **mcp-stripe** | Stripe 操作（严格门控） | [→ 打开](skills/mcp-stripe/) |
 | **mcp-cloudflare** | Cloudflare 操作（严格门控） | [→ 打开](skills/mcp-cloudflare/) |
 | **skill-evolution** | Hooks + 复盘（仅补丁建议） | [→ 打开](skills/skill-evolution/) |
+
+### Review Skills（审查类）
+
+更适合插在“实现 → 合并”之间的质量/性能审查技能。
+
+| Skill | 用途 | Link |
+|:------|:-----|:-----|
+| **review-react-best-practices** | React/Next.js 性能审查（水瀑布/包体/re-render） | [→ 打开](skills/review-react-best-practices/) |
+| **review-merge-readiness** | “能不能合并？”结论 + 按严重度列问题 | [→ 打开](skills/review-merge-readiness/) |
+| **review-clean-code** | 可维护性审查（Clean Code 维度） | [→ 打开](skills/review-clean-code/) |
+| **review-doc-consistency** | 文档 vs 代码一致性审查 | [→ 打开](skills/review-doc-consistency/) |
 
 ![Skills 分组地图](skills/assets/skills-map.png)
 

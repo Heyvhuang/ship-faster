@@ -131,6 +131,7 @@ Priority recommendations:
 - `workflow-ship-faster` will persist to `.claude/runs/ship-faster/<run_id>/` in project, and decide whether to execute DB/payment/deploy/SEO optional steps based on `context.json` switches
 - Just style/design system: Use `tool-design-style-selector`
 - Just one feature iteration (split+deliver): Use `workflow-feature-shipper`
+- Just React/Next.js performance review (waterfalls/bundle/re-renders): Use `review-react-best-practices`
 - Just DB-side actions (SQL/migration/logs/type generation): Use `mcp-supabase`
 - Just Stripe-side operations (products/prices/payment links/refunds etc.): Use `mcp-stripe`
 

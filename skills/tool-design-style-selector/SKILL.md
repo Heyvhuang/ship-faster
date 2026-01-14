@@ -7,45 +7,21 @@ description: "Scan project documentation to identify intent, first evaluate if e
 
 Scan project, identify intent, recommend and deploy the most suitable design system style.
 
-## Available Styles (30 types)
+## Style Presets
 
-### Light Theme (20 types)
-| ID | Style Name | Use Cases |
-|----|------------|-----------|
-| 01 | Monochrome | Minimal, content-focused, art/photography |
-| 02 | Bauhaus | Geometric, functionalist, design/architecture |
-| 04 | Newsprint | News, blogs, content-heavy |
-| 05 | SaaS | B2B software, dashboards, tools |
-| 06 | Luxury | High-end brands, luxury goods, fashion |
-| 08 | Swiss Minimalist | International, clear hierarchy, corporate sites |
-| 10 | Flat Design | Modern clean, iOS style, mobile apps |
-| 12 | Material Design | Google style, Android, enterprise apps |
-| 13 | Neo Brutalism | Bold rebellious, creative agencies, indie projects |
-| 15 | Academia | Education, research, knowledge platforms |
-| 18 | Playful Geometric | Kids, games, creative brands |
-| 20 | Claymorphism | 3D texture, modern playful, emerging brands |
-| 21 | Professional | Corporate sites, B2B, consulting |
-| 22 | Botanical | Nature, health, organic brands |
-| 24 | Enterprise | Large enterprises, finance, government |
-| 25 | Sketch | Hand-drawn feel, prototypes, creative studios |
-| 26 | Industrial | Manufacturing, engineering, tech hardware |
-| 27 | Neumorphism | Soft UI, dashboards, control panels |
-| 28 | Organic | Fluid shapes, health, lifestyle |
-| 29 | Maximalism | Visual impact, fashion, art exhibitions |
-| 30 | Retro | Nostalgia, vintage brands, indie games |
+This skill can either:
 
-### Dark Theme (10 types)
-| ID | Style Name | Use Cases |
-|----|------------|-----------|
-| 03 | Modern Dark | Tech products, dev tools, dark mode |
-| 07 | Terminal | Developer tools, CLI, geek products |
-| 09 | Kinetic | Motion-driven, interactive experiences, creative showcases |
-| 11 | Art Deco | High-end events, finance, vintage luxury |
-| 14 | Bold Typography | Media, magazines, visual communication |
-| 16 | Cyberpunk | Games, futurism, sci-fi |
-| 17 | Web3 | Blockchain, cryptocurrency, DeFi |
-| 19 | Minimal Dark | Developers, professional tools, focus mode |
-| 23 | Vaporwave | Retro-futurism, music, subculture |
+1) **Preserve existing style** and extract it into `design-system.md` (recommended when the project already looks “mature”), or  
+2) Apply one of **30 preset styles** and generate `design-system.md`.
+
+Style files live in `styles/` and are indexed in:
+- [`styles-index.md`](styles-index.md) (ID → filename → theme)
+
+Quick examples of presets:
+- `05-saas` (B2B tools, dashboards)
+- `08-swiss-minimalist` (clean hierarchy, corporate)
+- `13-neo-brutalism` (bold, indie/creative)
+- `19-minimal-dark` (focus mode, dev tools)
 
 ## Execution Flow
 

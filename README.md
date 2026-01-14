@@ -15,7 +15,7 @@
 
 <br />
 
-[VoxYZ](https://voxyz.space) · [Demo 001](https://copyback.vercel.app/) · [Demo 002](https://uniteconomics-console.vercel.app/) · [Templates](./templates/) · [Skills](./skills/) · [Manifest](./skills/manifest.json) · [中文](./README.zh-CN.md)
+[VoxYZ](https://voxyz.space) · [Demo 001](https://copyback.vercel.app/) · [Demo 002](https://uniteconomics-console.vercel.app/) · [Docs](./docs/) · [Templates](./templates/) · [Skills](./skills/) · [Manifest](./skills/manifest.json) · [中文](./README.zh-CN.md)
 
 </div>
 
@@ -43,13 +43,86 @@ Expand-Archive -Path $zip -DestinationPath "$env:TEMP\\ship-faster" -Force
 Copy-Item -Recurse -Force "$env:TEMP\\ship-faster\\ship-faster-main\\skills\\*" "$HOME\\.claude\\skills\\"
 ```
 
-2) Run `workflow-project-intake` (idea) or `workflow-ship-faster` (repo) in Claude Code/OpenCode
+> Note: this copies skill folders into `~/.claude/skills/`. If you already have skills there, it will overwrite folders with the same name.
 
-3) Find outputs in `.claude/runs/ship-faster/<run_id>/` (artifacts + logs; `ACTIVE` points to current run)
+## 🧭 Pick Your Path (Copy/Paste)
+
+### 1) I have an idea (start from scratch)
+
+Paste this into your agent (Claude Code / OpenCode / etc.):
+
+```text
+Use workflow-project-intake.
+
+Idea: <what are we building?>
+Users: <who is it for?>
+Must-have: <3-5 bullets>
+Constraints: <deadline / tech / design / infra>
+Need: deploy? database? billing? seo?
+```
+
+### 2) I have a repo (ship this code)
+
+```text
+Use workflow-ship-faster.
+
+Repo path: <absolute path or '.'>
+Constraints: <deadline / tech / non-goals>
+Need: deploy? database? billing? seo?
+```
+
+### 3) I want to ship one feature (fast, PR-sized)
+
+```text
+Use workflow-feature-shipper.
+
+Repo path: <absolute path or '.'>
+Feature: <one sentence>
+Acceptance criteria:
+- <bullet>
+- <bullet>
+Non-goals:
+- <bullet>
+```
+
+## 📁 Where outputs go
+
+Ship Faster writes every run to disk for replay/audit:
+
+- Outputs: `.claude/runs/ship-faster/<run_id>/` (artifacts + logs)
+- Current run pointer: `.claude/runs/ship-faster/ACTIVE`
+- Resume entry: `.claude/runs/ship-faster/<run_id>/00-index.md`
 
 ![Run artifacts](skills/assets/run-artifacts.png)
 
 > Side-effecting actions (deploy, payments, etc.) are gated behind explicit approvals.
+
+Docs:
+- Quick start: [`docs/quickstart.md`](docs/quickstart.md)
+- Concepts (runs + approvals): [`docs/concepts/runs-and-approvals.md`](docs/concepts/runs-and-approvals.md)
+- Recipe (Next.js App Router perf audit): [`docs/recipes/nextjs-app-router-perf-audit.md`](docs/recipes/nextjs-app-router-perf-audit.md)
+
+<details>
+<summary><strong>🔄 Update / Uninstall</strong></summary>
+
+Update (overwrite same skill names):
+
+```bash
+curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=2 -C ~/.claude/skills ship-faster-main/skills/
+```
+
+Install a single skill (safer if you already have many skills installed):
+
+```bash
+git clone https://github.com/Heyvhuang/ship-faster.git
+cd ship-faster
+cp -r skills/workflow-ship-faster ~/.claude/skills/
+```
+
+Uninstall: delete the skill folders you installed (see `skills/manifest.json` for names).
+
+</details>
 
 Skills are the mainline: run `workflow-ship-faster` to ship end-to-end. Templates are runnable examples; internal snippets help agents move faster when implementing integrations.
 
@@ -92,6 +165,7 @@ pnpm install && pnpm dev
 
 ```
 ship-faster/
+├── 📁 docs/                      # Project docs (start here)
 ├── 📁 templates/                 # Runnable full projects
 │   ├── README.md
 │   ├── 001-copyback-studio/      # CopyBack Studio app
@@ -151,6 +225,17 @@ AI-powered workflows for shipping faster. Copy to your project's `.claude/skills
 | **mcp-stripe** | Stripe ops (strict gates) | [→ Open](skills/mcp-stripe/) |
 | **mcp-cloudflare** | Cloudflare ops (strict gates) | [→ Open](skills/mcp-cloudflare/) |
 | **skill-evolution** | Hooks + retrospective (patch suggestions only) | [→ Open](skills/skill-evolution/) |
+
+### Review Skills
+
+Quality/performance audits that fit naturally between “implement” and “merge”.
+
+| Skill | What it’s for | Link |
+|:------|:--------------|:-----|
+| **review-react-best-practices** | React/Next.js performance review (waterfalls/bundle/re-renders) | [→ Open](skills/review-react-best-practices/) |
+| **review-merge-readiness** | “Can we merge?” verdict + issues by severity | [→ Open](skills/review-merge-readiness/) |
+| **review-clean-code** | Maintainability audit (Clean Code dimensions) | [→ Open](skills/review-clean-code/) |
+| **review-doc-consistency** | Docs vs code consistency audit | [→ Open](skills/review-doc-consistency/) |
 
 ![Skills map](skills/assets/skills-map.png)
 

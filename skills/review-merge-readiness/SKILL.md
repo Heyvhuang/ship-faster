@@ -82,6 +82,7 @@ Each Issue must include:
 ## Relationship with Other Review Skills
 
 - `review-clean-code`: More focused on "maintainability/cleanliness", suitable for deep code smell investigation
+- `review-react-best-practices`: More focused on React/Next.js performance patterns (waterfalls/bundle/re-renders). Use when the diff touches React UI, data fetching, or performance-sensitive areas.
 - This skill: More focused on "requirements alignment/production readiness/merge verdict" conclusion-oriented review
 
 If you just need a "can we merge?" verdict: use this skill.
