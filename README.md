@@ -1,7 +1,5 @@
 <div align="center">
   
-# Ship Faster
-
 <img src="skills/assets/Head.png" alt="Ship Faster" width="720" />
 
 <br />
