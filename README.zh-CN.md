@@ -2,6 +2,10 @@
   
 # 🚀 Ship Faster
 
+<img src="skills/assets/Head.png" alt="Ship Faster" width="720" />
+
+<br />
+
 **面向 coding agents 的完整开发工作流 —— 由可组合 skills 构成。**
 **把想法/小原型推进到可上线的 Web app：可续跑、产物落盘、外部副作用必须确认。**
 

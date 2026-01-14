@@ -2,6 +2,10 @@
   
 # 🚀 Ship Faster
 
+<img src="skills/assets/Head.png" alt="Ship Faster" width="720" />
+
+<br />
+
 **A complete development workflow for coding agents — built from composable skills.**
 **Turn an idea or small repo into a launchable web app with resumable, artifact-first runs and approval gates for external side effects.**
 
