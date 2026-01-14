@@ -24,7 +24,12 @@
 ## ⚡ 10 秒上手（先用 Skills）
 
 ```bash
-# 1) 把 skills 复制到 Claude Code 目录
+# 1) 快速安装（macOS/Linux，不用克隆仓库）
+mkdir -p ~/.claude/skills
+curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=2 -C ~/.claude/skills ship-faster-main/skills/
+
+# 或者（已克隆仓库的情况）
 cp -r skills/* ~/.claude/skills/
 ```
 

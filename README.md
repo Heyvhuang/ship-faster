@@ -24,7 +24,12 @@
 ## ⚡ 10-Second Start (Skills-first)
 
 ```bash
-# 1) Copy the skills into Claude Code
+# 1) Quick install (macOS/Linux, no repo clone)
+mkdir -p ~/.claude/skills
+curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=2 -C ~/.claude/skills ship-faster-main/skills/
+
+# or if you already cloned this repo
 cp -r skills/* ~/.claude/skills/
 ```
 
