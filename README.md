@@ -30,7 +30,7 @@ cp -r skills/* ~/.claude/skills/
 
 3) Find outputs in `.claude/runs/ship-faster/<run_id>/` (artifacts + logs; `ACTIVE` points to current run)
 
-![Run artifacts](skills/assets/run-artifacts.svg)
+![Run artifacts](skills/assets/run-artifacts.png)
 
 > Side-effecting actions (deploy, payments, etc.) are gated behind explicit approvals.
 
@@ -53,7 +53,7 @@ Skills are the mainline: run `workflow-ship-faster` to ship end-to-end. Template
 
 > 💡 The repo root is intentionally **not runnable**. Pick a template in `templates/` to run, or copy `skills/` into your agent setup and run the pipeline against a real project.
 
-![Ship Faster workflow](skills/assets/ship-faster-flow.svg)
+![Ship Faster workflow](skills/assets/ship-faster-flow.png)
 
 ---
 
@@ -103,7 +103,7 @@ Runnable example apps (demos + regression references) you can run locally.
 | 001 | **CopyBack Studio** | Full-stack creative app | Next.js + Supabase | [→ Open](templates/001-copyback-studio/) |
 | 002 | **UnitEconomics Console** | Unit economics analysis console | Next.js + Gemini | [→ Open](templates/002-uniteconomics-console/) |
 
-![Template loop](skills/assets/template-loop.svg)
+![Template loop](skills/assets/template-loop.png)
 
 ---
 
@@ -135,7 +135,7 @@ AI-powered workflows for shipping faster. Copy to your project's `.claude/skills
 | **mcp-cloudflare** | Cloudflare ops (strict gates) | [→ Open](skills/mcp-cloudflare/) |
 | **skill-evolution** | Hooks + retrospective (patch suggestions only) | [→ Open](skills/skill-evolution/) |
 
-![Skills map](skills/assets/skills-map.svg)
+![Skills map](skills/assets/skills-map.png)
 
 > Full list is in `skills/manifest.json` (machine-readable).
 

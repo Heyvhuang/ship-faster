@@ -30,7 +30,7 @@ cp -r skills/* ~/.claude/skills/
 
 3) 产物目录：`.claude/runs/ship-faster/<run_id>/`（包含产物与日志；`ACTIVE` 指向当前 run）
 
-![运行产物结构](skills/assets/run-artifacts.svg)
+![运行产物结构](skills/assets/run-artifacts.png)
 
 > 所有会产生外部副作用的操作（部署、支付等）都需要显式审批门控。
 
@@ -53,7 +53,7 @@ Skills 是主线：运行 `workflow-ship-faster` 即可端到端交付。Templat
 
 > 💡 仓库根目录**刻意不可运行**。请从 `templates/` 选择一个模板运行，或把 `skills/` 复制到你的 Agent 环境后，对真实项目运行主流程。
 
-![Ship Faster 主流程](skills/assets/ship-faster-flow.svg)
+![Ship Faster 主流程](skills/assets/ship-faster-flow.png)
 
 ---
 
@@ -103,7 +103,7 @@ ship-faster/
 | 001 | **CopyBack Studio** | 全栈创意应用 | Next.js + Supabase | [→ 打开](templates/001-copyback-studio/) |
 | 002 | **UnitEconomics Console** | 单页单位经济分析控制台 | Next.js + Gemini | [→ 打开](templates/002-uniteconomics-console/) |
 
-![模板循环](skills/assets/template-loop.svg)
+![模板循环](skills/assets/template-loop.png)
 
 ---
 
@@ -135,7 +135,7 @@ Skills 内部用的可复制代码片段，用于让 Agent 执行更快。对普
 | **mcp-cloudflare** | Cloudflare 操作（严格门控） | [→ 打开](skills/mcp-cloudflare/) |
 | **skill-evolution** | Hooks + 复盘（仅补丁建议） | [→ 打开](skills/skill-evolution/) |
 
-![Skills 分组地图](skills/assets/skills-map.svg)
+![Skills 分组地图](skills/assets/skills-map.png)
 
 > 完整列表见 `skills/manifest.json`（机器可读）。
 
