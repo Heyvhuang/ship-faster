@@ -1,6 +1,6 @@
 ---
 name: tool-ast-grep-rules
-description: Write AST-based code search and rewrite rules using ast-grep YAML. Create linting rules, code modernizations, and API migrations with auto-fix. Use when the user mentions ast-grep, tree-sitter patterns, code search rules, lint rules with YAML, AST matching, or code refactoring patterns.
+description: 'Write AST-based code search and rewrite rules using ast-grep YAML. Create linting rules, code modernizations, and API migrations with auto-fix. Use when the user mentions ast-grep, tree-sitter patterns, code search rules, lint rules with YAML, AST matching, or code refactoring patterns.'
 ---
 
 # ast-grep Rule Crafter

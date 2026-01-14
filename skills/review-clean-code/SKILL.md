@@ -1,6 +1,6 @@
 ---
 name: review-clean-code
-description: Analyze code quality based on "Clean Code" principles. Identify naming, function size, duplication, over-engineering, and magic number issues with severity ratings and refactoring suggestions. Use when the user requests code quality checks, refactoring advice, Clean Code analysis, code smell detection, or mentions terms like code review, code quality, refactoring check.
+description: 'Analyze code quality based on "Clean Code" principles. Identify naming, function size, duplication, over-engineering, and magic number issues with severity ratings and refactoring suggestions. Use when the user requests code quality checks, refactoring advice, Clean Code analysis, code smell detection, or mentions terms like code review, code quality, refactoring check.'
 ---
 
 # Clean Code Review
