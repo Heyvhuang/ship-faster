@@ -1,0 +1,12 @@
+# llms.txt
+
+User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml
+
+Pages:
+- https://example.com/
+
+About:
+UnitEconomics Console is a unit economics analysis and policy drafting app for AI SaaS teams.

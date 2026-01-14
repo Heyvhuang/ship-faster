@@ -1,0 +1,20 @@
+{
+  "min_fail_count": 2,
+  "ignore_tool_errors": true,
+  "noise_filters": {
+    "ignore_patterns": [
+      "typescript: type.*already exists",
+      "eslint:.*no-unused-vars.*react",
+      "prettier:.*prettier-ignore"
+    ],
+    "max_failures_per_run": 20,
+    "recent_only": true,
+    "recent_window_minutes": 60
+  },
+  "output_format": {
+    "summary_only": false,
+    "include_context": true,
+    "include_recent_failures": 20,
+    "sort_by": "frequency"
+  }
+}

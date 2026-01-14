@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Template loop">
+  <style>
+    .title { font: 700 20px Helvetica, Arial, sans-serif; fill: #111827; }
+    .label { font: 600 13px Helvetica, Arial, sans-serif; fill: #111827; }
+    .text { font: 12px Helvetica, Arial, sans-serif; fill: #111827; }
+    .muted { font: 11px Helvetica, Arial, sans-serif; fill: #6B7280; }
+    .box { fill: #F8FAFC; stroke: #CBD5E1; stroke-width: 1; rx: 10; }
+    .entry { fill: #ECFDF3; stroke: #10B981; }
+    .accent { fill: #EEF2FF; stroke: #6366F1; }
+    .arrow { stroke: #475569; stroke-width: 1.2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect x="24" y="16" width="1152" height="328" rx="16" fill="#FFFFFF" stroke="#E5E7EB" />
+  <text x="40" y="48" class="title">Template loop (skills-first output)</text>
+
+  <!-- Top path: spec -> seeder -> template -->
+  <rect x="60" y="90" width="220" height="44" class="box" />
+  <text x="76" y="116" class="label">Spec / Idea</text>
+
+  <rect x="320" y="90" width="260" height="44" class="box accent" />
+  <text x="336" y="116" class="label">workflow-template-seeder</text>
+
+  <rect x="640" y="90" width="220" height="44" class="box entry" />
+  <text x="656" y="116" class="label">templates/&lt;NNN&gt;</text>
+
+  <path class="arrow" d="M280 112 L320 112" />
+  <path class="arrow" d="M580 112 L640 112" />
+
+  <!-- Bottom path: real project -> extractor -> template -->
+  <rect x="60" y="190" width="220" height="44" class="box" />
+  <text x="76" y="216" class="label">Real project</text>
+
+  <rect x="320" y="190" width="260" height="44" class="box accent" />
+  <text x="336" y="216" class="label">workflow-template-extractor</text>
+
+  <rect x="640" y="190" width="220" height="44" class="box entry" />
+  <text x="656" y="216" class="label">templates/&lt;NNN&gt;</text>
+
+  <path class="arrow" d="M280 212 L320 212" />
+  <path class="arrow" d="M580 212 L640 212" />
+
+  <!-- Reuse arrow -->
+  <path class="arrow" d="M860 134 L980 134" />
+  <rect x="980" y="110" width="160" height="60" class="box" />
+  <text x="996" y="134" class="label">Reuse</text>
+  <text x="996" y="152" class="muted">start new builds fast</text>
+</svg>

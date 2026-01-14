@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="Run artifacts">
+  <style>
+    .title { font: 700 20px Helvetica, Arial, sans-serif; fill: #111827; }
+    .label { font: 600 13px Helvetica, Arial, sans-serif; fill: #111827; }
+    .text { font: 12px Helvetica, Arial, sans-serif; fill: #111827; }
+    .muted { font: 11px Helvetica, Arial, sans-serif; fill: #6B7280; }
+    .box { fill: #F8FAFC; stroke: #CBD5E1; stroke-width: 1; rx: 10; }
+    .entry { fill: #EEF2FF; stroke: #6366F1; }
+    .arrow { stroke: #475569; stroke-width: 1.2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect x="24" y="16" width="1152" height="388" rx="16" fill="#FFFFFF" stroke="#E5E7EB" />
+  <text x="40" y="48" class="title">Run artifacts (resumable + traceable)</text>
+
+  <!-- ACTIVE pointer -->
+  <rect x="60" y="120" width="180" height="44" class="box entry" />
+  <text x="76" y="146" class="label">ACTIVE</text>
+  <text x="76" y="164" class="muted">current run_id</text>
+
+  <path class="arrow" d="M240 142 L300 142" />
+
+  <!-- Run directory -->
+  <rect x="300" y="80" width="420" height="240" class="box" />
+  <text x="320" y="108" class="label">.claude/runs/ship-faster/&lt;run_id&gt;/</text>
+  <text x="320" y="132" class="text">00-index.md (entry)</text>
+  <text x="320" y="150" class="text">01-input/ (goal, context)</text>
+  <text x="320" y="168" class="text">02-analysis/</text>
+  <text x="320" y="186" class="text">03-plans/ (approval)</text>
+  <text x="320" y="204" class="text">04-parallel/</text>
+  <text x="320" y="222" class="text">05-final/ (ship-summary)</text>
+  <text x="320" y="240" class="text">logs/ (events + state)</text>
+
+  <path class="arrow" d="M720 200 L860 200" />
+
+  <!-- Summary output -->
+  <rect x="860" y="172" width="260" height="60" class="box entry" />
+  <text x="878" y="198" class="label">Final summary</text>
+  <text x="878" y="216" class="muted">status + next steps</text>
+</svg>

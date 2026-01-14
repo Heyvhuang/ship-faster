@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-label="Ship Faster workflow overview">
+  <style>
+    .title { font: 700 20px Helvetica, Arial, sans-serif; fill: #111827; }
+    .label { font: 600 13px Helvetica, Arial, sans-serif; fill: #111827; }
+    .text { font: 12px Helvetica, Arial, sans-serif; fill: #111827; }
+    .muted { font: 11px Helvetica, Arial, sans-serif; fill: #6B7280; }
+    .box { fill: #F8FAFC; stroke: #CBD5E1; stroke-width: 1; rx: 10; }
+    .entry { fill: #EEF2FF; stroke: #6366F1; }
+    .gate { fill: #FFF7ED; stroke: #F59E0B; }
+    .step { fill: #ECFDF3; stroke: #10B981; }
+    .opt { fill: #F3F4F6; stroke: #9CA3AF; stroke-dasharray: 4 3; }
+    .done { fill: #E0F2FE; stroke: #0284C7; }
+    .arrow { stroke: #475569; stroke-width: 1.2; fill: none; marker-end: url(#arrow); }
+    .arrow-dash { stroke: #94A3B8; stroke-width: 1.2; fill: none; stroke-dasharray: 4 3; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect x="24" y="16" width="1152" height="728" rx="16" fill="#FFFFFF" stroke="#E5E7EB" />
+  <text x="40" y="48" class="title">Ship Faster workflow (core + optional)</text>
+
+  <!-- Main column -->
+  <g>
+    <rect x="60" y="80" width="280" height="44" class="box entry" />
+    <text x="76" y="106" class="label">Idea / Prototype</text>
+
+    <rect x="60" y="140" width="280" height="44" class="box step" />
+    <text x="76" y="166" class="label">workflow-project-intake (optional)</text>
+
+    <rect x="60" y="200" width="280" height="44" class="box entry" />
+    <text x="76" y="226" class="label">workflow-ship-faster</text>
+
+    <rect x="60" y="260" width="280" height="44" class="box gate" />
+    <text x="76" y="286" class="label">foundation gate</text>
+
+    <rect x="60" y="320" width="280" height="44" class="box gate" />
+    <text x="76" y="346" class="label">style gate</text>
+
+    <rect x="60" y="380" width="280" height="44" class="box step" />
+    <text x="76" y="406" class="label">guardrails</text>
+
+    <rect x="60" y="440" width="280" height="44" class="box step" />
+    <text x="76" y="466" class="label">docs-baseline</text>
+
+    <rect x="60" y="500" width="280" height="44" class="box step" />
+    <text x="76" y="526" class="label">feature-shipper</text>
+
+    <rect x="60" y="640" width="280" height="44" class="box done" />
+    <text x="76" y="666" class="label">launchable app + artifacts</text>
+  </g>
+
+  <!-- Main arrows -->
+  <path class="arrow" d="M200 124 L200 136" />
+  <path class="arrow" d="M200 184 L200 196" />
+  <path class="arrow" d="M200 244 L200 256" />
+  <path class="arrow" d="M200 304 L200 316" />
+  <path class="arrow" d="M200 364 L200 376" />
+  <path class="arrow" d="M200 424 L200 436" />
+  <path class="arrow" d="M200 484 L200 496" />
+
+  <!-- Optional column -->
+  <text x="520" y="200" class="label">Optional steps (context.json toggles)</text>
+  <text x="520" y="220" class="muted">need_database / need_billing / need_deploy / need_seo</text>
+
+  <rect x="520" y="260" width="340" height="44" class="box opt" />
+  <text x="536" y="286" class="text">supabase-integration (need_database)</text>
+
+  <rect x="520" y="320" width="340" height="44" class="box opt" />
+  <text x="536" y="346" class="text">stripe-integration (need_billing)</text>
+
+  <rect x="520" y="380" width="340" height="44" class="box opt" />
+  <text x="536" y="406" class="text">deploy-vercel (need_deploy)</text>
+
+  <rect x="520" y="440" width="340" height="44" class="box opt" />
+  <text x="536" y="466" class="text">ai-seo-nextjs (need_seo or deployed)</text>
+
+  <!-- Optional arrows (dashed) -->
+  <path class="arrow-dash" d="M340 522 L520 282" />
+  <path class="arrow-dash" d="M340 522 L520 342" />
+  <path class="arrow-dash" d="M340 522 L520 402" />
+  <path class="arrow-dash" d="M340 522 L520 462" />
+
+  <!-- Optional chain to Done -->
+  <path class="arrow-dash" d="M690 304 L690 316" />
+  <path class="arrow-dash" d="M690 364 L690 376" />
+  <path class="arrow-dash" d="M690 424 L690 436" />
+  <path class="arrow-dash" d="M690 484 L690 626" />
+
+  <!-- Legend -->
+  <rect x="520" y="560" width="340" height="120" class="box" />
+  <text x="536" y="584" class="label">Legend</text>
+  <rect x="536" y="598" width="16" height="12" class="entry" />
+  <text x="560" y="608" class="text">Entry / Workflow</text>
+  <rect x="536" y="618" width="16" height="12" class="gate" />
+  <text x="560" y="628" class="text">Gate</text>
+  <rect x="536" y="638" width="16" height="12" class="step" />
+  <text x="560" y="648" class="text">Core step</text>
+  <rect x="536" y="658" width="16" height="12" class="opt" />
+  <text x="560" y="668" class="text">Optional step</text>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Skills map">
+  <style>
+    .title { font: 700 20px Helvetica, Arial, sans-serif; fill: #111827; }
+    .label { font: 600 13px Helvetica, Arial, sans-serif; fill: #111827; }
+    .text { font: 12px Helvetica, Arial, sans-serif; fill: #111827; }
+    .muted { font: 11px Helvetica, Arial, sans-serif; fill: #6B7280; }
+    .box { fill: #F8FAFC; stroke: #CBD5E1; stroke-width: 1; rx: 10; }
+    .accent { fill: #EEF2FF; stroke: #6366F1; }
+  </style>
+
+  <rect x="24" y="16" width="1152" height="488" rx="16" fill="#FFFFFF" stroke="#E5E7EB" />
+  <text x="40" y="48" class="title">Skills map (prefix groups)</text>
+
+  <!-- Row 1 -->
+  <rect x="40" y="80" width="360" height="160" class="box accent" />
+  <text x="56" y="108" class="label">Workflows</text>
+  <text x="56" y="132" class="text">workflow-project-intake</text>
+  <text x="56" y="150" class="text">workflow-ship-faster</text>
+  <text x="56" y="168" class="text">workflow-feature-shipper</text>
+  <text x="56" y="186" class="text">workflow-template-seeder</text>
+  <text x="56" y="204" class="text">workflow-template-extractor</text>
+
+  <rect x="420" y="80" width="360" height="160" class="box" />
+  <text x="436" y="108" class="label">Tools</text>
+  <text x="436" y="132" class="text">tool-design-style-selector</text>
+  <text x="436" y="150" class="text">tool-ast-grep-rules</text>
+  <text x="436" y="168" class="muted">(deterministic helpers)</text>
+
+  <rect x="800" y="80" width="360" height="160" class="box" />
+  <text x="816" y="108" class="label">Reviews</text>
+  <text x="816" y="132" class="text">review-clean-code</text>
+  <text x="816" y="150" class="text">review-doc-consistency</text>
+  <text x="816" y="168" class="text">review-merge-readiness</text>
+
+  <!-- Row 2 -->
+  <rect x="40" y="280" width="360" height="160" class="box" />
+  <text x="56" y="308" class="label">MCP (external systems)</text>
+  <text x="56" y="332" class="text">mcp-supabase</text>
+  <text x="56" y="350" class="text">mcp-stripe</text>
+  <text x="56" y="368" class="text">mcp-cloudflare</text>
+
+  <rect x="420" y="280" width="360" height="160" class="box" />
+  <text x="436" y="308" class="label">Maintenance</text>
+  <text x="436" y="332" class="text">skill-creator</text>
+  <text x="436" y="350" class="text">skill-improver</text>
+  <text x="436" y="368" class="text">skill-evolution</text>
+
+  <rect x="800" y="280" width="360" height="160" class="box" />
+  <text x="816" y="308" class="label">Publishing</text>
+  <text x="816" y="332" class="text">publish-x-article</text>
+  <text x="816" y="350" class="muted">(content distribution)</text>
+</svg>

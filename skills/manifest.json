@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "skillsVersion": "2026-01-14",
+  "generatedAt": "2026-01-14",
+  "skills": [
+    {
+      "name": "mcp-cloudflare",
+      "dir": "mcp-cloudflare",
+      "skillMd": "mcp-cloudflare/SKILL.md",
+      "stage": "mcp",
+      "tags": [
+        "approvals",
+        "mcp"
+      ],
+      "summary": "Manage Workers/KV/R2/D1/Hyperdrive via Cloudflare MCP, perform observability/build troubleshooting/audit/container sandbox operations. Triggers: worker/KV/R2/D1/logs/build/deploy/screenshot/audit/sandbox. Three permission tiers: Diagnose (…"
+    },
+    {
+      "name": "mcp-stripe",
+      "dir": "mcp-stripe",
+      "skillMd": "mcp-stripe/SKILL.md",
+      "stage": "mcp",
+      "tags": [
+        "approvals",
+        "mcp"
+      ],
+      "summary": "Stripe MCP transaction operations skill. Execute transaction operations via Stripe MCP server (https://mcp.stripe.com): customer management, products/prices, invoices, payment links, subscriptions, refunds, dispute handling, balance querie…"
+    },
+    {
+      "name": "mcp-supabase",
+      "dir": "mcp-supabase",
+      "skillMd": "mcp-supabase/SKILL.md",
+      "stage": "mcp",
+      "tags": [
+        "approvals",
+        "mcp"
+      ],
+      "summary": "Execute database operations via Supabase MCP (query/write/migration/logs/type generation). Triggers: query/statistics/export/insert/update/delete/fix/backfill/migrate/logs/alerts/type generation. Does not trigger for: pure architecture dis…"
+    },
+    {
+      "name": "publish-x-article",
+      "dir": "publish-x-article",
+      "skillMd": "publish-x-article/SKILL.md",
+      "stage": "publish",
+      "tags": [
+        "publish"
+      ],
+      "summary": "Publish Markdown articles to X (Twitter) Articles editor with proper formatting. Use when user wants to publish a Markdown file/URL to X Articles, or mentions \"publish to X\", \"post article to Twitter\", \"X article\", or wants help with X Pre…"
+    },
+    {
+      "name": "review-clean-code",
+      "dir": "review-clean-code",
+      "skillMd": "review-clean-code/SKILL.md",
+      "stage": "review",
+      "tags": [
+        "review"
+      ],
+      "summary": "Analyze code quality based on \"Clean Code\" principles. Identify naming, function size, duplication, over-engineering, and magic number issues with severity ratings and refactoring suggestions. Use when the user requests code quality checks…"
+    },
+    {
+      "name": "review-doc-consistency",
+      "dir": "review-doc-consistency",
+      "skillMd": "review-doc-consistency/SKILL.md",
+      "stage": "review",
+      "tags": [
+        "review"
+      ],
+      "summary": "Documentation consistency reviewer that checks alignment between code implementation and documentation. Use when user requests reviewing documentation vs code consistency, checking if README/docs are outdated, verifying API documentation a…"
+    },
+    {
+      "name": "review-merge-readiness",
+      "dir": "review-merge-readiness",
+      "skillMd": "review-merge-readiness/SKILL.md",
+      "stage": "review",
+      "tags": [
+        "review"
+      ],
+      "summary": "Request/execute structured code review: use after completing important tasks, at end of each execution batch, or before merge. Based on git diff range, compare against plan and requirements, output issue list by Critical/Important/Minor se…"
+    },
+    {
+      "name": "skill-creator",
+      "dir": "skill-creator",
+      "skillMd": "skill-creator/SKILL.md",
+      "stage": "meta",
+      "tags": [
+        "meta"
+      ],
+      "summary": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations."
+    },
+    {
+      "name": "skill-evolution",
+      "dir": "skill-evolution",
+      "skillMd": "skill-evolution/SKILL.md",
+      "stage": "meta",
+      "tags": [
+        "meta"
+      ],
+      "summary": "Global evolution system for ship-faster skills. Uses hooks to capture context, failures, and session summaries, then generates patch suggestions (no auto edits) via skill-improver. Use when you want the skills to self-improve safely and co…"
+    },
+    {
+      "name": "skill-improver",
+      "dir": "skill-improver",
+      "skillMd": "skill-improver/SKILL.md",
+      "stage": "meta",
+      "tags": [
+        "meta"
+      ],
+      "summary": "Improve skills and workflows by analyzing run artifacts and execution logs (events.jsonl/state.json) under .claude/runs/. Use when you want to iterate on skills based on real runs: find failure modes, bottlenecks, unclear prompts, missing …"
+    },
+    {
+      "name": "tool-ast-grep-rules",
+      "dir": "tool-ast-grep-rules",
+      "skillMd": "tool-ast-grep-rules/SKILL.md",
+      "stage": "tool",
+      "tags": [
+        "tool"
+      ],
+      "summary": "Write AST-based code search and rewrite rules using ast-grep YAML. Create linting rules, code modernizations, and API migrations with auto-fix. Use when the user mentions ast-grep, tree-sitter patterns, code search rules, lint rules with Y…"
+    },
+    {
+      "name": "tool-design-style-selector",
+      "dir": "tool-design-style-selector",
+      "skillMd": "tool-design-style-selector/SKILL.md",
+      "stage": "tool",
+      "tags": [
+        "tool"
+      ],
+      "summary": "Scan project documentation to identify intent, first evaluate if existing style is mature; if mature then \\\"preserve and extract\\\" to generate design-system.md, if not mature then recommend from 30 preset styles and deploy. Trigger words: …"
+    },
+    {
+      "name": "workflow-brainstorm",
+      "dir": "workflow-brainstorm",
+      "skillMd": "workflow-brainstorm/SKILL.md",
+      "stage": "workflow",
+      "tags": [
+        "artifacts",
+        "runs",
+        "workflow"
+      ],
+      "summary": "Brainstorm → Design Spec: Use before any creative implementation (new feature/component/behavior change). First check project context, then ask one question at a time, provide 2-3 options with trade-offs, finally output design in segments …"
+    },
+    {
+      "name": "workflow-execute-plans",
+      "dir": "workflow-execute-plans",
+      "skillMd": "workflow-execute-plans/SKILL.md",
+      "stage": "workflow",
+      "tags": [
+        "artifacts",
+        "runs",
+        "workflow"
+      ],
+      "summary": "Execute written implementation plans: first read and critically review the plan, then implement in small batches (default 3 tasks), produce verification evidence per batch and pause for feedback; must stop immediately and ask for help when…"
+    },
+    {
+      "name": "workflow-feature-shipper",
+      "dir": "workflow-feature-shipper",
+      "skillMd": "workflow-feature-shipper/SKILL.md",
+      "stage": "workflow",
+      "tags": [
+        "artifacts",
+        "runs",
+        "workflow"
+      ],
+      "summary": "Ship core product features quickly in a Next.js codebase: turn a feature idea into a small executable plan, implement in PR-sized slices, delegate UI styling to a frontend agent when needed, and keep artifacts under .claude/runs/. Use for …"
+    },
+    {
+      "name": "workflow-project-intake",
+      "dir": "workflow-project-intake",
+      "skillMd": "workflow-project-intake/SKILL.md",
+      "stage": "workflow",
+      "tags": [
+        "artifacts",
+        "runs",
+        "workflow"
+      ],
+      "summary": "Project intake + routing: help the user brainstorm and clarify intent, persist goal/context artifacts, then dispatch to the right workflow or step skill. Default route is workflow-ship-faster (Next.js 16.1.1) for idea/prototype→launch. Tri…"
+    },
+    {
+      "name": "workflow-ship-faster",
+      "dir": "workflow-ship-faster",
+      "skillMd": "workflow-ship-faster/SKILL.md",
+      "stage": "workflow",
+      "tags": [
+        "artifacts",
+        "runs",
+        "workflow"
+      ],
+      "summary": "Ship Faster end-to-end workflow for small web apps (default: Next.js 16.1.1): idea/prototype → foundation gate → design-system.md → lightweight guardrails + docs → feature iteration → optional Supabase + Stripe → optional GitHub + Vercel d…"
+    },
+    {
+      "name": "workflow-template-extractor",
+      "dir": "workflow-template-extractor",
+      "skillMd": "workflow-template-extractor/SKILL.md",
+      "stage": "workflow",
+      "tags": [
+        "artifacts",
+        "runs",
+        "workflow"
+      ],
+      "summary": "Extract a shareable runnable template under templates/NNN-slug/ from a real project: copy + de-brand + remove secrets + add env examples + docs, with minimal refactors. Use when you have a working project and want to turn it into a templat…"
+    },
+    {
+      "name": "workflow-template-seeder",
+      "dir": "workflow-template-seeder",
+      "skillMd": "workflow-template-seeder/SKILL.md",
+      "stage": "workflow",
+      "tags": [
+        "artifacts",
+        "runs",
+        "workflow"
+      ],
+      "summary": "Seed a new runnable template under templates/NNN-slug/ from a short spec by chaining existing skills (intake → ship-faster stages) while keeping it clean and shareable (no secrets, minimal scope). Use when creating a new template quickly."
+    }
+  ]
+}
