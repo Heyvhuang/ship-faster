@@ -18,11 +18,11 @@
   <text x="40" y="48" class="title">Run artifacts (resumable + traceable)</text>
 
   <!-- ACTIVE pointer -->
-  <rect x="60" y="120" width="180" height="44" class="box entry" />
+  <rect x="60" y="120" width="180" height="52" class="box entry" />
   <text x="76" y="146" class="label">ACTIVE</text>
   <text x="76" y="164" class="muted">current run_id</text>
 
-  <path class="arrow" d="M240 142 L300 142" />
+  <path class="arrow" d="M240 146 L300 146" />
 
   <!-- Run directory -->
   <rect x="300" y="80" width="420" height="240" class="box" />
