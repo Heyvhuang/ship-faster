@@ -230,6 +230,8 @@ Service skills (supabase, stripe, cloudflare) use the service name directly.
 
 **Update** (overwrite existing skills):
 
+Note: this only overwrites skill folders with the same name; other folders in `~/.claude/skills/` are untouched.
+
 ```bash
 curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz \
   | tar -xz --strip-components=2 -C ~/.claude/skills ship-faster-main/skills/

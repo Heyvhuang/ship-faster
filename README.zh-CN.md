@@ -230,6 +230,8 @@ ship-faster/
 
 **更新**（覆盖现有 skills）：
 
+注意：只会覆盖同名 skill 文件夹，`~/.claude/skills/` 下其他目录不会受影响。
+
 ```bash
 curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz \
   | tar -xz --strip-components=2 -C ~/.claude/skills ship-faster-main/skills/
