@@ -4,8 +4,8 @@
 
 <br />
 
-**A complete development workflow for coding agents — built from composable skills.**
-**Turn an idea or small repo into a launchable web app with resumable, artifact-first runs and approval gates for external side effects.**
+**End-to-end development workflows for coding agents.**
+**Idea → launchable web app, with resumable runs, artifact-first execution, and approval gates.**
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16.1.1-black?logo=next.js)](https://nextjs.org/)
@@ -15,41 +15,86 @@
 
 <br />
 
-[VoxYZ](https://voxyz.space) · [Demo 001](https://copyback.vercel.app/) · [Demo 002](https://uniteconomics-console.vercel.app/) · [Docs](./docs/) · [Templates](./templates/) · [Skills](./skills/) · [Manifest](./skills/manifest.json) · [中文](./README.zh-CN.md)
+[Demo 001](https://copyback.vercel.app/) · [Demo 002](https://uniteconomics-console.vercel.app/) · [Docs](./docs/) · [Skills](./skills/) · [Templates](./templates/) · [中文](./README.zh-CN.md)
 
 </div>
 
 ---
 
-## ⚡ 10-Second Start (Skills-first)
+## What is Ship Faster?
+
+**Ship Faster** is a copyable toolbox of workflows ("skills") for AI coding agents.
+
+| Without Ship Faster | With Ship Faster |
+|:--------------------|:-----------------|
+| Agent loses context mid-task | Every run writes artifacts to disk — resumable anytime |
+| No audit trail | Full logs + evidence for replay/review |
+| Risky side effects (deploy, DB writes, payments) | Explicit approval gates before external actions |
+| Ad-hoc prompts, inconsistent outputs | Composable skills with predictable structure |
+
+**Default stack**: Next.js 16.1.1 + optional Supabase/Stripe + GitHub/Vercel + AI-era SEO.
+
+---
+
+## Who is this for?
+
+- **AI coding agents** (Claude Code, Cursor, OpenCode, etc.) — skills are the primary interface
+- **Developers** who operate those agents — copy/paste prompts, review artifacts, approve gates
+- **Teams** who want reproducible, auditable AI-assisted development
+
+> This is NOT a CLI, NOT a SaaS. It's a set of files you copy into your agent's skill directory.
+
+---
+
+## Quick Start
+
+### Option A: Install skills only (10 seconds)
+
+If you just want the workflows — no need to clone the repo:
 
 ```bash
-# 1) Quick install (macOS/Linux, no repo clone)
+# macOS / Linux
 mkdir -p ~/.claude/skills
 curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz \
   | tar -xz --strip-components=2 -C ~/.claude/skills ship-faster-main/skills/
-
-# or if you already cloned this repo
-cp -r skills/* ~/.claude/skills/
 ```
 
-Windows (PowerShell):
+<details>
+<summary>Windows (PowerShell)</summary>
 
 ```powershell
-New-Item -ItemType Directory -Force -Path "$HOME\\.claude\\skills" | Out-Null
-$zip = "$env:TEMP\\ship-faster-main.zip"
+New-Item -ItemType Directory -Force -Path "$HOME\.claude\skills" | Out-Null
+$zip = "$env:TEMP\ship-faster-main.zip"
 Invoke-WebRequest -Uri "https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.zip" -OutFile $zip
-Expand-Archive -Path $zip -DestinationPath "$env:TEMP\\ship-faster" -Force
-Copy-Item -Recurse -Force "$env:TEMP\\ship-faster\\ship-faster-main\\skills\\*" "$HOME\\.claude\\skills\\"
+Expand-Archive -Path $zip -DestinationPath "$env:TEMP\ship-faster" -Force
+Copy-Item -Recurse -Force "$env:TEMP\ship-faster\ship-faster-main\skills\*" "$HOME\.claude\skills\"
 ```
 
-> Note: this copies skill folders into `~/.claude/skills/`. If you already have skills there, it will overwrite folders with the same name.
+</details>
 
-## 🧭 Pick Your Path (Copy/Paste)
+### Option B: Clone for templates + skills (30 seconds)
+
+If you want runnable example projects too:
+
+```bash
+git clone https://github.com/Heyvhuang/ship-faster.git
+cd ship-faster
+
+# Copy skills to your agent
+cp -r skills/* ~/.claude/skills/
+
+# Or run a template directly
+cd templates/001-copyback-studio
+pnpm install && pnpm dev
+```
+
+---
+
+## Pick Your Path
+
+Once skills are installed, paste one of these into your agent:
 
 ### 1) I have an idea (start from scratch)
-
-Paste this into your agent (Claude Code / OpenCode / etc.):
 
 ```text
 Use workflow-project-intake.
@@ -61,7 +106,7 @@ Constraints: <deadline / tech / design / infra>
 Need: deploy? database? billing? seo?
 ```
 
-### 2) I have a repo (ship this code)
+### 2) I have a repo (ship it to launch)
 
 ```text
 Use workflow-ship-faster.
@@ -71,7 +116,7 @@ Constraints: <deadline / tech / non-goals>
 Need: deploy? database? billing? seo?
 ```
 
-### 3) I want to ship one feature (fast, PR-sized)
+### 3) I want to ship one feature (PR-sized)
 
 ```text
 Use workflow-feature-shipper.
@@ -85,211 +130,144 @@ Non-goals:
 - <bullet>
 ```
 
-## 📁 Where outputs go
+---
 
-Ship Faster writes every run to disk for replay/audit:
+## How It Works
 
-- Outputs: `.claude/runs/ship-faster/<run_id>/` (artifacts + logs)
-- Current run pointer: `.claude/runs/ship-faster/ACTIVE`
-- Resume entry: `.claude/runs/ship-faster/<run_id>/00-index.md`
+![Ship Faster workflow](skills/assets/ship-faster-flow.png)
 
-![Run artifacts](skills/assets/run-artifacts.png)
+Every run writes to disk for replay/audit:
 
-> Side-effecting actions (deploy, payments, etc.) are gated behind explicit approvals.
+```
+.claude/runs/ship-faster/<run_id>/
+├── 00-index.md          # Resume entry point
+├── plan.md              # Execution plan
+├── evidence/            # Verification artifacts
+└── logs/                # Execution logs
+```
 
-Docs:
-- Quick start: [`docs/quickstart.md`](docs/quickstart.md)
-- Concepts (runs + approvals): [`docs/concepts/runs-and-approvals.md`](docs/concepts/runs-and-approvals.md)
-- Recipe (Next.js App Router perf audit): [`docs/recipes/nextjs-app-router-perf-audit.md`](docs/recipes/nextjs-app-router-perf-audit.md)
+- **Current run pointer**: `.claude/runs/ship-faster/ACTIVE`
+- **Side effects** (deploy, payments, DB writes) require explicit approval before execution
+
+> Learn more: [Runs & Approvals](docs/concepts/runs-and-approvals.md)
+
+---
+
+## Skills
+
+Composable workflows that ship end-to-end. Copy to `~/.claude/skills/` or use as step-by-step runbooks.
+
+| Category | Skills |
+|:---------|:-------|
+| **Workflows** | [workflow-project-intake](skills/workflow-project-intake/) · [workflow-ship-faster](skills/workflow-ship-faster/) · [workflow-feature-shipper](skills/workflow-feature-shipper/) |
+| **Tools** | [tool-design-style-selector](skills/tool-design-style-selector/) · [tool-ast-grep-rules](skills/tool-ast-grep-rules/) |
+| **Reviews** | [review-react-best-practices](skills/review-react-best-practices/) · [review-merge-readiness](skills/review-merge-readiness/) · [review-clean-code](skills/review-clean-code/) · [review-doc-consistency](skills/review-doc-consistency/) |
+| **MCP Integrations** | [mcp-supabase](skills/mcp-supabase/) · [mcp-stripe](skills/mcp-stripe/) · [mcp-cloudflare](skills/mcp-cloudflare/) |
+| **Meta** | [skill-evolution](skills/skill-evolution/) · [skill-creator](skills/skill-creator/) |
+
+> Full catalog: [`skills/manifest.json`](skills/manifest.json)
+
+![Skills map](skills/assets/skills-map.png)
+
+---
+
+## Templates
+
+Runnable example projects — demos + regression references.
+
+| # | Template | Stack | Link |
+|:-:|:---------|:------|:-----|
+| 001 | **CopyBack Studio** | Next.js + Supabase | [→ Open](templates/001-copyback-studio/) |
+| 002 | **UnitEconomics Console** | Next.js + Gemini | [→ Open](templates/002-uniteconomics-console/) |
+
+> The repo root is intentionally **not runnable**. Pick a template or run skills against your own project.
+
+---
 
 <details>
-<summary><strong>🔄 Update / Uninstall</strong></summary>
+<summary><strong>Repository Structure</strong></summary>
 
-Update (overwrite same skill names):
+```
+ship-faster/
+├── docs/                         # Documentation
+├── templates/                    # Runnable full projects
+│   ├── 001-copyback-studio/
+│   └── 002-uniteconomics-console/
+├── skills/                       # Agent skill packages
+│   ├── workflow-ship-faster/
+│   ├── workflow-project-intake/
+│   ├── review-*/
+│   ├── tool-*/
+│   ├── mcp-*/
+│   └── assets/                   # Diagrams and static assets
+├── snippets/                     # Internal reference code
+│   └── product-starter/
+├── LICENSE
+├── README.md
+└── README.zh-CN.md
+```
+
+</details>
+
+<details>
+<summary><strong>Naming Convention</strong></summary>
+
+| Type | Pattern | Example |
+|:-----|:--------|:--------|
+| Templates | `templates/<NNN>-<slug>/` | `001-copyback-studio` |
+| Snippets | `snippets/<slug>/` | `product-starter` |
+| Skills | `skills/<prefix>-<slug>/` | `workflow-ship-faster` |
+
+Prefixes: `workflow-`, `tool-`, `review-`, `mcp-`, `skill-`, `publish-`
+
+</details>
+
+<details>
+<summary><strong>Update / Uninstall</strong></summary>
+
+**Update** (overwrite existing skills):
 
 ```bash
 curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz \
   | tar -xz --strip-components=2 -C ~/.claude/skills ship-faster-main/skills/
 ```
 
-Install a single skill (safer if you already have many skills installed):
+**Install single skill**:
 
 ```bash
 git clone https://github.com/Heyvhuang/ship-faster.git
-cd ship-faster
-cp -r skills/workflow-ship-faster ~/.claude/skills/
+cp -r ship-faster/skills/workflow-ship-faster ~/.claude/skills/
 ```
 
-Uninstall: delete the skill folders you installed (see `skills/manifest.json` for names).
+**Uninstall**: Delete skill folders from `~/.claude/skills/` (see `skills/manifest.json` for names).
 
 </details>
 
-Skills are the mainline: run `workflow-ship-faster` to ship end-to-end. Templates are runnable examples; internal snippets help agents move faster when implementing integrations.
-
----
-
-## ✨ What is Ship Faster?
-
-**Ship Faster** is the asset repository behind [VoxYZ](https://voxyz.space):
-
-> A copyable toolbox of workflows (“skills”) for coding agents. Every run is written to disk for replay/audit; external side effects (deployments, billing, DB writes) require explicit approval.
-> Default path: Next.js 16.1.1 + optional Supabase/Stripe + GitHub/Vercel + AI-era SEO.
-
-| Type | Description |
-|:-----|:------------|
-| 🤖 **Agent Skills (mainline)** | Reusable workflows that ship end-to-end (idea → deploy) |
-| 📦 **Runnable Templates** | Supporting assets: complete, production-ready full-stack projects |
-| 🧱 **Reference Snippets** | Supporting assets: internal copyable code blocks used by skills (not user-facing) |
-
-> 💡 The repo root is intentionally **not runnable**. Pick a template in `templates/` to run, or copy `skills/` into your agent setup and run the pipeline against a real project.
-
-![Ship Faster workflow](skills/assets/ship-faster-flow.png)
-
----
-
-## ⚡ Quick Start (30 seconds)
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/Heyvhuang/ship-faster.git
-cd ship-faster
-
-# 2. Pick a template and run
-cd templates/001-copyback-studio
-pnpm install && pnpm dev
-```
-
----
-
-## 📂 Repository Structure
-
-```
-ship-faster/
-├── 📁 docs/                      # Project docs (start here)
-├── 📁 templates/                 # Runnable full projects
-│   ├── README.md
-│   ├── 001-copyback-studio/      # CopyBack Studio app
-│   └── 002-uniteconomics-console/ # UnitEconomics Console app
-├── 📁 skills/                    # AI agent skill packages (copy to .claude/skills/)
-│   ├── workflow-ship-faster/     # Main pipeline
-│   ├── workflow-project-intake/  # Intake + routing
-│   └── ...                       # More skills (workflow/tool/review/mcp/...)
-├── 📁 snippets/                  # Internal reference code (for agents)
-│   └── product-starter/
-├── 📁 skills/assets/             # Diagrams and static assets
-│   └── ship-faster-flow.svg
-├── 📄 LICENSE
-├── 📄 README.md
-└── 📄 README.zh-CN.md
-```
-
----
-
-## 📦 Templates
-
-Runnable example apps (demos + regression references) you can run locally.
-
-| # | Template | Description | Stack | Link |
-|:-:|:---------|:------------|:------|:-----|
-| 001 | **CopyBack Studio** | Full-stack creative app | Next.js + Supabase | [→ Open](templates/001-copyback-studio/) |
-| 002 | **UnitEconomics Console** | Unit economics analysis console | Next.js + Gemini | [→ Open](templates/002-uniteconomics-console/) |
-
-![Template loop](skills/assets/template-loop.png)
-
----
-
-## 🧱 Reference Snippets (Internal)
-
-Internal copyable code blocks used by skills to move faster. These are not meant to be user-facing APIs; use `templates/` for runnable projects.
-
-| Snippet Set | What's Inside | Link |
-|:-----------|:--------------|:-----|
-| `product-starter` | Supabase + Stripe + Credits + R2 | [→ Open](snippets/product-starter/) |
-
----
-
-## 🤖 Agent Skills
-
-AI-powered workflows for shipping faster. Copy to your project's `.claude/skills/` directory, or use them as step-by-step runbooks.
-
-| Skill | Description | Link |
-|:------|:------------|:-----|
-| **workflow-project-intake** | Project intake + routing | [→ Open](skills/workflow-project-intake/) |
-| **workflow-ship-faster** | Main pipeline: idea/prototype → launch | [→ Open](skills/workflow-ship-faster/) |
-| **workflow-feature-shipper** | Build/ship one feature fast | [→ Open](skills/workflow-feature-shipper/) |
-| **workflow-template-seeder** | Seed a new runnable template | [→ Open](skills/workflow-template-seeder/) |
-| **workflow-template-extractor** | Extract a runnable template from a real project | [→ Open](skills/workflow-template-extractor/) |
-| **tool-design-style-selector** | Pick + deploy `design-system.md` | [→ Open](skills/tool-design-style-selector/) |
-| **tool-ast-grep-rules** | Write `ast-grep` rules for batch refactors | [→ Open](skills/tool-ast-grep-rules/) |
-| **mcp-supabase** | Supabase DB ops (strict gates) | [→ Open](skills/mcp-supabase/) |
-| **mcp-stripe** | Stripe ops (strict gates) | [→ Open](skills/mcp-stripe/) |
-| **mcp-cloudflare** | Cloudflare ops (strict gates) | [→ Open](skills/mcp-cloudflare/) |
-| **skill-evolution** | Hooks + retrospective (patch suggestions only) | [→ Open](skills/skill-evolution/) |
-
-### Review Skills
-
-Quality/performance audits that fit naturally between “implement” and “merge”.
-
-| Skill | What it’s for | Link |
-|:------|:--------------|:-----|
-| **review-react-best-practices** | React/Next.js performance review (waterfalls/bundle/re-renders) | [→ Open](skills/review-react-best-practices/) |
-| **review-merge-readiness** | “Can we merge?” verdict + issues by severity | [→ Open](skills/review-merge-readiness/) |
-| **review-clean-code** | Maintainability audit (Clean Code dimensions) | [→ Open](skills/review-clean-code/) |
-| **review-doc-consistency** | Docs vs code consistency audit | [→ Open](skills/review-doc-consistency/) |
-
-![Skills map](skills/assets/skills-map.png)
-
-> Full list is in `skills/manifest.json` (machine-readable).
-
----
-
-## 📝 Naming Convention
-
-| Type | Pattern | Example |
-|:-----|:--------|:--------|
-| Templates | `templates/<NNN>-<slug>/` | `001-copyback-studio` |
-| Snippets | `snippets/<slug>/` | `snippets/product-starter` |
-| Skills | `skills/<prefix>-<slug>/` | `workflow-ship-faster` |
-
-- **NNN**: Recommended order (001, 002, ...)
-- **prefix**: Semantic group (`workflow-`, `tool-`, `review-`, `mcp-`, `skill-`, `publish-`)
-
----
-
-## ➕ Adding New Templates / Snippets
-
 <details>
-<summary><strong>📦 Add a Template</strong></summary>
+<summary><strong>Adding Templates / Snippets</strong></summary>
 
+**New Template**:
 1. Create `templates/<NNN>-<slug>/`
-2. Include:
-   - `README.md` — Entry documentation
-   - `.env.local.example` — Environment template
+2. Include `README.md` and `.env.local.example`
 
-</details>
-
-<details>
-<summary><strong>🧱 Add a Snippet Set</strong></summary>
-
+**New Snippet**:
 1. Create `snippets/<slug>/`
-2. Include:
-   - `README.md` — What it is + what skills should copy
-   - Copyable files (no secrets; keep paths stable)
+2. Include `README.md` explaining what skills should copy
 
 </details>
 
 ---
 
-## 🔒 Security
+## Security
 
-- ✅ Never commit secrets or local env files (`.env.local`)
-- ✅ Build outputs are gitignored (`.next/`, `*.tsbuildinfo`)
+- Never commit secrets or `.env.local` files
+- Build outputs (`.next/`, `*.tsbuildinfo`) are gitignored
 
 ---
 
-## 📄 License
+## License
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT License — see [LICENSE](LICENSE)
 
 ---
 
