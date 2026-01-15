@@ -184,6 +184,9 @@ Recommended approach: Treat "redo UI/UX per design-system.md" as an independent 
 - Input: `design-system.md` (as sole design constraint) + current UI page list (from code scan)
 - Output: `feature-plan.md` (scope/acceptance criteria/non-goals/risks/rollback) + code changes
 
+Optional quality boost (recommended when the UI still feels “generic”):
+- Call `tool-ui-ux-pro-max` to enrich the plan with concrete palette/typography/UX guardrails, and use its pre-delivery checklist as acceptance criteria.
+
 For large-scale refactoring: Write `03-plans/approval.md` first and wait for user confirmation before implementing.
 
 ### 3) Code Standards (Lightweight Required)
@@ -203,7 +206,7 @@ Artifact: `03-plans/docs-plan.md` (and project README update)
 Call `workflow-feature-shipper`:
 - Each feature first produces `feature-plan.md` (with acceptance criteria/non-goals)
 - Default split into PR-able small steps
-- After each batch (or before merge), recommend calling `review-merge-readiness` for conclusive review
+- After each batch (or before merge), recommend calling `review-quality` for a conclusive review + verdict
 - If the batch touches React/Next.js rendering/data fetching/bundle size, also recommend `review-react-best-practices` (apply CRITICAL rules first)
 
 ### 6) Database Integration (Optional)

@@ -1,5 +1,5 @@
 ---
-name: publish-x-article
+name: tool-x-article-publisher
 description: 'Publish Markdown to X (Twitter) Articles as a draft (never auto-publish). Use when the user asks to publish/post an article to X Articles, convert Markdown to X Articles rich text, or mentions "X article", "publish to X", "post to Twitter articles". Converts Markdown → HTML, pastes rich text, and inserts images deterministically.'
 ---
 
@@ -35,8 +35,8 @@ Outputs (recommended artifacts):
 ## Bundled Scripts
 
 Installed path (typical):
-- `~/.claude/skills/publish-x-article/scripts/parse_markdown.py`
-- `~/.claude/skills/publish-x-article/scripts/copy_to_clipboard.py`
+- `~/.claude/skills/tool-x-article-publisher/scripts/parse_markdown.py`
+- `~/.claude/skills/tool-x-article-publisher/scripts/copy_to_clipboard.py`
 
 ## Runbook (Step-by-step)
 

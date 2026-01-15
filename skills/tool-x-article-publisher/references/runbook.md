@@ -1,6 +1,6 @@
 # X Article Publisher Runbook
 
-This is the detailed runbook for `publish-x-article`.
+This is the detailed runbook for `tool-x-article-publisher`.
 
 `SKILL.md` is intentionally short (triggering + safety + I/O). Load this file only when you need step-by-step execution details.
 
@@ -31,13 +31,13 @@ This avoids flaky “find text then insert image” behavior and makes positioni
 ### Parse Markdown → structured JSON (title + images + block_index)
 
 ```bash
-python ~/.claude/skills/publish-x-article/scripts/parse_markdown.py /path/to/article.md > /tmp/x_article.json
+python ~/.claude/skills/tool-x-article-publisher/scripts/parse_markdown.py /path/to/article.md > /tmp/x_article.json
 ```
 
 ### Generate HTML-only body for rich text paste
 
 ```bash
-python ~/.claude/skills/publish-x-article/scripts/parse_markdown.py /path/to/article.md --html-only > /tmp/x_article.html
+python ~/.claude/skills/tool-x-article-publisher/scripts/parse_markdown.py /path/to/article.md --html-only > /tmp/x_article.html
 ```
 
 Expected JSON fields:
@@ -80,7 +80,7 @@ Rules:
 Copy HTML to clipboard:
 
 ```bash
-python ~/.claude/skills/publish-x-article/scripts/copy_to_clipboard.py html --file /tmp/x_article.html
+python ~/.claude/skills/tool-x-article-publisher/scripts/copy_to_clipboard.py html --file /tmp/x_article.html
 ```
 
 Then in the editor body:
@@ -115,7 +115,7 @@ So insert images from the largest `block_index` → smallest `block_index`:
 ### Copy image → clipboard → paste
 
 ```bash
-python ~/.claude/skills/publish-x-article/scripts/copy_to_clipboard.py image /path/to/img.jpg --quality 85
+python ~/.claude/skills/tool-x-article-publisher/scripts/copy_to_clipboard.py image /path/to/img.jpg --quality 85
 ```
 
 Then:
@@ -152,4 +152,3 @@ Suggested checks:
 - Don’t “snapshot after every click” if your tool already returns updated state.
 - Use waits only when needed (image upload / navigation).
 - Do all local parsing + HTML generation before starting browser automation.
-

@@ -27,8 +27,8 @@ Turn "I want to build a feature" into a fast execution chain.
 4. Implement (batch execution + checkpoints):
     - UI visual/layout/animation changes → Must first call `tool-design-style-selector` to load the project's `design-system.md`, then strictly follow design specs. For complex visual/animation/responsive design, delegate to `/gemini` frontend UI/UX senior design agent
     - Business logic/data flow/integration → Can implement directly
-    - **Default to `workflow-execute-plans` rhythm**: 3 small tasks per batch → run verification → report and wait for feedback; stop immediately for help when blocked/verification fails
-    - After each batch (or before merge), recommend using `review-merge-readiness` for a conclusive review to prevent issues from snowballing
+    - **Default batch rhythm**: 3 small tasks per batch → run verification → report and wait for feedback; stop immediately for help when blocked/verification fails
+    - After each batch (or before merge), recommend using `review-quality` for a conclusive review + verdict to prevent issues from snowballing
     - If the change touches React/Next.js rendering/data fetching/bundle size (or perf regressions are suspected), also recommend `review-react-best-practices` (apply CRITICAL rules first)
 5. Verification: can run, can build (and existing tests pass)
 6. Write `05-final/feature-summary.md`: what was done, how verified, next steps

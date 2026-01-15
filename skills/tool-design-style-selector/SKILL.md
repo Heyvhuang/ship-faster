@@ -90,6 +90,27 @@ Recommendation #3: [Style Name]
 - Reason: ...
 ```
 
+### Step 3.5 (Optional): Enrich tokens via `tool-ui-ux-pro-max`
+
+If `tool-ui-ux-pro-max` is installed, use it to make `design-system.md` more concrete (palette + typography + UX constraints), instead of relying on a single preset text blob.
+
+Recommended searches (pick 1–3 results per category, then synthesize into `design-system.md`):
+
+```bash
+# Typography pairing (heading + body + CSS import)
+python3 ~/.claude/skills/tool-ui-ux-pro-max/scripts/search.py "<brand tone keywords>" --domain typography
+
+# Color palette (primary/secondary/CTA/background/text/border)
+python3 ~/.claude/skills/tool-ui-ux-pro-max/scripts/search.py "<product type keywords>" --domain color
+
+# UX / accessibility guardrails (avoid common “looks good but feels broken” issues)
+python3 ~/.claude/skills/tool-ui-ux-pro-max/scripts/search.py "accessibility" --domain ux
+python3 ~/.claude/skills/tool-ui-ux-pro-max/scripts/search.py "animation" --domain ux
+
+# Stack-specific implementation constraints (pick the actual project stack)
+python3 ~/.claude/skills/tool-ui-ux-pro-max/scripts/search.py "layout responsive" --stack nextjs
+```
+
 ### Step 4: User Confirmation
 - Present recommendation reasons
 - Allow user to select or request more options

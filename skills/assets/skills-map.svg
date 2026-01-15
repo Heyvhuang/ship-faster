@@ -47,6 +47,6 @@
 
   <rect x="800" y="280" width="360" height="160" class="box" />
   <text x="816" y="308" class="label">Publishing</text>
-  <text x="816" y="332" class="text">publish-x-article</text>
+  <text x="816" y="332" class="text">tool-x-article-publisher</text>
   <text x="816" y="350" class="muted">(content distribution)</text>
 </svg>

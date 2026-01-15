@@ -159,15 +159,15 @@ Composable workflows that ship end-to-end. Copy to `~/.claude/skills/` or use as
 
 | Category | Skills |
 |:---------|:-------|
-| **Workflows** | [workflow-project-intake](skills/workflow-project-intake/) · [workflow-ship-faster](skills/workflow-ship-faster/) · [workflow-feature-shipper](skills/workflow-feature-shipper/) |
-| **Tools** | [tool-design-style-selector](skills/tool-design-style-selector/) · [tool-ast-grep-rules](skills/tool-ast-grep-rules/) |
-| **Reviews** | [review-react-best-practices](skills/review-react-best-practices/) · [review-merge-readiness](skills/review-merge-readiness/) · [review-clean-code](skills/review-clean-code/) · [review-doc-consistency](skills/review-doc-consistency/) |
+| **Workflows** | [workflow-project-intake](skills/workflow-project-intake/) · [workflow-brainstorm](skills/workflow-brainstorm/) · [workflow-ship-faster](skills/workflow-ship-faster/) · [workflow-feature-shipper](skills/workflow-feature-shipper/) |
+| **Tools** | [tool-design-style-selector](skills/tool-design-style-selector/) · [tool-ui-ux-pro-max](skills/tool-ui-ux-pro-max/) · [tool-ast-grep-rules](skills/tool-ast-grep-rules/) · [tool-x-article-publisher](skills/tool-x-article-publisher/) |
+| **Reviews** | [review-quality](skills/review-quality/) · [review-react-best-practices](skills/review-react-best-practices/) |
 | **Services** | [supabase](skills/supabase/) · [stripe](skills/stripe/) · [cloudflare](skills/cloudflare/) |
-| **Meta** | [skill-evolution](skills/skill-evolution/) · [skill-creator](skills/skill-creator/) |
+| **Meta** | [skill-evolution](skills/skill-evolution/) · [skill-creator](skills/skill-creator/) · [skill-improver](skills/skill-improver/) |
 
 > Full catalog: [`skills/manifest.json`](skills/manifest.json)
 
-![Skills map](skills/assets/skills-map.png)
+![Run artifacts](skills/assets/run-artifacts.png)
 
 ---
 
@@ -220,7 +220,7 @@ ship-faster/
 | Snippets | `snippets/<slug>/` | `product-starter` |
 | Skills | `skills/<prefix>-<slug>/` | `workflow-ship-faster` |
 
-Prefixes: `workflow-`, `tool-`, `review-`, `skill-`, `publish-`
+Prefixes: `workflow-`, `tool-`, `review-`, `skill-`
 Service skills (supabase, stripe, cloudflare) use the service name directly.
 
 </details>

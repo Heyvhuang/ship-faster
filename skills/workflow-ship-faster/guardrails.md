@@ -9,7 +9,7 @@ Goal: Establish a code standards baseline that "won't slow down development" wit
 - Non-Next.js frontend projects (like Vite/React/Vue): Can also use this step to establish lint/format/typecheck baseline, but adapt scripts for current stack (e.g., `vite build`, `eslint .`, `tsc -p tsconfig.json`)
 
 **Not applicable:**
-- You want "deep governance/refactoring health check" → Use `review-clean-code` or `tool-ast-grep-rules`
+- You want "deep governance/refactoring health check" → Use `review-quality` or `tool-ast-grep-rules`
 
 ## Input (Pass Paths Only)
 

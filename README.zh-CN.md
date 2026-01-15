@@ -159,15 +159,15 @@ Non-goals:
 
 | 类别 | Skills |
 |:-----|:-------|
-| **工作流** | [workflow-project-intake](skills/workflow-project-intake/) · [workflow-ship-faster](skills/workflow-ship-faster/) · [workflow-feature-shipper](skills/workflow-feature-shipper/) |
-| **工具** | [tool-design-style-selector](skills/tool-design-style-selector/) · [tool-ast-grep-rules](skills/tool-ast-grep-rules/) |
-| **审查** | [review-react-best-practices](skills/review-react-best-practices/) · [review-merge-readiness](skills/review-merge-readiness/) · [review-clean-code](skills/review-clean-code/) · [review-doc-consistency](skills/review-doc-consistency/) |
+| **工作流** | [workflow-project-intake](skills/workflow-project-intake/) · [workflow-brainstorm](skills/workflow-brainstorm/) · [workflow-ship-faster](skills/workflow-ship-faster/) · [workflow-feature-shipper](skills/workflow-feature-shipper/) |
+| **工具** | [tool-design-style-selector](skills/tool-design-style-selector/) · [tool-ui-ux-pro-max](skills/tool-ui-ux-pro-max/) · [tool-ast-grep-rules](skills/tool-ast-grep-rules/) · [tool-x-article-publisher](skills/tool-x-article-publisher/) |
+| **审查** | [review-quality](skills/review-quality/) · [review-react-best-practices](skills/review-react-best-practices/) |
 | **服务集成** | [supabase](skills/supabase/) · [stripe](skills/stripe/) · [cloudflare](skills/cloudflare/) |
-| **元技能** | [skill-evolution](skills/skill-evolution/) · [skill-creator](skills/skill-creator/) |
+| **元技能** | [skill-evolution](skills/skill-evolution/) · [skill-creator](skills/skill-creator/) · [skill-improver](skills/skill-improver/) |
 
 > 完整列表：[`skills/manifest.json`](skills/manifest.json)
 
-![Skills 分组地图](skills/assets/skills-map.png)
+![Run 产物结构](skills/assets/run-artifacts.png)
 
 ---
 
@@ -220,7 +220,7 @@ ship-faster/
 | Snippets | `snippets/<slug>/` | `product-starter` |
 | Skills | `skills/<prefix>-<slug>/` | `workflow-ship-faster` |
 
-前缀：`workflow-`、`tool-`、`review-`、`skill-`、`publish-`
+前缀：`workflow-`、`tool-`、`review-`、`skill-`
 服务类 skills（supabase、stripe、cloudflare）直接使用服务名。
 
 </details>

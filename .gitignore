@@ -23,6 +23,10 @@ dist-ssr
 # TypeScript incremental
 *.tsbuildinfo
 
+# Python cache
+__pycache__/
+*.py[cod]
+
 # Local tooling / internal docs
 .agent/
 .claude/

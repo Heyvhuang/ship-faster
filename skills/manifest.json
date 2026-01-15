@@ -28,36 +28,20 @@
       "summary": "Database operations for Supabase: query, write, migration, logs, type generation. Write operations require confirmation; UPDATE/DELETE without WHERE refused. MCP optional."
     },
     {
-      "name": "publish-x-article",
-      "dir": "publish-x-article",
-      "skillMd": "publish-x-article/SKILL.md",
-      "stage": "publish",
-      "tags": ["publish"],
+      "name": "tool-x-article-publisher",
+      "dir": "tool-x-article-publisher",
+      "skillMd": "tool-x-article-publisher/SKILL.md",
+      "stage": "tool",
+      "tags": ["tool", "publish"],
       "summary": "Publish Markdown to X (Twitter) Articles as a draft (never auto-publish). Converts Markdown → HTML for rich text paste and inserts images deterministically."
     },
     {
-      "name": "review-clean-code",
-      "dir": "review-clean-code",
-      "skillMd": "review-clean-code/SKILL.md",
+      "name": "review-quality",
+      "dir": "review-quality",
+      "skillMd": "review-quality/SKILL.md",
       "stage": "review",
       "tags": ["review"],
-      "summary": "Analyze code quality based on \"Clean Code\" principles. Identify naming, function size, duplication, over-engineering, and magic number issues with severity ratings and refactoring suggestions."
-    },
-    {
-      "name": "review-doc-consistency",
-      "dir": "review-doc-consistency",
-      "skillMd": "review-doc-consistency/SKILL.md",
-      "stage": "review",
-      "tags": ["review"],
-      "summary": "Documentation consistency reviewer that checks alignment between code implementation and documentation. Use when user requests reviewing documentation vs code consistency."
-    },
-    {
-      "name": "review-merge-readiness",
-      "dir": "review-merge-readiness",
-      "skillMd": "review-merge-readiness/SKILL.md",
-      "stage": "review",
-      "tags": ["review"],
-      "summary": "Request/execute structured code review: use after completing important tasks, at end of each execution batch, or before merge. Output issue list by Critical/Important/Minor severity."
+      "summary": "Unified codebase quality review: merge readiness verdict + maintainability (Clean Code) + docs-vs-code consistency."
     },
     {
       "name": "review-react-best-practices",
@@ -108,20 +92,20 @@
       "summary": "Scan project to identify intent, evaluate if existing style is mature; if mature preserve and extract design-system.md, if not recommend from 30 preset styles."
     },
     {
+      "name": "tool-ui-ux-pro-max",
+      "dir": "tool-ui-ux-pro-max",
+      "skillMd": "tool-ui-ux-pro-max/SKILL.md",
+      "stage": "tool",
+      "tags": ["tool"],
+      "summary": "Searchable UI/UX design intelligence: built-in database for styles, palettes, typography pairings, landing patterns, chart types, UX/a11y guidelines, plus stack-specific best practices. Includes a Python search script for fast lookup."
+    },
+    {
       "name": "workflow-brainstorm",
       "dir": "workflow-brainstorm",
       "skillMd": "workflow-brainstorm/SKILL.md",
       "stage": "workflow",
       "tags": ["artifacts", "runs", "workflow"],
       "summary": "Brainstorm → Design Spec: Use before any creative implementation. Ask one question at a time, provide 2-3 options with trade-offs, output design in segments."
-    },
-    {
-      "name": "workflow-execute-plans",
-      "dir": "workflow-execute-plans",
-      "skillMd": "workflow-execute-plans/SKILL.md",
-      "stage": "workflow",
-      "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Execute written implementation plans: read and review, implement in small batches, produce verification evidence per batch, pause for feedback."
     },
     {
       "name": "workflow-feature-shipper",
@@ -146,22 +130,6 @@
       "stage": "workflow",
       "tags": ["artifacts", "runs", "workflow"],
       "summary": "Ship Faster end-to-end workflow for small web apps (Next.js): idea → foundation gate → design-system → guardrails → feature iteration → optional Supabase/Stripe → deploy → SEO."
-    },
-    {
-      "name": "workflow-template-extractor",
-      "dir": "workflow-template-extractor",
-      "skillMd": "workflow-template-extractor/SKILL.md",
-      "stage": "workflow",
-      "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Extract a shareable runnable template from a real project: copy, de-brand, remove secrets, add env examples and docs."
-    },
-    {
-      "name": "workflow-template-seeder",
-      "dir": "workflow-template-seeder",
-      "skillMd": "workflow-template-seeder/SKILL.md",
-      "stage": "workflow",
-      "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Seed a new runnable template from a short spec by chaining existing skills while keeping it clean and shareable."
     }
   ]
 }
