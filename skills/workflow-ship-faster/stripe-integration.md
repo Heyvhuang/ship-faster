@@ -19,8 +19,8 @@ Default goal: **Get paid first**, then gradually evolve into a deeper billing sy
 
 ### Route A (Default, Fastest): Payment Links (Low-code/No-code)
 
-1. Use `mcp-stripe` to create/reuse Product + Price
-2. Use `mcp-stripe` to create Payment Link (one-time or subscription)
+1. Use `stripe` skill to create/reuse Product + Price
+2. Use `stripe` skill to create Payment Link (one-time or subscription)
 3. Minimal integration in Next.js:
    - Provide a "Buy/Subscribe" button that redirects to Payment Link
    - Success page/copy can be optimized later

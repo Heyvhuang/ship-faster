@@ -34,10 +34,10 @@
 
   <!-- Row 2 -->
   <rect x="40" y="280" width="360" height="160" class="box" />
-  <text x="56" y="308" class="label">MCP (external systems)</text>
-  <text x="56" y="332" class="text">mcp-supabase</text>
-  <text x="56" y="350" class="text">mcp-stripe</text>
-  <text x="56" y="368" class="text">mcp-cloudflare</text>
+  <text x="56" y="308" class="label">Services (external systems)</text>
+  <text x="56" y="332" class="text">supabase</text>
+  <text x="56" y="350" class="text">stripe</text>
+  <text x="56" y="368" class="text">cloudflare</text>
 
   <rect x="420" y="280" width="360" height="160" class="box" />
   <text x="436" y="308" class="label">Maintenance</text>

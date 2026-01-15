@@ -132,8 +132,8 @@ Priority recommendations:
 - Just style/design system: Use `tool-design-style-selector`
 - Just one feature iteration (split+deliver): Use `workflow-feature-shipper`
 - Just React/Next.js performance review (waterfalls/bundle/re-renders): Use `review-react-best-practices`
-- Just DB-side actions (SQL/migration/logs/type generation): Use `mcp-supabase`
-- Just Stripe-side operations (products/prices/payment links/refunds etc.): Use `mcp-stripe`
+- Just DB-side actions (SQL/migration/logs/type generation): Use `supabase` skill
+- Just Stripe-side operations (products/prices/payment links/refunds etc.): Use `stripe` skill
 
 If unsure: Complete Intake Checklist first → Write `goal.md/context.json` → Then route (don't execute big actions upfront).
 

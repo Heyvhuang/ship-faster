@@ -162,7 +162,7 @@ Non-goals:
 | **工作流** | [workflow-project-intake](skills/workflow-project-intake/) · [workflow-ship-faster](skills/workflow-ship-faster/) · [workflow-feature-shipper](skills/workflow-feature-shipper/) |
 | **工具** | [tool-design-style-selector](skills/tool-design-style-selector/) · [tool-ast-grep-rules](skills/tool-ast-grep-rules/) |
 | **审查** | [review-react-best-practices](skills/review-react-best-practices/) · [review-merge-readiness](skills/review-merge-readiness/) · [review-clean-code](skills/review-clean-code/) · [review-doc-consistency](skills/review-doc-consistency/) |
-| **MCP 集成** | [mcp-supabase](skills/mcp-supabase/) · [mcp-stripe](skills/mcp-stripe/) · [mcp-cloudflare](skills/mcp-cloudflare/) |
+| **服务集成** | [supabase](skills/supabase/) · [stripe](skills/stripe/) · [cloudflare](skills/cloudflare/) |
 | **元技能** | [skill-evolution](skills/skill-evolution/) · [skill-creator](skills/skill-creator/) |
 
 > 完整列表：[`skills/manifest.json`](skills/manifest.json)
@@ -198,7 +198,9 @@ ship-faster/
 │   ├── workflow-project-intake/
 │   ├── review-*/
 │   ├── tool-*/
-│   ├── mcp-*/
+│   ├── supabase/
+│   ├── stripe/
+│   ├── cloudflare/
 │   └── assets/                   # 图示等静态资源
 ├── snippets/                     # 内部参考代码
 │   └── product-starter/
@@ -218,7 +220,8 @@ ship-faster/
 | Snippets | `snippets/<slug>/` | `product-starter` |
 | Skills | `skills/<prefix>-<slug>/` | `workflow-ship-faster` |
 
-前缀：`workflow-`、`tool-`、`review-`、`mcp-`、`skill-`、`publish-`
+前缀：`workflow-`、`tool-`、`review-`、`skill-`、`publish-`
+服务类 skills（supabase、stripe、cloudflare）直接使用服务名。
 
 </details>
 

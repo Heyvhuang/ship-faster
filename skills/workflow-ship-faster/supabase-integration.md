@@ -8,11 +8,11 @@ Goal: Complete "can read/write data + types available + security gates" via shor
 - Need to **integrate Supabase into Next.js project** (env / types / minimal read-write / migration strategy / traceable artifacts)
 
 **Not applicable:**
-- Just want to run a quick query, execute some SQL, check logs, do a one-time migration (use `mcp-supabase` directly—faster and cleaner)
+- Just want to run a quick query, execute some SQL, check logs, do a one-time migration (use `supabase` skill directly—faster and cleaner)
 
 **Dependencies:**
-- This step executes all DB actions through `mcp-supabase` (schema detection / migration / types generation / logs etc.)
-- DB security gates (write operation confirmation, DDL via migration, UPDATE/DELETE must have WHERE...) follow `mcp-supabase` rules
+- This step executes all DB actions through `supabase` skill (schema detection / migration / types generation / logs etc.)
+- DB security gates (write operation confirmation, DDL via migration, UPDATE/DELETE must have WHERE...) follow `supabase` skill rules
 
 ## Input (Pass Paths Only)
 
@@ -28,7 +28,7 @@ Goal: Complete "can read/write data + types available + security gates" via shor
 
 ## Process
 
-1. Use `mcp-supabase` to dynamically detect schema (don't rely on outdated schema docs)
+1. Use `supabase` skill to dynamically detect schema (don't rely on outdated schema docs)
 2. DDL always goes through migration (`apply_migration`)
 3. Write operations always go through confirmation point (write SQL to `03-plans/sql.md` first, then execute)
 4. Generate TypeScript types (`generate_typescript_types`) and persist in project (location per project conventions)

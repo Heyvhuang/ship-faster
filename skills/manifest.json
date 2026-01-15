@@ -1,31 +1,31 @@
 {
   "schemaVersion": 1,
-  "skillsVersion": "2026-01-14",
-  "generatedAt": "2026-01-14",
+  "skillsVersion": "2026-01-15",
+  "generatedAt": "2026-01-15",
   "skills": [
     {
-      "name": "mcp-cloudflare",
-      "dir": "mcp-cloudflare",
-      "skillMd": "mcp-cloudflare/SKILL.md",
-      "stage": "mcp",
-      "tags": ["approvals", "mcp"],
-      "summary": "Manage Workers/KV/R2/D1/Hyperdrive via Cloudflare MCP, perform observability/build troubleshooting/audit/container sandbox operations. Triggers: worker/KV/R2/D1/logs/build/deploy/screenshot/audit/sandbox. Three permission tiers: Diagnose (…"
+      "name": "cloudflare",
+      "dir": "cloudflare",
+      "skillMd": "cloudflare/SKILL.md",
+      "stage": "service",
+      "tags": ["approvals", "service", "infrastructure"],
+      "summary": "Infrastructure operations for Cloudflare: Workers, KV, R2, D1, Hyperdrive, observability, builds, audit logs. Three permission tiers: Diagnose (read-only), Change (write requires confirmation), Super Admin (isolated environment). MCP optional."
     },
     {
-      "name": "mcp-stripe",
-      "dir": "mcp-stripe",
-      "skillMd": "mcp-stripe/SKILL.md",
-      "stage": "mcp",
-      "tags": ["approvals", "mcp"],
-      "summary": "Stripe MCP transaction operations skill. Execute transaction operations via Stripe MCP server (https://mcp.stripe.com): customer management, products/prices, invoices, payment links, subscriptions, refunds, dispute handling, balance querie…"
+      "name": "stripe",
+      "dir": "stripe",
+      "skillMd": "stripe/SKILL.md",
+      "stage": "service",
+      "tags": ["approvals", "service", "billing"],
+      "summary": "Billing and payment operations for Stripe: customers, products, prices, invoices, payment links, subscriptions, refunds, disputes, balance. Money operations require confirmation. MCP optional."
     },
     {
-      "name": "mcp-supabase",
-      "dir": "mcp-supabase",
-      "skillMd": "mcp-supabase/SKILL.md",
-      "stage": "mcp",
-      "tags": ["approvals", "mcp"],
-      "summary": "Execute database operations via Supabase MCP (query/write/migration/logs/type generation). Triggers: query/statistics/export/insert/update/delete/fix/backfill/migrate/logs/alerts/type generation. Does not trigger for: pure architecture dis…"
+      "name": "supabase",
+      "dir": "supabase",
+      "skillMd": "supabase/SKILL.md",
+      "stage": "service",
+      "tags": ["approvals", "service", "database"],
+      "summary": "Database operations for Supabase: query, write, migration, logs, type generation. Write operations require confirmation; UPDATE/DELETE without WHERE refused. MCP optional."
     },
     {
       "name": "publish-x-article",
@@ -41,7 +41,7 @@
       "skillMd": "review-clean-code/SKILL.md",
       "stage": "review",
       "tags": ["review"],
-      "summary": "Analyze code quality based on \"Clean Code\" principles. Identify naming, function size, duplication, over-engineering, and magic number issues with severity ratings and refactoring suggestions. Use when the user requests code quality checks…"
+      "summary": "Analyze code quality based on \"Clean Code\" principles. Identify naming, function size, duplication, over-engineering, and magic number issues with severity ratings and refactoring suggestions."
     },
     {
       "name": "review-doc-consistency",
@@ -49,7 +49,7 @@
       "skillMd": "review-doc-consistency/SKILL.md",
       "stage": "review",
       "tags": ["review"],
-      "summary": "Documentation consistency reviewer that checks alignment between code implementation and documentation. Use when user requests reviewing documentation vs code consistency, checking if README/docs are outdated, verifying API documentation a…"
+      "summary": "Documentation consistency reviewer that checks alignment between code implementation and documentation. Use when user requests reviewing documentation vs code consistency."
     },
     {
       "name": "review-merge-readiness",
@@ -57,7 +57,7 @@
       "skillMd": "review-merge-readiness/SKILL.md",
       "stage": "review",
       "tags": ["review"],
-      "summary": "Request/execute structured code review: use after completing important tasks, at end of each execution batch, or before merge. Based on git diff range, compare against plan and requirements, output issue list by Critical/Important/Minor se…"
+      "summary": "Request/execute structured code review: use after completing important tasks, at end of each execution batch, or before merge. Output issue list by Critical/Important/Minor severity."
     },
     {
       "name": "review-react-best-practices",
@@ -65,7 +65,7 @@
       "skillMd": "review-react-best-practices/SKILL.md",
       "stage": "review",
       "tags": ["review"],
-      "summary": "Review or refactor React / Next.js code for performance and reliability using a prioritized rule library (waterfalls, bundle size, server/client data fetching, re-renders, rendering)."
+      "summary": "Review or refactor React / Next.js code for performance and reliability using a prioritized rule library (waterfalls, bundle size, server/client data fetching, re-renders)."
     },
     {
       "name": "skill-creator",
@@ -81,7 +81,7 @@
       "skillMd": "skill-evolution/SKILL.md",
       "stage": "meta",
       "tags": ["meta"],
-      "summary": "Global evolution system for ship-faster skills. Uses hooks to capture context, failures, and session summaries, then generates patch suggestions (no auto edits) via skill-improver. Use when you want the skills to self-improve safely and co…"
+      "summary": "Global evolution system for ship-faster skills. Uses hooks to capture context, failures, and session summaries, then generates patch suggestions (no auto edits)."
     },
     {
       "name": "skill-improver",
@@ -89,7 +89,7 @@
       "skillMd": "skill-improver/SKILL.md",
       "stage": "meta",
       "tags": ["meta"],
-      "summary": "Improve skills and workflows by analyzing run artifacts and execution logs (events.jsonl/state.json) under .claude/runs/. Use when you want to iterate on skills based on real runs: find failure modes, bottlenecks, unclear prompts, missing …"
+      "summary": "Improve skills and workflows by analyzing run artifacts and execution logs. Find failure modes, bottlenecks, unclear prompts, missing I/O contracts."
     },
     {
       "name": "tool-ast-grep-rules",
@@ -97,7 +97,7 @@
       "skillMd": "tool-ast-grep-rules/SKILL.md",
       "stage": "tool",
       "tags": ["tool"],
-      "summary": "Write AST-based code search and rewrite rules using ast-grep YAML. Create linting rules, code modernizations, and API migrations with auto-fix. Use when the user mentions ast-grep, tree-sitter patterns, code search rules, lint rules with Y…"
+      "summary": "Write AST-based code search and rewrite rules using ast-grep YAML. Create linting rules, code modernizations, and API migrations with auto-fix."
     },
     {
       "name": "tool-design-style-selector",
@@ -105,7 +105,7 @@
       "skillMd": "tool-design-style-selector/SKILL.md",
       "stage": "tool",
       "tags": ["tool"],
-      "summary": "Scan project documentation to identify intent, first evaluate if existing style is mature; if mature then \\\"preserve and extract\\\" to generate design-system.md, if not mature then recommend from 30 preset styles and deploy. Trigger words: …"
+      "summary": "Scan project to identify intent, evaluate if existing style is mature; if mature preserve and extract design-system.md, if not recommend from 30 preset styles."
     },
     {
       "name": "workflow-brainstorm",
@@ -113,7 +113,7 @@
       "skillMd": "workflow-brainstorm/SKILL.md",
       "stage": "workflow",
       "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Brainstorm → Design Spec: Use before any creative implementation (new feature/component/behavior change). First check project context, then ask one question at a time, provide 2-3 options with trade-offs, finally output design in segments …"
+      "summary": "Brainstorm → Design Spec: Use before any creative implementation. Ask one question at a time, provide 2-3 options with trade-offs, output design in segments."
     },
     {
       "name": "workflow-execute-plans",
@@ -121,7 +121,7 @@
       "skillMd": "workflow-execute-plans/SKILL.md",
       "stage": "workflow",
       "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Execute written implementation plans: first read and critically review the plan, then implement in small batches (default 3 tasks), produce verification evidence per batch and pause for feedback; must stop immediately and ask for help when…"
+      "summary": "Execute written implementation plans: read and review, implement in small batches, produce verification evidence per batch, pause for feedback."
     },
     {
       "name": "workflow-feature-shipper",
@@ -129,7 +129,7 @@
       "skillMd": "workflow-feature-shipper/SKILL.md",
       "stage": "workflow",
       "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Ship core product features quickly in a Next.js codebase: turn a feature idea into a small executable plan, implement in PR-sized slices, delegate UI styling to a frontend agent when needed, and keep artifacts under .claude/runs/. Use for …"
+      "summary": "Ship core product features quickly in a Next.js codebase: turn feature idea into executable plan, implement in PR-sized slices, delegate UI styling when needed."
     },
     {
       "name": "workflow-project-intake",
@@ -137,7 +137,7 @@
       "skillMd": "workflow-project-intake/SKILL.md",
       "stage": "workflow",
       "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Project intake + routing: help the user brainstorm and clarify intent, persist goal/context artifacts, then dispatch to the right workflow or step skill. Default route is workflow-ship-faster (Next.js 16.1.1) for idea/prototype→launch. Tri…"
+      "summary": "Project intake + routing: brainstorm and clarify intent, persist goal/context artifacts, dispatch to the right workflow. Default route is workflow-ship-faster."
     },
     {
       "name": "workflow-ship-faster",
@@ -145,7 +145,7 @@
       "skillMd": "workflow-ship-faster/SKILL.md",
       "stage": "workflow",
       "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Ship Faster end-to-end workflow for small web apps (default: Next.js 16.1.1): idea/prototype → foundation gate → design-system.md → lightweight guardrails + docs → feature iteration → optional Supabase + Stripe → optional GitHub + Vercel d…"
+      "summary": "Ship Faster end-to-end workflow for small web apps (Next.js): idea → foundation gate → design-system → guardrails → feature iteration → optional Supabase/Stripe → deploy → SEO."
     },
     {
       "name": "workflow-template-extractor",
@@ -153,7 +153,7 @@
       "skillMd": "workflow-template-extractor/SKILL.md",
       "stage": "workflow",
       "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Extract a shareable runnable template under templates/NNN-slug/ from a real project: copy + de-brand + remove secrets + add env examples + docs, with minimal refactors. Use when you have a working project and want to turn it into a templat…"
+      "summary": "Extract a shareable runnable template from a real project: copy, de-brand, remove secrets, add env examples and docs."
     },
     {
       "name": "workflow-template-seeder",
@@ -161,7 +161,7 @@
       "skillMd": "workflow-template-seeder/SKILL.md",
       "stage": "workflow",
       "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Seed a new runnable template under templates/NNN-slug/ from a short spec by chaining existing skills (intake → ship-faster stages) while keeping it clean and shareable (no secrets, minimal scope). Use when creating a new template quickly."
+      "summary": "Seed a new runnable template from a short spec by chaining existing skills while keeping it clean and shareable."
     }
   ]
 }

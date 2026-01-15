@@ -162,7 +162,7 @@ Composable workflows that ship end-to-end. Copy to `~/.claude/skills/` or use as
 | **Workflows** | [workflow-project-intake](skills/workflow-project-intake/) · [workflow-ship-faster](skills/workflow-ship-faster/) · [workflow-feature-shipper](skills/workflow-feature-shipper/) |
 | **Tools** | [tool-design-style-selector](skills/tool-design-style-selector/) · [tool-ast-grep-rules](skills/tool-ast-grep-rules/) |
 | **Reviews** | [review-react-best-practices](skills/review-react-best-practices/) · [review-merge-readiness](skills/review-merge-readiness/) · [review-clean-code](skills/review-clean-code/) · [review-doc-consistency](skills/review-doc-consistency/) |
-| **MCP Integrations** | [mcp-supabase](skills/mcp-supabase/) · [mcp-stripe](skills/mcp-stripe/) · [mcp-cloudflare](skills/mcp-cloudflare/) |
+| **Services** | [supabase](skills/supabase/) · [stripe](skills/stripe/) · [cloudflare](skills/cloudflare/) |
 | **Meta** | [skill-evolution](skills/skill-evolution/) · [skill-creator](skills/skill-creator/) |
 
 > Full catalog: [`skills/manifest.json`](skills/manifest.json)
@@ -198,7 +198,9 @@ ship-faster/
 │   ├── workflow-project-intake/
 │   ├── review-*/
 │   ├── tool-*/
-│   ├── mcp-*/
+│   ├── supabase/
+│   ├── stripe/
+│   ├── cloudflare/
 │   └── assets/                   # Diagrams and static assets
 ├── snippets/                     # Internal reference code
 │   └── product-starter/
@@ -218,7 +220,8 @@ ship-faster/
 | Snippets | `snippets/<slug>/` | `product-starter` |
 | Skills | `skills/<prefix>-<slug>/` | `workflow-ship-faster` |
 
-Prefixes: `workflow-`, `tool-`, `review-`, `mcp-`, `skill-`, `publish-`
+Prefixes: `workflow-`, `tool-`, `review-`, `skill-`, `publish-`
+Service skills (supabase, stripe, cloudflare) use the service name directly.
 
 </details>
 

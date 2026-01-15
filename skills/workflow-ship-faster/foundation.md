@@ -90,7 +90,7 @@ When Decision = `keep-current-stack`:
 - Write `foundation-plan.md` as "Ship Faster recommendation list for keeping current stack" (e.g.: design system → guardrails → docs → deploy)
 - Clearly state: Subsequent "Supabase/Stripe integration" are **Next.js adapters**; if still need DB/payment integration, need to:
   - Either migrate to Next.js first
-  - Or add integration step for that stack (e.g., `vite + supabase`), underlying DB operations still reuse `mcp-supabase`
+  - Or add integration step for that stack (e.g., `vite + supabase`), underlying DB operations still reuse `supabase` skill
 
 ## Verification (Required After Every Change)
 

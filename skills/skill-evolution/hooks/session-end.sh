@@ -202,8 +202,8 @@ def suggested_targets(top_cats):
     "typecheck": ["workflow-ship-faster/guardrails.md"],
     "test": ["workflow-ship-faster/guardrails.md"],
     "deploy": ["workflow-ship-faster/deploy-vercel.md"],
-    "supabase": ["workflow-ship-faster/supabase-integration.md","mcp-supabase/SKILL.md"],
-    "stripe": ["workflow-ship-faster/stripe-integration.md","mcp-stripe/SKILL.md"],
+    "supabase": ["workflow-ship-faster/supabase-integration.md","supabase/SKILL.md"],
+    "stripe": ["workflow-ship-faster/stripe-integration.md","stripe/SKILL.md"],
   }
   targets=[]
   for cat,_ in top_cats:
