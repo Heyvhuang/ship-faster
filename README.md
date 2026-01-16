@@ -15,7 +15,7 @@
 
 <br />
 
-[Demo 001](https://copyback.vercel.app/) · [Demo 002](https://uniteconomics-console.vercel.app/) · [Docs](./docs/) · [Skills](./skills/) · [Templates](./templates/) · [中文](./README.zh-CN.md)
+[Docs](./docs/) · [Skills](./skills/) · [Templates](./templates/) · [中文](./README.zh-CN.md)
 
 </div>
 
@@ -189,8 +189,9 @@ Runnable example projects — demos + regression references.
 
 | # | Template | Stack | Link |
 |:-:|:---------|:------|:-----|
-| 001 | **CopyBack Studio** | Next.js + Supabase | [→ Open](templates/001-copyback-studio/) |
+| 001 | **CopyBack Studio** | Next.js + Supabase + R2 | [→ Open](templates/001-copyback-studio/) |
 | 002 | **UnitEconomics Console** | Next.js + Gemini | [→ Open](templates/002-uniteconomics-console/) |
+| 003 | **MarginLedger** | Vite + React + Gemini | [→ Open](templates/003-marginledger/) |
 
 > The repo root is intentionally **not runnable**. Pick a template or run skills against your own project.
 
@@ -204,7 +205,8 @@ ship-faster/
 ├── docs/                         # Documentation
 ├── templates/                    # Runnable full projects
 │   ├── 001-copyback-studio/
-│   └── 002-uniteconomics-console/
+│   ├── 002-uniteconomics-console/
+│   └── 003-marginledger/
 ├── skills/                       # Agent skill packages
 │   ├── workflow-ship-faster/
 │   ├── workflow-project-intake/

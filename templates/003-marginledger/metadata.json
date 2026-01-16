@@ -1,0 +1,5 @@
+{
+  "name": "MarginLedger",
+  "description": "A unit-economics console for AI SaaS teams to calculate margins and generate cap policies.",
+  "requestFramePermissions": []
+}
