@@ -130,6 +130,18 @@ Non-goals:
 - <bullet>
 ```
 
+### 4) 我想做 UI/UX 设计（设计系统 / 配色 / 字体 / 无障碍）
+
+```text
+Use tool-design-style-selector.   # 生成 design-system.md
+# 或：
+Use tool-ui-ux-pro-max.           # 快速查配色/字体/UX/a11y 规则
+
+Query: <你要什么?>
+Domain: product|style|typography|color|landing|chart|ux
+Stack (可选): nextjs|react|html-tailwind|vue|svelte|flutter|swiftui
+```
+
 ---
 
 ## 工作原理

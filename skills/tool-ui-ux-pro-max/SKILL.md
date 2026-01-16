@@ -1,6 +1,6 @@
 ---
 name: tool-ui-ux-pro-max
-description: "Searchable UI/UX design intelligence (styles, palettes, typography, landing patterns, charts, UX guidelines + stack best practices). Trigger words: UI/UX, design system, color palette, typography, layout, animation, accessibility/a11y, component styling. Actions: search, recommend, review, improve UI."
+description: "Searchable UI/UX design intelligence (styles, palettes, typography, landing patterns, charts, UX/a11y guidelines + stack best practices) backed by CSV + a Python search script. Trigger words: UIUX/uiux, UI/UX, UX design, UI design, design system, design spec, color palette, typography, layout, animation, accessibility/a11y, component styling. Actions: search, recommend, review, improve UI."
 ---
 
 # Tool: UI/UX Pro Max (Searchable Design Intelligence)

@@ -44,7 +44,7 @@ HEAD_SHA=$(git rev-parse HEAD)
 
 Review must provide:
 - **WHAT_WAS_IMPLEMENTED**: What you just completed (1-3 bullet points)
-- **PLAN_OR_REQUIREMENTS**: Corresponding plan excerpt or requirements document path (e.g., `run_dir/03-plans/feature-plan.md`)
+- **PLAN_OR_REQUIREMENTS**: Corresponding plan excerpt or requirements document path (e.g., `run_dir/03-plans/features/<feature_slug>-plan.md`)
 
 ### 3) Get diff (Evidence)
 

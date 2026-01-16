@@ -130,6 +130,18 @@ Non-goals:
 - <bullet>
 ```
 
+### 4) I want UI/UX design direction (design system / palette / typography / a11y)
+
+```text
+Use tool-design-style-selector.   # generate design-system.md
+# or:
+Use tool-ui-ux-pro-max.           # quick lookup for palette/typography/a11y
+
+Query: <what do you need?>
+Domain: product|style|typography|color|landing|chart|ux
+Stack (optional): nextjs|react|html-tailwind|vue|svelte|flutter|swiftui
+```
+
 ---
 
 ## How It Works

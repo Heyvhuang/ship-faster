@@ -145,6 +145,45 @@ Implementation rules:
     }
    ```
 
+### 0.25) Kickoff Clarification (Brainstorm-lite) (Recommended; required if goal is vague)
+
+Problem this solves: people jump straight into “implement a feature” and end up with a very basic MVP that’s hard to demo.
+
+Run this step if **any** of these are true:
+- `01-input/goal.md` is missing clear **acceptance criteria** and **non-goals**
+- The user request is “build something like X” / “make a prototype” without specifying the core loop
+- The user explicitly wants a “demo-ready” prototype (animation, wow factor, shareable)
+
+How:
+- Call `workflow-brainstorm` using the **same `repo_root` + this `run_dir`**.
+- Follow the one-question-at-a-time rule and converge on:
+  - the one core loop (1 sentence)
+  - acceptance criteria (3–5 bullets)
+  - non-goals (1–3 bullets)
+  - constraints (timeline / risk preference)
+  - a “demo moment” direction (see step 0.3)
+- Persist the confirmed spec to:
+  - `02-analysis/YYYY-MM-DD-kickoff-design.md`
+- Then update (merge, don’t overwrite) these inputs:
+  - `01-input/goal.md`
+  - `01-input/context.json` (ensure `need_database/need_billing/need_deploy/need_seo` are explicitly set)
+
+### 0.3) Demo Moment First (Recommended for prototypes)
+
+Principle: a prototype that **feels real** needs at least one “demo moment” (tastefully showy, not gimmicky).
+
+Examples of “demo moment” (pick 1, keep it small):
+- A hero section with a **live interactive preview** (fake data is fine) + smooth, purposeful motion
+- A delightful micro-interaction: command palette, draggable cards, timeline scrubber, etc.
+- A “before/after” transformation animation (input → output) that makes the core loop obvious
+
+Workflow:
+1. Write a small feature spec file (if it doesn’t exist):
+   - `01-input/feature-00-demo-moment.md`
+   - Include `mode: plan-only`, `feature_slug: demo-moment`, and `quality_bar: demo-ready`
+2. Call `workflow-feature-shipper` to generate the plan **only** (no implementation yet).
+3. Defer actual UI implementation until after Step 2 (design-system.md exists), so the demo moment follows the chosen design system.
+
 ### 0.5) Dynamic Branch Decision (Required)
 
 Dynamically adjust execution order based on `context.json` content:
@@ -182,10 +221,11 @@ Goal: Make `design-system.md` actually reflected in the interface, not "wrote sp
 
 Recommended approach: Treat "redo UI/UX per design-system.md" as an independent feature and hand to `workflow-feature-shipper`:
 - Input: `design-system.md` (as sole design constraint) + current UI page list (from code scan)
-- Output: `feature-plan.md` (scope/acceptance criteria/non-goals/risks/rollback) + code changes
+- Output: `03-plans/features/<feature_slug>-plan.md` (scope/acceptance criteria/non-goals/risks/rollback) + code changes
 
-Optional quality boost (recommended when the UI still feels “generic”):
-- Call `tool-ui-ux-pro-max` to enrich the plan with concrete palette/typography/UX guardrails, and use its pre-delivery checklist as acceptance criteria.
+Default enrichment (when installed):
+- If `tool-ui-ux-pro-max` is installed, use it to enrich the UI/UX plan with concrete palette/typography/UX guardrails, and use its pre-delivery checklist as acceptance criteria.
+- Only skip `tool-ui-ux-pro-max` enrichment if the user explicitly asks to skip it (e.g., “don’t over-design / keep it simple”), and log the reason.
 
 For large-scale refactoring: Write `03-plans/approval.md` first and wait for user confirmation before implementing.
 
@@ -204,7 +244,7 @@ Artifact: `03-plans/docs-plan.md` (and project README update)
 ### 5) Core Feature Development (Iterative Loop)
 
 Call `workflow-feature-shipper`:
-- Each feature first produces `feature-plan.md` (with acceptance criteria/non-goals)
+- Each feature first produces `03-plans/features/<feature_slug>-plan.md` (with acceptance criteria/non-goals)
 - Default split into PR-able small steps
 - After each batch (or before merge), recommend calling `review-quality` for a conclusive review + verdict
 - If the batch touches React/Next.js rendering/data fetching/bundle size, also recommend `review-react-best-practices` (apply CRITICAL rules first)

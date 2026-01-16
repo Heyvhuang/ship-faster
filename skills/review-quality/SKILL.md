@@ -19,7 +19,7 @@ If your diff touches React/Next.js rendering/data fetching/bundle size, addition
 ## Inputs (recommended)
 
 - `BASE_SHA` and `HEAD_SHA` for diff-based reviews
-- Optional: `PLAN_OR_REQUIREMENTS` path (e.g. `run_dir/03-plans/feature-plan.md`)
+- Optional: `PLAN_OR_REQUIREMENTS` path (e.g. `run_dir/03-plans/features/<feature_slug>-plan.md`)
 - Optional: docs scope (`README.md`, `docs/**`, API contracts)
 
 ### Suggested scope commands
@@ -98,4 +98,3 @@ If you are working inside a Ship Faster run directory, write to:
 ### Minor (Nice to Have)
 ...
 ```
-

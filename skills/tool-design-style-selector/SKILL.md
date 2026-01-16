@@ -1,6 +1,6 @@
 ---
 name: tool-design-style-selector
-description: "Scan project documentation to identify intent, first evaluate if existing style is mature; if mature then \"preserve and extract\" to generate design-system.md, if not mature then recommend from 30 preset styles and deploy. Trigger words: design style/design system/UI style/select style/recommend style/project style. Execution flow: scan project → analyze intent → (Gate) preserve existing style or select preset → deploy design-system.md after confirmation → (default) implement UI/UX according to design-system.md (plan first, then execute)."
+description: "Scan project documentation to identify intent, then produce a design-system.md (either preserve existing style or pick from 30 presets). Trigger words: design system, design spec, UI style, visual style, design tokens, color palette, typography, layout. Flow: scan → intent → (gate) preserve vs preset → deploy design-system.md after confirmation → (default) implement UI/UX per design-system.md (plan first, then execute)."
 ---
 
 # Design Style Selector
@@ -90,9 +90,9 @@ Recommendation #3: [Style Name]
 - Reason: ...
 ```
 
-### Step 3.5 (Optional): Enrich tokens via `tool-ui-ux-pro-max`
+### Step 3.5 (Default when installed): Enrich tokens via `tool-ui-ux-pro-max`
 
-If `tool-ui-ux-pro-max` is installed, use it to make `design-system.md` more concrete (palette + typography + UX constraints), instead of relying on a single preset text blob.
+If `tool-ui-ux-pro-max` is installed, run it by default to make `design-system.md` more concrete (palette + typography + UX constraints), instead of relying on a single preset text blob. Only skip if the user explicitly asks to keep the spec minimal, and record the reason.
 
 Recommended searches (pick 1–3 results per category, then synthesize into `design-system.md`):
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "skillsVersion": "2026-01-15",
-  "generatedAt": "2026-01-15",
+  "skillsVersion": "2026-01-16",
+  "generatedAt": "2026-01-16",
   "skills": [
     {
       "name": "cloudflare",

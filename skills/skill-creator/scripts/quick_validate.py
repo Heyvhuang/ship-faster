@@ -18,6 +18,11 @@ def validate_skill(skill_path):
     if not skill_md.exists():
         return False, "SKILL.md not found"
 
+    # Enforce LF line endings (CRLF can break some skill loaders / parsers)
+    raw = skill_md.read_bytes()
+    if b"\r" in raw:
+        return False, "SKILL.md must use LF line endings (found CRLF/CR)"
+
     # Read and validate frontmatter
     content = skill_md.read_text()
     if not content.startswith('---'):

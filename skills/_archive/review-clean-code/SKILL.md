@@ -23,7 +23,7 @@ All suggestions target **implementation approach** only—never suggest changing
 
 ## Check Dimensions
 
-### 1. Naming Issues【Meaningful Names】
+### 1. Naming Issues (Meaningful Names)
 
 Check for:
 - Meaningless names like `data1`, `temp`, `result`, `info`, `obj`
@@ -39,7 +39,7 @@ const currentDate = new Date();
 const userProfile = fetchUser();
 ```
 
-### 2. Function Issues【Small Functions + SRP】
+### 2. Function Issues (Small Functions + SRP)
 
 Check for:
 - Functions exceeding **100 lines**
@@ -55,14 +55,14 @@ interface OrderParams { user: User; items: Item[]; shipping: Address; payment: P
 function processOrder(params: OrderParams)
 ```
 
-### 3. Duplication Issues【DRY】
+### 3. Duplication Issues (DRY)
 
 Check for:
 - Similar if-else structures
 - Similar data transformation/error handling logic
 - Copy-paste traces
 
-### 4. Over-Engineering【YAGNI】
+### 4. Over-Engineering (YAGNI)
 
 Check for:
 - `if (config.legacyMode)` branches that are never true
@@ -76,7 +76,7 @@ if (config.legacyMode) {
 }
 ```
 
-### 5. Magic Numbers【Avoid Hardcoding】
+### 5. Magic Numbers (Avoid Hardcoding)
 
 Check for:
 - Bare numbers without explanation
@@ -92,7 +92,7 @@ const MAX_RETRY_COUNT = 3;
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 ```
 
-### 6. Structural Clarity【Readability First】
+### 6. Structural Clarity (Readability First)
 
 Check for:
 - Nested ternary operators
@@ -110,7 +110,7 @@ function getStatus(a, b, c) {
 }
 ```
 
-### 7. Project Conventions【Consistency】
+### 7. Project Conventions (Consistency)
 
 Check for:
 - Mixed import order (external libs vs internal modules)
