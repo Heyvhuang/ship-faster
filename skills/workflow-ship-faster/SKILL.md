@@ -43,6 +43,7 @@ Recommended template (minimum viable):
 
 - run_id: <run_id>
 - status: active|blocked|done
+- scope: full|deploy-only|design-only|feature-only
 - last_updated: <ISO8601>
 
 ## What we are doing
@@ -58,6 +59,9 @@ Recommended template (minimum viable):
 - evidence: 02-analysis/
 - parallel: 04-parallel/
 - final: 05-final/ship-summary.md
+
+## Disabled steps (if any)
+- <step>: <reason>
 ```
 
 **Default read order** when resuming/replaying (unless user explicitly names a specific file):
@@ -132,18 +136,42 @@ Implementation rules:
    ```json
    {
      "workflow": "ship-faster",
+     "scope": "full",
      "steps_enabled": {
        "foundation": true,
        "design": true,
+       "features": true,
        "guardrails": true,
        "docs": true,
        "database": false,
        "billing": false,
        "deploy": false,
        "seo": false
-      }
+      },
+     "steps_disabled_reasons": {}
     }
    ```
+
+### 0.2) Scope Confirmation (Required)
+
+Problem this solves: a run summary that marks core steps as “skipped” without the user ever choosing to skip them is misleading and hard to audit.
+
+Ask the user to select a scope **before** executing steps beyond build checks:
+
+- **A) full (default)**: Foundation → Design system → UI/UX → Guardrails → Docs → Feature iteration → Deploy
+- **B) deploy-only**: Foundation (build + sanity) → Deploy only (no UI work, no guardrails/docs polish)
+- **C) design-only**: Design system + UI/UX plan only (no code changes)
+- **D) feature-only**: One feature iteration (plan + implementation), skip deploy
+
+Rules:
+- If scope is not `full`, update `logs/state.json`:
+  - Set unrelated steps in `steps_enabled` to `false`
+  - Fill `steps_disabled_reasons` (e.g., `"design": "scope=deploy-only (user requested deploy only)"`)
+- In `00-index.md`, do **not** mark a default step as “skipped” unless the user explicitly requested skipping it.
+  - Prefer: `disabled (scope=...)` with a reason
+- Any destructive action (e.g., **force push** overwriting an existing repo) is a high-risk side effect:
+  - Write an executable plan under `03-plans/` first
+  - Wait for explicit user confirmation before executing
 
 ### 0.25) Kickoff Clarification (Brainstorm-lite) (Recommended; required if goal is vague)
 

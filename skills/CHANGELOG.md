@@ -25,6 +25,7 @@ This changelog tracks changes to the `skills/` toolkit (not template app code).
 - Expanded UI/UX trigger phrases (added `UIUX`/`uiux` and common UX design synonyms) to improve routing accuracy.
 - Made `tool-ui-ux-pro-max` enrichment default when installed in `tool-design-style-selector` and `workflow-ship-faster`.
 - Added a “Brainstorm-lite + demo moment” kickoff to `workflow-ship-faster` to avoid shipping a basic, hard-to-demo MVP.
+- Added a required scope confirmation step to `workflow-ship-faster` so core steps are not silently marked as skipped.
 - Updated `workflow-feature-shipper` to support `mode: plan-only` and demo-ready UI acceptance criteria by default.
 - Changed feature plan artifact naming to `03-plans/features/<feature_slug>-plan.md` to avoid overwriting plans across multiple iterations.
 - Tightened `skill-creator/scripts/quick_validate.py` to reject CRLF/CR in `SKILL.md`.
