@@ -263,6 +263,16 @@ Open and follow: [guardrails.md](guardrails.md).
 
 Artifact: `03-plans/guardrails-plan.md`
 
+### 3.5) Trace Cleanup (De-branding & Source Hygiene) (Required if project was copied)
+
+Problem this solves: many starter projects imported from Google AI Studio / v0 / Lovable ship with vendor branding, broken remnants (like `importmap`), and misleading README instructions.
+
+Open and follow: [cleanup-traces.md](cleanup-traces.md).
+
+Artifacts:
+- `02-analysis/trace-scan.md`
+- `03-plans/cleanup-traces-plan.md`
+
 ### 4) Documentation Standards (Lightweight Required)
 
 Open and follow: [docs-baseline.md](docs-baseline.md).

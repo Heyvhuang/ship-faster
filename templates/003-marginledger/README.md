@@ -47,9 +47,7 @@
 
 ## Environment Variables
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `GEMINI_API_KEY` | Yes | Google Gemini API key |
+No required environment variables for the demo.
 
 ## Scripts
 

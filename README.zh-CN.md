@@ -190,8 +190,12 @@ Stack (可选): nextjs|react|html-tailwind|vue|svelte|flutter|swiftui
 | # | 模板 | 技术栈 | 链接 |
 |:-:|:-----|:-------|:-----|
 | 001 | **CopyBack Studio** | Next.js + Supabase + R2 | [→ 打开](templates/001-copyback-studio/) |
-| 002 | **UnitEconomics Console** | Next.js + Gemini | [→ 打开](templates/002-uniteconomics-console/) |
-| 003 | **MarginLedger** | Vite + React + Gemini | [→ 打开](templates/003-marginledger/) |
+| 002 | **UnitEconomics Console** | Next.js | [→ 打开](templates/002-uniteconomics-console/) |
+| 003 | **MarginLedger** | Vite + React | [→ 打开](templates/003-marginledger/) |
+| 004 | **Kanban Load Mirror** | Vite + React | [→ 打开](templates/004-kanban-load-mirror/) |
+| 005 | **Multi-Store Daily Brief** | Vite + React | [→ 打开](templates/005-multi-store-daily-brief/) |
+| 006 | **Ticket to FAQ** | Vite + React | [→ 打开](templates/006-ticket-to-faq/) |
+| 007 | **Elevate Move-in Booking** | Vite + React | [→ 打开](templates/007-elevate-move-in-booking/) |
 
 > 仓库根目录**刻意不可运行**。请选择一个模板，或用 skills 对你自己的项目运行。
 
@@ -206,7 +210,11 @@ ship-faster/
 ├── templates/                    # 可运行的完整项目
 │   ├── 001-copyback-studio/
 │   ├── 002-uniteconomics-console/
-│   └── 003-marginledger/
+│   ├── 003-marginledger/
+│   ├── 004-kanban-load-mirror/
+│   ├── 005-multi-store-daily-brief/
+│   ├── 006-ticket-to-faq/
+│   └── 007-elevate-move-in-booking/
 ├── skills/                       # Agent 技能包
 │   ├── workflow-ship-faster/
 │   ├── workflow-project-intake/

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket to FAQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              background: '#0a0a0f',
+              foreground: '#e0e0e0',
+              card: '#12121a',
+              muted: '#1c1c2e',
+              mutedForeground: '#6b7280',
+              accent: '#00ff88',
+              accentSecondary: '#ff00ff',
+              accentTertiary: '#00d4ff',
+              border: '#2a2a3a',
+              input: '#12121a',
+              destructive: '#ff3366',
+              zinc: {
+                850: '#1f2023', // Custom dark for sidebar
+              }
+            },
+            fontFamily: {
+              sans: ['JetBrains Mono', 'monospace'],
+              display: ['Orbitron', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            boxShadow: {
+              'neon': '0 0 5px #00ff88, 0 0 10px #00ff8840',
+              'neon-sm': '0 0 3px #00ff88, 0 0 6px #00ff8830',
+              'neon-lg': '0 0 10px #00ff88, 0 0 20px #00ff8860, 0 0 40px #00ff8830',
+              'neon-secondary': '0 0 5px #ff00ff, 0 0 20px #ff00ff60',
+            },
+            backgroundImage: {
+              'grid-pattern': "linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px)",
+            }
+          },
+        },
+      }
+</script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+      body { 
+        font-family: 'JetBrains Mono', monospace; 
+        background-color: #0a0a0f;
+        color: #e0e0e0;
+      }
+      
+      /* Scanlines Overlay */
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.3) 2px,
+          rgba(0, 0, 0, 0.3) 4px
+        );
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 8px; height: 8px; }
+      ::-webkit-scrollbar-track { background: #0a0a0f; border-left: 1px solid #2a2a3a; }
+      ::-webkit-scrollbar-thumb { background: #2a2a3a; border: 1px solid #00ff88; }
+      ::-webkit-scrollbar-thumb:hover { background: #00ff88; }
+
+      /* Utilities */
+      .cyber-chamfer {
+        clip-path: polygon(
+          0 10px, 10px 0,
+          calc(100% - 10px) 0, 100% 10px,
+          100% calc(100% - 10px), calc(100% - 10px) 100%,
+          10px 100%, 0 calc(100% - 10px)
+        );
+      }
+      
+      .cyber-chamfer-sm {
+        clip-path: polygon(
+          0 5px, 5px 0,
+          calc(100% - 5px) 0, 100% 5px,
+          100% calc(100% - 5px), calc(100% - 5px) 100%,
+          5px 100%, 0 calc(100% - 5px)
+        );
+      }
+
+      /* Glitch Animation */
+      @keyframes glitch {
+        0% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(2px, -2px); }
+        60% { transform: translate(-1px, -1px); }
+        80% { transform: translate(1px, 1px); }
+        100% { transform: translate(0); }
+      }
+
+      .cyber-glitch:hover {
+        animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        color: #00ff88;
+        text-shadow: 2px 2px #ff00ff, -2px -2px #00d4ff;
+      }
+
+      .text-glow {
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+      }
+      
+      .border-glow {
+        box-shadow: 0 0 5px #00ff88, 0 0 10px #00ff8840;
+      }
+
+      /* Blinking Cursor */
+      .cursor-blink::after {
+        content: '_';
+        animation: blink 1s step-end infinite;
+      }
+
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+    </style>
+</head>
+  <body class="bg-background text-foreground antialiased h-screen overflow-hidden">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

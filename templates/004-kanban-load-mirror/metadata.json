@@ -1,0 +1,5 @@
+{
+  "name": "Kanban Load Mirror",
+  "description": "Turn board exports into one-page workload mirrors and meeting agendas. Detect bottlenecks and generate weekly reports instantly.",
+  "requestFramePermissions": []
+}

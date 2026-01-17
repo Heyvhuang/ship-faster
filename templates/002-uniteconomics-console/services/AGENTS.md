@@ -22,7 +22,7 @@ External side-effects and integrations (currently: Gemini policy generation).
 ## NOTES
 - Call sites treat the response as display-ready text (shown in a modal, copy-to-clipboard).
 - Keep `thinkingBudget: 0` unless you explicitly need longer reasoning.
-- Key setup: put `GEMINI_API_KEY` in `.env.local` (not committed; `*.local` is ignored).
+- Optional key setup: put `API_KEY` in `.env.local` (not committed; `*.local` is ignored).
 
 ## ANTI-PATTERNS
 - Don’t log secrets or full prompts containing sensitive customer data.

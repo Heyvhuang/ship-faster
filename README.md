@@ -190,8 +190,12 @@ Runnable example projects — demos + regression references.
 | # | Template | Stack | Link |
 |:-:|:---------|:------|:-----|
 | 001 | **CopyBack Studio** | Next.js + Supabase + R2 | [→ Open](templates/001-copyback-studio/) |
-| 002 | **UnitEconomics Console** | Next.js + Gemini | [→ Open](templates/002-uniteconomics-console/) |
-| 003 | **MarginLedger** | Vite + React + Gemini | [→ Open](templates/003-marginledger/) |
+| 002 | **UnitEconomics Console** | Next.js | [→ Open](templates/002-uniteconomics-console/) |
+| 003 | **MarginLedger** | Vite + React | [→ Open](templates/003-marginledger/) |
+| 004 | **Kanban Load Mirror** | Vite + React | [→ Open](templates/004-kanban-load-mirror/) |
+| 005 | **Multi-Store Daily Brief** | Vite + React | [→ Open](templates/005-multi-store-daily-brief/) |
+| 006 | **Ticket to FAQ** | Vite + React | [→ Open](templates/006-ticket-to-faq/) |
+| 007 | **Elevate Move-in Booking** | Vite + React | [→ Open](templates/007-elevate-move-in-booking/) |
 
 > The repo root is intentionally **not runnable**. Pick a template or run skills against your own project.
 
@@ -206,7 +210,11 @@ ship-faster/
 ├── templates/                    # Runnable full projects
 │   ├── 001-copyback-studio/
 │   ├── 002-uniteconomics-console/
-│   └── 003-marginledger/
+│   ├── 003-marginledger/
+│   ├── 004-kanban-load-mirror/
+│   ├── 005-multi-store-daily-brief/
+│   ├── 006-ticket-to-faq/
+│   └── 007-elevate-move-in-booking/
 ├── skills/                       # Agent skill packages
 │   ├── workflow-ship-faster/
 │   ├── workflow-project-intake/

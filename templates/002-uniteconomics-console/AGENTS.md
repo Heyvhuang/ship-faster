@@ -6,7 +6,7 @@
 This project uses a shared design system. See [design-system.md](./design-system.md).
 
 ## OVERVIEW
-Single-page React + TypeScript app (Vite) for unit-economics analysis and Gemini-generated “Fair Use & Overage Policy” drafts.
+Single-page React + TypeScript app (Vite) for unit-economics analysis and policy drafting (demo-safe, no required secrets).
 
 ## STRUCTURE
 ```
@@ -18,9 +18,9 @@ Single-page React + TypeScript app (Vite) for unit-economics analysis and Gemini
 ├── services/geminiService.ts # Gemini policy generation
 ├── constants.ts         # demo data + defaults
 ├── types.ts             # shared types
-├── index.html           # Tailwind CDN + importmap deps
+├── index.html           # Tailwind CDN
 ├── tsconfig.json        # TS config; @/* path points to repo root
-└── vite.config.ts       # dev server config + env injection for Gemini key
+└── vite.config.ts       # dev server config + optional API key injection
 ```
 
 ## WHERE TO LOOK
@@ -48,7 +48,7 @@ Single-page React + TypeScript app (Vite) for unit-economics analysis and Gemini
 - No routing library: navigation is `View` enum in `App.tsx`.
 - Styling is Tailwind via CDN configured in `index.html` (custom `stone` colors + fonts).
 - Path alias exists: `@/*` maps to repo root (`tsconfig.json`, `vite.config.ts`).
-- Gemini key wiring: `vite.config.ts` defines `process.env.API_KEY` from `GEMINI_API_KEY`.
+- Optional AI key wiring: `vite.config.ts` defines `process.env.API_KEY` from `API_KEY`.
 
 ## ANTI-PATTERNS (THIS PROJECT)
 - Do not commit real API keys; keep secrets in `.env.local` (and similar `*.local`).

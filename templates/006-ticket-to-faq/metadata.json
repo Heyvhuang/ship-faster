@@ -1,0 +1,5 @@
+{
+  "name": "Ticket to FAQ",
+  "description": "Turn resolved IT tickets into publishable Knowledge Base articles with built-in redaction and formatting.",
+  "requestFramePermissions": []
+}

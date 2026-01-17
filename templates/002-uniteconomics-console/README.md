@@ -49,17 +49,7 @@
 
 ## Environment Variables
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `GEMINI_API_KEY` | Yes | Google Gemini API key |
-| `NEXT_PUBLIC_SUPABASE_URL` | Planned | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Planned | Supabase anon key |
-| `SUPABASE_SERVICE_ROLE_KEY` | Planned | Supabase service role key |
-| `STRIPE_SECRET_KEY` | Planned | Stripe secret key |
-| `STRIPE_WEBHOOK_SECRET` | Planned | Stripe webhook secret |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Planned | Stripe publishable key |
-| `NEXT_PUBLIC_STRIPE_PAYMENT_LINK` | Planned | Stripe payment link |
-| `STRIPE_PRICE_ID` | Planned | Stripe price ID |
+No required environment variables for the demo.
 
 ## Scripts
 

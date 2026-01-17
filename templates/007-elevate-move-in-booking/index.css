@@ -1,0 +1,340 @@
+/* Elevate Design System - Custom Styles */
+
+/* CSS Variables */
+:root {
+  --gradient-brand: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  --gradient-brand-vivid: linear-gradient(135deg, #22d3ee 0%, #06b6d4 50%, #0891b2 100%);
+  --gradient-dark: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+  --gradient-glow: radial-gradient(ellipse at center, rgba(6,182,212,0.15) 0%, transparent 70%);
+  
+  --shadow-glow: 0 0 40px rgba(6,182,212,0.3);
+  --shadow-glow-sm: 0 0 20px rgba(6,182,212,0.2);
+  --shadow-glow-lg: 0 0 60px rgba(6,182,212,0.4);
+  
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Keyframe Animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(6,182,212,0.2); }
+  50% { box-shadow: 0 0 40px rgba(6,182,212,0.5); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(6,182,212,0.3); }
+  50% { border-color: rgba(6,182,212,0.8); }
+}
+
+@keyframes bounce-in {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes heat-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fade-in var(--duration-normal) var(--ease-default) forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up var(--duration-slow) var(--ease-default) forwards;
+}
+
+.animate-slide-down {
+  animation: slide-down var(--duration-slow) var(--ease-default) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in var(--duration-normal) var(--ease-spring) forwards;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s var(--ease-spring) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.animate-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Stagger Children */
+.stagger-children > * {
+  opacity: 0;
+  animation: slide-up var(--duration-slow) var(--ease-default) forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 50ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 100ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 150ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 200ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 250ms; }
+.stagger-children > *:nth-child(7) { animation-delay: 300ms; }
+.stagger-children > *:nth-child(8) { animation-delay: 350ms; }
+
+/* Glass Morphism */
+.glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.glass-light {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* Glow Effects */
+.glow {
+  position: relative;
+}
+.glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: var(--gradient-brand);
+  border-radius: inherit;
+  filter: blur(16px);
+  opacity: 0.5;
+  z-index: -1;
+  transition: opacity var(--duration-normal) var(--ease-default);
+}
+.glow:hover::before {
+  opacity: 0.8;
+}
+
+.glow-sm::before {
+  filter: blur(8px);
+  opacity: 0.3;
+}
+
+/* Timeline Slot Picker Specific */
+.timeline-track {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.timeline-track::-webkit-scrollbar {
+  display: none;
+}
+
+.timeline-slot {
+  scroll-snap-align: center;
+  transition: all var(--duration-normal) var(--ease-spring);
+}
+
+.timeline-slot:hover {
+  transform: translateY(-2px);
+}
+
+.timeline-slot-selected {
+  background: var(--gradient-brand-vivid);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.timeline-now-indicator {
+  position: absolute;
+  width: 2px;
+  background: #ef4444;
+  z-index: 10;
+}
+.timeline-now-indicator::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  background: #ef4444;
+  border-radius: 50%;
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+.timeline-now-indicator::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+}
+
+/* Heat Indicator */
+.heat-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 2px;
+  transition: all var(--duration-fast);
+}
+
+.heat-low { background: #22c55e; }
+.heat-medium { background: #eab308; }
+.heat-high { background: #f97316; animation: heat-pulse 1s ease-in-out infinite; }
+.heat-full { background: #ef4444; }
+
+/* Button Enhancements */
+.btn-brand {
+  background: var(--gradient-brand);
+  color: white;
+  font-weight: 600;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-default);
+}
+.btn-brand:hover {
+  box-shadow: var(--shadow-glow-sm);
+  transform: translateY(-1px);
+}
+.btn-brand:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Card Enhancements */
+.card-hover {
+  transition: all var(--duration-normal) var(--ease-default);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+}
+
+/* Noise Texture */
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus Visible */
+*:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(6,182,212,0.2);
+  color: #0e7490;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Responsive Animations - Reduce Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

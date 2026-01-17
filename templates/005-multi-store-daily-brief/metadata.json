@@ -1,0 +1,5 @@
+{
+  "name": "Multi-Store Daily Brief",
+  "description": "Aggregate sales, orders, and anomalies from multiple Shopify stores into a single, readable daily morning brief.",
+  "requestFramePermissions": []
+}
