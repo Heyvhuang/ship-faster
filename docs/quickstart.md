@@ -79,6 +79,7 @@ Ship Faster writes every run to disk:
 - Outputs: `.claude/runs/ship-faster/<run_id>/`
 - Current run pointer: `.claude/runs/ship-faster/ACTIVE`
 - Resume entry: `.claude/runs/ship-faster/<run_id>/00-index.md`
+- Progress: open `00-index.md` → follow `Next action` → mark tasks in `03-plans/*.md` (`[ ]` → `[x]`)
 
 See the deeper explanation in [`concepts/runs-and-approvals.md`](concepts/runs-and-approvals.md).
 
@@ -93,4 +94,3 @@ See the deeper explanation in [`concepts/runs-and-approvals.md`](concepts/runs-a
 
 - You only get runs after you execute a workflow that writes them (for example `workflow-ship-faster`).
 - If your target repo is elsewhere, runs are created **in that repo**, not in this `ship-faster` repo.
-

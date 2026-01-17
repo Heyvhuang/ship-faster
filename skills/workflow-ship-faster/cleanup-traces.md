@@ -10,8 +10,17 @@ Goal: When a project is copied from external generators (e.g., Google AI Studio,
 ## Output (Persisted)
 
 - `02-analysis/trace-scan.md` (what was found; paths + short notes)
-- `03-plans/cleanup-traces-plan.md` (what to change + verification commands)
+- `03-plans/cleanup-traces-plan.md` (checklist plan: tasks + verification + evidence paths)
 - Updated project files (README, HTML entrypoints, gitignore, etc.)
+
+## Plan (Checklist Required)
+
+Before making any edits, write `03-plans/cleanup-traces-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**).
+
+Minimum requirements inside the plan:
+- `## Tasks` as `- [ ]` items, derived from the checklist below
+- `## Verification` as `- [ ]` items (commands + expected outcome)
+- Evidence links to `02-analysis/trace-scan.md` and any other scan output
 
 ## What to Clean (Checklist)
 
@@ -73,4 +82,3 @@ Write the final verification results into `03-plans/cleanup-traces-plan.md`:
 - `git status` shows no secrets / no accidental large artifacts
 - App runs locally (`pnpm dev` / `npm run dev`)
 - No console/runtime errors indicating double React / broken hooks
-

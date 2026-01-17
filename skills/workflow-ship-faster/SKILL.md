@@ -12,6 +12,7 @@ The goal of this chain is: **Ship an idea or small prototype to production-ready
 - **Pass paths only, not content**: agents/sub-agents only pass `..._path`.
 - **Files are first-class citizens**: Every step must persist artifacts; failures can be retried; replayable.
 - **Confirmation points**: Any "high-risk/high-effort/side-effect" action must write a plan first and wait for confirmation.
+- **Plans are checklists**: progress is tracked in `03-plans/*.md` via `- [ ]` → `- [x]` (not in chat).
 - **Progressive disclosure**: Only open step files in this skill directory (`foundation.md`, `deploy-vercel.md`, etc.) when needed—avoid loading all details at once.
 
 ## Run Directory (Unified Contract)
@@ -52,13 +53,20 @@ Recommended template (minimum viable):
 ## Next action (single source of truth)
 - plan: 03-plans/<next-plan>.md
 
+## Progress (read this first)
+- checklist: <done>/<total> in 03-plans/<next-plan>.md
+- last_batch: <optional 1-line status>
+
 ## Key artifacts
 - goal: 01-input/goal.md
 - context: 01-input/context.json
 - state: logs/state.json
+- final: 05-final/ship-summary.md
+
+## Optional artifacts (only if used)
 - evidence: 02-analysis/
 - parallel: 04-parallel/
-- final: 05-final/ship-summary.md
+- logs: logs/events.jsonl
 
 ## Disabled steps (if any)
 - <step>: <reason>
@@ -86,6 +94,38 @@ Constraints:
 - Any info needed for "resume positioning" must be written to `00-index.md`, not just in chat history
 - When tracing details: first use `rg "<keyword>" logs/events.jsonl` or search in `02-analysis/` to locate, then "open locally" at hit point—don't dump whole sections into context
 
+### Plan Files (Checklist Required)
+
+All plans under `03-plans/` are the primary progress tracker. Treat them as executable runbooks.
+
+Hard rules:
+- A plan must exist before execution starts (except pure read-only scans).
+- Tasks are checkboxes (`- [ ]` / `- [x]`). Only mark `- [x]` **after** you verified the task.
+- Verification must be recorded in the same plan file (commands + result + evidence paths).
+- Keep tasks small and verifiable. Default execution batch is **3 tasks**, then pause/report.
+- Update `00-index.md` `Progress` as you go (done/total from the current plan).
+
+Minimum plan template:
+
+```md
+# <Plan Title>
+
+## Goal
+- <1-3 bullets>
+
+## Tasks
+- [ ] T1: <small, verifiable>
+- [ ] T2: <small, verifiable>
+- [ ] T3: <small, verifiable>
+
+## Verification
+- [ ] <command>  # result: ok|fail; evidence: 02-analysis/<file>.md (if applicable)
+
+## Evidence
+- 02-analysis/<...>.md
+- logs/<...>.jsonl
+```
+
 ### Artifact Structure (Within Run)
 
 Recommended structure:
@@ -94,7 +134,7 @@ Recommended structure:
 - `01-input/goal.md`: Goals, scope, launch timeline, constraints
 - `01-input/context.json`: Project path, entry type (idea|prototype), whether DB/billing/deploy/seo needed
 - `02-analysis/`: Detection and evidence (versions, structure, risk assessment)
-- `03-plans/`: Executable plans + `approval.md`
+- `03-plans/`: Executable checklist plans + `approval.md`
 - `04-parallel/`: Parallel subtask artifacts
 - `05-final/`: Final delivery summary
 - `logs/events.jsonl`, `logs/state.json`
@@ -229,7 +269,7 @@ Open and follow: [foundation.md](foundation.md).
 
 Artifact requirements (minimum):
 - `02-analysis/foundation.md` (current state + risk assessment + chosen route)
-- `03-plans/foundation-plan.md` (commands/changes to execute)
+- `03-plans/foundation-plan.md` (checklist plan: tasks + verification)
 - If upgrade/migration needed with significant changes: Write `03-plans/approval.md` and wait for confirmation
 
 **Branch rules (important)**:

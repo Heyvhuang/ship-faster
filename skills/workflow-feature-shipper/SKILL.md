@@ -21,7 +21,7 @@ Turn "I want to build a feature" into a fast execution chain.
 
 ## Output (Persisted)
 
-- `03-plans/features/<feature_slug>-plan.md`
+- `03-plans/features/<feature_slug>-plan.md` (checklist plan: tasks + verification)
 - `04-parallel/features/<feature_slug>/` (if implementation is split)
 - `05-final/features/<feature_slug>-summary.md`
 

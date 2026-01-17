@@ -11,8 +11,13 @@ Goal: Get the project to a sustainable Next.js baseline (preferably **16.1.1**) 
 ## Output (Persisted)
 
 - `02-analysis/foundation.md`
-- `03-plans/foundation-plan.md`
+- `03-plans/foundation-plan.md` (checklist plan: tasks + verification)
 - `03-plans/approval.md` (only when major upgrade/migration/large-scale changes needed)
+
+## Plan (Checklist Required)
+
+Write `03-plans/foundation-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**) before making changes.
+If the plan includes risky migrations/upgrades, write `03-plans/approval.md` and wait for explicit user confirmation.
 
 ## 0) Stack Assessment Gate (Decide Whether to Migrate First)
 

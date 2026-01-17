@@ -22,9 +22,14 @@ Goal: Complete "can read/write data + types available + security gates" via shor
 
 ## Output (Persisted)
 
-- `03-plans/supabase-plan.md`
+- `03-plans/supabase-plan.md` (checklist plan: tasks + verification)
 - `02-analysis/schema.md` (runtime detected/confirmed schema)
 - `05-final/supabase-summary.md`
+
+## Plan (Checklist Required)
+
+Write `03-plans/supabase-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**) before any schema/migration/integration edits.
+For any write SQL (INSERT/UPDATE/DELETE), use `03-plans/approval.md` as the explicit confirmation gate.
 
 ## Process
 

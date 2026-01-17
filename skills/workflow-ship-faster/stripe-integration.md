@@ -10,10 +10,15 @@ Default goal: **Get paid first**, then gradually evolve into a deeper billing sy
 
 ## Output (Persisted)
 
-- `03-plans/stripe-plan.md`
-- `03-plans/stripe-actions.md`
+- `03-plans/stripe-plan.md` (checklist plan: tasks + verification)
+- `03-plans/stripe-actions.md` (checklist action log: intended Stripe operations)
 - `05-final/stripe-summary.md`
 - `05-final/receipt.json`
+
+## Plan (Checklist Required)
+
+Write `03-plans/stripe-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**) before executing Stripe operations or integrating code.
+Keep `03-plans/stripe-actions.md` as the human-auditable action list (what you plan to do in Stripe + why), then mark items `- [x]` only after execution + verification.
 
 ## Two Routes
 

@@ -152,13 +152,15 @@ Every run writes to disk for replay/audit:
 
 ```
 .claude/runs/ship-faster/<run_id>/
-├── 00-index.md          # Resume entry point
-├── plan.md              # Execution plan
-├── evidence/            # Verification artifacts
-└── logs/                # Execution logs
+├── 00-index.md          # Resume entry point (start here)
+├── 03-plans/            # Checklist plans ([ ] → [x])
+├── 02-analysis/         # Evidence (large outputs)
+├── 05-final/            # Final delivery summary
+└── logs/                # Execution logs (large)
 ```
 
 - **Current run pointer**: `.claude/runs/ship-faster/ACTIVE`
+- **Progress lives in plans**: open `00-index.md` → follow `Next action` → mark tasks in `03-plans/*.md`
 - **Side effects** (deploy, payments, DB writes) require explicit approval before execution
 
 > Learn more: [Runs & Approvals](docs/concepts/runs-and-approvals.md)

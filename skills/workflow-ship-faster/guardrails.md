@@ -18,8 +18,13 @@ Goal: Establish a code standards baseline that "won't slow down development" wit
 
 ## Output (Persisted)
 
-- `03-plans/guardrails-plan.md`
+- `03-plans/guardrails-plan.md` (checklist plan: tasks + verification)
 - Optional: `02-analysis/guardrails-current.md` (current state scan)
+
+## Plan (Checklist Required)
+
+Write `03-plans/guardrails-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**) before changing repo config/scripts.
+Record verification results (lint/typecheck/format) inside the same plan file.
 
 ## Principles
 

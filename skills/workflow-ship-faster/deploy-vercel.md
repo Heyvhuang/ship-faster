@@ -10,8 +10,13 @@ Goal: Quickly turn "runs locally" into "has a URL online (preview/prod)".
 
 ## Output (Persisted)
 
-- `03-plans/deploy-plan.md`
+- `03-plans/deploy-plan.md` (checklist plan: tasks + verification)
 - `05-final/deploy-summary.md`
+
+## Plan (Checklist Required)
+
+Write `03-plans/deploy-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**) before any GitHub/Vercel actions.
+If the plan includes secrets, repo settings, or production switches, also write `03-plans/approval.md` and wait for explicit user confirmation.
 
 ## Process
 

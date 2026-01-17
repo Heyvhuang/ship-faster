@@ -152,13 +152,15 @@ Stack (可选): nextjs|react|html-tailwind|vue|svelte|flutter|swiftui
 
 ```
 .claude/runs/ship-faster/<run_id>/
-├── 00-index.md          # 续跑入口
-├── plan.md              # 执行计划
-├── evidence/            # 验证产物
-└── logs/                # 执行日志
+├── 00-index.md          # 续跑入口（从这里开始）
+├── 03-plans/            # 计划清单（[ ] → [x]）
+├── 02-analysis/         # 证据/扫描产物（大输出）
+├── 05-final/            # 最终交付总结
+└── logs/                # 执行日志（大输出）
 ```
 
 - **当前 run 指针**：`.claude/runs/ship-faster/ACTIVE`
+- **进度在 plans 里**：打开 `00-index.md` → 跟随 `Next action` → 在 `03-plans/*.md` 打勾推进
 - **副作用操作**（部署、支付、DB 写入）执行前需显式审批
 
 > 详见：[Runs & Approvals](docs/concepts/runs-and-approvals.md)
