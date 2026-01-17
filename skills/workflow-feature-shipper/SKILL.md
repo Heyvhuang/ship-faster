@@ -38,7 +38,8 @@ Turn "I want to build a feature" into a fast execution chain.
     - Business logic/data flow/integration → Implement directly.
     - **Default batch rhythm**: 3 small tasks per batch → run verification → report and wait for feedback; stop immediately for help when blocked/verification fails.
     - After each batch (or before merge), recommend using `review-quality` for a conclusive review + verdict.
-    - If the change touches React/Next.js rendering/data fetching/bundle size (or perf regressions are suspected), also recommend `review-react-best-practices` (apply CRITICAL rules first).
+      - `review-quality` is the single entry point and will auto-triage: if React/Next.js performance risk is detected, it will also run `review-react-best-practices`.
+      - If the user explicitly wants *only* a React/Next.js perf audit, run `review-react-best-practices` directly.
 8. Verification: can run, can build (and existing tests pass).
 9. Write `05-final/features/<feature_slug>-summary.md`: what was done, how verified, next steps.
 10. Wrap up: Do a `skill-evolution` **Evolution checkpoint** (3 questions); if user chooses "want to optimize", run `skill-improver` based on this `run_dir` to produce minimal patch suggestions

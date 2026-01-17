@@ -325,7 +325,7 @@ Call `workflow-feature-shipper`:
 - Each feature first produces `03-plans/features/<feature_slug>-plan.md` (with acceptance criteria/non-goals)
 - Default split into PR-able small steps
 - After each batch (or before merge), recommend calling `review-quality` for a conclusive review + verdict
-- If the batch touches React/Next.js rendering/data fetching/bundle size, also recommend `review-react-best-practices` (apply CRITICAL rules first)
+- `review-quality` is the single entry point and will auto-triage: if React/Next.js performance risk is detected, it will also run `review-react-best-practices` (CRITICAL rules first)
 
 ### 6) Database Integration (Optional)
 

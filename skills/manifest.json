@@ -41,7 +41,7 @@
       "skillMd": "review-quality/SKILL.md",
       "stage": "review",
       "tags": ["review"],
-      "summary": "Unified codebase quality review: merge readiness verdict + maintainability (Clean Code) + docs-vs-code consistency."
+      "summary": "Unified codebase quality review: merge readiness verdict + maintainability (Clean Code) + docs-vs-code consistency. Single entry point with auto-triage (runs React/Next.js perf review when applicable)."
     },
     {
       "name": "review-react-best-practices",
