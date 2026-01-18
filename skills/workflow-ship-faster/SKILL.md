@@ -114,8 +114,11 @@ Optional (only create if needed):
 - [ ] T2: <small, verifiable>
 - [ ] T3: <small, verifiable>
 
-## Approvals (required for side effects)
-- [ ] Approval: <deploy/db write/billing op> (details: evidence/<file>.md)
+## Verification (required for auto-archive)
+- [ ] V1: Verification completed (commands + outcomes recorded under Evidence index)
+
+## Approvals (only if needed)
+- (none)
 
 ## Evidence index (paths only)
 - evidence/<...>
@@ -154,6 +157,21 @@ If runs accumulate, default strategy is "read less + archivable", not "keep ever
 
 - Completed runs (`status: done`) should be **read-only**, avoid polluting retrospectives
 - After completion: move `active/<run_id>/` → `archive/YYYY-MM-DD-<run_id>/`
+
+### Auto-archive (fully automatic)
+
+Ship Faster supports **fully automatic archiving** when a run is complete.
+
+Archiving eligibility (must all be true):
+- `tasks.md` contains a verification section (`## Verification` or `## Testing`) with at least one checkbox item
+- **All** checkbox items in `tasks.md` are checked (`- [x]`)
+
+Automation rule (mandatory):
+- After every execution batch (or any time you update checkboxes), run:
+  - `python3 ~/.claude/skills/workflow-ship-faster/scripts/auto_archive.py --run-dir "<run_dir>"`
+- The script is deterministic:
+  - If eligible: it archives the run directory immediately (no confirmation)
+  - If not eligible: it prints a short reason and does nothing
 
 ### OpenSpec alignment (recommended)
 

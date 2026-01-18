@@ -76,6 +76,19 @@ Typical pattern:
 
 This makes the workflow safer for personal use and more trustworthy for public users.
 
+## Auto-archive (fully automatic)
+
+Runs can be archived **automatically** when work is complete.
+
+Eligibility rules:
+- `tasks.md` has a verification section (`## Verification` or `## Testing`) with at least one checkbox item
+- All checkbox items in `tasks.md` are checked (`- [x]`)
+
+Automation:
+- `workflow-ship-faster` invokes a deterministic script after batches:
+  - `python3 ~/.claude/skills/workflow-ship-faster/scripts/auto_archive.py --run-dir "<run_dir>"`
+- If eligible, it moves the run from `active/` to `archive/` (or the OpenSpec change into `openspec/changes/archive/`).
+
 ## For skill authors (what “good” looks like)
 
 - Keep `SKILL.md` short: routing + constraints + output contract.
