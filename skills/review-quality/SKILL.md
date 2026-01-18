@@ -16,6 +16,7 @@ This skill intentionally merges three review lenses:
 This is the **single entry point** for Ship Faster reviews. It includes an internal auto-triage:
 - Always run the unified review (this skill).
 - If React/Next.js performance risk is detected, also run `review-react-best-practices` and include its findings.
+- If UI surface changes are detected, also run a Web Interface Guidelines audit (a11y/focus/forms/motion/content overflow) and include terse `file:line` findings.
 
 ## Inputs (recommended)
 
@@ -64,12 +65,22 @@ Routing rules (apply in order):
      - `use client`, `Suspense`, `dynamic(`, `next/dynamic`, `next/navigation`, `React.cache`, `revalidate`, `fetch(`, `headers()`, `cookies()`
    - Then: run `review-react-best-practices` and include its output (or link to its artifact) in the final report.
 
+3) **UI Web Interface Guidelines audit** (a11y/UX rules, terse output):
+   - If any changed file matches:
+     - UI code: `**/*.tsx`, `**/*.jsx`, `**/*.vue`, `**/*.html`, `**/*.css`, `**/*.scss`
+     - Common UI dirs: `app/**`, `pages/**`, `src/app/**`, `src/pages/**`, `components/**`, `src/components/**`
+   - Then: fetch the latest Web Interface Guidelines and audit only the changed UI files first.
+     - Source: `https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md`
+     - Fetch method: WebFetch (if available) or `curl -fsSL <url>`
+   - Output findings in **terse `file:line` format**, grouped by file (high signal, low prose). Treat a11y + focus issues as higher severity than cosmetic issues.
+
 Output requirement (at top of your report):
 
 ```md
 ## Triage
 - Docs-only: yes|no
 - React/Next perf review: yes|no
+- UI guidelines audit: yes|no
 - Reason: <1-3 bullets based on file paths / patterns>
 ```
 
@@ -116,6 +127,9 @@ If you are working inside a Ship Faster run directory, write to:
 If triage selects React/Next performance review and a Ship Faster `run_dir` is available, also persist:
 - `run_dir/02-analysis/react-best-practices-review.md`
 
+If triage selects UI guidelines audit and a Ship Faster `run_dir` is available, also persist:
+- `run_dir/02-analysis/ui-guidelines-review.md` (terse `file:line` findings, grouped by file)
+
 ## Output format (recommended)
 
 ```md
@@ -126,6 +140,7 @@ If triage selects React/Next performance review and a Ship Faster `run_dir` is a
 ## Triage
 - Docs-only: yes|no
 - React/Next perf review: yes|no
+- UI guidelines audit: yes|no
 - Reason: ...
 
 ## Strengths
@@ -143,4 +158,8 @@ If triage selects React/Next performance review and a Ship Faster `run_dir` is a
 
 ### Minor (Nice to Have)
 ...
+
+## UI Guidelines (terse, only if audit=yes)
+- path:line <finding>
+- path:line <finding>
 ```
