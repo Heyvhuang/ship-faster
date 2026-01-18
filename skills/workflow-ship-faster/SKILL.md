@@ -1,6 +1,6 @@
 ---
 name: workflow-ship-faster
-description: "Ship Faster end-to-end workflow for small web apps (default: Next.js 16.1.1): idea/prototype → foundation gate → design-system.md → lightweight guardrails + docs → feature iteration → optional Supabase + Stripe → optional GitHub + Vercel deploy → optional AI-era SEO (sitemap/robots/llms.txt). Resumable, artifact-first under .claude/runs/ship-faster/."
+description: "Ship Faster end-to-end workflow for small web apps (default: Next.js 16.1.1): idea/prototype → foundation gate → design-system.md → lightweight guardrails + docs → feature iteration → optional Supabase + Stripe → optional GitHub + Vercel deploy → optional AI-era SEO (sitemap/robots/llms.txt). Resumable, artifact-first under runs/ship-faster/ (or OpenSpec changes/ when available)."
 ---
 
 # Workflow: Ship Faster (Next.js 16.1.1)
@@ -12,185 +12,179 @@ The goal of this chain is: **Ship an idea or small prototype to production-ready
 - **Pass paths only, not content**: agents/sub-agents only pass `..._path`.
 - **Files are first-class citizens**: Every step must persist artifacts; failures can be retried; replayable.
 - **Confirmation points**: Any "high-risk/high-effort/side-effect" action must write a plan first and wait for confirmation.
-- **Plans are checklists**: progress is tracked in `03-plans/*.md` via `- [ ]` → `- [x]` (not in chat).
+- **Plans are checklists**: progress is tracked in `tasks.md` via `- [ ]` → `- [x]` (not in chat).
 - **Progressive disclosure**: Only open step files in this skill directory (`foundation.md`, `deploy-vercel.md`, etc.) when needed—avoid loading all details at once.
 
-## Run Directory (Unified Contract)
+## Artifact Storage (Unified Contract)
 
-Create in target project root: `.claude/runs/ship-faster/<run_id>/`
+This workflow supports two storage backends:
 
-### Run Top-Level Navigation (Required)
+### Backend A (default): `runs/`
 
-To solve "run grows too large, LLM doesn't know where to read", **must provide a stable entry point at runs top level** (avoid `ls`/traversal every time).
+- Active: `runs/ship-faster/active/<run_id>/`
+- Archive (after completion): `runs/ship-faster/archive/YYYY-MM-DD-<run_id>/`
 
-Create at target project root (if doesn't exist):
+### Backend B (OpenSpec-compatible): `openspec/`
 
-- `.claude/runs/ship-faster/ACTIVE`: Plain text, content is current run's `<run_id>` (one line)
+If the repo is OpenSpec-initialized (detect via `openspec/project.md`), store artifacts as an OpenSpec change:
 
-Rules:
-- **Each new run**: Write/overwrite `ACTIVE` with new `run_id`
-- **Each resume**: Read `ACTIVE` first to determine which run to enter; only overwrite when user explicitly specifies `run_id`
+- Active: `openspec/changes/<change-id>/`
+- Archive (after completion): `openspec/changes/archive/YYYY-MM-DD-<change-id>/`
 
-### Run Internal Index (Required)
+Notes:
+- In OpenSpec mode, `run_id` is the `change-id` (kebab-case, verb-led).
+- If `openspec` CLI is available, prefer scaffolding the change via `openspec new change <change-id>`.
 
-Each `.claude/runs/ship-faster/<run_id>/` should have a **navigable "entry file"** so agent only needs to read 2-5 files to continue:
+### Backend selection (must be deterministic)
 
-- `00-index.md`: Current run summary + key artifact paths + next step entry (living document, continuously updated)
+Resolve `run_dir` using this priority order:
 
-Recommended template (minimum viable):
+1) If `context.json` includes `"artifact_store": "runs"` or `"openspec"`, follow it.
+2) Else if `openspec/project.md` exists in `repo_root`, use OpenSpec backend.
+3) Else use the default `runs/` backend.
+
+From this point on, treat `run_dir` as the resolved active directory (`runs/.../active/...` or `openspec/changes/...`).
+
+### Required files (small + resumable)
+
+Each run directory **must** contain:
+
+- `proposal.md`: why/what/scope/constraints (stable context)
+- `tasks.md`: executable checklist (`- [ ]` → `- [x]`) + approvals (**resume here**)
+- `context.json`: machine-readable switches (`need_database/need_billing/need_deploy/need_seo`) + repo_root/risk preference
+
+Recommended minimal `context.json` (extend as needed):
+
+```json
+{
+  "repo_root": "",
+  "scope": "full",
+  "artifact_store": "auto",
+  "need_database": false,
+  "need_billing": false,
+  "need_deploy": false,
+  "need_seo": false
+}
+```
+
+Optional (only create if needed):
+
+- `design.md`: technical decisions (only if ambiguity/risk warrants it)
+- `evidence/`: large outputs / scans / screenshots (paths only in chat)
+- `logs/`: optional debug logs (`events.jsonl`, `state.json`)
+
+### Proposal template (minimum viable)
 
 ```md
-# Ship Faster Run Index
+# Proposal: <title>
 
 - run_id: <run_id>
 - status: active|blocked|done
-- scope: full|deploy-only|design-only|feature-only
-- last_updated: <ISO8601>
+- created_at: <ISO8601>
+- repo_root: <path>
 
-## What we are doing
+## Why
 - <1-3 bullets>
 
-## Next action (single source of truth)
-- plan: 03-plans/<next-plan>.md
+## What changes
+- <1-5 bullets>
 
-## Progress (read this first)
-- checklist: <done>/<total> in 03-plans/<next-plan>.md
-- last_batch: <optional 1-line status>
+## Acceptance criteria
+- <3-7 bullets>
 
-## Key artifacts
-- goal: 01-input/goal.md
-- context: 01-input/context.json
-- state: logs/state.json
-- final: 05-final/ship-summary.md
+## Non-goals
+- <1-3 bullets>
 
-## Optional artifacts (only if used)
-- evidence: 02-analysis/
-- parallel: 04-parallel/
-- logs: logs/events.jsonl
-
-## Disabled steps (if any)
-- <step>: <reason>
+## Links
+- tasks: tasks.md
+- evidence: evidence/ (optional)
 ```
 
-**Default read order** when resuming/replaying (unless user explicitly names a specific file):
-1. `.claude/runs/ship-faster/ACTIVE`
-2. `.claude/runs/ship-faster/<run_id>/00-index.md`
-3. `.claude/runs/ship-faster/<run_id>/logs/state.json`
-4. `.claude/runs/ship-faster/<run_id>/01-input/context.json`
-5. `.claude/runs/ship-faster/<run_id>/01-input/goal.md`
-
-Consistency rules:
-- `logs/state.json` is machine-readable truth; `00-index.md` is human/agent-readable summary (when inconsistent, `state.json` takes precedence, and fix `00-index.md` ASAP)
-
-### Read/Write Hygiene (Mandatory)
-
-Two types of information are layered to avoid "output piling up in chat → context window explosion":
-
-- **Raw evidence (traceable, but not loaded by default)**: Long command output, scan results, logs → dump to `02-analysis/` or `logs/`
-- **Actionable summary (default must-read)**: Only write conclusions and navigation → maintain in `00-index.md` (and final `05-final/ship-summary.md`)
-
-Constraints:
-- `logs/events.jsonl` can be large, but **don't** paste large chunks in chat; instead "write file + return path only + summarize 3 lines in `00-index.md`"
-- Any info needed for "resume positioning" must be written to `00-index.md`, not just in chat history
-- When tracing details: first use `rg "<keyword>" logs/events.jsonl` or search in `02-analysis/` to locate, then "open locally" at hit point—don't dump whole sections into context
-
-### Plan Files (Checklist Required)
-
-All plans under `03-plans/` are the primary progress tracker. Treat them as executable runbooks.
-
-Hard rules:
-- A plan must exist before execution starts (except pure read-only scans).
-- Tasks are checkboxes (`- [ ]` / `- [x]`). Only mark `- [x]` **after** you verified the task.
-- Verification must be recorded in the same plan file (commands + result + evidence paths).
-- Keep tasks small and verifiable. Default execution batch is **3 tasks**, then pause/report.
-- Update `00-index.md` `Progress` as you go (done/total from the current plan).
-
-Minimum plan template:
+### Tasks template (checklist required)
 
 ```md
-# <Plan Title>
+# Tasks: <title>
 
-## Goal
-- <1-3 bullets>
+- run_id: <run_id>
+- status: active|blocked|done
+- last_updated: <ISO8601>
 
-## Tasks
+## Checklist
 - [ ] T1: <small, verifiable>
 - [ ] T2: <small, verifiable>
 - [ ] T3: <small, verifiable>
 
-## Verification
-- [ ] <command>  # result: ok|fail; evidence: 02-analysis/<file>.md (if applicable)
+## Approvals (required for side effects)
+- [ ] Approval: <deploy/db write/billing op> (details: evidence/<file>.md)
 
-## Evidence
-- 02-analysis/<...>.md
-- logs/<...>.jsonl
+## Evidence index (paths only)
+- evidence/<...>
+
+## Delivery summary (fill when done)
+- <what shipped>
+- <how to verify>
+- <next steps>
 ```
 
-### Artifact Structure (Within Run)
+### Default read order (resume)
 
-Recommended structure:
+Unless the user points you at a specific file, read:
 
-- `00-index.md`: Run navigation index (summary + key paths + next step)
-- `01-input/goal.md`: Goals, scope, launch timeline, constraints
-- `01-input/context.json`: Project path, entry type (idea|prototype), whether DB/billing/deploy/seo needed
-- `02-analysis/`: Detection and evidence (versions, structure, risk assessment)
-- `03-plans/`: Executable checklist plans + `approval.md`
-- `04-parallel/`: Parallel subtask artifacts
-- `05-final/`: Final delivery summary
-- `logs/events.jsonl`, `logs/state.json`
+1) `tasks.md` (resume + progress)
+2) `proposal.md` (context)
+3) `context.json` (switches)
+4) `design.md` (if exists)
+5) Only then: `evidence/` / `logs/`
 
-### Archiving and Retention (Recommended)
+### Read/Write hygiene (mandatory)
+
+Layer info to avoid "output piling up in chat → context window explosion":
+
+- **Raw evidence (traceable, not loaded by default)**: long command output, scans, screenshots → write to `evidence/` or `logs/`
+- **Actionable state (default must-read)**: keep the checklist + the current truth in `tasks.md`
+
+Constraints:
+- Don’t paste large chunks into chat; write file(s) and return **paths only**
+- Any info needed to resume must be written into `tasks.md`, not only in chat
+- When tracing details: use `rg` inside `logs/` or search under `evidence/` first
+
+### Archiving and retention (recommended)
 
 If runs accumulate, default strategy is "read less + archivable", not "keep everything visible forever":
 
 - Completed runs (`status: done`) should be **read-only**, avoid polluting retrospectives
-- Optional: Move completed runs to `.claude/runs/ship-faster/_archive/<run_id>/` (keep `00-index.md` and `05-final/`)
-- `ACTIVE` always points to "currently running" run; if no active run, points to most recent done run (for easy replay)
+- After completion: move `active/<run_id>/` → `archive/YYYY-MM-DD-<run_id>/`
 
-### OpenSpec Alignment (Optional but Strongly Recommended)
+### OpenSpec alignment (recommended)
 
 Separate "stable project truth" from "single change run" (avoid stuffing everything into run):
 
-- **Source of Truth (project-level specs)**: e.g., `design-system.md`, `README.md`, `docs/`, architecture/constraint docs (should be continuously maintained)
-- **Change Folder (this change run)**: `.claude/runs/ship-faster/<run_id>/` (only put this run's evidence/plans/process/summary + links to specs)
+- **Source of truth (project-level docs)**: `design-system.md`, `README.md`, `docs/`, architecture/constraint docs
+- **Change folder (this run)**: `run_dir/` (only this run’s proposal/tasks/evidence/logs)
 
-Implementation rules:
-- Run only writes "evidence + navigation + decision records"; conclusions meant for long-term retention should eventually be merged back to project-level specs/docs
+Implementation rule:
+- This run folder only stores **process + evidence + decisions**; anything that should live long-term gets merged back to project docs
 
 ## Process (Default Route)
 
 ### 0) Initialize Run (Required)
 
-1. Create run directory (if doesn't exist).
-2. Ensure `.claude/runs/ship-faster/ACTIVE` points to current `run_id`.
-3. Ensure input artifacts exist:
-   - `01-input/goal.md`
-   - `01-input/context.json`
+1. Create the active run directory (if it doesn’t exist):
+   - `run_dir/`
+2. Ensure core artifacts exist (create if missing; merge/append if already present):
+   - `proposal.md`
+   - `tasks.md`
+   - `context.json`
 
    Rules:
-   - If file doesn't exist: Create and write
-   - If file already exists (e.g., produced by `workflow-project-intake`): **Reuse directly**, only append or fill in when "missing fields/missing critical info"; don't blindly overwrite
-4. If `context.json` is missing critical info (project path/whether to integrate DB/whether to charge/deploy target etc.), ask user to fill in first, then write back to `context.json` (merge update).
-5. Create/update `00-index.md` (at minimum write: run_id, status, next plan, key paths).
-6. **Read `context.json` and record to `logs/state.json`**, including:
-   ```json
-   {
-     "workflow": "ship-faster",
-     "scope": "full",
-     "steps_enabled": {
-       "foundation": true,
-       "design": true,
-       "features": true,
-       "guardrails": true,
-       "docs": true,
-       "database": false,
-       "billing": false,
-       "deploy": false,
-       "seo": false
-      },
-     "steps_disabled_reasons": {}
-    }
-   ```
+   - If file doesn’t exist: create and write
+   - If file already exists (e.g., produced by `workflow-project-intake`): **reuse directly**, only fill missing fields; don’t blindly overwrite
+3. If `context.json` is missing critical info (repo_root / need_* switches / risk preference / scope), ask the user to fill it first, then merge-update `context.json`.
+4. In `tasks.md`, ensure there is:
+   - a `status: active|blocked|done` field near the top
+   - a short **Next action** section (1–3 items)
+   - an **Approvals** section (empty is fine until needed)
+5. Create `evidence/` and `logs/` folders only when you actually have large outputs to store.
 
 ### 0.2) Scope Confirmation (Required)
 
@@ -204,13 +198,11 @@ Ask the user to select a scope **before** executing steps beyond build checks:
 - **D) feature-only**: One feature iteration (plan + implementation), skip deploy
 
 Rules:
-- If scope is not `full`, update `logs/state.json`:
-  - Set unrelated steps in `steps_enabled` to `false`
-  - Fill `steps_disabled_reasons` (e.g., `"design": "scope=deploy-only (user requested deploy only)"`)
-- In `00-index.md`, do **not** mark a default step as “skipped” unless the user explicitly requested skipping it.
-  - Prefer: `disabled (scope=...)` with a reason
+- Persist the chosen scope to `context.json` (add/update a `scope` field).
+- In `tasks.md`, do **not** mark a default step as “skipped” unless the user explicitly requested skipping it.
+  - Prefer: `disabled (scope=...)` with a short reason under a “Scope / Disabled steps” section
 - Any destructive action (e.g., **force push** overwriting an existing repo) is a high-risk side effect:
-  - Write an executable plan under `03-plans/` first
+  - Write an executable approval item under `tasks.md` first
   - Wait for explicit user confirmation before executing
 
 ### 0.25) Kickoff Clarification (Brainstorm-lite) (Recommended; required if goal is vague)
@@ -218,7 +210,7 @@ Rules:
 Problem this solves: people jump straight into “implement a feature” and end up with a very basic MVP that’s hard to demo.
 
 Run this step if **any** of these are true:
-- `01-input/goal.md` is missing clear **acceptance criteria** and **non-goals**
+- `proposal.md` is missing clear **acceptance criteria** and **non-goals**
 - The user request is “build something like X” / “make a prototype” without specifying the core loop
 - The user explicitly wants a “demo-ready” prototype (animation, wow factor, shareable)
 
@@ -231,10 +223,10 @@ How:
   - constraints (timeline / risk preference)
   - a “demo moment” direction (see step 0.3)
 - Persist the confirmed spec to:
-  - `02-analysis/YYYY-MM-DD-kickoff-design.md`
+  - `evidence/YYYY-MM-DD-kickoff-design.md`
 - Then update (merge, don’t overwrite) these inputs:
-  - `01-input/goal.md`
-  - `01-input/context.json` (ensure `need_database/need_billing/need_deploy/need_seo` are explicitly set)
+  - `proposal.md`
+  - `context.json` (ensure `need_database/need_billing/need_deploy/need_seo` are explicitly set)
 
 ### 0.3) Demo Moment First (Recommended for prototypes)
 
@@ -247,7 +239,7 @@ Examples of “demo moment” (pick 1, keep it small):
 
 Workflow:
 1. Write a small feature spec file (if it doesn’t exist):
-   - `01-input/feature-00-demo-moment.md`
+   - `evidence/feature-00-demo-moment.md`
    - Include `mode: plan-only`, `feature_slug: demo-moment`, and `quality_bar: demo-ready`
 2. Call `workflow-feature-shipper` to generate the plan **only** (no implementation yet).
 3. Defer actual UI implementation until after Step 2 (design-system.md exists), so the demo moment follows the chosen design system.
@@ -261,16 +253,18 @@ Dynamically adjust execution order based on `context.json` content:
 - **Deployment**: Only execute when `context.json` has `"need_deploy": true` or user explicitly requests deployment
 - **SEO**: Only execute when `context.json` has `"need_seo": true` or project is already live
 
-Before starting each optional step, check `steps_enabled` field in `logs/state.json`. If `false`, skip that step and log skip reason to `logs/events.jsonl`.
+Before starting each optional step:
+- Check `context.json` (and your chosen `scope`) to decide whether the step applies
+- If skipped, write a 1-line reason into `tasks.md` (so resume/audit doesn’t require chat history)
 
 ### 1) Foundation: Next.js Foundation (Default Required)
 
 Open and follow: [foundation.md](foundation.md).
 
 Artifact requirements (minimum):
-- `02-analysis/foundation.md` (current state + risk assessment + chosen route)
-- `03-plans/foundation-plan.md` (checklist plan: tasks + verification)
-- If upgrade/migration needed with significant changes: Write `03-plans/approval.md` and wait for confirmation
+- `evidence/foundation.md` (current state + risk assessment + chosen route)
+- `tasks.md`: add a **Foundation** checklist section (tasks + verification commands)
+- If upgrade/migration needed with significant changes: add an **Approval** item to `tasks.md` and wait for confirmation
 
 **Branch rules (important)**:
 - If conclusion is **keep-current-stack** (e.g., Vite static site), don't force continuing "Next.js-specific steps".
@@ -289,19 +283,19 @@ Goal: Make `design-system.md` actually reflected in the interface, not "wrote sp
 
 Recommended approach: Treat "redo UI/UX per design-system.md" as an independent feature and hand to `workflow-feature-shipper`:
 - Input: `design-system.md` (as sole design constraint) + current UI page list (from code scan)
-- Output: `03-plans/features/<feature_slug>-plan.md` (scope/acceptance criteria/non-goals/risks/rollback) + code changes
+- Output: `evidence/features/<feature_slug>-plan.md` (scope/acceptance criteria/non-goals/risks/rollback) + code changes
 
 Default enrichment (when installed):
 - If `tool-ui-ux-pro-max` is installed, use it to enrich the UI/UX plan with concrete palette/typography/UX guardrails, and use its pre-delivery checklist as acceptance criteria.
 - Only skip `tool-ui-ux-pro-max` enrichment if the user explicitly asks to skip it (e.g., “don’t over-design / keep it simple”), and log the reason.
 
-For large-scale refactoring: Write `03-plans/approval.md` first and wait for user confirmation before implementing.
+For large-scale refactoring: add an **Approval** item to `tasks.md` first and wait for user confirmation before implementing.
 
 ### 3) Code Standards (Lightweight Required)
 
 Open and follow: [guardrails.md](guardrails.md).
 
-Artifact: `03-plans/guardrails-plan.md`
+Artifact: `tasks.md` (Guardrails checklist section)
 
 ### 3.5) Trace Cleanup (De-branding & Source Hygiene) (Required if project was copied)
 
@@ -310,19 +304,19 @@ Problem this solves: many starter projects imported from Google AI Studio / v0 /
 Open and follow: [cleanup-traces.md](cleanup-traces.md).
 
 Artifacts:
-- `02-analysis/trace-scan.md`
-- `03-plans/cleanup-traces-plan.md`
+- `evidence/trace-scan.md`
+- `tasks.md` (Trace cleanup checklist section)
 
 ### 4) Documentation Standards (Lightweight Required)
 
 Open and follow: [docs-baseline.md](docs-baseline.md).
 
-Artifact: `03-plans/docs-plan.md` (and project README update)
+Artifact: `tasks.md` (Docs checklist section, plus project README update)
 
 ### 5) Core Feature Development (Iterative Loop)
 
 Call `workflow-feature-shipper`:
-- Each feature first produces `03-plans/features/<feature_slug>-plan.md` (with acceptance criteria/non-goals)
+- Each feature first produces `evidence/features/<feature_slug>-plan.md` (with acceptance criteria/non-goals)
 - Default split into PR-able small steps
 - After each batch (or before merge), recommend calling `review-quality` for a conclusive review + verdict
 - `review-quality` is the single entry point and will auto-triage: if React/Next.js performance risk is detected, it will also run `review-react-best-practices` (CRITICAL rules first)
@@ -353,12 +347,12 @@ Open and follow: [ai-seo-nextjs.md](ai-seo-nextjs.md).
 
 ## Final Delivery
 
-Write to: `05-final/ship-summary.md`, at minimum include:
+Write to: `final.md` (in the run root), at minimum include:
 - Current project status (can run locally, can build, is deployed)
 - Completed steps and artifact paths
 - Next steps (prioritized by value)
 
 And wrap up:
-- Update `00-index.md` `status` to `done`, and write `last_updated`
-- If run is complete and starting new run next: next run will overwrite `ACTIVE`; don't reuse old `run_id`
+- Update `tasks.md` `status` to `done`, and fill the **Delivery summary**
+- If you want a clean workspace: move `active/<run_id>/` → `archive/YYYY-MM-DD-<run_id>/`
 - Do a `skill-evolution` **Evolution checkpoint** (3 questions); if user chooses "want to optimize", run `skill-improver` based on this `run_dir` to produce minimal patch suggestions

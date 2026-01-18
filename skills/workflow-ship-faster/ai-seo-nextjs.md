@@ -10,13 +10,13 @@ Goal: Get "discoverable by search engines + readable by LLMs" right with minimal
 
 ## Output (Persisted)
 
-- `03-plans/seo-plan.md` (checklist plan: tasks + verification)
-- `05-final/seo-summary.md`
+- `tasks.md` (SEO checklist section: tasks + verification)
+- `evidence/seo-summary.md`
 
 ## Plan (Checklist Required)
 
-Write `03-plans/seo-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**) before SEO edits.
-Record verification (sitemap/robots routes reachable, metadata present) in the plan file.
+Before SEO edits, add an SEO checklist section to `tasks.md`.
+Record verification (sitemap/robots routes reachable, metadata present) in the same `tasks.md` section.
 
 ## Minimum Delivery Checklist (Recommend Completing All)
 

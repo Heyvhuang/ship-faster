@@ -1,6 +1,6 @@
 # Quick Start
 
-Ship Faster is a toolbox of **composable skills** for coding agents. The main workflow writes a resumable run directory under `.claude/runs/` and gates external side effects behind explicit approvals.
+Ship Faster is a toolbox of **composable skills** for coding agents. The main workflow writes resumable run artifacts under `runs/` (or `openspec/changes/` when OpenSpec is detected) and gates external side effects behind explicit approvals.
 
 If you only want a runnable codebase, go to [`templates/`](../templates/) instead.
 
@@ -76,10 +76,11 @@ Non-goals:
 
 Ship Faster writes every run to disk:
 
-- Outputs: `.claude/runs/ship-faster/<run_id>/`
-- Current run pointer: `.claude/runs/ship-faster/ACTIVE`
-- Resume entry: `.claude/runs/ship-faster/<run_id>/00-index.md`
-- Progress: open `00-index.md` → follow `Next action` → mark tasks in `03-plans/*.md` (`[ ]` → `[x]`)
+- Active runs (default): `runs/ship-faster/active/<run_id>/`
+- Archive (default): `runs/ship-faster/archive/YYYY-MM-DD-<run_id>/`
+- If OpenSpec is initialized: `openspec/changes/<change-id>/` (+ archive under `openspec/changes/archive/`)
+- Resume entry: open `tasks.md` (checkbox checklist)
+- Context/spec: `proposal.md` + `context.json`
 
 See the deeper explanation in [`concepts/runs-and-approvals.md`](concepts/runs-and-approvals.md).
 
@@ -90,7 +91,7 @@ See the deeper explanation in [`concepts/runs-and-approvals.md`](concepts/runs-a
 - Confirm the folder exists: `ls ~/.claude/skills/workflow-ship-faster/`
 - If you installed via tarball, confirm the extracted path is correct (the command uses `--strip-components=2` intentionally).
 
-### I don’t see `.claude/runs/ship-faster/`
+### I don’t see `runs/ship-faster/`
 
 - You only get runs after you execute a workflow that writes them (for example `workflow-ship-faster`).
 - If your target repo is elsewhere, runs are created **in that repo**, not in this `ship-faster` repo.

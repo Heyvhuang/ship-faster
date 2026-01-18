@@ -113,15 +113,16 @@ Recommendation: Roll back to previous version, or fix /v2/users handler
 When integrating into multi-step workflows:
 
 ```
-.claude/runs/<workflow>/<run_id>/
-├── 01-input/goal.md           # Symptoms/objectives
-├── 01-input/context.json      # Account/worker/resource/time_range
-├── 02-analysis/observability.md
-├── 02-analysis/audit.md
-├── 02-analysis/screenshots/
-├── 03-plans/change-plan.md    # Write operations written here first
-├── 05-final/report.md         # Conclusion + evidence + next steps
-└── logs/events.jsonl          # Tool call summary
+runs/<workflow>/active/<run_id>/
+├── proposal.md                # Symptoms/objectives
+├── context.json               # Account/worker/resource/time_range
+├── tasks.md                   # Checklist + approval gate
+├── evidence/observability.md
+├── evidence/audit.md
+├── evidence/screenshots/
+├── evidence/change-plan.md    # Write operations written here first
+├── evidence/report.md         # Conclusion + evidence + next steps
+└── logs/events.jsonl          # Optional tool call summary
 ```
 
 ## Error Handling

@@ -2,6 +2,12 @@
 
 This changelog tracks changes to the `skills/` toolkit (not template app code).
 
+## 2026-01-18
+
+- Migrated run artifacts to an OpenSpec-style lifecycle: `runs/<workflow>/{active,archive}/` (or `openspec/changes/` when OpenSpec is detected).
+- Simplified per-run structure: `proposal.md` + `tasks.md` (+ `context.json`) with `evidence/` for large outputs (no more `00-index/03-plans/02-analysis/05-final` by default).
+- Updated review skills to persist reports under `run_dir/evidence/` when `run_dir` is provided.
+
 ## 2026-01-14
 
 - Adopted the latest skills set as the repo’s `skills/` baseline (workflow/tool/review/mcp prefixes).

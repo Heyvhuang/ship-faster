@@ -7,7 +7,7 @@ find_root() {
   local dir
   dir="$PWD"
   while [ "$dir" != "/" ]; do
-    if [ -d "$dir/.git" ] || [ -d "$dir/.claude" ] || [ -f "$dir/package.json" ] || [ -f "$dir/Cargo.toml" ]; then
+    if [ -d "$dir/.git" ] || [ -d "$dir/runs" ] || [ -d "$dir/.claude" ] || [ -f "$dir/package.json" ] || [ -f "$dir/Cargo.toml" ]; then
       printf "%s" "$dir"
       return 0
     fi
@@ -17,7 +17,7 @@ find_root() {
 }
 
 project_root="$(find_root)"
-run_root="$project_root/.claude/runs/evolution"
+run_root="$project_root/runs/evolution"
 if [ ! -d "$run_root" ]; then
   exit 0
 fi
@@ -314,7 +314,7 @@ r_lines.append("   F. Other (explain in one sentence)")
 r_lines.append("")
 r_lines.append("3) Which direction do you want to prioritize for optimization?")
 r_lines.append("   A. I/O contracts: Fix artifact names, fields, paths")
-r_lines.append("   B. Index/summary: Less context, better resume navigation (ACTIVE/00-index)")
+r_lines.append("   B. Index/summary: Less context, better resume navigation (proposal/tasks)")
 r_lines.append("   C. Scripts/templates: Turn repetitive steps into deterministic scripts")
 r_lines.append("   D. Confirmation points: Reduce risky actions, confirm earlier/more clearly")
 r_lines.append("")

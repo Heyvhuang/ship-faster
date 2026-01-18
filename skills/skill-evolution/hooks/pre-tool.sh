@@ -7,7 +7,7 @@ find_root() {
   local dir
   dir="$PWD"
   while [ "$dir" != "/" ]; do
-    if [ -d "$dir/.git" ] || [ -d "$dir/.claude" ] || [ -f "$dir/package.json" ] || [ -f "$dir/Cargo.toml" ]; then
+    if [ -d "$dir/.git" ] || [ -d "$dir/runs" ] || [ -d "$dir/.claude" ] || [ -f "$dir/package.json" ] || [ -f "$dir/Cargo.toml" ]; then
       printf "%s" "$dir"
       return 0
     fi
@@ -17,7 +17,7 @@ find_root() {
 }
 
 project_root="$(find_root)"
-run_root="$project_root/.claude/runs/evolution"
+run_root="$project_root/runs/evolution"
 mkdir -p "$run_root"
 current_file="$run_root/.current"
 if [ -f "$current_file" ]; then

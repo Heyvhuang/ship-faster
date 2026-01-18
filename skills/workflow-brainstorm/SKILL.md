@@ -59,10 +59,10 @@ If user disagrees with a segment: go back to questioning/option phase to clarify
 ### Write Design Document
 
 Prefer writing to run directory (artifact-first):
-- `run_dir/02-analysis/YYYY-MM-DD-<topic>-design.md`
+- `run_dir/evidence/YYYY-MM-DD-<topic>-design.md`
 
 If there's no `run_dir` but there is a `repo_root`:
-- Create `.claude/runs/brainstorm/<run_id>/`, and write design to `02-analysis/`
+- Create `runs/brainstorm/active/<run_id>/`, and write design to `evidence/`
 
 > Note: Writing files is a write operation; if this is the user's project repo, confirm "should I persist to the project?" before writing.
 
@@ -70,8 +70,8 @@ If there's no `run_dir` but there is a `repo_root`:
 
 After design is confirmed, ask one question to let user choose next step:
 1. Enter implementation directly (recommend `workflow-ship-faster` or `workflow-feature-shipper`)
-2. Write implementation plan first (persist to `run_dir/03-plans/`, then wait for confirmation)
-3. Need research/code reading first (split to `run_dir/04-parallel/` and do in parallel)
+2. Write implementation plan first (persist as checklist items in `run_dir/tasks.md`, then wait for confirmation)
+3. Need research/code reading first (split to `run_dir/evidence/parallel/<task-name>/` and do in parallel)
 
 ## Key Principles
 

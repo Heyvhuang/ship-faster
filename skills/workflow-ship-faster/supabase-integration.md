@@ -22,20 +22,20 @@ Goal: Complete "can read/write data + types available + security gates" via shor
 
 ## Output (Persisted)
 
-- `03-plans/supabase-plan.md` (checklist plan: tasks + verification)
-- `02-analysis/schema.md` (runtime detected/confirmed schema)
-- `05-final/supabase-summary.md`
+- `tasks.md` (Supabase checklist section: tasks + verification)
+- `evidence/schema.md` (runtime detected/confirmed schema)
+- `evidence/supabase-summary.md`
 
 ## Plan (Checklist Required)
 
-Write `03-plans/supabase-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**) before any schema/migration/integration edits.
-For any write SQL (INSERT/UPDATE/DELETE), use `03-plans/approval.md` as the explicit confirmation gate.
+Before any schema/migration/integration edits, add a Supabase checklist section to `tasks.md`.
+For any write SQL (INSERT/UPDATE/DELETE), add an **Approval** item to `tasks.md` as the explicit confirmation gate.
 
 ## Process
 
 1. Use `supabase` skill to dynamically detect schema (don't rely on outdated schema docs)
 2. DDL always goes through migration (`apply_migration`)
-3. Write operations always go through confirmation point (write SQL to `03-plans/sql.md` first, then execute)
+3. Write operations always go through confirmation point (write SQL to `evidence/sql.md` first, then execute)
 4. Generate TypeScript types (`generate_typescript_types`) and persist in project (location per project conventions)
 5. Integrate with Next.js:
    - Only write env key names, don't write secret values to logs
@@ -43,5 +43,5 @@ For any write SQL (INSERT/UPDATE/DELETE), use `03-plans/approval.md` as the expl
 
 ## Confirmation Points
 
-- Any INSERT/UPDATE/DELETE: Write `03-plans/approval.md` first, then request user confirmation
+- Any INSERT/UPDATE/DELETE: add an **Approval** item to `tasks.md` first, then request user confirmation
 - Rows affected > 100: Mandatory second confirmation

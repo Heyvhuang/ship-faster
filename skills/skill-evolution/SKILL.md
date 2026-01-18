@@ -111,7 +111,7 @@ Configure behavior via `~/.claude/skills/skill-evolution/hooks/settings.json`:
 Hooks write to project-local run folders:
 
 ```
-<project-root>/.claude/runs/evolution/<run_id>/
+<project-root>/runs/evolution/<run_id>/
   logs/
     events.jsonl
     failures.jsonl
@@ -121,11 +121,11 @@ Hooks write to project-local run folders:
   evolution-review.md
 ```
 
-`run_id` is stored in `<project-root>/.claude/runs/evolution/.current` so all hooks in a session write to the same run.
+`run_id` is stored in `<project-root>/runs/evolution/.current` so all hooks in a session write to the same run.
 
 ## Evolution checkpoint (default action at end of big tasks)
 
-When you have just completed a "deliverable big task" (e.g., you have already written `05-final/*summary.md` / `ship-summary.md` / `feature-summary.md`), you **must** do a brief retrospective when closing, and give the choice to the user.
+When you have just completed a "deliverable big task" (e.g., you have already written `final.md` or filled the run’s `tasks.md` **Delivery summary**), you **must** do a brief retrospective when closing, and give the choice to the user.
 
 In the conversation, ask only 3 questions (prefer multiple choice to reduce cost):
 
@@ -144,13 +144,13 @@ In the conversation, ask only 3 questions (prefer multiple choice to reduce cost
 
 3) Which direction do you want to prioritize for optimization?
    - A. I/O contracts: Fix artifact names, fields, paths
-   - B. Index/summary: Less context, better resume navigation (ACTIVE/00-index)
+   - B. Index/summary: Less context, better resume navigation (proposal/tasks)
    - C. Scripts/templates: Turn repetitive steps into deterministic scripts
    - D. Confirmation points: Reduce risky actions, confirm earlier/more clearly
 
 Execution rules:
 - If user chooses 1A: Immediately run `skill-improver`, only give `run_dir` path as input (don't paste logs into conversation)
-- If user chooses 1B: Write "blocker + desired optimization direction" to `evolution-review.md` (or corresponding workflow run's `05-final/*summary.md`), process collectively next time
+- If user chooses 1B: Write "blocker + desired optimization direction" to `evolution-review.md` (or corresponding workflow run's `final.md` / `tasks.md`), process collectively next time
 - If user chooses 1C: Don't interrupt, just end (but still keep run artifacts for future retrospectives)
 
 ## When to evolve (Ship Faster focus)

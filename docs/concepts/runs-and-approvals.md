@@ -9,38 +9,54 @@ So the workflows are built to be **resumable** and **auditable**, and to require
 
 ## Resumable runs (artifact-first)
 
-When you run `workflow-ship-faster`, it creates a run directory inside your target project:
+When you run `workflow-ship-faster`, it creates a run folder inside your target project:
 
 ```
-.claude/
-  runs/
-    ship-faster/
-      ACTIVE
+runs/
+  ship-faster/
+    active/
       <run_id>/
-        00-index.md
-        01-input/
-        02-analysis/
-        03-plans/
-        04-parallel/
-        05-final/
+        proposal.md
+        tasks.md
+        context.json
+        evidence/
         logs/
+    archive/
+      YYYY-MM-DD-<run_id>/
+        ...
+```
+
+If the repo is OpenSpec-initialized (`openspec/project.md` exists), Ship Faster can also store the same artifacts as an OpenSpec change:
+
+```
+openspec/
+  changes/
+    <change-id>/
+      proposal.md
+      tasks.md
+      design.md        # optional
+      evidence/        # Ship Faster evidence (optional)
+      logs/            # Ship Faster logs (optional)
+    archive/
+      YYYY-MM-DD-<change-id>/
+        ...
 ```
 
 Key files:
 
-- `ACTIVE`: points to the current run id (1 line)
-- `00-index.md`: the “resume here” entry file (human/agent navigable)
-- `logs/state.json`: machine-readable state (source of truth)
-- `03-plans/`: executable **checklist plans** (`- [ ]` → `- [x]`) + approvals before risky actions
-- `02-analysis/`: evidence and audits (keep big output out of chat)
+- `proposal.md`: the “what/why/scope” document (stable context)
+- `tasks.md`: executable **checklist** (`- [ ]` → `- [x]`) + approvals before risky actions
+- `context.json`: machine-readable switches and critical context (repo_root, need_* flags, etc.)
+- `evidence/`: evidence and audits (keep big output out of chat; only open when needed)
+- `logs/`: optional debug logs (events/state)
 
 Design goal: an agent should be able to resume by reading **2–5 small files**, not scrolling a giant chat transcript.
 
 Practical resume loop (human-friendly):
-1) Open `00-index.md`
-2) Follow `Next action` → the current plan in `03-plans/`
-3) Progress lives in the plan checklist (not in chat)
-4) Only dig into `02-analysis/` / `logs/` when you need evidence or debugging
+1) Open `tasks.md` (resume here)
+2) Execute the next unchecked items (checkboxes are the source of truth)
+3) Use `proposal.md` for “why/what” context if needed
+4) Only dig into `evidence/` / `logs/` when you need proof or debugging
 
 ## Approval gates (side effects require confirmation)
 
@@ -53,8 +69,8 @@ Ship Faster treats certain actions as “side-effecting” and requires an expli
 
 Typical pattern:
 
-1) Write a plan into `.claude/runs/ship-faster/<run_id>/03-plans/<name>.md`
-2) Summarize the plan in `00-index.md`
+1) Write the approval plan into `tasks.md` (under an **Approvals** section)
+2) Reference any long details in `evidence/` (e.g., SQL, diffs, screenshots)
 3) Ask for confirmation
 4) Only then execute
 
@@ -65,4 +81,4 @@ This makes the workflow safer for personal use and more trustworthy for public u
 - Keep `SKILL.md` short: routing + constraints + output contract.
 - Put detailed reference material in `references/` (progressive disclosure).
 - Prefer scripts for deterministic work; print human status to stderr and machine output (JSON) to stdout when practical.
-- Always write evidence and long outputs to `02-analysis/` or `logs/`, and keep chat + `00-index.md` concise.
+- Always write evidence and long outputs to `evidence/` or `logs/`, and keep chat + `tasks.md` concise.

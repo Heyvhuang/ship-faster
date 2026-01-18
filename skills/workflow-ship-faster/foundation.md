@@ -5,19 +5,19 @@ Goal: Get the project to a sustainable Next.js baseline (preferably **16.1.1**) 
 ## Input (Pass Paths Only)
 
 - `repo_root`: Project root directory path (doesn't exist means "new project")
-- `run_dir`: `.claude/runs/ship-faster/<run_id>/`
+- `run_dir`: Resolved run directory (see `workflow-ship-faster` → **Artifact Storage**)
 - `target_next_version`: Default `16.1.1`
 
 ## Output (Persisted)
 
-- `02-analysis/foundation.md`
-- `03-plans/foundation-plan.md` (checklist plan: tasks + verification)
-- `03-plans/approval.md` (only when major upgrade/migration/large-scale changes needed)
+- `evidence/foundation.md`
+- `tasks.md` (Foundation checklist section: tasks + verification)
 
 ## Plan (Checklist Required)
 
-Write `03-plans/foundation-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**) before making changes.
-If the plan includes risky migrations/upgrades, write `03-plans/approval.md` and wait for explicit user confirmation.
+Before making changes:
+- Add a **Foundation** checklist section to `tasks.md` (checkboxes + verification)
+- If the plan includes risky migrations/upgrades, add an **Approval** item under `tasks.md` and wait for explicit user confirmation
 
 ## 0) Stack Assessment Gate (Decide Whether to Migrate First)
 
@@ -32,7 +32,7 @@ Use minimum evidence set to determine current stack (don't guess):
 - Routing/page structure: `app/` `pages/` (Next), `src/pages` (common in Vite/SPA), `public/` (static assets)
 - Deploy/output: `vercel.json`, `netlify.toml`, build scripts (build output directory)
 
-Write conclusion to `02-analysis/foundation.md`:
+Write conclusion to `evidence/foundation.md`:
 - Current stack: <detected>
 - Evidence: <files/keys>
 
@@ -45,7 +45,7 @@ When repo is **not Next.js**, ask user (multiple choice):
 > 2) Simple now, but soon becoming "full Web App" (auth, DB, dashboard, SEO, SSR/ISR) → **Recommend migrate**
 > 3) Already mature engineering (lots of custom build/multi-package/complex routing) → **Don't auto-migrate**, only provide migration plan
 
-Decision persisted (write to top of `02-analysis/foundation.md`, one clear line):
+Decision persisted (write to top of `evidence/foundation.md`, one clear line):
 - Decision: `keep-current-stack` | `migrate-to-nextjs` | `plan-only-no-auto-migrate`
 
 > Rule: When user chooses 1), don't "migrate anyway". This isn't a bug, it's strategy.
@@ -71,7 +71,7 @@ Recommendation: Use `create-next-app` to create, then pin `next` version to `16.
 - Obvious framework migration history or lots of unconverged experimental features
 
 When "too large":
-- Only output `foundation-plan.md` (upgrade risks, phased approach, rollback strategy)
+- In `tasks.md`, write a **plan-only** Foundation section (upgrade risks, phased approach, rollback strategy)
 - Don't auto-upgrade, wait for user confirmation
 
 When not "too large":
@@ -81,7 +81,7 @@ When not "too large":
 
 Only migrate when "very small and confirmed migrate (Decision = migrate-to-nextjs)":
 - Very small: Single package, few dependencies, simple routing/build logic
-- Migration is definitely high effort: Must write `approval.md` first and wait for confirmation
+- Migration is definitely high effort: add an **Approval** item to `tasks.md` and wait for confirmation
 
 Recommended migration route:
 1. Create new Next.js 16.1.1 baseline project
@@ -92,7 +92,7 @@ Recommended migration route:
 
 When Decision = `keep-current-stack`:
 - Don't do Next.js migration/upgrade actions
-- Write `foundation-plan.md` as "Ship Faster recommendation list for keeping current stack" (e.g.: design system → guardrails → docs → deploy)
+- In `tasks.md`, write a short "keep current stack" plan (e.g.: design system → guardrails → docs → deploy)
 - Clearly state: Subsequent "Supabase/Stripe integration" are **Next.js adapters**; if still need DB/payment integration, need to:
   - Either migrate to Next.js first
   - Or add integration step for that stack (e.g., `vite + supabase`), underlying DB operations still reuse `supabase` skill
@@ -103,4 +103,4 @@ When Decision = `keep-current-stack`:
 - `build` passes (if project has it configured)
 - Key pages can open
 
-Write verification results to `02-analysis/foundation.md`.
+Write verification results to `evidence/foundation.md`.

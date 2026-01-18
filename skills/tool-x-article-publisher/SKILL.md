@@ -30,7 +30,7 @@ Inputs (paths only):
 Outputs (recommended artifacts):
 - `/tmp/x_article.json` (parsed structure)
 - `/tmp/x_article.html` (HTML body for paste)
-- Optional: `run_dir/05-final/x-article-draft.md` (what was done + links)
+- Optional: `run_dir/evidence/x-article-draft.md` (what was done + links)
 
 ## Bundled Scripts
 

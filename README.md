@@ -15,7 +15,7 @@
 
 <br />
 
-[Docs](./docs/) · [Skills](./skills/) · [Templates](./templates/) · [中文](./README.zh-CN.md)
+[Docs](./docs/) · [Skills](./skills/) · [Templates](./templates/)
 
 </div>
 
@@ -151,17 +151,24 @@ Stack (optional): nextjs|react|html-tailwind|vue|svelte|flutter|swiftui
 Every run writes to disk for replay/audit:
 
 ```
-.claude/runs/ship-faster/<run_id>/
-├── 00-index.md          # Resume entry point (start here)
-├── 03-plans/            # Checklist plans ([ ] → [x])
-├── 02-analysis/         # Evidence (large outputs)
-├── 05-final/            # Final delivery summary
-└── logs/                # Execution logs (large)
+runs/ship-faster/
+├── active/
+│   └── <run_id>/
+│       ├── proposal.md        # Why/what/scope (read once)
+│       ├── tasks.md           # Checklist ([ ] → [x]) (resume here)
+│       ├── context.json       # Switches (deploy/db/billing/seo)
+│       ├── evidence/          # Optional: large outputs / audits
+│       └── logs/              # Optional: events/state (debug)
+└── archive/
+    └── YYYY-MM-DD-<run_id>/
+        └── ...
 ```
 
-- **Current run pointer**: `.claude/runs/ship-faster/ACTIVE`
-- **Progress lives in plans**: open `00-index.md` → follow `Next action` → mark tasks in `03-plans/*.md`
+- **Current run(s)**: `runs/ship-faster/active/`
+- **Progress lives in tasks**: open `tasks.md` → mark checkboxes (`[ ]` → `[x]`)
 - **Side effects** (deploy, payments, DB writes) require explicit approval before execution
+
+If OpenSpec is initialized (`openspec/project.md` exists), Ship Faster can also store artifacts under `openspec/changes/<change-id>/`.
 
 > Learn more: [Runs & Approvals](docs/concepts/runs-and-approvals.md)
 
@@ -181,7 +188,7 @@ Composable workflows that ship end-to-end. Copy to `~/.claude/skills/` or use as
 
 > Full catalog: [`skills/manifest.json`](skills/manifest.json)
 
-![Run artifacts](skills/assets/run-artifacts.png)
+![Run artifacts](skills/assets/run-artifacts.svg)
 
 ---
 
@@ -230,7 +237,6 @@ ship-faster/
 │   └── product-starter/
 ├── LICENSE
 ├── README.md
-└── README.zh-CN.md
 ```
 
 </details>

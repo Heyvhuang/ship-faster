@@ -17,23 +17,23 @@
   <rect x="24" y="16" width="1152" height="388" rx="16" fill="#FFFFFF" stroke="#E5E7EB" />
   <text x="40" y="48" class="title">Run artifacts (resumable + traceable)</text>
 
-  <!-- ACTIVE pointer -->
+  <!-- Active run -->
   <rect x="60" y="120" width="180" height="52" class="box entry" />
-  <text x="76" y="146" class="label">ACTIVE</text>
-  <text x="76" y="164" class="muted">current run_id</text>
+  <text x="76" y="146" class="label">active/&lt;run_id&gt;/</text>
+  <text x="76" y="164" class="muted">current run folder</text>
 
   <path class="arrow" d="M240 146 L300 146" />
 
-  <!-- Run directory -->
+  <!-- Run directory (OpenSpec-style) -->
   <rect x="300" y="80" width="420" height="240" class="box" />
-  <text x="320" y="108" class="label">.claude/runs/ship-faster/&lt;run_id&gt;/</text>
-  <text x="320" y="132" class="text">00-index.md (entry)</text>
-  <text x="320" y="150" class="text">01-input/ (goal, context)</text>
-  <text x="320" y="168" class="text">02-analysis/</text>
-  <text x="320" y="186" class="text">03-plans/ (approval)</text>
-  <text x="320" y="204" class="text">04-parallel/</text>
-  <text x="320" y="222" class="text">05-final/ (ship-summary)</text>
-  <text x="320" y="240" class="text">logs/ (events + state)</text>
+  <text x="320" y="108" class="label">runs/ship-faster/active/&lt;run_id&gt;/</text>
+  <text x="320" y="132" class="text">proposal.md</text>
+  <text x="320" y="150" class="text">tasks.md (entry)</text>
+  <text x="320" y="168" class="text">context.json</text>
+  <text x="320" y="186" class="text">evidence/</text>
+  <text x="320" y="204" class="text">logs/</text>
+  <text x="320" y="222" class="text">final.md (optional)</text>
+  <text x="320" y="240" class="muted">archive/YYYY-MM-DD-&lt;run_id&gt;/ (after done)</text>
 
   <path class="arrow" d="M720 200 L860 200" />
 

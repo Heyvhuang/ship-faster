@@ -14,17 +14,17 @@ Goal: Establish a code standards baseline that "won't slow down development" wit
 ## Input (Pass Paths Only)
 
 - `repo_root`: Project root directory
-- `run_dir`: `.claude/runs/ship-faster/<run_id>/`
+- `run_dir`: Resolved run directory (see `workflow-ship-faster` → **Artifact Storage**)
 
 ## Output (Persisted)
 
-- `03-plans/guardrails-plan.md` (checklist plan: tasks + verification)
-- Optional: `02-analysis/guardrails-current.md` (current state scan)
+- `tasks.md` (Guardrails checklist section: tasks + verification)
+- Optional: `evidence/guardrails-current.md` (current state scan)
 
 ## Plan (Checklist Required)
 
-Write `03-plans/guardrails-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**) before changing repo config/scripts.
-Record verification results (lint/typecheck/format) inside the same plan file.
+Before changing repo config/scripts, add a Guardrails checklist section to `tasks.md`.
+Record verification results (lint/typecheck/format) inside the same `tasks.md` section.
 
 ## Principles
 
@@ -43,5 +43,5 @@ Record verification results (lint/typecheck/format) inside the same plan file.
 
 ## Delivery
 
-- Write `03-plans/guardrails-plan.md`: List files and commands to be added/modified
-- After changes complete, append verification results to `03-plans/guardrails-plan.md`
+- In `tasks.md`, list files and commands to be added/modified
+- After changes complete, append verification results to the same `tasks.md` section

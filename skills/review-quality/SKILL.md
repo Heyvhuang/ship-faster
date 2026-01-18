@@ -21,7 +21,7 @@ This is the **single entry point** for Ship Faster reviews. It includes an inter
 ## Inputs (recommended)
 
 - `BASE_SHA` and `HEAD_SHA` for diff-based reviews
-- Optional: `PLAN_OR_REQUIREMENTS` path (e.g. `run_dir/03-plans/features/<feature_slug>-plan.md`)
+- Optional: `PLAN_OR_REQUIREMENTS` path (e.g. `run_dir/evidence/features/<feature_slug>-plan.md`)
 - Optional: docs scope (`README.md`, `docs/**`, API contracts)
 - Optional: `run_dir` (Ship Faster run directory, if available)
 
@@ -121,14 +121,14 @@ Produce a structured report:
 - `quality-review.json` (optional but recommended)
 
 If you are working inside a Ship Faster run directory, write to:
-- `run_dir/02-analysis/quality-review.md`
-- `run_dir/02-analysis/quality-review.json`
+- `run_dir/evidence/quality-review.md`
+- `run_dir/evidence/quality-review.json`
 
 If triage selects React/Next performance review and a Ship Faster `run_dir` is available, also persist:
-- `run_dir/02-analysis/react-best-practices-review.md`
+- `run_dir/evidence/react-best-practices-review.md`
 
 If triage selects UI guidelines audit and a Ship Faster `run_dir` is available, also persist:
-- `run_dir/02-analysis/ui-guidelines-review.md` (terse `file:line` findings, grouped by file)
+- `run_dir/evidence/ui-guidelines-review.md` (terse `file:line` findings, grouped by file)
 
 ## Output format (recommended)
 

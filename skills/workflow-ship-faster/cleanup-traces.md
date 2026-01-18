@@ -9,24 +9,24 @@ Goal: When a project is copied from external generators (e.g., Google AI Studio,
 
 ## Output (Persisted)
 
-- `02-analysis/trace-scan.md` (what was found; paths + short notes)
-- `03-plans/cleanup-traces-plan.md` (checklist plan: tasks + verification + evidence paths)
+- `evidence/trace-scan.md` (what was found; paths + short notes)
+- `tasks.md` (Trace cleanup checklist section: tasks + verification + evidence paths)
 - Updated project files (README, HTML entrypoints, gitignore, etc.)
 
 ## Plan (Checklist Required)
 
-Before making any edits, write `03-plans/cleanup-traces-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**).
+Before making any edits, add a Trace cleanup checklist section to `tasks.md`.
 
 Minimum requirements inside the plan:
 - `## Tasks` as `- [ ]` items, derived from the checklist below
 - `## Verification` as `- [ ]` items (commands + expected outcome)
-- Evidence links to `02-analysis/trace-scan.md` and any other scan output
+- Evidence links to `evidence/trace-scan.md` and any other scan output
 
 ## What to Clean (Checklist)
 
 ### 1) Branding Sweep (fast scan)
 
-Search for obvious vendor fingerprints and record hits (path + a short reason) in `02-analysis/trace-scan.md`:
+Search for obvious vendor fingerprints and record hits (path + a short reason) in `evidence/trace-scan.md`:
 
 - “AI Studio” / “Run and deploy your AI Studio app”
 - `ai.studio` links
@@ -51,7 +51,7 @@ Search for obvious vendor fingerprints and record hits (path + a short reason) i
 
 Remove or exclude common “copied project” leftovers:
 
-- Delete: `.claude/`, `node_modules/`, `dist/`, `.DS_Store`, `.vercel/` (if present)
+- Delete: `.claude/`, `runs/`, `node_modules/`, `dist/`, `.DS_Store`, `.vercel/` (if present)
 - Ensure `.gitignore` covers these artifacts
 - Ensure no secrets are committed (`.env.local` must never be in git)
 
@@ -76,7 +76,7 @@ Don’t remove legal/license attribution if it’s required by the source or dep
 
 ## Verification (must record results)
 
-Write the final verification results into `03-plans/cleanup-traces-plan.md`:
+Write the final verification results into the Trace cleanup section in `tasks.md`:
 
 - No hits for branding strings you intentionally removed
 - `git status` shows no secrets / no accidental large artifacts

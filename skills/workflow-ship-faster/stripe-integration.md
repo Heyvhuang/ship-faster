@@ -10,15 +10,15 @@ Default goal: **Get paid first**, then gradually evolve into a deeper billing sy
 
 ## Output (Persisted)
 
-- `03-plans/stripe-plan.md` (checklist plan: tasks + verification)
-- `03-plans/stripe-actions.md` (checklist action log: intended Stripe operations)
-- `05-final/stripe-summary.md`
-- `05-final/receipt.json`
+- `tasks.md` (Stripe checklist section: tasks + verification)
+- `evidence/stripe-actions.md` (human-auditable action log: intended Stripe operations)
+- `evidence/stripe-summary.md`
+- `evidence/receipt.json`
 
 ## Plan (Checklist Required)
 
-Write `03-plans/stripe-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**) before executing Stripe operations or integrating code.
-Keep `03-plans/stripe-actions.md` as the human-auditable action list (what you plan to do in Stripe + why), then mark items `- [x]` only after execution + verification.
+Before executing Stripe operations or integrating code, add a Stripe checklist section to `tasks.md`.
+Keep `evidence/stripe-actions.md` as the human-auditable action list (what you plan to do in Stripe + why), then mark items `- [x]` only after execution + verification.
 
 ## Two Routes
 
@@ -46,6 +46,6 @@ Requires:
 ## Mandatory Confirmation Points
 
 - Any money/contract related action (refund, cancel subscription, update subscription, submit dispute evidence) must:
-  1) Write to `03-plans/stripe-actions.md`
-  2) Write to `03-plans/approval.md`
+  1) Write to `evidence/stripe-actions.md`
+  2) Add an **Approval** item to `tasks.md`
   3) Wait for explicit user confirmation before executing

@@ -65,27 +65,35 @@ Converge user input into the following information (ask for what's missing; if u
 
 ## Run Directory Specification
 
-Create in target project root: `.claude/runs/<workflow>/<run_id>/`
+Default (recommended): create in target project root: `runs/<workflow>/active/<run_id>/`
 
-Recommended structure:
+OpenSpec-compatible mode (when `openspec/project.md` exists, or user forces it via `context.json`):
+- Active: `openspec/changes/<change-id>/`
+- Archive: `openspec/changes/archive/YYYY-MM-DD-<change-id>/`
 
-- `01-input/`
-  - `goal.md`: User goal (original question + expected output + constraints)
-  - `context.json`: Key context (IDs, environment, scope, risk preference)
-- `02-analysis/`: Evidence/analysis from each analyzer
-- `03-plans/`: Executable plans + confirmation points
-- `04-parallel/`: Parallel subtask artifacts (subdirectories named by subtask)
-- `05-final/`: Final deliverables
-- `logs/`
+Backend selection rule (deterministic):
+1) If `context.json` includes `"artifact_store": "runs"` or `"openspec"`, follow it.
+2) Else if `openspec/project.md` exists in `repo_root`, use OpenSpec mode.
+3) Else use `runs/`.
+
+Recommended structure (OpenSpec-style, low ceremony):
+
+- `proposal.md`: User goal (original question + expected output + constraints + acceptance criteria + non-goals)
+- `tasks.md`: Executable checklist (`- [ ]` → `- [x]`) + approval gates
+- `context.json`: Key context (repo_root, need_* switches, risk preference, known IDs)
+- `evidence/` (optional): Evidence/analysis from each analyzer (keep big output out of chat)
+- `logs/` (optional):
   - `events.jsonl`: Structured event log (append one line per step)
-  - `state.json`: Current state machine (which steps complete, what's next, critical path)
+  - `state.json`: Optional machine-readable state (what’s next / what’s complete)
+
+Archive convention (after completion): move `active/<run_id>/` → `archive/YYYY-MM-DD-<run_id>/`
 
 ## Event Log Format (Recommended)
 
 One JSON per line:
 
 ```json
-{"ts":"2026-01-11T12:00:00Z","step":"02-analysis","action":"cloudflare.query_worker_observability","status":"ok","artifacts":["02-analysis/observability.md"],"note":"p95 latency spike"}
+{"ts":"2026-01-11T12:00:00Z","step":"evidence","action":"cloudflare.query_worker_observability","status":"ok","artifacts":["evidence/observability.md"],"note":"p95 latency spike"}
 ```
 
 Don't log sensitive content (token/email/phone/secret). Write redacted versions when necessary.
@@ -94,18 +102,18 @@ Don't log sensitive content (token/email/phone/secret). Write redacted versions 
 
 Before executing write operations:
 
-1. Write to `03-plans/approval.md`: List actions to be executed (object ID, impact scope, verification method)
+1. Write the approval plan into `tasks.md` under an **Approvals** section (object ID, impact scope, verification method)
 2. Show same summary in conversation, wait for explicit user reply "confirm/yes/proceed"
-3. Execute only after user confirms, write results to `logs/events.jsonl`
+3. Execute only after user confirms, write results to `evidence/` (and optionally `logs/events.jsonl`)
 
 ## Artifacts (This Skill Must Persist)
 
 Before routing/execution, write clarification results to:
-- `01-input/goal.md`: Goals, scope, acceptance criteria, non-goals, timeline
-- `01-input/context.json`: `repo_root`, `entry_type`, `need_*` switches, risk preference, etc.
+- `proposal.md`: Goals, scope, acceptance criteria, non-goals, timeline
+- `context.json`: `repo_root`, `entry_type`, `need_*` switches, risk preference, etc.
 
 If this Intake includes "design spec" phase (from `workflow-brainstorm` module), also persist:
-- `02-analysis/YYYY-MM-DD-<topic>-design.md`: Confirmed design and key decisions (for downstream plan/implementation reference)
+- `evidence/YYYY-MM-DD-<topic>-design.md`: Confirmed design and key decisions (for downstream plan/implementation reference)
 
 Notes:
 - If file already exists: **Only add missing fields / append information**, don't blindly overwrite (avoid duplicate writes with downstream workflow)
@@ -116,6 +124,8 @@ Notes:
 {
   "entry_type": "idea",
   "repo_root": "",
+  "scope": "full",
+  "artifact_store": "auto",
   "need_database": false,
   "need_billing": false,
   "need_deploy": false,
@@ -128,14 +138,14 @@ Notes:
 Priority recommendations:
 
 1) **From idea/small prototype to launch (default)**: Use `workflow-ship-faster`
-- `workflow-ship-faster` will persist to `.claude/runs/ship-faster/<run_id>/` in project, and decide whether to execute DB/payment/deploy/SEO optional steps based on `context.json` switches
+- `workflow-ship-faster` will persist to `runs/ship-faster/active/<run_id>/` by default (or `openspec/changes/<change-id>/` when OpenSpec mode is selected), and decide whether to execute DB/payment/deploy/SEO optional steps based on `context.json` switches
 - Just style/design system: Use `tool-design-style-selector`
 - Just one feature iteration (split+deliver): Use `workflow-feature-shipper`
 - Just React/Next.js performance review (waterfalls/bundle/re-renders): Use `review-react-best-practices`
 - Just DB-side actions (SQL/migration/logs/type generation): Use `supabase` skill
 - Just Stripe-side operations (products/prices/payment links/refunds etc.): Use `stripe` skill
 
-If unsure: Complete Intake Checklist first → Write `goal.md/context.json` → Then route (don't execute big actions upfront).
+If unsure: Complete Intake Checklist first → Write `proposal.md/context.json` → Then route (don't execute big actions upfront).
 
 ## Conversation Convergence at End (Required)
 
@@ -144,7 +154,7 @@ Before handing off control to downstream skill, end this skill with 3 paragraphs
 1) Restate understanding (goal + acceptance criteria + non-goals)
 2) Clarify the route to take (default `workflow-ship-faster`, and explain why)
 3) Ask user if they want to start execution now:
-   - "Ready to start `workflow-ship-faster`? (Will write artifacts to `.claude/runs/ship-faster/<run_id>/` in your project, and require confirmation before critical write operations)"
+   - "Ready to start `workflow-ship-faster`? (Will write artifacts to `runs/ship-faster/active/<run_id>/` in your project by default, and require confirmation before critical write operations)"
 
 ## Parallel Execution (Subagent)
 
@@ -154,18 +164,18 @@ When any of these situations occur, split into parallel subtasks:
 - Need to generate multiple alternatives (Plan A/B/C)
 
 Parallel subtask conventions:
-- Input: Only receive paths (`goal_path`, `context_path`, `output_dir`)
-- Output: Write artifacts to `04-parallel/<task-name>/`, return list of artifact paths
+- Input: Only receive paths (`proposal_path`, `context_path`, `output_dir`)
+- Output: Write artifacts to `evidence/parallel/<task-name>/`, return list of artifact paths
 
 ## Resume from Checkpoint
 
 When running again:
-- Read `logs/state.json` first
+- Read `tasks.md` first; use `logs/state.json` only if it exists and you need machine state
 - Don't repeat completed steps; only fill in missing artifacts or continue from failure point
 
 ## Deliverables (Minimum Requirements)
 
-- `05-final/summary.md`: Conclusion + key evidence + execution summary + next steps
-- `logs/events.jsonl`: Traceable execution record
+- `tasks.md`: Checklist reflects reality + execution summary + next steps
+- Optional: `logs/events.jsonl` for traceability
 
 After completion, do a `skill-evolution` **Evolution checkpoint** (3 questions); if user chooses "want to optimize", call `skill-improver` to review this run and propose minimal patch suggestions.

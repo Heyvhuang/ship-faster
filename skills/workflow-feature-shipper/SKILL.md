@@ -1,6 +1,6 @@
 ---
 name: workflow-feature-shipper
-description: "Ship core product features quickly in a Next.js codebase: turn a feature idea into an executable plan, implement in PR-sized slices, and keep artifacts under .claude/runs/. Supports plan-only mode for early scoping. For prototype UI work, include a demo-ready “wow moment” (animation/micro-interaction) by default unless user opts out."
+description: "Ship core product features quickly in a Next.js codebase: turn a feature idea into an executable plan, implement in PR-sized slices, and keep artifacts under runs/ (or OpenSpec changes/ when available). Supports plan-only mode for early scoping. For prototype UI work, include a demo-ready “wow moment” (animation/micro-interaction) by default unless user opts out."
 ---
 
 # Feature Shipper
@@ -21,9 +21,9 @@ Turn "I want to build a feature" into a fast execution chain.
 
 ## Output (Persisted)
 
-- `03-plans/features/<feature_slug>-plan.md` (checklist plan: tasks + verification)
-- `04-parallel/features/<feature_slug>/` (if implementation is split)
-- `05-final/features/<feature_slug>-summary.md`
+- `evidence/features/<feature_slug>-plan.md` (checklist plan: tasks + verification)
+- `evidence/parallel/features/<feature_slug>/` (if implementation is split)
+- `evidence/features/<feature_slug>-summary.md`
 
 ## Process
 
@@ -31,7 +31,7 @@ Turn "I want to build a feature" into a fast execution chain.
 2. **Prototype UI rule (default)**: if this feature affects user-facing UI and `quality_bar` isn’t `functional-only`, propose 1 “demo moment” (animation/micro-interaction) and add it to acceptance criteria. Must respect `prefers-reduced-motion`.
 3. Produce 2 options (A: minimal; B: cleaner but slower), default to A. If user cares about “demo feel”, offer A-demo-ready vs A-functional-only as explicit sub-options.
 4. Split into PR-sized small steps (each independently runnable + rollback-able).
-5. Write plan to `03-plans/features/<feature_slug>-plan.md`.
+5. Write plan to `evidence/features/<feature_slug>-plan.md`.
 6. If `mode: plan-only`, stop here and ask for confirmation before implementing.
 7. Implement (batch execution + checkpoints):
     - UI visual/layout/animation changes → First call `tool-design-style-selector` to load the project’s `design-system.md`, then strictly follow it. If `tool-ui-ux-pro-max` is installed, use it to ground motion/UX constraints (search “animation” + “accessibility”). For complex visual/animation/responsive design, delegate to `/gemini` frontend UI/UX senior design agent.
@@ -41,7 +41,7 @@ Turn "I want to build a feature" into a fast execution chain.
       - `review-quality` is the single entry point and will auto-triage: if React/Next.js performance risk is detected, it will also run `review-react-best-practices`.
       - If the user explicitly wants *only* a React/Next.js perf audit, run `review-react-best-practices` directly.
 8. Verification: can run, can build (and existing tests pass).
-9. Write `05-final/features/<feature_slug>-summary.md`: what was done, how verified, next steps.
+9. Write `evidence/features/<feature_slug>-summary.md`: what was done, how verified, next steps.
 10. Wrap up: Do a `skill-evolution` **Evolution checkpoint** (3 questions); if user chooses "want to optimize", run `skill-improver` based on this `run_dir` to produce minimal patch suggestions
 
 ## Delivery Requirements

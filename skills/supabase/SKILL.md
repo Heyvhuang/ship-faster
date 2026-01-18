@@ -50,12 +50,13 @@ Execute database operations on Supabase: queries, writes, migrations, and diagno
 When integrating into multi-step workflows, persist artifacts to disk:
 
 ```
-.claude/runs/<workflow>/<run_id>/
-├── 01-input/goal.md           # Requirements
-├── 01-input/context.json      # Known tables/fields/IDs
-├── 03-plans/sql.md            # SQL to execute (write ops written here first)
-├── 05-final/result.md         # Conclusion + SQL + results
-└── logs/events.jsonl          # Tool call summary (no sensitive data)
+runs/<workflow>/active/<run_id>/
+├── proposal.md                # Requirements / objective
+├── context.json               # Known tables/fields/IDs
+├── tasks.md                   # Checklist + approval gate
+├── evidence/sql.md            # SQL to execute (write ops written here first)
+├── evidence/result.md         # Conclusion + SQL + results
+└── logs/events.jsonl          # Optional tool call summary (no sensitive data)
 ```
 
 ## Output Format

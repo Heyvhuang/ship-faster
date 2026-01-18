@@ -9,12 +9,12 @@ Goal: Not "write everything", but **let people quickly run it, deploy it, and it
 
 ## Output (Persisted)
 
-- `03-plans/docs-plan.md` (checklist plan: tasks + verification)
+- `tasks.md` (Docs checklist section: tasks + verification)
 - Main artifact is: Project `README.md` (in repo)
 
 ## Plan (Checklist Required)
 
-Write `03-plans/docs-plan.md` as a checkbox checklist plan (see `workflow-ship-faster/SKILL.md` → **Plan Files**) before editing docs.
+Before editing docs, add a Docs checklist section to `tasks.md`.
 Mark tasks complete only after verifying docs match the actual scripts/env requirements.
 
 ## Minimum README Template (Recommended Contents)

@@ -1,6 +1,6 @@
 ---
 name: skill-improver
-description: "Improve skills and workflows by analyzing run artifacts and execution logs (events.jsonl/state.json) under .claude/runs/. Use when you want to iterate on skills based on real runs: find failure modes, bottlenecks, unclear prompts, missing I/O contracts, and propose concrete edits."
+description: "Improve skills and workflows by analyzing run artifacts and execution logs (events.jsonl/state.json) under runs/ (or OpenSpec changes/). Use when you want to iterate on skills based on real runs: find failure modes, bottlenecks, unclear prompts, missing I/O contracts, and propose concrete edits."
 ---
 
 # Skill Improver
@@ -9,7 +9,7 @@ Retrospect and improve Skills/Workflows based on real execution artifacts, makin
 
 ## Input (pass path only)
 
-- `run_dir`: `.claude/runs/<workflow>/<run_id>/`
+- `run_dir`: `runs/<workflow>/active/<run_id>/` (or `openspec/changes/<change-id>/`)
 
 ## Output
 

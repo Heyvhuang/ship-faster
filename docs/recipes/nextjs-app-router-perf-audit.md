@@ -34,7 +34,7 @@ If you’re running inside a Ship Faster run directory, store evidence here:
 
 ```
 run_dir/
-  02-analysis/
+  evidence/
     perf/
       nextjs-app-router/
         00-scope.md
@@ -207,4 +207,3 @@ If numbers don’t move, don’t keep optimizing — reassess the top cause.
 - Don’t add caching without clear TTL/invalidation assumptions
 - Don’t blanket-apply `useMemo`/`useCallback` everywhere (can add complexity without wins)
 - Don’t ship “perf refactors” without measuring baseline + delta
-

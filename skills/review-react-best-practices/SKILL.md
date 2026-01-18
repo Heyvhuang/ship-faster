@@ -69,7 +69,7 @@ For each issue include:
 
 If running in a Ship Faster run directory, persist the report to:
 
-- `run_dir/02-analysis/react-best-practices-review.md`
+- `run_dir/evidence/react-best-practices-review.md`
 
 ## Rule library
 
@@ -77,4 +77,3 @@ Rules live in:
 
 - [`references/rules/`](references/rules/)
 - Rule template: [`references/rules/_template.md`](references/rules/_template.md)
-

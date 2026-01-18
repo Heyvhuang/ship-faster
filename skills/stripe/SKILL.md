@@ -122,12 +122,13 @@ For these, use Dashboard or API directly.
 When integrating into multi-step workflows:
 
 ```
-.claude/runs/<workflow>/<run_id>/
-├── 01-input/goal.md           # Requirements
-├── 01-input/context.json      # Known IDs (customer, invoice, etc.)
-├── 03-plans/stripe-actions.md # Operations to execute (money ops written here first)
-├── 05-final/receipt.md        # Results + object IDs
-└── logs/events.jsonl          # Tool call summary (no sensitive data)
+runs/<workflow>/active/<run_id>/
+├── proposal.md                # Requirements / objective
+├── context.json               # Known IDs (customer, invoice, etc.)
+├── tasks.md                   # Checklist + approval gate
+├── evidence/stripe-actions.md # Operations to execute (money ops written here first)
+├── evidence/receipt.md        # Results + object IDs
+└── logs/events.jsonl          # Optional tool call summary (no sensitive data)
 ```
 
 ## Error Handling
