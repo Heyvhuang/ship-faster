@@ -1,15 +1,31 @@
-# Docs
+# 📚 Documentation
 
-Ship Faster is **skills-first**. Most of the “how it works” lives in each `skills/*/SKILL.md`, but these docs provide a stable public entry.
+> Ship Faster is **skills-first**. Most details live in each `skills/*/SKILL.md`, but these docs provide a stable public entry.
 
-## Start here
+---
 
-- Quick start (install + copy/paste prompts): [`quickstart.md`](quickstart.md)
-- Core concept: resumable runs + approval gates: [`concepts/runs-and-approvals.md`](concepts/runs-and-approvals.md)
-- Recipe: Next.js App Router perf audit: [`recipes/nextjs-app-router-perf-audit.md`](recipes/nextjs-app-router-perf-audit.md)
+## 🚀 Start Here
 
-## Related
+| Doc | Description |
+|-----|-------------|
+| ⚡ [Quick Start](quickstart.md) | Install + copy/paste prompts (5 min) |
+| 🔄 [Runs & Approvals](concepts/runs-and-approvals.md) | Core concept: resumable runs + approval gates |
+| 🔧 [Next.js Perf Audit](recipes/nextjs-app-router-perf-audit.md) | Recipe: App Router performance audit |
 
-- Skills catalog (machine-readable): [`../skills/manifest.json`](../skills/manifest.json)
-- Templates (runnable projects): [`../templates/`](../templates/)
-- Snippets (internal building blocks): [`../snippets/`](../snippets/)
+---
+
+## 🔗 Related Resources
+
+| Resource | Description |
+|----------|-------------|
+| 📋 [Skills Manifest](../skills/manifest.json) | Machine-readable catalog |
+| 📦 [Templates](../templates/) | Runnable example projects |
+| 🧩 [Snippets](../snippets/) | Internal building blocks |
+
+---
+
+<div align="center">
+
+[← Back to README](../README.md)
+
+</div>

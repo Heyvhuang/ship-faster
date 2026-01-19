@@ -1,12 +1,12 @@
-# Quick Start
+# ⚡ Quick Start
 
-Ship Faster is a toolbox of **composable skills** for coding agents. The main workflow writes resumable run artifacts under `runs/` (or `openspec/changes/` when OpenSpec is detected) and gates external side effects behind explicit approvals.
+> Ship Faster is a toolbox of **composable skills** for coding agents. Resumable runs + approval gates for side effects.
 
-If you only want a runnable codebase, go to [`templates/`](../templates/) instead.
+---
 
-## 1) Install skills
+## 📥 1) Install Skills
 
-macOS / Linux:
+### macOS / Linux (10 seconds)
 
 ```bash
 mkdir -p ~/.claude/skills
@@ -14,84 +14,55 @@ curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz 
   | tar -xz --strip-components=2 -C ~/.claude/skills ship-faster-main/skills/
 ```
 
-> This copies skill folders into `~/.claude/skills/`. If you already have skills there, folders with the same name will be overwritten.
-
-Install a single skill (safer if you already have many skills installed):
-
-```bash
-git clone https://github.com/Heyvhuang/ship-faster.git
-cd ship-faster
-cp -r skills/workflow-ship-faster ~/.claude/skills/
-```
-
-Windows (PowerShell):
+<details>
+<summary>🪟 Windows (PowerShell)</summary>
 
 ```powershell
-New-Item -ItemType Directory -Force -Path "$HOME\\.claude\\skills" | Out-Null
-$zip = "$env:TEMP\\ship-faster-main.zip"
+New-Item -ItemType Directory -Force -Path "$HOME\.claude\skills" | Out-Null
+$zip = "$env:TEMP\ship-faster-main.zip"
 Invoke-WebRequest -Uri "https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.zip" -OutFile $zip
-Expand-Archive -Path $zip -DestinationPath "$env:TEMP\\ship-faster" -Force
-Copy-Item -Recurse -Force "$env:TEMP\\ship-faster\\ship-faster-main\\skills\\*" "$HOME\\.claude\\skills\\"
+Expand-Archive -Path $zip -DestinationPath "$env:TEMP\ship-faster" -Force
+Copy-Item -Recurse -Force "$env:TEMP\ship-faster\ship-faster-main\skills\*" "$HOME\.claude\skills\"
 ```
 
-## 2) Run (copy/paste prompts)
+</details>
 
-### I have an idea (start from scratch)
+---
 
-```text
-Use workflow-project-intake.
+## 🚀 2) Run (Copy/Paste Prompts)
 
-Idea: <what are we building?>
-Users: <who is it for?>
-Must-have: <3-5 bullets>
-Constraints: <deadline / tech / design / infra>
-Need: deploy? database? billing? seo?
-```
+| Scenario | Prompt |
+|----------|--------|
+| 💡 **I have an idea** | `Use workflow-project-intake` |
+| 📦 **I have a repo** | `Use workflow-ship-faster` |
+| 🎯 **I want one feature** | `Use workflow-feature-shipper` |
 
-### I have a repo (ship this code)
+---
 
-```text
-Use workflow-ship-faster.
+## 📂 3) Find Outputs
 
-Repo path: <absolute path or '.'>
-Constraints: <deadline / tech / non-goals>
-Need: deploy? database? billing? seo?
-```
+| Location | Description |
+|----------|-------------|
+| `runs/ship-faster/active/<run_id>/` | Active runs |
+| `runs/ship-faster/archive/...` | Archived runs |
+| `tasks.md` | Resume entry (checkboxes) |
+| `proposal.md` + `context.json` | Context/spec |
 
-### I want to ship one feature (fast, PR-sized)
+> 📖 Learn more: [Runs & Approvals](concepts/runs-and-approvals.md)
 
-```text
-Use workflow-feature-shipper.
+---
 
-Repo path: <absolute path or '.'>
-Feature: <one sentence>
-Acceptance criteria:
-- <bullet>
-- <bullet>
-Non-goals:
-- <bullet>
-```
+## 🔧 Troubleshooting
 
-## 3) Find outputs
+**Agent cannot find skill?** Check: `ls ~/.claude/skills/workflow-ship-faster/`
 
-Ship Faster writes every run to disk:
+**No `runs/` folder?** Runs appear after executing a workflow.
 
-- Active runs (default): `runs/ship-faster/active/<run_id>/`
-- Archive (default): `runs/ship-faster/archive/YYYY-MM-DD-<run_id>/`
-- If OpenSpec is initialized: `openspec/changes/<change-id>/` (+ archive under `openspec/changes/archive/`)
-- Resume entry: open `tasks.md` (checkbox checklist)
-- Context/spec: `proposal.md` + `context.json`
+---
 
-See the deeper explanation in [`concepts/runs-and-approvals.md`](concepts/runs-and-approvals.md).
+<div align="center">
 
-## Troubleshooting
+[← Docs](README.md) · [Runs & Approvals →](concepts/runs-and-approvals.md)
 
-### The agent can’t find a skill
+</div>
 
-- Confirm the folder exists: `ls ~/.claude/skills/workflow-ship-faster/`
-- If you installed via tarball, confirm the extracted path is correct (the command uses `--strip-components=2` intentionally).
-
-### I don’t see `runs/ship-faster/`
-
-- You only get runs after you execute a workflow that writes them (for example `workflow-ship-faster`).
-- If your target repo is elsewhere, runs are created **in that repo**, not in this `ship-faster` repo.

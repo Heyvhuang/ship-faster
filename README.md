@@ -1,56 +1,76 @@
 <div align="center">
-  
+
 <img src="skills/assets/Head.png" alt="Ship Faster" width="720" />
 
 <br />
 
-**End-to-end development workflows for coding agents.**
-**Idea → launchable web app, with resumable runs, artifact-first execution, and approval gates.**
+**16 composable skills + 7 runnable templates for AI coding agents**
 
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-16.1.1-black?logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Supabase](https://img.shields.io/badge/Supabase-Ready-3FCF8E?logo=supabase&logoColor=white)](https://supabase.com/)
-[![Stripe](https://img.shields.io/badge/Stripe-Integrated-635BFF?logo=stripe&logoColor=white)](https://stripe.com/)
+*Idea → Code → Deploy in one workflow. Resumable runs. Approval gates. Full audit trail.*
 
 <br />
 
-[Docs](./docs/) · [Skills](./skills/) · [Templates](./templates/)
+[![Skills](https://img.shields.io/badge/Skills-16+-8B5CF6?style=for-the-badge)](./skills/)
+[![Templates](https://img.shields.io/badge/Templates-7-10B981?style=for-the-badge)](./templates/)
+[![MIT License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](LICENSE)
+
+<br />
+
+[📚 Docs](./docs/) · [🛠️ Skills](./skills/) · [📦 Templates](./templates/) · [⚡ Quick Start](#-quick-start)
+
+<br />
+
+English | [简体中文](./README.zh-CN.md)
 
 </div>
 
 ---
 
-## What is Ship Faster?
+## 🤔 Why Ship Faster?
 
-**Ship Faster** is a copyable toolbox of workflows ("skills") for AI coding agents.
-
-| Without Ship Faster | With Ship Faster |
-|:--------------------|:-----------------|
-| Agent loses context mid-task | Every run writes artifacts to disk — resumable anytime |
-| No audit trail | Full logs + evidence for replay/review |
-| Risky side effects (deploy, DB writes, payments) | Explicit approval gates before external actions |
-| Ad-hoc prompts, inconsistent outputs | Composable skills with predictable structure |
-
-**Default stack**: Next.js 16.1.1 + optional Supabase/Stripe + GitHub/Vercel + AI-era SEO.
+| Without | With Ship Faster |
+|---------|------------------|
+| 😩 Agent loses context mid-task | ✅ Every run writes to disk — **resumable anytime** |
+| 🔥 No audit trail | ✅ Full logs + evidence for **replay/review** |
+| 💣 Risky deploys, DB writes, payments | ✅ **Approval gates** before side effects |
+| 🎲 Ad-hoc prompts, inconsistent outputs | ✅ **Composable skills** with predictable structure |
 
 ---
 
-## Who is this for?
+## 🎯 Who is this for?
 
-- **AI coding agents** (Claude Code, Cursor, OpenCode, etc.) — skills are the primary interface
-- **Developers** who operate those agents — copy/paste prompts, review artifacts, approve gates
-- **Teams** who want reproducible, auditable AI-assisted development
+- 🤖 **AI coding agents** (Claude Code, Cursor, OpenCode, etc.) — skills are the primary interface
+- 👨‍💻 **Developers** who operate those agents — copy/paste prompts, review artifacts, approve gates
+- 👥 **Teams** who want reproducible, auditable AI-assisted development
 
-> This is NOT a CLI, NOT a SaaS. It's a set of files you copy into your agent's skill directory.
+> 💡 This is NOT a CLI, NOT a SaaS. It's a set of **files you copy** into your agent's skill directory.
 
 ---
 
-## Quick Start
+## 🔗 Works With
+
+<p align="center">
+<img src="https://img.shields.io/badge/Claude_Code-000000?style=flat-square&logo=anthropic&logoColor=white" alt="Claude Code" />
+<img src="https://img.shields.io/badge/Cursor-000000?style=flat-square&logo=cursor&logoColor=white" alt="Cursor" />
+<img src="https://img.shields.io/badge/OpenCode-412991?style=flat-square&logo=openai&logoColor=white" alt="OpenCode" />
+<img src="https://img.shields.io/badge/Any_MCP_Agent-6366F1?style=flat-square" alt="MCP" />
+</p>
+
+**Default Stack:**
+
+<p align="center">
+<img src="https://img.shields.io/badge/Next.js_16-000000?style=flat-square&logo=next.js&logoColor=white" alt="Next.js" />
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
+<img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase" />
+<img src="https://img.shields.io/badge/Stripe-635BFF?style=flat-square&logo=stripe&logoColor=white" alt="Stripe" />
+<img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel" />
+</p>
+
+---
+
+## ⚡ Quick Start
 
 ### Option A: Install skills only (10 seconds)
-
-If you just want the workflows — no need to clone the repo:
 
 ```bash
 # macOS / Linux
@@ -60,7 +80,7 @@ curl -L https://github.com/Heyvhuang/ship-faster/archive/refs/heads/main.tar.gz 
 ```
 
 <details>
-<summary>Windows (PowerShell)</summary>
+<summary>🪟 Windows (PowerShell)</summary>
 
 ```powershell
 New-Item -ItemType Directory -Force -Path "$HOME\.claude\skills" | Out-Null
@@ -74,8 +94,6 @@ Copy-Item -Recurse -Force "$env:TEMP\ship-faster\ship-faster-main\skills\*" "$HO
 
 ### Option B: Clone for templates + skills (30 seconds)
 
-If you want runnable example projects too:
-
 ```bash
 git clone https://github.com/Heyvhuang/ship-faster.git
 cd ship-faster
@@ -84,18 +102,26 @@ cd ship-faster
 cp -r skills/* ~/.claude/skills/
 
 # Or run a template directly
-cd templates/001-copyback-studio
-pnpm install && pnpm dev
+cd templates/001-copyback-studio && pnpm install && pnpm dev
 ```
 
 ---
 
-## Pick Your Path
+## 🚀 Pick Your Path
 
 Once skills are installed, paste one of these into your agent:
 
-### 1) I have an idea (start from scratch)
+| Scenario | Prompt |
+|----------|--------|
+| 💡 **I have an idea** | `Use workflow-project-intake` |
+| 📦 **I have a repo** | `Use workflow-ship-faster` |
+| 🎯 **I want one feature** | `Use workflow-feature-shipper` |
+| 🎨 **I need UI/UX direction** | `Use tool-design-style-selector` |
 
+<details>
+<summary>📋 Full prompt examples</summary>
+
+**💡 Start from scratch:**
 ```text
 Use workflow-project-intake.
 
@@ -106,8 +132,7 @@ Constraints: <deadline / tech / design / infra>
 Need: deploy? database? billing? seo?
 ```
 
-### 2) I have a repo (ship it to launch)
-
+**📦 Ship existing repo:**
 ```text
 Use workflow-ship-faster.
 
@@ -116,8 +141,7 @@ Constraints: <deadline / tech / non-goals>
 Need: deploy? database? billing? seo?
 ```
 
-### 3) I want to ship one feature (PR-sized)
-
+**🎯 One feature (PR-sized):**
 ```text
 Use workflow-feature-shipper.
 
@@ -130,83 +154,80 @@ Non-goals:
 - <bullet>
 ```
 
-### 4) I want UI/UX design direction (design system / palette / typography / a11y)
-
-```text
-Use tool-design-style-selector.   # generate design-system.md
-# or:
-Use tool-ui-ux-pro-max.           # quick lookup for palette/typography/a11y
-
-Query: <what do you need?>
-Domain: product|style|typography|color|landing|chart|ux
-Stack (optional): nextjs|react|html-tailwind|vue|svelte|flutter|swiftui
-```
+</details>
 
 ---
 
-## How It Works
+## 🔄 How It Works
 
-![Ship Faster workflow](skills/assets/ship-faster-flow.png)
+<p align="center">
+<img src="skills/assets/ship-faster-flow.png" alt="Ship Faster workflow" width="700" />
+</p>
 
-Every run writes to disk for replay/audit:
+Every run writes to disk for **replay/audit/resume**:
 
 ```
-runs/ship-faster/
-├── active/
-│   └── <run_id>/
-│       ├── proposal.md        # Why/what/scope (read once)
-│       ├── tasks.md           # Checklist ([ ] → [x]) (resume here)
-│       ├── context.json       # Switches (deploy/db/billing/seo)
-│       ├── evidence/          # Optional: large outputs / audits
-│       └── logs/              # Optional: events/state (debug)
-└── archive/
-    └── YYYY-MM-DD-<run_id>/
-        └── ...
+runs/ship-faster/active/<run_id>/
+├── proposal.md      # Why/what/scope (stable context)
+├── tasks.md         # Checklist [ ] → [x] (resume here!)
+├── context.json     # Switches (deploy/db/billing/seo)
+├── evidence/        # Large outputs / audits
+└── logs/            # Debug events
 ```
 
-- **Current run(s)**: `runs/ship-faster/active/`
-- **Progress lives in tasks**: open `tasks.md` → mark checkboxes (`[ ]` → `[x]`)
-- **Side effects** (deploy, payments, DB writes) require explicit approval before execution
-
-If OpenSpec is initialized (`openspec/project.md` exists), Ship Faster can also store artifacts under `openspec/changes/<change-id>/`.
-
-> Learn more: [Runs & Approvals](docs/concepts/runs-and-approvals.md)
+> 📖 Learn more: [Runs & Approvals](docs/concepts/runs-and-approvals.md)
 
 ---
 
-## Skills
+## 🛠️ Skills (16+)
 
-Composable workflows that ship end-to-end. Copy to `~/.claude/skills/` or use as step-by-step runbooks.
+Composable workflows that ship end-to-end. Copy to `~/.claude/skills/`.
 
-| Category | Skills |
-|:---------|:-------|
-| **Workflows** | [workflow-project-intake](skills/workflow-project-intake/) · [workflow-brainstorm](skills/workflow-brainstorm/) · [workflow-ship-faster](skills/workflow-ship-faster/) · [workflow-feature-shipper](skills/workflow-feature-shipper/) |
-| **Tools** | [tool-design-style-selector](skills/tool-design-style-selector/) · [tool-ui-ux-pro-max](skills/tool-ui-ux-pro-max/) · [tool-ast-grep-rules](skills/tool-ast-grep-rules/) · [tool-x-article-publisher](skills/tool-x-article-publisher/) |
-| **Reviews** | [review-quality](skills/review-quality/) · [review-react-best-practices](skills/review-react-best-practices/) |
-| **Services** | [supabase](skills/supabase/) · [stripe](skills/stripe/) · [cloudflare](skills/cloudflare/) |
-| **Meta** | [skill-evolution](skills/skill-evolution/) · [skill-creator](skills/skill-creator/) · [skill-improver](skills/skill-improver/) |
+### 🔄 Workflows
+- ⚡ [workflow-ship-faster](skills/workflow-ship-faster/) — End-to-end: idea → foundation → design → deploy
+- 📥 [workflow-project-intake](skills/workflow-project-intake/) — Brainstorm → clarify → route to workflow
+- 🚀 [workflow-feature-shipper](skills/workflow-feature-shipper/) — PR-sized feature iteration
+- 🧠 [workflow-brainstorm](skills/workflow-brainstorm/) — One question at a time → design spec
 
-> Full catalog: [`skills/manifest.json`](skills/manifest.json)
+### 🔧 Tools
+- 🎨 [tool-design-style-selector](skills/tool-design-style-selector/) — Scan project → generate design-system.md
+- 🖌️ [tool-ui-ux-pro-max](skills/tool-ui-ux-pro-max/) — Palette / typography / UX lookup database
+- 🔍 [tool-ast-grep-rules](skills/tool-ast-grep-rules/) — AST-based code search & rewrite
+- 📝 [tool-x-article-publisher](skills/tool-x-article-publisher/) — Publish Markdown to X Articles
 
-![Run artifacts](skills/assets/run-artifacts.svg)
+### 🔎 Reviews
+- ✅ [review-quality](skills/review-quality/) — Merge readiness + maintainability + docs audit
+- ⚛️ [review-react-best-practices](skills/review-react-best-practices/) — React/Next.js performance rules
+
+### 🔌 Services
+- 🗄️ [supabase](skills/supabase/) — Database ops with safety rules (no bare DELETE!)
+- 💳 [stripe](skills/stripe/) — Billing ops with confirmation gates
+- ☁️ [cloudflare](skills/cloudflare/) — Workers / KV / R2 / D1 infrastructure
+
+### 🧬 Meta
+- 🔄 [skill-evolution](skills/skill-evolution/) — Capture context → generate patches
+- ✨ [skill-creator](skills/skill-creator/) — Create new skills from scratch
+- 🔧 [skill-improver](skills/skill-improver/) — Analyze runs → improve skills
+
+> 📋 Full catalog: [`skills/manifest.json`](skills/manifest.json)
 
 ---
 
-## Templates
+## 📦 Templates (7)
 
 Runnable example projects — demos + regression references.
 
-| # | Template | Stack | Link |
-|:-:|:---------|:------|:-----|
-| 001 | **CopyBack Studio** | Next.js + Supabase + R2 | [→ Open](templates/001-copyback-studio/) |
-| 002 | **UnitEconomics Console** | Next.js | [→ Open](templates/002-uniteconomics-console/) |
-| 003 | **MarginLedger** | Vite + React | [→ Open](templates/003-marginledger/) |
-| 004 | **Kanban Load Mirror** | Vite + React | [→ Open](templates/004-kanban-load-mirror/) |
-| 005 | **Multi-Store Daily Brief** | Vite + React | [→ Open](templates/005-multi-store-daily-brief/) |
-| 006 | **Ticket to FAQ** | Vite + React | [→ Open](templates/006-ticket-to-faq/) |
-| 007 | **Elevate Move-in Booking** | Vite + React | [→ Open](templates/007-elevate-move-in-booking/) |
+| | Template | Stack | Description |
+|:-:|:---------|:------|:------------|
+| 🎨 | [CopyBack Studio](templates/001-copyback-studio/) | Next.js + Supabase + R2 | AI image workflow |
+| 📊 | [UnitEconomics Console](templates/002-uniteconomics-console/) | Next.js | Business metrics dashboard |
+| 💰 | [MarginLedger](templates/003-marginledger/) | Vite + React | Profit margin tracker |
+| 📋 | [Kanban Load Mirror](templates/004-kanban-load-mirror/) | Vite + React | Task load balancing |
+| 📈 | [Multi-Store Daily Brief](templates/005-multi-store-daily-brief/) | Vite + React | Retail analytics |
+| ❓ | [Ticket to FAQ](templates/006-ticket-to-faq/) | Vite + React | Support → FAQ generator |
+| 🏠 | [Elevate Move-in Booking](templates/007-elevate-move-in-booking/) | Vite + React | Appointment scheduling |
 
-> The repo root is intentionally **not runnable**. Pick a template or run skills against your own project.
+> 💡 The repo root is **not runnable**. Pick a template or run skills against your own project.
 
 ---
 
@@ -293,14 +314,27 @@ cp -r ship-faster/skills/workflow-ship-faster ~/.claude/skills/
 
 ---
 
-## Security
+## 🔒 Security
 
 - Never commit secrets or `.env.local` files
 - Build outputs (`.next/`, `*.tsbuildinfo`) are gitignored
+- Write operations (DB, deploy, payments) require explicit approval
 
 ---
 
-## License
+## 🌟 Star History
+
+<p align="center">
+<a href="https://star-history.com/#Heyvhuang/ship-faster&Date">
+  <img src="https://api.star-history.com/svg?repos=Heyvhuang/ship-faster&type=Date" alt="Star History Chart" width="600" />
+</a>
+</p>
+
+> ⭐ **Star this repo** to stay updated on new skills and templates!
+
+---
+
+## 📜 License
 
 MIT License — see [LICENSE](LICENSE)
 
@@ -308,8 +342,13 @@ MIT License — see [LICENSE](LICENSE)
 
 <div align="center">
 
-**Made by [VoxYZ](https://voxyz.space)**
+**Made with ❤️ by [VoxYZ](https://voxyz.space)**
 
-<sub>Ship small. Ship fast. Ship often.</sub>
+*Ship small. Ship fast. Ship often.*
+
+<br />
+
+[![Twitter](https://img.shields.io/badge/Follow-@VoxYZ-1DA1F2?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/voxyz)
+[![GitHub](https://img.shields.io/badge/GitHub-Heyvhuang-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Heyvhuang)
 
 </div>
