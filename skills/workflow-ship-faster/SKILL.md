@@ -1,13 +1,20 @@
 ---
 name: workflow-ship-faster
-description: "Ship Faster end-to-end workflow for small web apps (default: Next.js 16.1.1): idea/prototype → foundation gate → design-system.md → lightweight guardrails + docs → feature iteration → optional Supabase + Stripe → optional GitHub + Vercel deploy → optional AI-era SEO (sitemap/robots/llms.txt). Resumable, artifact-first under runs/ship-faster/ (or OpenSpec changes/ when available)."
+description: "Ship Faster end-to-end workflow for small web apps (default: Next.js 16.1.1): idea/prototype → foundation gate → design-system.md → lightweight guardrails + docs → feature iteration → optional Supabase + Stripe → optional GitHub + Vercel deploy → optional AI-era SEO (sitemap/robots/llms.txt). Resumable, artifact-first under runs/ship-faster/ (or OpenSpec changes/). Trigger: ship/launch/deploy/production-ready MVP."
 ---
 
 # Workflow: Ship Faster (Next.js 16.1.1)
 
 The goal of this chain is: **Ship an idea or small prototype to production-ready state in the shortest time**, while maintaining iteration speed afterward.
 
-## Core Principles
+## When to use
+
+Use this workflow when the user wants an end-to-end chain like:
+- “ship this MVP”, “make it production-ready”, “launch/deploy this project”
+- “take this prototype and turn it into a real app”
+- “set up the foundation + UI system + deployment”
+
+## Core principles (non-negotiable)
 
 - **Pass paths only, not content**: agents/sub-agents only pass `..._path`.
 - **Files are first-class citizens**: Every step must persist artifacts; failures can be retried; replayable.
@@ -15,194 +22,43 @@ The goal of this chain is: **Ship an idea or small prototype to production-ready
 - **Plans are checklists**: progress is tracked in `tasks.md` via `- [ ]` → `- [x]` (not in chat).
 - **Progressive disclosure**: Only open step files in this skill directory (`foundation.md`, `deploy-vercel.md`, etc.) when needed—avoid loading all details at once.
 
-## Artifact Storage (Unified Contract)
+## Inputs / outputs (paths only)
 
-This workflow supports two storage backends:
+Inputs (paths only):
+- `repo_root`: project root (default `"."`)
+- Optional: `run_dir` (active run directory) if the user already has one
 
-### Backend A (default): `runs/`
+Outputs (artifacts, written under `run_dir/`):
+- Required: `proposal.md`, `tasks.md`, `context.json`
+- Optional: `design.md`, `evidence/`, `logs/`
 
-- Active: `runs/ship-faster/active/<run_id>/`
-- Archive (after completion): `runs/ship-faster/archive/YYYY-MM-DD-<run_id>/`
+Canonical contract (backends, templates, read order, auto-archive):
+- [references/artifact-contract.md](references/artifact-contract.md)
+- Reference index: [references/README.md](references/README.md)
 
-### Backend B (OpenSpec-compatible): `openspec/`
+## Step modules (open only when you hit that step)
 
-If the repo is OpenSpec-initialized (detect via `openspec/project.md`), store artifacts as an OpenSpec change:
-
-- Active: `openspec/changes/<change-id>/`
-- Archive (after completion): `openspec/changes/archive/YYYY-MM-DD-<change-id>/`
-
-Notes:
-- In OpenSpec mode, `run_id` is the `change-id` (kebab-case, verb-led).
-- If `openspec` CLI is available, prefer scaffolding the change via `openspec new change <change-id>`.
-
-### Backend selection (must be deterministic)
-
-Resolve `run_dir` using this priority order:
-
-1) If `context.json` includes `"artifact_store": "runs"` or `"openspec"`, follow it.
-2) Else if `openspec/project.md` exists in `repo_root`, use OpenSpec backend.
-3) Else use the default `runs/` backend.
-
-From this point on, treat `run_dir` as the resolved active directory (`runs/.../active/...` or `openspec/changes/...`).
-
-### Required files (small + resumable)
-
-Each run directory **must** contain:
-
-- `proposal.md`: why/what/scope/constraints (stable context)
-- `tasks.md`: executable checklist (`- [ ]` → `- [x]`) + approvals (**resume here**)
-- `context.json`: machine-readable switches (`need_database/need_billing/need_deploy/need_seo`) + repo_root/risk preference
-
-Recommended minimal `context.json` (extend as needed):
-
-```json
-{
-  "repo_root": "",
-  "scope": "full",
-  "artifact_store": "auto",
-  "need_database": false,
-  "need_billing": false,
-  "need_deploy": false,
-  "need_seo": false
-}
-```
-
-Optional (only create if needed):
-
-- `design.md`: technical decisions (only if ambiguity/risk warrants it)
-- `evidence/`: large outputs / scans / screenshots (paths only in chat)
-- `logs/`: optional debug logs (`events.jsonl`, `state.json`)
-
-### Proposal template (minimum viable)
-
-```md
-# Proposal: <title>
-
-- run_id: <run_id>
-- status: active|blocked|done
-- created_at: <ISO8601>
-- repo_root: <path>
-
-## Why
-- <1-3 bullets>
-
-## What changes
-- <1-5 bullets>
-
-## Acceptance criteria
-- <3-7 bullets>
-
-## Non-goals
-- <1-3 bullets>
-
-## Links
-- tasks: tasks.md
-- evidence: evidence/ (optional)
-```
-
-### Tasks template (checklist required)
-
-```md
-# Tasks: <title>
-
-- run_id: <run_id>
-- status: active|blocked|done
-- last_updated: <ISO8601>
-
-## Checklist
-- [ ] T1: <small, verifiable>
-- [ ] T2: <small, verifiable>
-- [ ] T3: <small, verifiable>
-
-## Verification (required for auto-archive)
-- [ ] V1: Verification completed (commands + outcomes recorded under Evidence index)
-
-## Approvals (only if needed)
-- (none)
-
-## Evidence index (paths only)
-- evidence/<...>
-
-## Delivery summary (fill when done)
-- <what shipped>
-- <how to verify>
-- <next steps>
-```
-
-### Default read order (resume)
-
-Unless the user points you at a specific file, read:
-
-1) `tasks.md` (resume + progress)
-2) `proposal.md` (context)
-3) `context.json` (switches)
-4) `design.md` (if exists)
-5) Only then: `evidence/` / `logs/`
-
-### Read/Write hygiene (mandatory)
-
-Layer info to avoid "output piling up in chat → context window explosion":
-
-- **Raw evidence (traceable, not loaded by default)**: long command output, scans, screenshots → write to `evidence/` or `logs/`
-- **Actionable state (default must-read)**: keep the checklist + the current truth in `tasks.md`
-
-Constraints:
-- Don’t paste large chunks into chat; write file(s) and return **paths only**
-- Any info needed to resume must be written into `tasks.md`, not only in chat
-- When tracing details: use `rg` inside `logs/` or search under `evidence/` first
-
-### Archiving and retention (recommended)
-
-If runs accumulate, default strategy is "read less + archivable", not "keep everything visible forever":
-
-- Completed runs (`status: done`) should be **read-only**, avoid polluting retrospectives
-- After completion: move `active/<run_id>/` → `archive/YYYY-MM-DD-<run_id>/`
-
-### Auto-archive (fully automatic)
-
-Ship Faster supports **fully automatic archiving** when a run is complete.
-
-Archiving eligibility (must all be true):
-- `tasks.md` contains a verification section (`## Verification` or `## Testing`) with at least one checkbox item
-- **All** checkbox items in `tasks.md` are checked (`- [x]`)
-
-Automation rule (mandatory):
-- After every execution batch (or any time you update checkboxes), run:
-  - `python3 ~/.claude/skills/workflow-ship-faster/scripts/auto_archive.py --run-dir "<run_dir>"`
-- The script is deterministic:
-  - If eligible: it archives the run directory immediately (no confirmation)
-  - If not eligible: it prints a short reason and does nothing
-
-### OpenSpec alignment (recommended)
-
-Separate "stable project truth" from "single change run" (avoid stuffing everything into run):
-
-- **Source of truth (project-level docs)**: `design-system.md`, `README.md`, `docs/`, architecture/constraint docs
-- **Change folder (this run)**: `run_dir/` (only this run’s proposal/tasks/evidence/logs)
-
-Implementation rule:
-- This run folder only stores **process + evidence + decisions**; anything that should live long-term gets merged back to project docs
+- Foundation: [foundation.md](foundation.md)
+- Guardrails: [guardrails.md](guardrails.md)
+- Trace cleanup: [cleanup-traces.md](cleanup-traces.md)
+- Docs baseline: [docs-baseline.md](docs-baseline.md)
+- Supabase integration: [supabase-integration.md](supabase-integration.md)
+- Stripe integration: [stripe-integration.md](stripe-integration.md)
+- Deploy (GitHub + Vercel): [deploy-vercel.md](deploy-vercel.md)
+- AI-era SEO (Next.js): [ai-seo-nextjs.md](ai-seo-nextjs.md)
 
 ## Process (Default Route)
 
 ### 0) Initialize Run (Required)
 
-1. Create the active run directory (if it doesn’t exist):
-   - `run_dir/`
+1. Resolve/create `run_dir/` (see the deterministic backend rules in [references/artifact-contract.md](references/artifact-contract.md)).
 2. Ensure core artifacts exist (create if missing; merge/append if already present):
-   - `proposal.md`
-   - `tasks.md`
-   - `context.json`
-
-   Rules:
-   - If file doesn’t exist: create and write
-   - If file already exists (e.g., produced by `workflow-project-intake`): **reuse directly**, only fill missing fields; don’t blindly overwrite
-3. If `context.json` is missing critical info (repo_root / need_* switches / risk preference / scope), ask the user to fill it first, then merge-update `context.json`.
-4. In `tasks.md`, ensure there is:
+   - `proposal.md`, `tasks.md`, `context.json`
+3. In `tasks.md`, ensure:
    - a `status: active|blocked|done` field near the top
    - a short **Next action** section (1–3 items)
    - an **Approvals** section (empty is fine until needed)
-5. Create `evidence/` and `logs/` folders only when you actually have large outputs to store.
+4. Only create `evidence/` and `logs/` when you actually have large outputs to store.
 
 ### 0.2) Scope Confirmation (Required)
 
@@ -372,5 +228,7 @@ Write to: `final.md` (in the run root), at minimum include:
 
 And wrap up:
 - Update `tasks.md` `status` to `done`, and fill the **Delivery summary**
-- If you want a clean workspace: move `active/<run_id>/` → `archive/YYYY-MM-DD-<run_id>/`
+- Run auto-archive after each batch (and at the end):
+  - `python3 ~/.claude/skills/workflow-ship-faster/scripts/auto_archive.py --run-dir "<run_dir>"`
+- If you want a clean workspace (without auto-archive): move `active/<run_id>/` → `archive/YYYY-MM-DD-<run_id>/`
 - Do a `skill-evolution` **Evolution checkpoint** (3 questions); if user chooses "want to optimize", run `skill-improver` based on this `run_dir` to produce minimal patch suggestions
