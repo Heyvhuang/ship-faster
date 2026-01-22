@@ -13,6 +13,17 @@ def validate_skill(skill_path):
     """Basic validation of a skill"""
     skill_path = Path(skill_path)
 
+    def _is_valid_metadata_value(value):
+        if value is None:
+            return True
+        if isinstance(value, (str, int, float, bool)):
+            return True
+        if isinstance(value, list):
+            return all(_is_valid_metadata_value(v) and not isinstance(v, (list, dict)) for v in value)
+        if isinstance(value, dict):
+            return all(isinstance(k, str) and _is_valid_metadata_value(v) for k, v in value.items())
+        return False
+
     # Check SKILL.md exists
     skill_md = skill_path / 'SKILL.md'
     if not skill_md.exists():
@@ -44,7 +55,15 @@ def validate_skill(skill_path):
         return False, f"Invalid YAML in frontmatter: {e}"
 
     # Define allowed properties
-    ALLOWED_PROPERTIES = {'name', 'description', 'license', 'compatibility', 'allowed-tools', 'metadata'}
+    ALLOWED_PROPERTIES = {
+        'name',
+        'description',
+        'license',
+        'compatibility',
+        'argument-hint',
+        'allowed-tools',
+        'metadata',
+    }
 
     # Check for unexpected properties (excluding nested keys under metadata)
     unexpected_keys = set(frontmatter.keys()) - ALLOWED_PROPERTIES
@@ -89,8 +108,6 @@ def validate_skill(skill_path):
     if not description:
         return False, "Description must be non-empty"
 
-    if '<' in description or '>' in description:
-        return False, "Description cannot contain angle brackets (< or >)"
     if len(description) > 1024:
         return False, f"Description is too long ({len(description)} characters). Maximum is 1024 characters."
 
@@ -102,17 +119,34 @@ def validate_skill(skill_path):
         if len(compatibility) > 500:
             return False, f"Compatibility is too long ({len(compatibility)} characters). Maximum is 500 characters."
 
+    argument_hint = frontmatter.get('argument-hint')
+    if argument_hint is not None:
+        if not isinstance(argument_hint, str):
+            return False, f"Argument-hint must be a string, got {type(argument_hint).__name__}"
+        argument_hint = argument_hint.strip()
+        if len(argument_hint) > 500:
+            return False, f"Argument-hint is too long ({len(argument_hint)} characters). Maximum is 500 characters."
+
     metadata = frontmatter.get('metadata')
     if metadata is not None:
         if not isinstance(metadata, dict):
             return False, f"Metadata must be a YAML dictionary, got {type(metadata).__name__}"
         for key, value in metadata.items():
-            if not isinstance(key, str) or not isinstance(value, str):
-                return False, "Metadata keys and values must be strings"
+            if not isinstance(key, str):
+                return False, "Metadata keys must be strings"
+            if not _is_valid_metadata_value(value):
+                return False, "Metadata values must be scalars, lists of scalars, or dictionaries"
 
     allowed_tools = frontmatter.get('allowed-tools')
-    if allowed_tools is not None and not isinstance(allowed_tools, str):
-        return False, f"Allowed-tools must be a string, got {type(allowed_tools).__name__}"
+    if allowed_tools is not None:
+        if isinstance(allowed_tools, str):
+            pass
+        elif isinstance(allowed_tools, list):
+            for item in allowed_tools:
+                if not isinstance(item, str) or not item.strip():
+                    return False, "Allowed-tools list items must be non-empty strings"
+        else:
+            return False, f"Allowed-tools must be a string or list of strings, got {type(allowed_tools).__name__}"
 
     return True, "Skill is valid!"
 

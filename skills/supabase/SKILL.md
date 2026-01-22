@@ -1,6 +1,11 @@
 ---
 name: supabase
 description: "Database operations for Supabase: query/write/migration/logs/type generation. Triggers: query/statistics/export/insert/update/delete/fix/backfill/migrate/logs/alerts/type generation. Does not trigger for: pure architecture discussion or code planning. Write operations require confirmation; UPDATE/DELETE without WHERE is refused. MCP is optional — works with CLI/Console too."
+allowed-tools:
+  - Read
+  - Bash
+  - WebFetch
+  - supabase-*
 ---
 
 # Supabase Database Operations

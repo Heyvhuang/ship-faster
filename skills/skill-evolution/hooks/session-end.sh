@@ -334,6 +334,76 @@ with open(review_path,"w") as f:
 PY
 fi
 
+# Optional: if we are in the Ship Faster skills repo, run repo checks in check-mode
+# and write results to the evolution run_dir (do not modify repo state).
+repo_lint="$project_root/skills/skill-creator/scripts/skill_lint.py"
+if [ -f "$repo_lint" ] && command -v python3 >/dev/null 2>&1; then
+  repo_check="$run_dir/skill-repo-check.md"
+  set +e
+  python3 - "$repo_check" "$repo_lint" <<'PY'
+import datetime
+import subprocess
+import sys
+
+out_path=sys.argv[1]
+lint_path=sys.argv[2]
+
+ts=datetime.datetime.utcnow().replace(microsecond=0).isoformat()+"Z"
+cmd=[sys.executable, lint_path, "--check-generated"]
+res=subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+output=(res.stdout or "")
+
+max_chars=6000
+truncated=output
+was_truncated=False
+if len(truncated) > max_chars:
+  truncated=truncated[:max_chars] + "\n... (truncated)\n"
+  was_truncated=True
+
+lines=[]
+lines.append("# Skill Repo Check")
+lines.append("")
+lines.append(f"Generated: {ts}")
+lines.append("")
+lines.append("Command:")
+lines.append("")
+lines.append("```bash")
+lines.append(" ".join(cmd))
+lines.append("```")
+lines.append("")
+lines.append(f"Exit code: {res.returncode}")
+lines.append("")
+if truncated.strip():
+  lines.append("## Output")
+  lines.append("")
+  lines.append("```text")
+  lines.append(truncated.rstrip())
+  lines.append("```")
+  lines.append("")
+if res.returncode != 0:
+  lines.append("## Fix")
+  lines.append("")
+  lines.append("Run:")
+  lines.append("")
+  lines.append("```bash")
+  lines.append("python skills/skill-creator/scripts/sync_catalog.py")
+  lines.append("python skills/skill-creator/scripts/skill_lint.py --check-generated")
+  lines.append("```")
+  lines.append("")
+elif was_truncated:
+  lines.append("## Note")
+  lines.append("")
+  lines.append("Output was truncated.")
+  lines.append("")
+
+with open(out_path, "w") as f:
+  f.write("\n".join(lines) + "\n")
+
+sys.exit(0)
+PY
+  set -e
+fi
+
 if [ -f "$review" ]; then
   printf "\n[Evolution] Review written: %s\n" "$review"
   printf "[Evolution] If you want to improve skills, open it and answer Q1 (A/B/C).\n"

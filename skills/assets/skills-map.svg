@@ -9,44 +9,45 @@
   </style>
 
   <rect x="24" y="16" width="1152" height="488" rx="16" fill="#FFFFFF" stroke="#E5E7EB" />
-  <text x="40" y="48" class="title">Skills map (prefix groups)</text>
+  <text x="40" y="48" class="title">Skills map</text>
 
-  <!-- Row 1 -->
   <rect x="40" y="80" width="360" height="160" class="box accent" />
   <text x="56" y="108" class="label">Workflows</text>
-  <text x="56" y="132" class="text">workflow-project-intake</text>
-  <text x="56" y="150" class="text">workflow-ship-faster</text>
-  <text x="56" y="168" class="text">workflow-feature-shipper</text>
-  <text x="56" y="186" class="text">workflow-template-seeder</text>
-  <text x="56" y="204" class="text">workflow-template-extractor</text>
+  <text x="56" y="132" class="text">workflow-brainstorm</text>
+  <text x="56" y="150" class="text">workflow-feature-shipper</text>
+  <text x="56" y="168" class="text">workflow-project-intake</text>
+  <text x="56" y="186" class="text">workflow-ship-faster</text>
 
   <rect x="420" y="80" width="360" height="160" class="box" />
   <text x="436" y="108" class="label">Tools</text>
-  <text x="436" y="132" class="text">tool-design-style-selector</text>
-  <text x="436" y="150" class="text">tool-ast-grep-rules</text>
-  <text x="436" y="168" class="muted">(deterministic helpers)</text>
+  <text x="436" y="132" class="text">tool-ast-grep-rules</text>
+  <text x="436" y="150" class="text">tool-better-auth</text>
+  <text x="436" y="168" class="text">tool-design-style-selector</text>
+  <text x="436" y="186" class="text">tool-hooks-doctor</text>
+  <text x="436" y="204" class="text">tool-programmatic-seo</text>
+  <text x="436" y="222" class="text">tool-schema-markup</text>
+  <text x="436" y="240" class="muted">(+2 more)</text>
 
   <rect x="800" y="80" width="360" height="160" class="box" />
   <text x="816" y="108" class="label">Reviews</text>
-  <text x="816" y="132" class="text">review-clean-code</text>
-  <text x="816" y="150" class="text">review-doc-consistency</text>
-  <text x="816" y="168" class="text">review-merge-readiness</text>
+  <text x="816" y="132" class="text">review-quality</text>
+  <text x="816" y="150" class="text">review-react-best-practices</text>
+  <text x="816" y="168" class="text">review-seo-audit</text>
 
-  <!-- Row 2 -->
   <rect x="40" y="280" width="360" height="160" class="box" />
-  <text x="56" y="308" class="label">Services (external systems)</text>
-  <text x="56" y="332" class="text">supabase</text>
+  <text x="56" y="308" class="label">Services</text>
+  <text x="56" y="332" class="text">cloudflare</text>
   <text x="56" y="350" class="text">stripe</text>
-  <text x="56" y="368" class="text">cloudflare</text>
+  <text x="56" y="368" class="text">supabase</text>
 
   <rect x="420" y="280" width="360" height="160" class="box" />
   <text x="436" y="308" class="label">Maintenance</text>
   <text x="436" y="332" class="text">skill-creator</text>
-  <text x="436" y="350" class="text">skill-improver</text>
-  <text x="436" y="368" class="text">skill-evolution</text>
+  <text x="436" y="350" class="text">skill-evolution</text>
+  <text x="436" y="368" class="text">skill-improver</text>
 
   <rect x="800" y="280" width="360" height="160" class="box" />
   <text x="816" y="308" class="label">Publishing</text>
   <text x="816" y="332" class="text">tool-x-article-publisher</text>
-  <text x="816" y="350" class="muted">(content distribution)</text>
+
 </svg>

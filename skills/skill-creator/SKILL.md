@@ -51,6 +51,18 @@ python scripts/init_skill.py <skill-name> --path <output-directory>
 python scripts/quick_validate.py /path/to/<skill-name>
 ```
 
+### Sync catalogs/assets (manifest, skills-map, docs catalog)
+
+```bash
+python scripts/sync_catalog.py
+```
+
+### Lint skills (compat + quality gates)
+
+```bash
+python scripts/skill_lint.py --check-generated
+```
+
 ### Package a skill into a distributable `.skill` zip (optional)
 
 ```bash
@@ -67,4 +79,3 @@ python scripts/package_skill.py /path/to/<skill-name> [output-directory]
 
 The previous (long-form) version of this skill is preserved at:
 - [`references/legacy-skill-creator.md`](references/legacy-skill-creator.md)
-

@@ -4,19 +4,13 @@
 
 <br />
 
-**16 个可组合技能 + 7 个可运行模板，专为 AI 编程代理设计**
+**22 个可组合技能 + 7 个可运行模板，专为 AI 编程代理设计**
 
 *想法 → 代码 → 部署，一条工作流搞定。可恢复运行、审批门控、完整审计日志。*
 
 <br />
 
-[![Skills](https://img.shields.io/badge/技能-16+-8B5CF6?style=for-the-badge)](./skills/)
-[![Templates](https://img.shields.io/badge/模板-7-10B981?style=for-the-badge)](./templates/)
-[![MIT License](https://img.shields.io/badge/许可证-MIT-3B82F6?style=for-the-badge)](LICENSE)
-
-<br />
-
-[📚 文档](./docs/) · [🛠️ 技能](./skills/) · [📦 模板](./templates/) · [⚡ 快速开始](#-快速开始)
+[📚 文档](./docs/) · [🗂️ 技能目录](./docs/skills-catalog.md) · [🛠️ 技能](./skills/) · [📦 模板](./templates/) · [⚡ 快速开始](#-快速开始)
 
 <br />
 
@@ -49,22 +43,8 @@
 
 ## 🔗 兼容工具
 
-<p align="center">
-<img src="https://img.shields.io/badge/Claude_Code-000000?style=flat-square&logo=anthropic&logoColor=white" alt="Claude Code" />
-<img src="https://img.shields.io/badge/Cursor-000000?style=flat-square&logo=cursor&logoColor=white" alt="Cursor" />
-<img src="https://img.shields.io/badge/OpenCode-412991?style=flat-square&logo=openai&logoColor=white" alt="OpenCode" />
-<img src="https://img.shields.io/badge/任意_MCP_Agent-6366F1?style=flat-square" alt="MCP" />
-</p>
-
-**默认技术栈：**
-
-<p align="center">
-<img src="https://img.shields.io/badge/Next.js_16-000000?style=flat-square&logo=next.js&logoColor=white" alt="Next.js" />
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
-<img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase" />
-<img src="https://img.shields.io/badge/Stripe-635BFF?style=flat-square&logo=stripe&logoColor=white" alt="Stripe" />
-<img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel" />
-</p>
+- 代理：Claude Code、Cursor、OpenCode，以及任意支持 MCP 的 agent
+- 默认技术栈假设：Next.js + TypeScript + Supabase + Stripe + Vercel
 
 ---
 
@@ -101,6 +81,19 @@ cp -r skills/* ~/.claude/skills/
 # 或运行模板: cd templates/001-copyback-studio && pnpm install && pnpm dev
 ```
 
+### 方式 C：用 skills.sh 安装（npx）
+
+```bash
+# 列出技能
+npx --yes skills add Heyvhuang/ship-faster --list
+
+# 安装全部技能（Claude Code）
+npx --yes skills add Heyvhuang/ship-faster --yes --agent claude-code
+
+# 只安装一个技能
+npx --yes skills add Heyvhuang/ship-faster --yes --agent claude-code --skill workflow-ship-faster
+```
+
 ---
 
 ## 🚀 选择你的路径
@@ -117,7 +110,7 @@ cp -r skills/* ~/.claude/skills/
 ## 🔄 工作原理
 
 <p align="center">
-<img src="skills/assets/ship-faster-flow.png" alt="Ship Faster 工作流" width="700" />
+<img src="skills/assets/ship-faster-flow.png" alt="Ship Faster 工作流" width="780" />
 </p>
 
 每次运行都写入磁盘，支持 **回放/审计/恢复**：
@@ -135,7 +128,7 @@ runs/ship-faster/active/<run_id>/
 
 ---
 
-## 🛠️ 技能（16+）
+## 🛠️ 技能（22）
 
 可组合的工作流，复制到 `~/.claude/skills/`。
 
@@ -149,11 +142,17 @@ runs/ship-faster/active/<run_id>/
 - 🎨 [tool-design-style-selector](skills/tool-design-style-selector/) — 生成 design-system.md
 - 🖌️ [tool-ui-ux-pro-max](skills/tool-ui-ux-pro-max/) — 配色 / 字体 / UX 查询
 - 🔍 [tool-ast-grep-rules](skills/tool-ast-grep-rules/) — AST 代码搜索重写
+- 🧰 [tool-hooks-doctor](skills/tool-hooks-doctor/) — 检查/安装 Claude Code evolution hooks
+- 🔐 [tool-better-auth](skills/tool-better-auth/) — Better Auth 集成指引
+- 🧪 [tool-systematic-debugging](skills/tool-systematic-debugging/) — 以根因为先的调试流程
+- 🧩 [tool-schema-markup](skills/tool-schema-markup/) — Schema / JSON-LD 指引
+- 📈 [tool-programmatic-seo](skills/tool-programmatic-seo/) — Programmatic SEO（模板化规模页面）
 - 📝 [tool-x-article-publisher](skills/tool-x-article-publisher/) — 发布到 X Articles
 
 ### 🔎 审查
 - ✅ [review-quality](skills/review-quality/) — 合并就绪 + 可维护性审计
 - ⚛️ [review-react-best-practices](skills/review-react-best-practices/) — React/Next.js 性能规则
+- 🔍 [review-seo-audit](skills/review-seo-audit/) — SEO 审计框架
 
 ### 🔌 服务
 - 🗄️ [supabase](skills/supabase/) — 数据库操作（禁止裸 DELETE！）
@@ -166,7 +165,7 @@ runs/ship-faster/active/<run_id>/
 - ✨ [skill-creator](skills/skill-creator/) — 从零创建新技能
 - 🔧 [skill-improver](skills/skill-improver/) — 分析运行 → 改进技能
 
-> 📋 完整目录：[`skills/manifest.json`](skills/manifest.json)
+> 📋 完整目录：[`docs/skills-catalog.md`](docs/skills-catalog.md) · [`skills/manifest.json`](skills/manifest.json)
 
 ---
 
@@ -196,18 +195,6 @@ runs/ship-faster/active/<run_id>/
 
 ---
 
-## 🌟 Star 历史
-
-<p align="center">
-<a href="https://star-history.com/#Heyvhuang/ship-faster&Date">
-  <img src="https://api.star-history.com/svg?repos=Heyvhuang/ship-faster&type=Date" alt="Star History Chart" width="600" />
-</a>
-</p>
-
-> ⭐ **Star 这个仓库**，及时获取新技能和模板更新！
-
----
-
 ## 📜 许可证
 
 MIT 许可证 — 查看 [LICENSE](LICENSE)
@@ -216,13 +203,10 @@ MIT 许可证 — 查看 [LICENSE](LICENSE)
 
 <div align="center">
 
-**由 [VoxYZ](https://voxyz.space) 用 ❤️ 打造**
+**由 [VoxYZ](https://voxyz.space) 制作**
 
 *小步快跑，持续交付。*
 
-<br />
-
-[![Twitter](https://img.shields.io/badge/关注-@VoxYZ-1DA1F2?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/voxyz)
-[![GitHub](https://img.shields.io/badge/GitHub-Heyvhuang-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Heyvhuang)
+链接：[Twitter](https://twitter.com/voxyz) · [GitHub](https://github.com/Heyvhuang)
 
 </div>

@@ -27,6 +27,19 @@ Copy-Item -Recurse -Force "$env:TEMP\ship-faster\ship-faster-main\skills\*" "$HO
 
 </details>
 
+### skills.sh (npx)
+
+```bash
+# List available skills
+npx --yes skills add Heyvhuang/ship-faster --list
+
+# Install all skills (Claude Code)
+npx --yes skills add Heyvhuang/ship-faster --yes --agent claude-code
+
+# Install a single skill
+npx --yes skills add Heyvhuang/ship-faster --yes --agent claude-code --skill workflow-ship-faster
+```
+
 ---
 
 ## 🚀 2) Run (Copy/Paste Prompts)
@@ -65,4 +78,3 @@ Copy-Item -Recurse -Force "$env:TEMP\ship-faster\ship-faster-main\skills\*" "$HO
 [← Docs](README.md) · [Runs & Approvals →](concepts/runs-and-approvals.md)
 
 </div>
-

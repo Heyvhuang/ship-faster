@@ -1,46 +1,28 @@
 {
   "schemaVersion": 1,
   "skillsVersion": "2026-01-16",
-  "generatedAt": "2026-01-16",
+  "generatedAt": "2026-01-22",
   "skills": [
     {
       "name": "cloudflare",
       "dir": "cloudflare",
       "skillMd": "cloudflare/SKILL.md",
       "stage": "service",
-      "tags": ["approvals", "service", "infrastructure"],
-      "summary": "Infrastructure operations for Cloudflare: Workers, KV, R2, D1, Hyperdrive, observability, builds, audit logs. Three permission tiers: Diagnose (read-only), Change (write requires confirmation), Super Admin (isolated environment). MCP optional."
-    },
-    {
-      "name": "stripe",
-      "dir": "stripe",
-      "skillMd": "stripe/SKILL.md",
-      "stage": "service",
-      "tags": ["approvals", "service", "billing"],
-      "summary": "Billing and payment operations for Stripe: customers, products, prices, invoices, payment links, subscriptions, refunds, disputes, balance. Money operations require confirmation. MCP optional."
-    },
-    {
-      "name": "supabase",
-      "dir": "supabase",
-      "skillMd": "supabase/SKILL.md",
-      "stage": "service",
-      "tags": ["approvals", "service", "database"],
-      "summary": "Database operations for Supabase: query, write, migration, logs, type generation. Write operations require confirmation; UPDATE/DELETE without WHERE refused. MCP optional."
-    },
-    {
-      "name": "tool-x-article-publisher",
-      "dir": "tool-x-article-publisher",
-      "skillMd": "tool-x-article-publisher/SKILL.md",
-      "stage": "tool",
-      "tags": ["tool", "publish"],
-      "summary": "Publish Markdown to X (Twitter) Articles as a draft (never auto-publish). Converts Markdown → HTML for rich text paste and inserts images deterministically."
+      "tags": [
+        "service",
+        "approvals",
+        "infrastructure"
+      ],
+      "summary": "Infrastructure operations for Cloudflare: Workers, KV, R2, D1, Hyperdrive, observability, builds, audit logs. Three permission tiers: Diagnose (read-only), Change (write requires confirmation), Super Admin (isolated environment). MCP opt..."
     },
     {
       "name": "review-quality",
       "dir": "review-quality",
       "skillMd": "review-quality/SKILL.md",
       "stage": "review",
-      "tags": ["review"],
+      "tags": [
+        "review"
+      ],
       "summary": "Unified codebase quality review: merge readiness verdict + maintainability (Clean Code) + docs-vs-code consistency. Single entry point with auto-triage (runs React/Next.js perf review and UI guidelines audit when applicable)."
     },
     {
@@ -48,15 +30,29 @@
       "dir": "review-react-best-practices",
       "skillMd": "review-react-best-practices/SKILL.md",
       "stage": "review",
-      "tags": ["review"],
+      "tags": [
+        "review"
+      ],
       "summary": "Review or refactor React / Next.js code for performance and reliability using a prioritized rule library (waterfalls, bundle size, server/client data fetching, re-renders)."
+    },
+    {
+      "name": "review-seo-audit",
+      "dir": "review-seo-audit",
+      "skillMd": "review-seo-audit/SKILL.md",
+      "stage": "review",
+      "tags": [
+        "review"
+      ],
+      "summary": "When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions \"SEO audit,\" \"technical SEO,\" \"why am I not ranking,\" \"SEO issues,\" \"on-page SEO,\" \"meta tags review,\" or \"SEO health check.\" For..."
     },
     {
       "name": "skill-creator",
       "dir": "skill-creator",
       "skillMd": "skill-creator/SKILL.md",
       "stage": "meta",
-      "tags": ["meta"],
+      "tags": [
+        "meta"
+      ],
       "summary": "Create or refactor Ship Faster-style skills (SKILL.md + references/ + scripts/). Emphasizes progressive disclosure, artifact-first I/O, and packaging/validation."
     },
     {
@@ -64,7 +60,9 @@
       "dir": "skill-evolution",
       "skillMd": "skill-evolution/SKILL.md",
       "stage": "meta",
-      "tags": ["meta"],
+      "tags": [
+        "meta"
+      ],
       "summary": "Global evolution system for ship-faster skills. Uses hooks to capture context, failures, and session summaries, then generates patch suggestions (no auto edits)."
     },
     {
@@ -72,47 +70,148 @@
       "dir": "skill-improver",
       "skillMd": "skill-improver/SKILL.md",
       "stage": "meta",
-      "tags": ["meta"],
+      "tags": [
+        "meta"
+      ],
       "summary": "Improve skills and workflows by analyzing run artifacts and execution logs. Find failure modes, bottlenecks, unclear prompts, missing I/O contracts."
+    },
+    {
+      "name": "stripe",
+      "dir": "stripe",
+      "skillMd": "stripe/SKILL.md",
+      "stage": "service",
+      "tags": [
+        "service",
+        "approvals",
+        "billing"
+      ],
+      "summary": "Billing and payment operations for Stripe: customers, products, prices, invoices, payment links, subscriptions, refunds, disputes, balance. Money operations require confirmation. MCP optional."
+    },
+    {
+      "name": "supabase",
+      "dir": "supabase",
+      "skillMd": "supabase/SKILL.md",
+      "stage": "service",
+      "tags": [
+        "service",
+        "approvals",
+        "database"
+      ],
+      "summary": "Database operations for Supabase: query, write, migration, logs, type generation. Write operations require confirmation; UPDATE/DELETE without WHERE refused. MCP optional."
     },
     {
       "name": "tool-ast-grep-rules",
       "dir": "tool-ast-grep-rules",
       "skillMd": "tool-ast-grep-rules/SKILL.md",
       "stage": "tool",
-      "tags": ["tool"],
+      "tags": [
+        "tool"
+      ],
       "summary": "Write AST-based code search and rewrite rules using ast-grep YAML. Create linting rules, code modernizations, and API migrations with auto-fix."
+    },
+    {
+      "name": "tool-better-auth",
+      "dir": "tool-better-auth",
+      "skillMd": "tool-better-auth/SKILL.md",
+      "stage": "tool",
+      "tags": [
+        "tool"
+      ],
+      "summary": "Use when implementing authentication with Better Auth in a TypeScript/Next.js app (session strategy, providers, cookies, CSRF, redirects, middleware, and security best practices)."
     },
     {
       "name": "tool-design-style-selector",
       "dir": "tool-design-style-selector",
       "skillMd": "tool-design-style-selector/SKILL.md",
       "stage": "tool",
-      "tags": ["tool"],
+      "tags": [
+        "tool"
+      ],
       "summary": "Scan project to identify intent, evaluate if existing style is mature; if mature preserve and extract design-system.md, if not recommend from 30 preset styles."
+    },
+    {
+      "name": "tool-hooks-doctor",
+      "dir": "tool-hooks-doctor",
+      "skillMd": "tool-hooks-doctor/SKILL.md",
+      "stage": "tool",
+      "tags": [
+        "tool"
+      ],
+      "summary": "Detect whether Claude Code evolution hooks are installed/enabled, and print a copy-paste fix. Use when you expect runs/evolution artifacts but nothing is being written. Triggers: hooks, evolution, runs/evolution, settings.json, PreToolUs..."
+    },
+    {
+      "name": "tool-programmatic-seo",
+      "dir": "tool-programmatic-seo",
+      "skillMd": "tool-programmatic-seo/SKILL.md",
+      "stage": "tool",
+      "tags": [
+        "tool"
+      ],
+      "summary": "When the user wants to create SEO-driven pages at scale using templates and data. Also use when the user mentions \"programmatic SEO,\" \"template pages,\" \"pages at scale,\" \"directory pages,\" \"location pages,\" \"[keyword] + [city] pages,\" \"c..."
+    },
+    {
+      "name": "tool-schema-markup",
+      "dir": "tool-schema-markup",
+      "skillMd": "tool-schema-markup/SKILL.md",
+      "stage": "tool",
+      "tags": [
+        "tool"
+      ],
+      "summary": "When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions \"schema markup,\" \"structured data,\" \"JSON-LD,\" \"rich snippets,\" \"schema.org,\" \"FAQ schema,\" \"product schema,\" \"..."
+    },
+    {
+      "name": "tool-systematic-debugging",
+      "dir": "tool-systematic-debugging",
+      "skillMd": "tool-systematic-debugging/SKILL.md",
+      "stage": "tool",
+      "tags": [
+        "tool"
+      ],
+      "summary": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes"
     },
     {
       "name": "tool-ui-ux-pro-max",
       "dir": "tool-ui-ux-pro-max",
       "skillMd": "tool-ui-ux-pro-max/SKILL.md",
       "stage": "tool",
-      "tags": ["tool"],
+      "tags": [
+        "tool"
+      ],
       "summary": "Searchable UI/UX design intelligence: built-in database for styles, palettes, typography pairings, landing patterns, chart types, UX/a11y guidelines, plus stack-specific best practices. Includes a Python search script for fast lookup."
+    },
+    {
+      "name": "tool-x-article-publisher",
+      "dir": "tool-x-article-publisher",
+      "skillMd": "tool-x-article-publisher/SKILL.md",
+      "stage": "tool",
+      "tags": [
+        "tool",
+        "publish"
+      ],
+      "summary": "Publish Markdown to X (Twitter) Articles as a draft (never auto-publish). Converts Markdown \u2192 HTML for rich text paste and inserts images deterministically."
     },
     {
       "name": "workflow-brainstorm",
       "dir": "workflow-brainstorm",
       "skillMd": "workflow-brainstorm/SKILL.md",
       "stage": "workflow",
-      "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Brainstorm → Design Spec: Use before any creative implementation. Ask one question at a time, provide 2-3 options with trade-offs, output design in segments."
+      "tags": [
+        "workflow",
+        "artifacts",
+        "runs"
+      ],
+      "summary": "Brainstorm \u2192 Design Spec: Use before any creative implementation. Ask one question at a time, provide 2-3 options with trade-offs, output design in segments."
     },
     {
       "name": "workflow-feature-shipper",
       "dir": "workflow-feature-shipper",
       "skillMd": "workflow-feature-shipper/SKILL.md",
       "stage": "workflow",
-      "tags": ["artifacts", "runs", "workflow"],
+      "tags": [
+        "workflow",
+        "artifacts",
+        "runs"
+      ],
       "summary": "Ship core product features quickly in a Next.js codebase: turn feature idea into executable plan, implement in PR-sized slices, delegate UI styling when needed."
     },
     {
@@ -120,7 +219,11 @@
       "dir": "workflow-project-intake",
       "skillMd": "workflow-project-intake/SKILL.md",
       "stage": "workflow",
-      "tags": ["artifacts", "runs", "workflow"],
+      "tags": [
+        "workflow",
+        "artifacts",
+        "runs"
+      ],
       "summary": "Project intake + routing: brainstorm and clarify intent, persist goal/context artifacts, dispatch to the right workflow. Default route is workflow-ship-faster."
     },
     {
@@ -128,8 +231,12 @@
       "dir": "workflow-ship-faster",
       "skillMd": "workflow-ship-faster/SKILL.md",
       "stage": "workflow",
-      "tags": ["artifacts", "runs", "workflow"],
-      "summary": "Ship Faster end-to-end workflow for small web apps (Next.js): idea → foundation gate → design-system → guardrails → feature iteration → optional Supabase/Stripe → deploy → SEO."
+      "tags": [
+        "workflow",
+        "artifacts",
+        "runs"
+      ],
+      "summary": "Ship Faster end-to-end workflow for small web apps (Next.js): idea \u2192 foundation gate \u2192 design-system \u2192 guardrails \u2192 feature iteration \u2192 optional Supabase/Stripe \u2192 deploy \u2192 SEO."
     }
   ]
 }

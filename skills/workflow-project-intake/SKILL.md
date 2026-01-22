@@ -1,6 +1,6 @@
 ---
 name: workflow-project-intake
-description: "Project intake + routing: help the user brainstorm and clarify intent, persist goal/context artifacts, then dispatch to the right workflow or step skill. Default route is workflow-ship-faster (Next.js 16.1.1) for idea/prototype→launch. Trigger words: project kickoff, requirements clarification, brainstorm, ideas, discovery, intake."
+description: "Use when you need to clarify requirements and route to the right workflow (idea → executable input). Project intake + routing: help the user brainstorm and clarify intent, persist goal/context artifacts, then dispatch to the right workflow or step skill. Default route is workflow-ship-faster (Next.js 16.1.1) for idea/prototype→launch. Triggers: project kickoff, requirements clarification, brainstorm, ideas, discovery, intake."
 ---
 
 # Project Intake (Brainstorm + Clarify + Route)
@@ -19,6 +19,7 @@ This skill is **not responsible** for actual large-scale implementation (that's 
 2. **Files are first-class citizens**: Every step must persist artifacts; failures can be retried; replayable; traceable.
 3. **Write operations must have checkpoints**: Any action with external side effects (delete/modify cloud resources/DB writes/refunds/cancel subscriptions) must write a plan first and wait for explicit user confirmation.
 4. **Ask one question at a time**: If information is missing, ask follow-ups, but each message asks only 1 question (prefer multiple choice); break complex topics into multiple rounds.
+5. **Hooks doctor (required check; non-blocking)**: If running under Claude Code and you want the evolution loop active, run `tool-hooks-doctor` once early; if hooks are missing, offer to install project-level hooks (continue either way).
 
 ## 0) Brainstorm Module (Replaces Old Approach)
 
@@ -54,6 +55,7 @@ Converge user input into the following information (ask for what's missing; if u
 
 - `need_database`: Whether database is needed (default Supabase)
 - `need_billing`: Whether billing/payment is needed (default Stripe)
+- `need_auth`: Whether authentication is needed (default: false)
 - `need_deploy`: Whether deployment to production is needed (default GitHub + Vercel)
 - `need_seo`: Whether SEO is needed (sitemap/robots/llms.txt etc.)
 
@@ -128,6 +130,7 @@ Notes:
   "artifact_store": "auto",
   "need_database": false,
   "need_billing": false,
+  "need_auth": false,
   "need_deploy": false,
   "need_seo": false
 }

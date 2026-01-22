@@ -27,6 +27,17 @@ Record verification (sitemap/robots routes reachable, metadata present) in the s
 5. Structured data (JSON-LD): organization/product/article (choose by site type)
 6. `llms.txt` (site index entry for LLMs; keep content brief and maintainable)
 
+## Optional modules (when installed)
+
+Use these to raise SEO quality without bloating the base step:
+
+1. `review-seo-audit`: run after minimum checklist to find concrete issues and prioritize fixes.
+   - Persist: `evidence/seo-audit.md`
+2. `tool-schema-markup`: if you need rich results / structured data beyond the basics.
+   - Persist: `evidence/schema-markup.md`
+3. `tool-programmatic-seo`: if the goal includes template-driven pages at scale (directories, locations, comparisons).
+   - Persist: `evidence/programmatic-seo.md`
+
 ## Optional: Cloudflare Enhancement (Don't Block Ship)
 
 If user explicitly wants to use Cloudflare:

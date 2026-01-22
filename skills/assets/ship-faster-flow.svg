@@ -1,103 +1,223 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-label="Ship Faster workflow overview">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Ship Faster Workflow">
   <style>
-    .title { font: 700 20px Helvetica, Arial, sans-serif; fill: #111827; }
-    .label { font: 600 13px Helvetica, Arial, sans-serif; fill: #111827; }
-    .text { font: 12px Helvetica, Arial, sans-serif; fill: #111827; }
-    .muted { font: 11px Helvetica, Arial, sans-serif; fill: #6B7280; }
-    .box { fill: #F8FAFC; stroke: #CBD5E1; stroke-width: 1; rx: 10; }
-    .entry { fill: #EEF2FF; stroke: #6366F1; }
-    .gate { fill: #FFF7ED; stroke: #F59E0B; }
-    .step { fill: #ECFDF3; stroke: #10B981; }
-    .opt { fill: #F3F4F6; stroke: #9CA3AF; stroke-dasharray: 4 3; }
-    .done { fill: #E0F2FE; stroke: #0284C7; }
-    .arrow { stroke: #475569; stroke-width: 1.2; fill: none; marker-end: url(#arrow); }
-    .arrow-dash { stroke: #94A3B8; stroke-width: 1.2; fill: none; stroke-dasharray: 4 3; marker-end: url(#arrow); }
+    .title { font: 700 18px Helvetica, Arial, sans-serif; fill: #111827; }
+    .label { font: 600 11px Helvetica, Arial, sans-serif; fill: #111827; }
+    .text { font: 10px Helvetica, Arial, sans-serif; fill: #374151; }
+    .muted { font: 9px Helvetica, Arial, sans-serif; fill: #6B7280; }
+    .legend { font: 9px Helvetica, Arial, sans-serif; fill: #6B7280; }
+    .box { fill: #F8FAFC; stroke: #CBD5E1; stroke-width: 1; }
+    .box-entry { fill: #EEF2FF; stroke: #6366F1; stroke-width: 1.5; }
+    .box-core { fill: #F0FDF4; stroke: #22C55E; stroke-width: 1; }
+    .box-optional { fill: #FFFBEB; stroke: #F59E0B; stroke-width: 1; stroke-dasharray: 4 2; }
+    .box-review { fill: #FEF2F2; stroke: #EF4444; stroke-width: 1; }
+    .box-meta { fill: #F5F3FF; stroke: #8B5CF6; stroke-width: 1; }
+    .arrow { fill: none; stroke: #9CA3AF; stroke-width: 1.5; }
+    .arrow-head { fill: #9CA3AF; }
+    .connector { fill: none; stroke: #D1D5DB; stroke-width: 1; }
+    .connector-opt { fill: none; stroke: #D1D5DB; stroke-width: 1; stroke-dasharray: 3 2; }
   </style>
-  <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#475569" />
-    </marker>
-  </defs>
 
-  <rect x="24" y="16" width="1152" height="728" rx="16" fill="#FFFFFF" stroke="#E5E7EB" />
-  <text x="40" y="48" class="title">Ship Faster workflow (core + optional)</text>
+  <rect x="0" y="0" width="1200" height="520" fill="#FFFFFF" />
+  <rect x="16" y="12" width="1168" height="496" rx="12" fill="#FAFAFA" stroke="#E5E7EB" />
 
-  <!-- Main column -->
-  <g>
-    <rect x="60" y="80" width="280" height="44" class="box entry" />
-    <text x="76" y="106" class="label">Idea / Prototype</text>
+  <text x="32" y="38" class="title">Ship Faster Workflow</text>
 
-    <rect x="60" y="140" width="280" height="44" class="box step" />
-    <text x="76" y="166" class="label">workflow-project-intake (optional)</text>
-
-    <rect x="60" y="200" width="280" height="44" class="box entry" />
-    <text x="76" y="226" class="label">workflow-ship-faster</text>
-
-    <rect x="60" y="260" width="280" height="44" class="box gate" />
-    <text x="76" y="286" class="label">foundation gate</text>
-
-    <rect x="60" y="320" width="280" height="44" class="box gate" />
-    <text x="76" y="346" class="label">style gate</text>
-
-    <rect x="60" y="380" width="280" height="44" class="box step" />
-    <text x="76" y="406" class="label">guardrails</text>
-
-    <rect x="60" y="440" width="280" height="44" class="box step" />
-    <text x="76" y="466" class="label">docs-baseline</text>
-
-    <rect x="60" y="500" width="280" height="44" class="box step" />
-    <text x="76" y="526" class="label">feature-shipper</text>
-
-    <rect x="60" y="640" width="280" height="44" class="box done" />
-    <text x="76" y="666" class="label">launchable app + artifacts</text>
+  <g transform="translate(900, 22)">
+    <rect x="0" y="0" width="8" height="8" rx="2" fill="#F8FAFC" stroke="#CBD5E1" />
+    <text x="14" y="8" class="legend">Default step</text>
+    <rect x="80" y="0" width="8" height="8" rx="2" fill="#FFFBEB" stroke="#F59E0B" stroke-dasharray="2 1" />
+    <text x="94" y="8" class="legend">Optional</text>
+    <rect x="150" y="0" width="8" height="8" rx="2" fill="#EEF2FF" stroke="#6366F1" />
+    <text x="164" y="8" class="legend">Entry</text>
+    <rect x="200" y="0" width="8" height="8" rx="2" fill="#FEF2F2" stroke="#EF4444" />
+    <text x="214" y="8" class="legend">Gate</text>
   </g>
 
-  <!-- Main arrows -->
-  <path class="arrow" d="M200 124 L200 136" />
-  <path class="arrow" d="M200 184 L200 196" />
-  <path class="arrow" d="M200 244 L200 256" />
-  <path class="arrow" d="M200 304 L200 316" />
-  <path class="arrow" d="M200 364 L200 376" />
-  <path class="arrow" d="M200 424 L200 436" />
-  <path class="arrow" d="M200 484 L200 496" />
+  <rect x="32" y="60" width="140" height="52" rx="6" class="box-entry" />
+  <text x="102" y="82" class="label" text-anchor="middle">workflow-project-intake</text>
+  <text x="102" y="96" class="muted" text-anchor="middle">(idea / brainstorm)</text>
 
-  <!-- Optional column -->
-  <text x="520" y="200" class="label">Optional steps (context.json toggles)</text>
-  <text x="520" y="220" class="muted">need_database / need_billing / need_deploy / need_seo</text>
+  <text x="192" y="90" class="muted" text-anchor="middle">OR</text>
 
-  <rect x="520" y="260" width="340" height="44" class="box opt" />
-  <text x="536" y="286" class="text">supabase-integration (need_database)</text>
+  <rect x="212" y="60" width="140" height="52" rx="6" class="box-entry" />
+  <text x="282" y="82" class="label" text-anchor="middle">workflow-ship-faster</text>
+  <text x="282" y="96" class="muted" text-anchor="middle">(existing repo)</text>
 
-  <rect x="520" y="320" width="340" height="44" class="box opt" />
-  <text x="536" y="346" class="text">stripe-integration (need_billing)</text>
+  <path d="M 172 112 L 172 124 L 420 124 L 420 136" class="arrow" />
+  <path d="M 282 112 L 282 124 L 420 124" class="connector" />
+  <polygon points="420,136 416,130 424,130" class="arrow-head" />
 
-  <rect x="520" y="380" width="340" height="44" class="box opt" />
-  <text x="536" y="406" class="text">deploy-vercel (need_deploy)</text>
+  <rect x="370" y="60" width="100" height="44" rx="6" class="box-optional" />
+  <text x="420" y="80" class="label" text-anchor="middle">tool-hooks-doctor</text>
+  <text x="420" y="92" class="muted" text-anchor="middle">(non-blocking)</text>
 
-  <rect x="520" y="440" width="340" height="44" class="box opt" />
-  <text x="536" y="466" class="text">ai-seo-nextjs (need_seo or deployed)</text>
+  <path d="M 420 104 L 420 124" class="connector-opt" />
 
-  <!-- Optional arrows (dashed) -->
-  <path class="arrow-dash" d="M340 522 L520 282" />
-  <path class="arrow-dash" d="M340 522 L520 342" />
-  <path class="arrow-dash" d="M340 522 L520 402" />
-  <path class="arrow-dash" d="M340 522 L520 462" />
+  <rect x="490" y="60" width="180" height="52" rx="6" class="box" />
+  <text x="580" y="78" class="label" text-anchor="middle">Run Artifacts Init</text>
+  <text x="580" y="92" class="text" text-anchor="middle">proposal.md, tasks.md,</text>
+  <text x="580" y="104" class="text" text-anchor="middle">context.json</text>
 
-  <!-- Optional chain to Done -->
-  <path class="arrow-dash" d="M690 304 L690 316" />
-  <path class="arrow-dash" d="M690 364 L690 376" />
-  <path class="arrow-dash" d="M690 424 L690 436" />
-  <path class="arrow-dash" d="M690 484 L690 626" />
+  <path d="M 352 86 L 380 86" class="arrow" />
+  <path d="M 470 86 L 490 86" class="arrow" />
+  <polygon points="490,86 484,82 484,90" class="arrow-head" />
 
-  <!-- Legend -->
-  <rect x="520" y="560" width="340" height="120" class="box" />
-  <text x="536" y="584" class="label">Legend</text>
-  <rect x="536" y="598" width="16" height="12" class="entry" />
-  <text x="560" y="608" class="text">Entry / Workflow</text>
-  <rect x="536" y="618" width="16" height="12" class="gate" />
-  <text x="560" y="628" class="text">Gate</text>
-  <rect x="536" y="638" width="16" height="12" class="step" />
-  <text x="560" y="648" class="text">Core step</text>
-  <rect x="536" y="658" width="16" height="12" class="opt" />
-  <text x="560" y="668" class="text">Optional step</text>
+  <rect x="690" y="60" width="160" height="52" rx="6" class="box" />
+  <text x="770" y="78" class="label" text-anchor="middle">Scope Selection</text>
+  <text x="770" y="92" class="muted" text-anchor="middle">full | deploy-only |</text>
+  <text x="770" y="104" class="muted" text-anchor="middle">design-only | feature-only</text>
+
+  <path d="M 670 86 L 690 86" class="arrow" />
+  <polygon points="690,86 684,82 684,90" class="arrow-head" />
+
+  <rect x="32" y="140" width="130" height="60" rx="6" class="box-core" />
+  <text x="97" y="162" class="label" text-anchor="middle">1. Foundation</text>
+  <text x="97" y="176" class="text" text-anchor="middle">Next.js check</text>
+  <text x="97" y="188" class="text" text-anchor="middle">build / deps</text>
+
+  <path d="M 770 112 L 770 130 L 97 130 L 97 140" class="arrow" />
+  <polygon points="97,140 93,134 101,134" class="arrow-head" />
+
+  <rect x="182" y="140" width="130" height="60" rx="6" class="box-core" />
+  <text x="247" y="162" class="label" text-anchor="middle">2. Design System</text>
+  <text x="247" y="176" class="text" text-anchor="middle">tool-design-style-</text>
+  <text x="247" y="188" class="text" text-anchor="middle">selector</text>
+
+  <path d="M 162 170 L 182 170" class="arrow" />
+  <polygon points="182,170 176,166 176,174" class="arrow-head" />
+
+  <rect x="332" y="140" width="130" height="60" rx="6" class="box-core" />
+  <text x="397" y="162" class="label" text-anchor="middle">2.5 UI/UX Impl</text>
+  <text x="397" y="176" class="text" text-anchor="middle">tool-ui-ux-pro-max</text>
+  <text x="397" y="188" class="muted" text-anchor="middle">(optional enrich)</text>
+
+  <path d="M 312 170 L 332 170" class="arrow" />
+  <polygon points="332,170 326,166 326,174" class="arrow-head" />
+
+  <rect x="482" y="140" width="120" height="60" rx="6" class="box" />
+  <text x="542" y="162" class="label" text-anchor="middle">3. Guardrails</text>
+  <text x="542" y="176" class="text" text-anchor="middle">Lint / TS / format</text>
+  <text x="542" y="188" class="text" text-anchor="middle">config</text>
+
+  <path d="M 462 170 L 482 170" class="arrow" />
+  <polygon points="482,170 476,166 476,174" class="arrow-head" />
+
+  <rect x="622" y="140" width="120" height="60" rx="6" class="box" />
+  <text x="682" y="162" class="label" text-anchor="middle">3.5 Trace Cleanup</text>
+  <text x="682" y="176" class="text" text-anchor="middle">De-brand /</text>
+  <text x="682" y="188" class="text" text-anchor="middle">source hygiene</text>
+
+  <path d="M 602 170 L 622 170" class="arrow" />
+  <polygon points="622,170 616,166 616,174" class="arrow-head" />
+
+  <rect x="762" y="140" width="120" height="60" rx="6" class="box" />
+  <text x="822" y="162" class="label" text-anchor="middle">4. Docs Baseline</text>
+  <text x="822" y="176" class="text" text-anchor="middle">README /</text>
+  <text x="822" y="188" class="text" text-anchor="middle">.env.example</text>
+
+  <path d="M 742 170 L 762 170" class="arrow" />
+  <polygon points="762,170 756,166 756,174" class="arrow-head" />
+
+  <rect x="32" y="230" width="200" height="70" rx="6" class="box-core" />
+  <text x="132" y="252" class="label" text-anchor="middle">5. Feature Iteration</text>
+  <text x="132" y="268" class="text" text-anchor="middle">workflow-feature-shipper</text>
+  <text x="132" y="282" class="muted" text-anchor="middle">(loop: plan -> impl -> review)</text>
+
+  <path d="M 32 280 L 20 280 L 20 250 L 32 250" class="connector" />
+  <polygon points="32,250 26,246 26,254" class="arrow-head" fill="#D1D5DB" />
+
+  <path d="M 822 200 L 822 215 L 132 215 L 132 230" class="arrow" />
+  <polygon points="132,230 128,224 136,224" class="arrow-head" />
+
+  <rect x="252" y="230" width="120" height="60" rx="6" class="box-optional" />
+  <text x="312" y="252" class="label" text-anchor="middle">Auth</text>
+  <text x="312" y="266" class="text" text-anchor="middle">tool-better-auth</text>
+  <text x="312" y="280" class="muted" text-anchor="middle">(if need_auth)</text>
+
+  <path d="M 232 265 L 252 265" class="connector-opt" />
+
+  <rect x="392" y="230" width="120" height="60" rx="6" class="box-optional" />
+  <text x="452" y="252" class="label" text-anchor="middle">6. Supabase</text>
+  <text x="452" y="266" class="text" text-anchor="middle">DB integration</text>
+  <text x="452" y="280" class="muted" text-anchor="middle">(if need_database)</text>
+
+  <path d="M 232 265 L 260 265 L 260 300 L 380 300 L 380 265 L 392 265" class="connector-opt" />
+
+  <rect x="532" y="230" width="120" height="60" rx="6" class="box-optional" />
+  <text x="592" y="252" class="label" text-anchor="middle">7. Stripe</text>
+  <text x="592" y="266" class="text" text-anchor="middle">Payment integration</text>
+  <text x="592" y="280" class="muted" text-anchor="middle">(if need_billing)</text>
+
+  <path d="M 512 265 L 532 265" class="connector-opt" />
+
+  <rect x="672" y="230" width="130" height="60" rx="6" class="box-optional" />
+  <text x="737" y="252" class="label" text-anchor="middle">8. Deploy</text>
+  <text x="737" y="266" class="text" text-anchor="middle">GitHub + Vercel</text>
+  <text x="737" y="280" class="muted" text-anchor="middle">(if need_deploy)</text>
+
+  <path d="M 652 265 L 672 265" class="connector-opt" />
+
+  <rect x="822" y="230" width="130" height="60" rx="6" class="box-optional" />
+  <text x="887" y="252" class="label" text-anchor="middle">9. AI-Era SEO</text>
+  <text x="887" y="266" class="text" text-anchor="middle">sitemap / robots /</text>
+  <text x="887" y="280" class="text" text-anchor="middle">llms.txt</text>
+
+  <path d="M 802 265 L 822 265" class="connector-opt" />
+
+  <rect x="822" y="310" width="130" height="62" rx="6" class="box-optional" />
+  <text x="887" y="330" class="label" text-anchor="middle">SEO Tools</text>
+  <text x="887" y="344" class="muted" text-anchor="middle">review-seo-audit</text>
+  <text x="887" y="356" class="muted" text-anchor="middle">tool-schema-markup</text>
+  <text x="887" y="368" class="muted" text-anchor="middle">tool-programmatic-seo</text>
+
+  <path d="M 887 290 L 887 310" class="connector-opt" />
+
+  <rect x="970" y="230" width="170" height="70" rx="6" class="box-review" />
+  <text x="1055" y="255" class="label" text-anchor="middle">Review Gate</text>
+  <text x="1055" y="272" class="text" text-anchor="middle">review-quality</text>
+  <text x="1055" y="286" class="muted" text-anchor="middle">(auto: react-best-practices)</text>
+
+  <path d="M 952 265 L 970 265" class="arrow" />
+  <polygon points="970,265 964,261 964,269" class="arrow-head" />
+
+  <path d="M 132 300 L 132 320 L 960 320 L 960 280 L 970 280" class="connector" />
+
+  <rect x="32" y="380" width="180" height="60" rx="6" class="box-meta" />
+  <text x="122" y="402" class="label" text-anchor="middle">Evolution Checkpoint</text>
+  <text x="122" y="418" class="text" text-anchor="middle">skill-evolution</text>
+  <text x="122" y="432" class="muted" text-anchor="middle">(3 questions)</text>
+
+  <path d="M 1055 300 L 1055 350 L 122 350 L 122 380" class="arrow" />
+  <polygon points="122,380 118,374 126,374" class="arrow-head" />
+
+  <rect x="232" y="380" width="140" height="60" rx="6" class="box-optional" />
+  <text x="302" y="402" class="label" text-anchor="middle">skill-improver</text>
+  <text x="302" y="418" class="text" text-anchor="middle">Patch suggestions</text>
+  <text x="302" y="432" class="muted" text-anchor="middle">(if user opts in)</text>
+
+  <path d="M 212 410 L 232 410" class="connector-opt" />
+
+  <rect x="392" y="380" width="140" height="60" rx="6" class="box" />
+  <text x="462" y="402" class="label" text-anchor="middle">Archive Run</text>
+  <text x="462" y="418" class="text" text-anchor="middle">auto_archive.py</text>
+  <text x="462" y="432" class="muted" text-anchor="middle">active/ -> archive/</text>
+
+  <path d="M 372 410 L 392 410" class="arrow" />
+  <polygon points="392,410 386,406 386,414" class="arrow-head" />
+
+  <rect x="552" y="380" width="140" height="60" rx="6" class="box-core" />
+  <text x="622" y="402" class="label" text-anchor="middle">Final Delivery</text>
+  <text x="622" y="418" class="text" text-anchor="middle">final.md</text>
+  <text x="622" y="432" class="muted" text-anchor="middle">tasks.md status: done</text>
+
+  <path d="M 532 410 L 552 410" class="arrow" />
+  <polygon points="552,410 546,406 546,414" class="arrow-head" />
+
+  <rect x="32" y="460" width="400" height="40" rx="4" fill="#F9FAFB" stroke="#E5E7EB" />
+  <text x="48" y="478" class="muted">Artifacts: runs/ship-faster/active/&lt;run_id&gt;/</text>
+  <text x="48" y="492" class="muted">proposal.md | tasks.md | context.json | evidence/ | logs/</text>
+
+  <rect x="450" y="460" width="300" height="40" rx="4" fill="#F9FAFB" stroke="#E5E7EB" />
+  <text x="466" y="478" class="muted">Scope persisted to context.json</text>
+  <text x="466" y="492" class="muted">Disabled steps logged in tasks.md</text>
 </svg>

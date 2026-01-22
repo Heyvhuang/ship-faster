@@ -1,6 +1,6 @@
 ---
 name: workflow-brainstorm
-description: "Brainstorm → Design Spec: Use before any creative implementation (new feature/component/behavior change). First check project context, then ask one question at a time, provide 2-3 options with trade-offs, finally output design in segments (~200-300 words each) with confirmation after each. Trigger words: brainstorm, clarify idea, design spec, refine concept, requirement clarification."
+description: "Use when you need to turn a vague idea into a confirmed design spec before implementation (new feature/component/behavior change). First check project context, then ask one question at a time, provide 2-3 options with trade-offs, finally output design in segments (~200-300 words each) with confirmation after each. Triggers: brainstorm, clarify idea, design spec, refine concept, requirement clarification."
 ---
 
 # Brainstorming Ideas Into Designs

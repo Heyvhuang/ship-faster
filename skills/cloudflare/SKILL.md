@@ -1,6 +1,10 @@
 ---
 name: cloudflare
 description: "Infrastructure operations for Cloudflare: Workers, KV, R2, D1, Hyperdrive, observability, builds, audit logs. Triggers: worker/KV/R2/D1/logs/build/deploy/audit. Three permission tiers: Diagnose (read-only), Change (write requires confirmation), Super Admin (isolated environment). Write operations follow read-first, confirm, execute, verify pattern. MCP is optional — works with Wrangler CLI/Dashboard too."
+allowed-tools:
+  - Read
+  - Bash
+  - WebFetch
 ---
 
 # Cloudflare Infrastructure Operations

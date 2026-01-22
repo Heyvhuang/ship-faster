@@ -89,6 +89,15 @@ Configure behavior via `~/.claude/skills/skill-evolution/hooks/settings.json`:
             "command": "bash ~/.claude/skills/skill-evolution/hooks/post-bash.sh \"$TOOL_OUTPUT\" \"$EXIT_CODE\""
           }
         ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/skills/skill-evolution/hooks/post-tool.sh \"$TOOL_OUTPUT\" \"$EXIT_CODE\""
+          }
+        ]
       }
     ],
     "Stop": [

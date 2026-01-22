@@ -1,6 +1,11 @@
 ---
 name: stripe
 description: "Billing and payment operations for Stripe: customers, products, prices, invoices, payment links, subscriptions, refunds, disputes, balance. Triggers: create customer, create product, create invoice, generate payment link, query transactions, process refunds, manage subscriptions, view disputes, check balance. Money operations require confirmation. MCP is optional — works with Dashboard/CLI too."
+allowed-tools:
+  - Read
+  - Bash
+  - WebFetch
+  - stripe_*
 ---
 
 # Stripe Billing Operations

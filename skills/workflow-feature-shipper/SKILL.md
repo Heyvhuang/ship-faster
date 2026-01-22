@@ -1,6 +1,6 @@
 ---
 name: workflow-feature-shipper
-description: "Ship core product features quickly in a Next.js codebase: turn a feature idea into an executable plan, implement in PR-sized slices, and keep artifacts under runs/ (or OpenSpec changes/ when available). Supports plan-only mode for early scoping. For prototype UI work, include a demo-ready “wow moment” (animation/micro-interaction) by default unless user opts out."
+description: "Use when you need to ship a single PR-sized feature end-to-end (plan -> implement -> verify) with artifacts. Ship core product features quickly in a Next.js codebase: turn a feature idea into an executable plan, implement in PR-sized slices, and keep artifacts under runs/ (or OpenSpec changes/ when available). Supports plan-only mode for early scoping. For prototype UI work, include a demo-ready wow moment (animation/micro-interaction) by default unless user opts out."
 ---
 
 # Feature Shipper
@@ -27,6 +27,7 @@ Turn "I want to build a feature" into a fast execution chain.
 
 ## Process
 
+0. Hooks doctor (required check; non-blocking): Run `tool-hooks-doctor` once at the start of the session to verify `skill-evolution` hooks are enabled. If missing, offer to install project-level hooks; continue either way.
 1. Read `feature.md`, normalize into: acceptance criteria, boundaries, risks, rollback.
 2. **Prototype UI rule (default)**: if this feature affects user-facing UI and `quality_bar` isn’t `functional-only`, propose 1 “demo moment” (animation/micro-interaction) and add it to acceptance criteria. Must respect `prefers-reduced-motion`.
 3. Produce 2 options (A: minimal; B: cleaner but slower), default to A. If user cares about “demo feel”, offer A-demo-ready vs A-functional-only as explicit sub-options.
@@ -41,6 +42,9 @@ Turn "I want to build a feature" into a fast execution chain.
       - `review-quality` is the single entry point and will auto-triage: if React/Next.js performance risk is detected, it will also run `review-react-best-practices`.
       - If the user explicitly wants *only* a React/Next.js perf audit, run `review-react-best-practices` directly.
 8. Verification: can run, can build (and existing tests pass).
+   - If verification fails (tests/build/runtime error): run `tool-systematic-debugging` before attempting more fixes.
+   - Persist debugging artifacts to:
+     - `evidence/features/<feature_slug>-debug.md` (repro steps, hypotheses, root cause, fix + re-verify)
 9. Write `evidence/features/<feature_slug>-summary.md`: what was done, how verified, next steps.
 10. Wrap up: Do a `skill-evolution` **Evolution checkpoint** (3 questions); if user chooses "want to optimize", run `skill-improver` based on this `run_dir` to produce minimal patch suggestions
 

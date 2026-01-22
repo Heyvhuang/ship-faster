@@ -4,19 +4,13 @@
 
 <br />
 
-**16 composable skills + 7 runnable templates for AI coding agents**
+**22 composable skills + 7 runnable templates for AI coding agents**
 
 *Idea → Code → Deploy in one workflow. Resumable runs. Approval gates. Full audit trail.*
 
 <br />
 
-[![Skills](https://img.shields.io/badge/Skills-16+-8B5CF6?style=for-the-badge)](./skills/)
-[![Templates](https://img.shields.io/badge/Templates-7-10B981?style=for-the-badge)](./templates/)
-[![MIT License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](LICENSE)
-
-<br />
-
-[📚 Docs](./docs/) · [🛠️ Skills](./skills/) · [📦 Templates](./templates/) · [⚡ Quick Start](#-quick-start)
+[📚 Docs](./docs/) · [🗂️ Skills Catalog](./docs/skills-catalog.md) · [🛠️ Skills](./skills/) · [📦 Templates](./templates/) · [⚡ Quick Start](#-quick-start)
 
 <br />
 
@@ -49,22 +43,8 @@ English | [简体中文](./README.zh-CN.md)
 
 ## 🔗 Works With
 
-<p align="center">
-<img src="https://img.shields.io/badge/Claude_Code-000000?style=flat-square&logo=anthropic&logoColor=white" alt="Claude Code" />
-<img src="https://img.shields.io/badge/Cursor-000000?style=flat-square&logo=cursor&logoColor=white" alt="Cursor" />
-<img src="https://img.shields.io/badge/OpenCode-412991?style=flat-square&logo=openai&logoColor=white" alt="OpenCode" />
-<img src="https://img.shields.io/badge/Any_MCP_Agent-6366F1?style=flat-square" alt="MCP" />
-</p>
-
-**Default Stack:**
-
-<p align="center">
-<img src="https://img.shields.io/badge/Next.js_16-000000?style=flat-square&logo=next.js&logoColor=white" alt="Next.js" />
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
-<img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase" />
-<img src="https://img.shields.io/badge/Stripe-635BFF?style=flat-square&logo=stripe&logoColor=white" alt="Stripe" />
-<img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel" />
-</p>
+- Agents: Claude Code, Cursor, OpenCode, any MCP-capable agent
+- Default stack assumptions: Next.js + TypeScript + Supabase + Stripe + Vercel
 
 ---
 
@@ -103,6 +83,19 @@ cp -r skills/* ~/.claude/skills/
 
 # Or run a template directly
 cd templates/001-copyback-studio && pnpm install && pnpm dev
+```
+
+### Option C: Install via skills.sh (npx)
+
+```bash
+# List available skills
+npx --yes skills add Heyvhuang/ship-faster --list
+
+# Install all skills (Claude Code)
+npx --yes skills add Heyvhuang/ship-faster --yes --agent claude-code
+
+# Install a single skill
+npx --yes skills add Heyvhuang/ship-faster --yes --agent claude-code --skill workflow-ship-faster
 ```
 
 ---
@@ -161,7 +154,7 @@ Non-goals:
 ## 🔄 How It Works
 
 <p align="center">
-<img src="skills/assets/ship-faster-flow.png" alt="Ship Faster workflow" width="700" />
+<img src="skills/assets/ship-faster-flow.png" alt="Ship Faster workflow" width="780" />
 </p>
 
 Every run writes to disk for **replay/audit/resume**:
@@ -179,7 +172,7 @@ runs/ship-faster/active/<run_id>/
 
 ---
 
-## 🛠️ Skills (16+)
+## 🛠️ Skills (22)
 
 Composable workflows that ship end-to-end. Copy to `~/.claude/skills/`.
 
@@ -193,11 +186,17 @@ Composable workflows that ship end-to-end. Copy to `~/.claude/skills/`.
 - 🎨 [tool-design-style-selector](skills/tool-design-style-selector/) — Scan project → generate design-system.md
 - 🖌️ [tool-ui-ux-pro-max](skills/tool-ui-ux-pro-max/) — Palette / typography / UX lookup database
 - 🔍 [tool-ast-grep-rules](skills/tool-ast-grep-rules/) — AST-based code search & rewrite
+- 🧰 [tool-hooks-doctor](skills/tool-hooks-doctor/) — Check/install Claude Code evolution hooks
+- 🔐 [tool-better-auth](skills/tool-better-auth/) — Better Auth integration guidance
+- 🧪 [tool-systematic-debugging](skills/tool-systematic-debugging/) — Root-cause-first debugging process
+- 🧩 [tool-schema-markup](skills/tool-schema-markup/) — Structured data / JSON-LD guidance
+- 📈 [tool-programmatic-seo](skills/tool-programmatic-seo/) — Template-driven pages at scale
 - 📝 [tool-x-article-publisher](skills/tool-x-article-publisher/) — Publish Markdown to X Articles
 
 ### 🔎 Reviews
 - ✅ [review-quality](skills/review-quality/) — Merge readiness + maintainability + docs audit
 - ⚛️ [review-react-best-practices](skills/review-react-best-practices/) — React/Next.js performance rules
+- 🔍 [review-seo-audit](skills/review-seo-audit/) — SEO audit framework
 
 ### 🔌 Services
 - 🗄️ [supabase](skills/supabase/) — Database ops with safety rules (no bare DELETE!)
@@ -322,18 +321,6 @@ cp -r ship-faster/skills/workflow-ship-faster ~/.claude/skills/
 
 ---
 
-## 🌟 Star History
-
-<p align="center">
-<a href="https://star-history.com/#Heyvhuang/ship-faster&Date">
-  <img src="https://api.star-history.com/svg?repos=Heyvhuang/ship-faster&type=Date" alt="Star History Chart" width="600" />
-</a>
-</p>
-
-> ⭐ **Star this repo** to stay updated on new skills and templates!
-
----
-
 ## 📜 License
 
 MIT License — see [LICENSE](LICENSE)
@@ -342,13 +329,10 @@ MIT License — see [LICENSE](LICENSE)
 
 <div align="center">
 
-**Made with ❤️ by [VoxYZ](https://voxyz.space)**
+**Made by [VoxYZ](https://voxyz.space)**
 
 *Ship small. Ship fast. Ship often.*
 
-<br />
-
-[![Twitter](https://img.shields.io/badge/Follow-@VoxYZ-1DA1F2?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/voxyz)
-[![GitHub](https://img.shields.io/badge/GitHub-Heyvhuang-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Heyvhuang)
+Links: [Twitter](https://twitter.com/voxyz) · [GitHub](https://github.com/Heyvhuang)
 
 </div>

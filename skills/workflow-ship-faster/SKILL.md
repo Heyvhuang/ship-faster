@@ -21,6 +21,7 @@ Use this workflow when the user wants an end-to-end chain like:
 - **Confirmation points**: Any "high-risk/high-effort/side-effect" action must write a plan first and wait for confirmation.
 - **Plans are checklists**: progress is tracked in `tasks.md` via `- [ ]` → `- [x]` (not in chat).
 - **Progressive disclosure**: Only open step files in this skill directory (`foundation.md`, `deploy-vercel.md`, etc.) when needed—avoid loading all details at once.
+- **Hooks doctor (required check; non-blocking)**: If running under Claude Code and you want the evolution loop active, run `tool-hooks-doctor` once at the start of the session; if hooks are missing, offer to install project-level hooks (continue either way).
 
 ## Inputs / outputs (paths only)
 
@@ -124,6 +125,7 @@ Dynamically adjust execution order based on `context.json` content:
 
 - **Database integration**: Only execute when `context.json` has `"need_database": true`
 - **Payment integration**: Only execute when `context.json` has `"need_billing": true` or `"need_stripe": true`
+- **Auth**: Only execute when `context.json` has `"need_auth": true` or `"auth": true`
 - **Deployment**: Only execute when `context.json` has `"need_deploy": true` or user explicitly requests deployment
 - **SEO**: Only execute when `context.json` has `"need_seo": true` or project is already live
 
@@ -194,6 +196,10 @@ Call `workflow-feature-shipper`:
 - Default split into PR-able small steps
 - After each batch (or before merge), recommend calling `review-quality` for a conclusive review + verdict
 - `review-quality` is the single entry point and will auto-triage: if React/Next.js performance risk is detected, it will also run `review-react-best-practices` (CRITICAL rules first)
+
+Auth note (optional): if a feature includes login/session/permissions and `tool-better-auth` is installed, call it before implementation to lock down session strategy, redirects, cookies/CSRF, and middleware boundaries. Persist:
+- `evidence/auth-plan.md`
+- `evidence/auth-summary.md`
 
 ### 6) Database Integration (Optional)
 
