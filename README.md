@@ -4,9 +4,9 @@
 
 <br />
 
-**22 composable skills + 7 runnable templates for AI coding agents**
+**Most AI tools give you pieces. This gives you a process.**
 
-*Idea → Code → Deploy in one workflow. Resumable runs. Approval gates. Full audit trail.*
+*From idea to deploy — without losing context.*
 
 <br />
 
