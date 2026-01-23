@@ -128,7 +128,7 @@ runs/ship-faster/active/<run_id>/
 
 ---
 
-## 🛠️ 技能（22）
+## 🛠️ 技能（32）
 
 可组合的工作流，复制到 `~/.claude/skills/`。
 
@@ -137,6 +137,9 @@ runs/ship-faster/active/<run_id>/
 - 📥 [workflow-project-intake](skills/workflow-project-intake/) — 头脑风暴 → 澄清 → 路由
 - 🚀 [workflow-feature-shipper](skills/workflow-feature-shipper/) — PR 级别功能迭代
 - 🧠 [workflow-brainstorm](skills/workflow-brainstorm/) — 一次一个问题 → 设计规格
+- 📋 [workflow-execute-plans](skills/workflow-execute-plans/) — 批量执行 + 检查点
+- 📤 [workflow-template-extractor](skills/workflow-template-extractor/) — 从真实项目提取模板
+- 🌱 [workflow-template-seeder](skills/workflow-template-seeder/) — 从规格播种新模板
 
 ### 🔧 工具
 - 🎨 [tool-design-style-selector](skills/tool-design-style-selector/) — 生成 design-system.md
@@ -153,17 +156,25 @@ runs/ship-faster/active/<run_id>/
 - ✅ [review-quality](skills/review-quality/) — 合并就绪 + 可维护性审计
 - ⚛️ [review-react-best-practices](skills/review-react-best-practices/) — React/Next.js 性能规则
 - 🔍 [review-seo-audit](skills/review-seo-audit/) — SEO 审计框架
+- 🧹 [review-clean-code](skills/review-clean-code/) — Clean Code 原则分析
+- 📄 [review-doc-consistency](skills/review-doc-consistency/) — 文档与代码一致性检查
+- 🚦 [review-merge-readiness](skills/review-merge-readiness/) — 结构化 PR 审查
 
 ### 🔌 服务
 - 🗄️ [supabase](skills/supabase/) — 数据库操作（禁止裸 DELETE！）
 - 💳 [stripe](skills/stripe/) — 计费操作，带确认门控
 - ☁️ [cloudflare](skills/cloudflare/) — Workers / KV / R2 / D1
 
+### 🔌 服务（MCP）
+- 🗄️ [mcp-supabase](skills/mcp-supabase/) — Supabase MCP，带写入确认
+- 💳 [mcp-stripe](skills/mcp-stripe/) — Stripe MCP 交易，带审批门控
+- ☁️ [mcp-cloudflare](skills/mcp-cloudflare/) — Cloudflare MCP，带权限层级
 
 ### 🧬 元技能
 - 🔄 [skill-evolution](skills/skill-evolution/) — 捕获上下文 → 生成补丁
 - ✨ [skill-creator](skills/skill-creator/) — 从零创建新技能
 - 🔧 [skill-improver](skills/skill-improver/) — 分析运行 → 改进技能
+- 🔗 [workflow-creator](skills/workflow-creator/) — 从现有技能创建工作流链
 
 > 📋 完整目录：[`docs/skills-catalog.md`](docs/skills-catalog.md) · [`skills/manifest.json`](skills/manifest.json)
 

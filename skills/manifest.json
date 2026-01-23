@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "skillsVersion": "2026-01-16",
-  "generatedAt": "2026-01-22",
+  "skillsVersion": "2026-01-23",
+  "generatedAt": "2026-01-23",
   "skills": [
     {
       "name": "cloudflare",
@@ -14,6 +14,72 @@
         "infrastructure"
       ],
       "summary": "Infrastructure operations for Cloudflare: Workers, KV, R2, D1, Hyperdrive, observability, builds, audit logs. Three permission tiers: Diagnose (read-only), Change (write requires confirmation), Super Admin (isolated environment). MCP opt..."
+    },
+    {
+      "name": "mcp-cloudflare",
+      "dir": "mcp-cloudflare",
+      "skillMd": "mcp-cloudflare/SKILL.md",
+      "stage": "service",
+      "tags": [
+        "service",
+        "mcp",
+        "infrastructure"
+      ],
+      "summary": "Manage Workers/KV/R2/D1/Hyperdrive via Cloudflare MCP, perform observability/build troubleshooting/audit/container sandbox operations. Three permission tiers with write confirmation gates."
+    },
+    {
+      "name": "mcp-stripe",
+      "dir": "mcp-stripe",
+      "skillMd": "mcp-stripe/SKILL.md",
+      "stage": "service",
+      "tags": [
+        "service",
+        "mcp",
+        "billing"
+      ],
+      "summary": "Stripe MCP transaction operations: customer management, products/prices, invoices, payment links, subscriptions, refunds, dispute handling, balance queries. Money operations require confirmation."
+    },
+    {
+      "name": "mcp-supabase",
+      "dir": "mcp-supabase",
+      "skillMd": "mcp-supabase/SKILL.md",
+      "stage": "service",
+      "tags": [
+        "service",
+        "mcp",
+        "database"
+      ],
+      "summary": "Execute database operations via Supabase MCP (query/write/migration/logs/type generation). Write operations require confirmation; UPDATE/DELETE without WHERE is refused."
+    },
+    {
+      "name": "review-clean-code",
+      "dir": "review-clean-code",
+      "skillMd": "review-clean-code/SKILL.md",
+      "stage": "review",
+      "tags": [
+        "review"
+      ],
+      "summary": "Analyze code quality based on Clean Code principles. Identify naming, function size, duplication, over-engineering, and magic number issues with severity ratings and refactoring suggestions."
+    },
+    {
+      "name": "review-doc-consistency",
+      "dir": "review-doc-consistency",
+      "skillMd": "review-doc-consistency/SKILL.md",
+      "stage": "review",
+      "tags": [
+        "review"
+      ],
+      "summary": "Documentation consistency reviewer that checks alignment between code implementation and documentation. Identifies outdated or inconsistent descriptions in README + docs/."
+    },
+    {
+      "name": "review-merge-readiness",
+      "dir": "review-merge-readiness",
+      "skillMd": "review-merge-readiness/SKILL.md",
+      "stage": "review",
+      "tags": [
+        "review"
+      ],
+      "summary": "Structured code review for merge readiness: compare against plan and requirements, output issue list by Critical/Important/Minor severity, provide clear verdict on merge readiness."
     },
     {
       "name": "review-quality",
@@ -74,6 +140,17 @@
         "meta"
       ],
       "summary": "Improve skills and workflows by analyzing run artifacts and execution logs. Find failure modes, bottlenecks, unclear prompts, missing I/O contracts."
+    },
+    {
+      "name": "workflow-creator",
+      "dir": "workflow-creator",
+      "skillMd": "workflow-creator/SKILL.md",
+      "stage": "meta",
+      "tags": [
+        "meta",
+        "workflow"
+      ],
+      "summary": "Create workflow-* skills by composing existing skills into end-to-end chains. Discovers available skills locally + from skills.sh, generates workflow-<slug>/ packages with Ship Faster conventions."
     },
     {
       "name": "stripe",
@@ -188,7 +265,7 @@
         "tool",
         "publish"
       ],
-      "summary": "Publish Markdown to X (Twitter) Articles as a draft (never auto-publish). Converts Markdown \u2192 HTML for rich text paste and inserts images deterministically."
+      "summary": "Publish Markdown to X (Twitter) Articles as a draft (never auto-publish). Converts Markdown → HTML for rich text paste and inserts images deterministically."
     },
     {
       "name": "workflow-brainstorm",
@@ -200,7 +277,19 @@
         "artifacts",
         "runs"
       ],
-      "summary": "Brainstorm \u2192 Design Spec: Use before any creative implementation. Ask one question at a time, provide 2-3 options with trade-offs, output design in segments."
+      "summary": "Brainstorm → Design Spec: Use before any creative implementation. Ask one question at a time, provide 2-3 options with trade-offs, output design in segments."
+    },
+    {
+      "name": "workflow-execute-plans",
+      "dir": "workflow-execute-plans",
+      "skillMd": "workflow-execute-plans/SKILL.md",
+      "stage": "workflow",
+      "tags": [
+        "workflow",
+        "artifacts",
+        "runs"
+      ],
+      "summary": "Execute written implementation plans: read and critically review the plan, implement in small batches (default 3 tasks), produce verification evidence per batch and pause for feedback."
     },
     {
       "name": "workflow-feature-shipper",
@@ -236,7 +325,29 @@
         "artifacts",
         "runs"
       ],
-      "summary": "Ship Faster end-to-end workflow for small web apps (Next.js): idea \u2192 foundation gate \u2192 design-system \u2192 guardrails \u2192 feature iteration \u2192 optional Supabase/Stripe \u2192 deploy \u2192 SEO."
+      "summary": "Ship Faster end-to-end workflow for small web apps (Next.js): idea → foundation gate → design-system → guardrails → feature iteration → optional Supabase/Stripe → deploy → SEO."
+    },
+    {
+      "name": "workflow-template-extractor",
+      "dir": "workflow-template-extractor",
+      "skillMd": "workflow-template-extractor/SKILL.md",
+      "stage": "workflow",
+      "tags": [
+        "workflow",
+        "templates"
+      ],
+      "summary": "Extract a shareable runnable template under templates/NNN-slug/ from a real project: copy + de-brand + remove secrets + add env examples + docs, with minimal refactors."
+    },
+    {
+      "name": "workflow-template-seeder",
+      "dir": "workflow-template-seeder",
+      "skillMd": "workflow-template-seeder/SKILL.md",
+      "stage": "workflow",
+      "tags": [
+        "workflow",
+        "templates"
+      ],
+      "summary": "Seed a new runnable template under templates/NNN-slug/ from a short spec by chaining existing skills (intake → ship-faster stages) while keeping it clean and shareable."
     }
   ]
 }

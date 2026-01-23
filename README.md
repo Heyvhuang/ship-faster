@@ -172,7 +172,7 @@ runs/ship-faster/active/<run_id>/
 
 ---
 
-## 🛠️ Skills (22)
+## 🛠️ Skills (32)
 
 Composable workflows that ship end-to-end. Copy to `~/.claude/skills/`.
 
@@ -181,6 +181,9 @@ Composable workflows that ship end-to-end. Copy to `~/.claude/skills/`.
 - 📥 [workflow-project-intake](skills/workflow-project-intake/) — Brainstorm → clarify → route to workflow
 - 🚀 [workflow-feature-shipper](skills/workflow-feature-shipper/) — PR-sized feature iteration
 - 🧠 [workflow-brainstorm](skills/workflow-brainstorm/) — One question at a time → design spec
+- 📋 [workflow-execute-plans](skills/workflow-execute-plans/) — Batch execution with checkpoints
+- 📤 [workflow-template-extractor](skills/workflow-template-extractor/) — Extract runnable template from real project
+- 🌱 [workflow-template-seeder](skills/workflow-template-seeder/) — Seed new template from spec
 
 ### 🔧 Tools
 - 🎨 [tool-design-style-selector](skills/tool-design-style-selector/) — Scan project → generate design-system.md
@@ -197,16 +200,25 @@ Composable workflows that ship end-to-end. Copy to `~/.claude/skills/`.
 - ✅ [review-quality](skills/review-quality/) — Merge readiness + maintainability + docs audit
 - ⚛️ [review-react-best-practices](skills/review-react-best-practices/) — React/Next.js performance rules
 - 🔍 [review-seo-audit](skills/review-seo-audit/) — SEO audit framework
+- 🧹 [review-clean-code](skills/review-clean-code/) — Clean Code principles analysis
+- 📄 [review-doc-consistency](skills/review-doc-consistency/) — Docs vs code alignment check
+- 🚦 [review-merge-readiness](skills/review-merge-readiness/) — Structured PR review with verdict
 
 ### 🔌 Services
 - 🗄️ [supabase](skills/supabase/) — Database ops with safety rules (no bare DELETE!)
 - 💳 [stripe](skills/stripe/) — Billing ops with confirmation gates
 - ☁️ [cloudflare](skills/cloudflare/) — Workers / KV / R2 / D1 infrastructure
 
+### 🔌 Services (MCP)
+- 🗄️ [mcp-supabase](skills/mcp-supabase/) — Supabase via MCP with write confirmation
+- 💳 [mcp-stripe](skills/mcp-stripe/) — Stripe MCP transactions with approval gates
+- ☁️ [mcp-cloudflare](skills/mcp-cloudflare/) — Cloudflare MCP with permission tiers
+
 ### 🧬 Meta
 - 🔄 [skill-evolution](skills/skill-evolution/) — Capture context → generate patches
 - ✨ [skill-creator](skills/skill-creator/) — Create new skills from scratch
 - 🔧 [skill-improver](skills/skill-improver/) — Analyze runs → improve skills
+- 🔗 [workflow-creator](skills/workflow-creator/) — Create workflow chains from existing skills
 
 > 📋 Full catalog: [`skills/manifest.json`](skills/manifest.json)
 
