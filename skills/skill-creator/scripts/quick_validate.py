@@ -62,6 +62,12 @@ def validate_skill(skill_path):
         'compatibility',
         'argument-hint',
         'allowed-tools',
+        'disable-model-invocation',
+        'user-invocable',
+        'model',
+        'context',
+        'agent',
+        'hooks',
         'metadata',
     }
 
@@ -147,6 +153,34 @@ def validate_skill(skill_path):
                     return False, "Allowed-tools list items must be non-empty strings"
         else:
             return False, f"Allowed-tools must be a string or list of strings, got {type(allowed_tools).__name__}"
+
+    disable_model_invocation = frontmatter.get('disable-model-invocation')
+    if disable_model_invocation is not None and not isinstance(disable_model_invocation, bool):
+        return False, "disable-model-invocation must be a boolean"
+
+    user_invocable = frontmatter.get('user-invocable')
+    if user_invocable is not None and not isinstance(user_invocable, bool):
+        return False, "user-invocable must be a boolean"
+
+    model = frontmatter.get('model')
+    if model is not None:
+        if not isinstance(model, str) or not model.strip():
+            return False, "model must be a non-empty string"
+
+    context = frontmatter.get('context')
+    if context is not None:
+        if not isinstance(context, str) or not context.strip():
+            return False, "context must be a non-empty string"
+
+    agent = frontmatter.get('agent')
+    if agent is not None:
+        if not isinstance(agent, str) or not agent.strip():
+            return False, "agent must be a non-empty string"
+
+    hooks = frontmatter.get('hooks')
+    if hooks is not None:
+        if not isinstance(hooks, dict):
+            return False, "hooks must be a YAML dictionary"
 
     return True, "Skill is valid!"
 

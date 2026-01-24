@@ -26,6 +26,21 @@ Execute database operations on Supabase: queries, writes, migrations, and diagno
 **Called by:**
 - `workflow-ship-faster` uses this skill as DB operation foundation
 
+## Postgres Best Practices (Built-in)
+
+Ship Faster vendors Supabase's Postgres best practices under `references/postgres-best-practices/`.
+
+Consult it when:
+- Writing/reviewing/optimizing SQL queries
+- Designing indexes, schema changes, or RLS policies
+- Diagnosing performance, locking, or connection issues
+
+Source of truth:
+- Full guide: `references/postgres-best-practices/AGENTS.md`
+- Individual rules: `references/postgres-best-practices/rules/*.md`
+
+When proposing changes, cite the relevant rule file path (for example: `references/postgres-best-practices/rules/query-missing-indexes.md`) and keep changes minimal.
+
 ## Security Rules (Must Follow)
 
 1. **Read first**: Always check schema before any operation

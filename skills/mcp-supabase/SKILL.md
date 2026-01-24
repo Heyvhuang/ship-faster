@@ -1,6 +1,7 @@
 ---
 name: mcp-supabase
 description: "Execute database operations via Supabase MCP (query/write/migration/logs/type generation). Triggers: query/statistics/export/insert/update/delete/fix/backfill/migrate/logs/alerts/type generation. Does not trigger for: pure architecture discussion or code planning. Write operations require confirmation; UPDATE/DELETE without WHERE is refused."
+disable-model-invocation: true
 ---
 
 # Supabase MCP Skill
@@ -18,6 +19,19 @@ Interact with Supabase database via MCP tools, execute queries, writes, migratio
 
 **Called by:**
 - `workflow-ship-faster` uses this skill as DB operation foundation; `workflow-ship-faster` handles project-side integration, this skill handles DB-side actions and security gates
+
+## Postgres Best Practices (Bundled)
+
+Ship Faster vendors Supabase's Postgres best practices inside the `supabase` skill (install `supabase` alongside this skill if you want these references available locally):
+- Full guide: `supabase/references/postgres-best-practices/AGENTS.md`
+- Individual rules: `supabase/references/postgres-best-practices/rules/*.md`
+
+Consult it when:
+- Writing/reviewing/optimizing SQL queries
+- Designing indexes, schema changes, or RLS policies
+- Diagnosing performance, locking, or connection issues
+
+When proposing changes, cite the relevant rule file path (for example: `supabase/references/postgres-best-practices/rules/query-missing-indexes.md`) and keep changes minimal.
 
 ## File-based Pipeline (Pass Paths Only)
 

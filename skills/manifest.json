@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "skillsVersion": "2026-01-23",
-  "generatedAt": "2026-01-23",
+  "skillsVersion": "2026-01-24",
+  "generatedAt": "2026-01-24",
   "skills": [
     {
       "name": "cloudflare",
@@ -14,6 +14,17 @@
         "infrastructure"
       ],
       "summary": "Infrastructure operations for Cloudflare: Workers, KV, R2, D1, Hyperdrive, observability, builds, audit logs. Three permission tiers: Diagnose (read-only), Change (write requires confirmation), Super Admin (isolated environment). MCP opt..."
+    },
+    {
+      "name": "deep-research",
+      "dir": "deep-research",
+      "skillMd": "deep-research/SKILL.md",
+      "stage": "tool",
+      "tags": [
+        "tool",
+        "research"
+      ],
+      "summary": "Research a topic thoroughly in this repo and return a structured summary with file references. Use when you need to understand how something works, find patterns across modules, or audit implementations."
     },
     {
       "name": "mcp-cloudflare",
@@ -50,6 +61,17 @@
         "database"
       ],
       "summary": "Execute database operations via Supabase MCP (query/write/migration/logs/type generation). Write operations require confirmation; UPDATE/DELETE without WHERE is refused."
+    },
+    {
+      "name": "publish-x-article",
+      "dir": "publish-x-article",
+      "skillMd": "publish-x-article/SKILL.md",
+      "stage": "tool",
+      "tags": [
+        "tool",
+        "publish"
+      ],
+      "summary": "Publish Markdown to X (Twitter) Articles as a draft (never auto-publish). Alias-style entry alongside tool-x-article-publisher."
     },
     {
       "name": "review-clean-code",
@@ -142,17 +164,6 @@
       "summary": "Improve skills and workflows by analyzing run artifacts and execution logs. Find failure modes, bottlenecks, unclear prompts, missing I/O contracts."
     },
     {
-      "name": "workflow-creator",
-      "dir": "workflow-creator",
-      "skillMd": "workflow-creator/SKILL.md",
-      "stage": "meta",
-      "tags": [
-        "meta",
-        "workflow"
-      ],
-      "summary": "Create workflow-* skills by composing existing skills into end-to-end chains. Discovers available skills locally + from skills.sh, generates workflow-<slug>/ packages with Ship Faster conventions."
-    },
-    {
       "name": "stripe",
       "dir": "stripe",
       "skillMd": "stripe/SKILL.md",
@@ -174,7 +185,7 @@
         "approvals",
         "database"
       ],
-      "summary": "Database operations for Supabase: query, write, migration, logs, type generation. Write operations require confirmation; UPDATE/DELETE without WHERE refused. MCP optional."
+      "summary": "Database operations for Supabase: query, write, migration, logs, type generation. Includes bundled Supabase Postgres best practices reference. Write operations require confirmation; UPDATE/DELETE without WHERE refused. MCP optional."
     },
     {
       "name": "tool-ast-grep-rules",
@@ -265,7 +276,7 @@
         "tool",
         "publish"
       ],
-      "summary": "Publish Markdown to X (Twitter) Articles as a draft (never auto-publish). Converts Markdown → HTML for rich text paste and inserts images deterministically."
+      "summary": "Publish Markdown to X (Twitter) Articles as a draft (never auto-publish). Converts Markdown \u2192 HTML for rich text paste and inserts images deterministically."
     },
     {
       "name": "workflow-brainstorm",
@@ -277,7 +288,18 @@
         "artifacts",
         "runs"
       ],
-      "summary": "Brainstorm → Design Spec: Use before any creative implementation. Ask one question at a time, provide 2-3 options with trade-offs, output design in segments."
+      "summary": "Brainstorm \u2192 Design Spec: Use before any creative implementation. Ask one question at a time, provide 2-3 options with trade-offs, output design in segments."
+    },
+    {
+      "name": "workflow-creator",
+      "dir": "workflow-creator",
+      "skillMd": "workflow-creator/SKILL.md",
+      "stage": "meta",
+      "tags": [
+        "meta",
+        "workflow"
+      ],
+      "summary": "Create workflow-* skills by composing existing skills into end-to-end chains. Discovers available skills locally + from skills.sh, generates workflow-<slug>/ packages with Ship Faster conventions."
     },
     {
       "name": "workflow-execute-plans",
@@ -325,7 +347,7 @@
         "artifacts",
         "runs"
       ],
-      "summary": "Ship Faster end-to-end workflow for small web apps (Next.js): idea → foundation gate → design-system → guardrails → feature iteration → optional Supabase/Stripe → deploy → SEO."
+      "summary": "Ship Faster end-to-end workflow for small web apps (Next.js): idea \u2192 foundation gate \u2192 design-system \u2192 guardrails \u2192 feature iteration \u2192 optional Supabase/Stripe \u2192 deploy \u2192 SEO."
     },
     {
       "name": "workflow-template-extractor",
@@ -347,7 +369,7 @@
         "workflow",
         "templates"
       ],
-      "summary": "Seed a new runnable template under templates/NNN-slug/ from a short spec by chaining existing skills (intake → ship-faster stages) while keeping it clean and shareable."
+      "summary": "Seed a new runnable template under templates/NNN-slug/ from a short spec by chaining existing skills (intake \u2192 ship-faster stages) while keeping it clean and shareable."
     }
   ]
 }

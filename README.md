@@ -172,7 +172,7 @@ runs/ship-faster/active/<run_id>/
 
 ---
 
-## 🛠️ Skills (32)
+## 🛠️ Skills (34)
 
 Composable workflows that ship end-to-end. Copy to `~/.claude/skills/`.
 
@@ -189,12 +189,14 @@ Composable workflows that ship end-to-end. Copy to `~/.claude/skills/`.
 - 🎨 [tool-design-style-selector](skills/tool-design-style-selector/) — Scan project → generate design-system.md
 - 🖌️ [tool-ui-ux-pro-max](skills/tool-ui-ux-pro-max/) — Palette / typography / UX lookup database
 - 🔍 [tool-ast-grep-rules](skills/tool-ast-grep-rules/) — AST-based code search & rewrite
+- 🔎 [deep-research](skills/deep-research/) — Deep codebase research in an isolated Explore subagent
 - 🧰 [tool-hooks-doctor](skills/tool-hooks-doctor/) — Check/install Claude Code evolution hooks
 - 🔐 [tool-better-auth](skills/tool-better-auth/) — Better Auth integration guidance
 - 🧪 [tool-systematic-debugging](skills/tool-systematic-debugging/) — Root-cause-first debugging process
 - 🧩 [tool-schema-markup](skills/tool-schema-markup/) — Structured data / JSON-LD guidance
 - 📈 [tool-programmatic-seo](skills/tool-programmatic-seo/) — Template-driven pages at scale
 - 📝 [tool-x-article-publisher](skills/tool-x-article-publisher/) — Publish Markdown to X Articles
+- 📣 [publish-x-article](skills/publish-x-article/) — Publish Markdown to X Articles (alt name)
 
 ### 🔎 Reviews
 - ✅ [review-quality](skills/review-quality/) — Merge readiness + maintainability + docs audit
@@ -205,7 +207,7 @@ Composable workflows that ship end-to-end. Copy to `~/.claude/skills/`.
 - 🚦 [review-merge-readiness](skills/review-merge-readiness/) — Structured PR review with verdict
 
 ### 🔌 Services
-- 🗄️ [supabase](skills/supabase/) — Database ops with safety rules (no bare DELETE!)
+- 🗄️ [supabase](skills/supabase/) — DB ops with approval gates + bundled Postgres best practices
 - 💳 [stripe](skills/stripe/) — Billing ops with confirmation gates
 - ☁️ [cloudflare](skills/cloudflare/) — Workers / KV / R2 / D1 infrastructure
 

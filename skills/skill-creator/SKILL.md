@@ -75,6 +75,21 @@ python scripts/package_skill.py /path/to/<skill-name> [output-directory]
 - Keep side effects gated: write a plan first, ask for explicit confirmation, then execute, then verify.
 - If you add/remove a skill, update the catalog: `skills/manifest.json`.
 
+## Claude Code: Slash Commands merged into Skills
+
+Claude Code now treats custom slash commands and skills as the same concept:
+
+- `.claude/commands/<name>.md` and `.claude/skills/<name>/SKILL.md` both create `/<name>`
+- Existing `.claude/commands/` files keep working (no migration required)
+- Prefer creating **skills** going forward so you can bundle `references/`, `scripts/`, and use subagents
+
+Useful frontmatter knobs (Claude Code):
+
+- `disable-model-invocation: true` - only user can invoke (good for side-effect workflows)
+- `user-invocable: false` - hide from users; Claude-only background knowledge
+- `context: fork` + `agent: Explore|Plan|...` - run skill in a subagent (good for research)
+- `allowed-tools` - restrict tool surface when this skill is active
+
 ## Archived full guide
 
 The previous (long-form) version of this skill is preserved at:

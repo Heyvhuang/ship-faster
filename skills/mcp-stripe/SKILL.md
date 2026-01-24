@@ -1,6 +1,7 @@
 ---
 name: mcp-stripe
-description: "Stripe MCP transaction operations skill. Execute transaction operations via Stripe MCP server (https://mcp.stripe.com): customer management, products/prices, invoices, payment links, subscriptions, refunds, dispute handling, balance queries. Triggers when user requests Stripe operations including: create customer, create product, create invoice, generate payment link, query transactions, process refunds, manage subscriptions, view disputes, check balance, etc."
+description: "Stripe MCP transaction operations skill. Execute transaction operations via Stripe MCP server (https://mcp.stripe.com): customer management, products/prices, invoices, payment links, subscriptions, refunds, dispute handling, balance queries. Triggers: user requests Stripe operations including create customer, create product, create invoice, generate payment link, query transactions, process refunds, manage subscriptions, view disputes, check balance, etc."
+disable-model-invocation: true
 ---
 
 # Stripe MCP Transaction Skill

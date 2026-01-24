@@ -128,7 +128,7 @@ runs/ship-faster/active/<run_id>/
 
 ---
 
-## 🛠️ 技能（32）
+## 🛠️ 技能（34）
 
 可组合的工作流，复制到 `~/.claude/skills/`。
 
@@ -145,12 +145,14 @@ runs/ship-faster/active/<run_id>/
 - 🎨 [tool-design-style-selector](skills/tool-design-style-selector/) — 生成 design-system.md
 - 🖌️ [tool-ui-ux-pro-max](skills/tool-ui-ux-pro-max/) — 配色 / 字体 / UX 查询
 - 🔍 [tool-ast-grep-rules](skills/tool-ast-grep-rules/) — AST 代码搜索重写
+- 🔎 [deep-research](skills/deep-research/) — 深度代码库研究（Explore 子代理隔离执行）
 - 🧰 [tool-hooks-doctor](skills/tool-hooks-doctor/) — 检查/安装 Claude Code evolution hooks
 - 🔐 [tool-better-auth](skills/tool-better-auth/) — Better Auth 集成指引
 - 🧪 [tool-systematic-debugging](skills/tool-systematic-debugging/) — 以根因为先的调试流程
 - 🧩 [tool-schema-markup](skills/tool-schema-markup/) — Schema / JSON-LD 指引
 - 📈 [tool-programmatic-seo](skills/tool-programmatic-seo/) — Programmatic SEO（模板化规模页面）
 - 📝 [tool-x-article-publisher](skills/tool-x-article-publisher/) — 发布到 X Articles
+- 📣 [publish-x-article](skills/publish-x-article/) — 发布到 X Articles（别名）
 
 ### 🔎 审查
 - ✅ [review-quality](skills/review-quality/) — 合并就绪 + 可维护性审计
@@ -161,7 +163,7 @@ runs/ship-faster/active/<run_id>/
 - 🚦 [review-merge-readiness](skills/review-merge-readiness/) — 结构化 PR 审查
 
 ### 🔌 服务
-- 🗄️ [supabase](skills/supabase/) — 数据库操作（禁止裸 DELETE！）
+- 🗄️ [supabase](skills/supabase/) — 数据库操作（审批门控）+ 内置 Postgres 最佳实践
 - 💳 [stripe](skills/stripe/) — 计费操作，带确认门控
 - ☁️ [cloudflare](skills/cloudflare/) — Workers / KV / R2 / D1
 
