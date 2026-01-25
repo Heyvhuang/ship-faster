@@ -1,0 +1,241 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.clawd.bot/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# null
+
+# Voice Call (plugin)
+
+Voice calls for Clawdbot via a plugin. Supports outbound notifications and
+multi-turn conversations with inbound policies.
+
+Current providers:
+
+* `twilio` (Programmable Voice + Media Streams)
+* `telnyx` (Call Control v2)
+* `plivo` (Voice API + XML transfer + GetInput speech)
+* `mock` (dev/no network)
+
+Quick mental model:
+
+* Install plugin
+* Restart Gateway
+* Configure under `plugins.entries.voice-call.config`
+* Use `clawdbot voicecall ...` or the `voice_call` tool
+
+## Where it runs (local vs remote)
+
+The Voice Call plugin runs **inside the Gateway process**.
+
+If you use a remote Gateway, install/configure the plugin on the **machine running the Gateway**, then restart the Gateway to load it.
+
+## Install
+
+### Option A: install from npm (recommended)
+
+```bash  theme={null}
+clawdbot plugins install @clawdbot/voice-call
+```
+
+Restart the Gateway afterwards.
+
+### Option B: install from a local folder (dev, no copying)
+
+```bash  theme={null}
+clawdbot plugins install ./extensions/voice-call
+cd ./extensions/voice-call && pnpm install
+```
+
+Restart the Gateway afterwards.
+
+## Config
+
+Set config under `plugins.entries.voice-call.config`:
+
+```json5  theme={null}
+{
+  plugins: {
+    entries: {
+      "voice-call": {
+        enabled: true,
+        config: {
+          provider: "twilio", // or "telnyx" | "plivo" | "mock"
+          fromNumber: "+15550001234",
+          toNumber: "+15550005678",
+
+          twilio: {
+            accountSid: "ACxxxxxxxx",
+            authToken: "..."
+          },
+
+          plivo: {
+            authId: "MAxxxxxxxxxxxxxxxxxxxx",
+            authToken: "..."
+          },
+
+          // Webhook server
+          serve: {
+            port: 3334,
+            path: "/voice/webhook"
+          },
+
+          // Public exposure (pick one)
+          // publicUrl: "https://example.ngrok.app/voice/webhook",
+          // tunnel: { provider: "ngrok" },
+          // tailscale: { mode: "funnel", path: "/voice/webhook" }
+
+          outbound: {
+            defaultMode: "notify" // notify | conversation
+          },
+
+          streaming: {
+            enabled: true,
+            streamPath: "/voice/stream"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Notes:
+
+* Twilio/Telnyx require a **publicly reachable** webhook URL.
+* Plivo requires a **publicly reachable** webhook URL.
+* `mock` is a local dev provider (no network calls).
+* `skipSignatureVerification` is for local testing only.
+
+## TTS for calls
+
+Voice Call uses the core `messages.tts` configuration (OpenAI or ElevenLabs) for
+streaming speech on calls. You can override it under the plugin config with the
+**same shape** — it deep‑merges with `messages.tts`.
+
+```json5  theme={null}
+{
+  tts: {
+    provider: "elevenlabs",
+    elevenlabs: {
+      voiceId: "pMsXgVXv3BLzUgSXRplE",
+      modelId: "eleven_multilingual_v2"
+    }
+  }
+}
+```
+
+Notes:
+
+* **Edge TTS is ignored for voice calls** (telephony audio needs PCM; Edge output is unreliable).
+* Core TTS is used when Twilio media streaming is enabled; otherwise calls fall back to provider native voices.
+
+### More examples
+
+Use core TTS only (no override):
+
+```json5  theme={null}
+{
+  messages: {
+    tts: {
+      provider: "openai",
+      openai: { voice: "alloy" }
+    }
+  }
+}
+```
+
+Override to ElevenLabs just for calls (keep core default elsewhere):
+
+```json5  theme={null}
+{
+  plugins: {
+    entries: {
+      "voice-call": {
+        config: {
+          tts: {
+            provider: "elevenlabs",
+            elevenlabs: {
+              apiKey: "elevenlabs_key",
+              voiceId: "pMsXgVXv3BLzUgSXRplE",
+              modelId: "eleven_multilingual_v2"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Override only the OpenAI model for calls (deep‑merge example):
+
+```json5  theme={null}
+{
+  plugins: {
+    entries: {
+      "voice-call": {
+        config: {
+          tts: {
+            openai: {
+              model: "gpt-4o-mini-tts",
+              voice: "marin"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+## Inbound calls
+
+Inbound policy defaults to `disabled`. To enable inbound calls, set:
+
+```json5  theme={null}
+{
+  inboundPolicy: "allowlist",
+  allowFrom: ["+15550001234"],
+  inboundGreeting: "Hello! How can I help?"
+}
+```
+
+Auto-responses use the agent system. Tune with:
+
+* `responseModel`
+* `responseSystemPrompt`
+* `responseTimeoutMs`
+
+## CLI
+
+```bash  theme={null}
+clawdbot voicecall call --to "+15555550123" --message "Hello from Clawdbot"
+clawdbot voicecall continue --call-id <id> --message "Any questions?"
+clawdbot voicecall speak --call-id <id> --message "One moment"
+clawdbot voicecall end --call-id <id>
+clawdbot voicecall status --call-id <id>
+clawdbot voicecall tail
+clawdbot voicecall expose --mode funnel
+```
+
+## Agent tool
+
+Tool name: `voice_call`
+
+Actions:
+
+* `initiate_call` (message, to?, mode?)
+* `continue_call` (callId, message)
+* `speak_to_user` (callId, message)
+* `end_call` (callId)
+* `get_status` (callId)
+
+This repo ships a matching skill doc at `skills/voice-call/SKILL.md`.
+
+## Gateway RPC
+
+* `voicecall.initiate` (`to?`, `message`, `mode?`)
+* `voicecall.continue` (`callId`, `message`)
+* `voicecall.speak` (`callId`, `message`)
+* `voicecall.end` (`callId`)
+* `voicecall.status` (`callId`)

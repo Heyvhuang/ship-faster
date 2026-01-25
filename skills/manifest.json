@@ -208,6 +208,16 @@
       "summary": "Use when implementing authentication with Better Auth in a TypeScript/Next.js app (session strategy, providers, cookies, CSRF, redirects, middleware, and security best practices)."
     },
     {
+      "name": "tool-clawdbot",
+      "dir": "tool-clawdbot",
+      "skillMd": "tool-clawdbot/SKILL.md",
+      "stage": "tool",
+      "tags": [
+        "tool"
+      ],
+      "summary": "Help users install, configure, and operate Clawdbot (gateway, channels, nodes, plugins). Use when answering Clawdbot setup/debug questions; use the local docs snapshot under tool-clawdbot/references/docs/ as the source of truth. Triggers..."
+    },
+    {
       "name": "tool-design-style-selector",
       "dir": "tool-design-style-selector",
       "skillMd": "tool-design-style-selector/SKILL.md",

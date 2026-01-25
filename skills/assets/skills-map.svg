@@ -27,9 +27,9 @@
   <text x="436" y="150" class="text">publish-x-article</text>
   <text x="436" y="168" class="text">tool-ast-grep-rules</text>
   <text x="436" y="186" class="text">tool-better-auth</text>
-  <text x="436" y="204" class="text">tool-design-style-selector</text>
-  <text x="436" y="222" class="text">tool-hooks-doctor</text>
-  <text x="436" y="240" class="muted">(+4 more)</text>
+  <text x="436" y="204" class="text">tool-clawdbot</text>
+  <text x="436" y="222" class="text">tool-design-style-selector</text>
+  <text x="436" y="240" class="muted">(+5 more)</text>
 
   <rect x="800" y="80" width="360" height="160" class="box" />
   <text x="816" y="108" class="label">Reviews</text>
