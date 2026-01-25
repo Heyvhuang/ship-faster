@@ -13,7 +13,7 @@ This is intended for “proven projects” you want to reuse as a baseline for f
 
 - `source_repo_root`: Path to the real project
 - `target_repo_root`: Ship Faster repository root (where `templates/` lives)
-- `run_dir`: `.claude/runs/template-extractor/<run_id>/`
+- `run_dir`: `runs/template-extractor/active/<run_id>/`
 - `extract_spec.md`: What to keep/remove/generalize (brand, copy, assets, integrations, auth gates)
 
 ## Output (persisted)

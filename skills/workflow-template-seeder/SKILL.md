@@ -14,7 +14,7 @@ This workflow is **skills-first**:
 ## Input (pass paths only)
 
 - `repo_root`: Ship Faster repository root (where `templates/` lives)
-- `run_dir`: `.claude/runs/template-seeder/<run_id>/`
+- `run_dir`: `runs/template-seeder/active/<run_id>/`
 - `template_spec.md`: One-page spec (what it is, target user, core pages, required integrations)
 
 ## Output (persisted)

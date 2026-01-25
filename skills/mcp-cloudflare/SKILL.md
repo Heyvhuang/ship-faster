@@ -12,7 +12,7 @@ Interact with Cloudflare services via MCP: Workers, KV, R2, D1, Hyperdrive, Obse
 
 When integrating troubleshooting/changes into multi-step workflows, persist all evidence and artifacts to disk, passing only paths between agents/sub-agents.
 
-Recommended directory structure (within project): `.claude/runs/<workflow>/<run_id>/`
+Recommended directory structure (within project): `runs/<workflow>/active/<run_id>/`
 
 - Input: `01-input/goal.md` (symptoms/objectives), `01-input/context.json` (account/worker/resource/time_range, etc.)
 - Evidence: `02-analysis/observability.md`, `02-analysis/audit.md`, `02-analysis/screenshots/`

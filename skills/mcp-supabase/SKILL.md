@@ -37,7 +37,7 @@ When proposing changes, cite the relevant rule file path (for example: `supabase
 
 When integrating database operations into multi-step workflows, persist all context and artifacts to disk, passing only paths between agents/sub-agents.
 
-Recommended directory structure (within project): `.claude/runs/<workflow>/<run_id>/`
+Recommended directory structure (within project): `runs/<workflow>/active/<run_id>/`
 
 - Input: `01-input/goal.md` (requirements), `01-input/context.json` (known tables/fields/IDs)
 - Plan: `03-plans/sql.md` (SQL to execute; write operations must be written here before confirmation)

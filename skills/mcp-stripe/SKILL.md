@@ -12,7 +12,7 @@ Execute transaction operations via Stripe MCP server.
 
 When integrating billing operations into multi-step workflows, persist all context and artifacts to disk, passing only paths between agents/sub-agents.
 
-Recommended directory structure (within project): `.claude/runs/<workflow>/<run_id>/`
+Recommended directory structure (within project): `runs/<workflow>/active/<run_id>/`
 
 - Input: `01-input/goal.md` (requirements), `01-input/context.json` (known customer/invoice/subscription/payment_intent IDs, etc.)
 - Plan: `03-plans/stripe-actions.md` (list of operations to execute; money/contracts must be written here and await confirmation first)
