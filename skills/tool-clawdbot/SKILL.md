@@ -107,6 +107,21 @@ If still failing:
 - <what exact command output / log / config snippet to ask for>
 ```
 
+## Updating the Docs Snapshot
+
+To refresh the bundled docs from https://docs.clawd.bot:
+
+```bash
+cd skills/tool-clawdbot
+./scripts/update.sh
+```
+
+Options:
+- `--limit N` — Only download first N pages (for testing)
+- `--concurrency N` — Parallel downloads (default: 5)
+
+Requires Node.js >= 18.
+
 ## Resources
 
 - Curated map into the snapshot: `tool-clawdbot/references/entrypoints.md`
