@@ -122,6 +122,20 @@ Options:
 
 Requires Node.js >= 18.
 
+## Searching Community Skills
+
+Search 565+ community-built Clawdbot skills from awesome-clawdbot-skills:
+
+```bash
+cd skills/tool-clawdbot
+./scripts/search-skills.sh discord      # Search by keyword
+./scripts/search-skills.sh pdf document # Multiple keywords
+./scripts/search-skills.sh --list       # List categories
+./scripts/search-skills.sh --refresh    # Force refresh cache
+```
+
+Install found skills: `npx clawdhub@latest install <skill-slug>`
+
 ## Resources
 
 - Curated map into the snapshot: `tool-clawdbot/references/entrypoints.md`
