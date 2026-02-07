@@ -1,0 +1,26 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Credits
+
+## The name
+
+OpenClaw = CLAW + TARDIS, because every space lobster needs a time and space machine.
+
+## Credits
+
+* **Peter Steinberger** ([@steipete](https://x.com/steipete)) - Creator, lobster whisperer
+* **Mario Zechner** ([@badlogicc](https://x.com/badlogicgames)) - Pi creator, security pen tester
+* **Clawd** - The space lobster who demanded a better name
+
+## Core contributors
+
+* **Maxim Vovshin** (@Hyaxia, [36747317+Hyaxia@users.noreply.github.com](mailto:36747317+Hyaxia@users.noreply.github.com)) - Blogwatcher skill
+* **Nacho Iacovino** (@nachoiacovino, [nacho.iacovino@gmail.com](mailto:nacho.iacovino@gmail.com)) - Location parsing (Telegram and WhatsApp)
+
+## License
+
+MIT - Free as a lobster in the ocean.
+
+> "We are all just playing with our own prompts." (An AI, probably high on tokens)
