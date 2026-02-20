@@ -1,0 +1,5 @@
+{
+  "name": "Code Dependency Risk Monitor",
+  "description": "Subscription alerting development teams when their production dependencies appear in trending repositories with breaking changes or security issues.",
+  "requestFramePermissions": []
+}

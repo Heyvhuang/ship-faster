@@ -14,6 +14,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 | `006-ticket-to-faq` | Ticket to FAQ knowledge base generator | [`006-ticket-to-faq/`](006-ticket-to-faq/) |
 | `007-elevate-move-in-booking` | Elevate move-in booking system | [`007-elevate-move-in-booking/`](007-elevate-move-in-booking/) |
 
+| `008-code-dependency-risk-monitor` | Code Dependency Risk Monitor | [`008-code-dependency-risk-monitor/`](008-code-dependency-risk-monitor/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
