@@ -73,7 +73,11 @@ export const generateBrief = async (stores: StoreStats[]): Promise<BriefContent>
     const text = response.text;
     if (!text) throw new Error("Empty response from Gemini");
     
-    return JSON.parse(text) as BriefContent;
+    try {
+      return JSON.parse(text) as BriefContent;
+    } catch {
+      throw new Error("Failed to parse AI response as JSON");
+    }
 
   } catch (error) {
     console.error("Gemini API Error:", error);

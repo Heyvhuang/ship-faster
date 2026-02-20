@@ -27,20 +27,25 @@ const StreamingArticleView: React.FC<StreamingArticleViewProps> = ({ article, on
     ] as const;
 
     let currentPhaseIndex = 0;
-    
+    let activeTimeout: ReturnType<typeof setTimeout> | null = null;
+
     const advancePhase = () => {
       if (currentPhaseIndex < phases.length - 1) {
         currentPhaseIndex++;
         setPhase(phases[currentPhaseIndex].name);
         if (phases[currentPhaseIndex].duration > 0) {
-          setTimeout(advancePhase, phases[currentPhaseIndex].duration);
+          activeTimeout = setTimeout(advancePhase, phases[currentPhaseIndex].duration);
         } else {
           onComplete();
         }
       }
     };
 
-    setTimeout(advancePhase, phases[0].duration);
+    activeTimeout = setTimeout(advancePhase, phases[0].duration);
+
+    return () => {
+      if (activeTimeout) clearTimeout(activeTimeout);
+    };
   }, [onComplete]);
 
   useEffect(() => {

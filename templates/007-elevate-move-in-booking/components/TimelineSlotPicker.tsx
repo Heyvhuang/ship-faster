@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useMemo } from 'react';
 import { Clock, Zap, Users, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export interface TimeSlot {
@@ -55,6 +55,11 @@ export const TimelineSlotPicker: React.FC<TimelineSlotPickerProps> = ({
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const [currentHour, setCurrentHour] = useState(new Date().getHours());
+
+  const selectedSlot = useMemo(
+    () => slots.find(s => s.id === selectedSlotId),
+    [slots, selectedSlotId]
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -225,9 +230,9 @@ export const TimelineSlotPicker: React.FC<TimelineSlotPickerProps> = ({
             <div>
               <p className="text-sm text-cyan-700 font-medium">Selected Time</p>
               <p className="text-lg font-bold text-cyan-900">
-                {slots.find(s => s.id === selectedSlotId)?.startHour !== undefined && (
+                {selectedSlot && (
                   <>
-                    {formatHour(slots.find(s => s.id === selectedSlotId)!.startHour)} - {formatHour(slots.find(s => s.id === selectedSlotId)!.endHour)}
+                    {formatHour(selectedSlot.startHour)} - {formatHour(selectedSlot.endHour)}
                   </>
                 )}
               </p>

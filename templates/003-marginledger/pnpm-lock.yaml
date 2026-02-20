@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@google/genai':
-        specifier: ^1.36.0
+        specifier: ^1.37.0
         version: 1.37.0
       lucide-react:
         specifier: ^0.562.0
@@ -738,6 +738,7 @@ packages:
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   google-auth-library@10.5.0:

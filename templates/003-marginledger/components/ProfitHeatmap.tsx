@@ -18,7 +18,8 @@ interface TreemapData {
   margin: number;
   status: string;
   original: CustomerMetric;
-  [key: string]: any;
+  targetMargin: number;
+  [key: string]: string | number | CustomerMetric;
 }
 
 const getMarginColor = (marginPercent: number, target: number) => {
@@ -27,7 +28,7 @@ const getMarginColor = (marginPercent: number, target: number) => {
   return '#059669';
 };
 
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ payload: TreemapData }> }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload as TreemapData;
     
@@ -63,8 +64,8 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-const CustomizedContent = (props: any) => {
-  const { x, y, width, height, name, marginPercent, targetMargin, status } = props;
+const CustomizedContent = (props: { targetMargin: number; x?: number; y?: number; width?: number; height?: number; name?: string; marginPercent?: number; status?: string }) => {
+  const { x = 0, y = 0, width = 0, height = 0, name = '', marginPercent = 0, targetMargin } = props;
 
   if (width < 4 || height < 4) return null;
 

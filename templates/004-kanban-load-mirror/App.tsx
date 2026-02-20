@@ -18,7 +18,7 @@ export default function App() {
   
   const handleBackToLanding = () => setView('landing');
 
-  const handleImportComplete = async (importedData: KanbanCard[], importedConfig: any) => {
+  const handleImportComplete = async (importedData: KanbanCard[], importedConfig: AppState['config']) => {
     setData(importedData);
     setConfig(importedConfig);
     setView('processing');

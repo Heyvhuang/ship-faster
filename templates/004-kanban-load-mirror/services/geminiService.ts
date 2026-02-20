@@ -65,7 +65,12 @@ export const generateAgenda = async (cards: KanbanCard[], agingThreshold: number
     const text = response.text;
     if (!text) return [];
     
-    return JSON.parse(text) as AgendaItem[];
+    try {
+      return JSON.parse(text) as AgendaItem[];
+    } catch {
+      console.error("Failed to parse AI response as JSON");
+      return getFallbackAgenda();
+    }
   } catch (error) {
     console.error("Gemini API Error:", error);
     // Fallback if API fails

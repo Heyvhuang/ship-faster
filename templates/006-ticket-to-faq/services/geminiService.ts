@@ -3,6 +3,9 @@ import { GeneratedArticle, GenerationConfig, Audience } from "../types";
 
 // Initialize Gemini
 // Note: In a real app, strict error handling for missing API keys should be implemented.
+if (!process.env.API_KEY) {
+  console.warn("API_KEY environment variable is missing. AI generation will fail.");
+}
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
 
 const articleSchema: Schema = {
@@ -34,6 +37,7 @@ export const generateArticle = async (
   ticketText: string,
   config: GenerationConfig
 ): Promise<GeneratedArticle> => {
+  const safeTicketText = ticketText.length > 50000 ? ticketText.substring(0, 50000) : ticketText;
   const modelName = "gemini-3-flash-preview";
 
   const systemInstruction = `
@@ -55,7 +59,7 @@ export const generateArticle = async (
     const response = await ai.models.generateContent({
       model: modelName,
       contents: [
-        { role: 'user', parts: [{ text: `Here is the resolved ticket log:\n\n${ticketText}` }] }
+        { role: 'user', parts: [{ text: `Here is the resolved ticket log:\n\n${safeTicketText}` }] }
       ],
       config: {
         systemInstruction: systemInstruction,
@@ -69,7 +73,12 @@ export const generateArticle = async (
       throw new Error("Empty response from AI");
     }
 
-    const data = JSON.parse(response.text) as GeneratedArticle;
+    let data: GeneratedArticle;
+    try {
+      data = JSON.parse(response.text) as GeneratedArticle;
+    } catch {
+      throw new Error("Failed to parse AI response as valid JSON. The model may have returned an unexpected format.");
+    }
     // Ensure audience matches the requested enum even if AI hallucinates case
     data.audience = config.audience; 
     return data;

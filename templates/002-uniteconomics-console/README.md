@@ -25,7 +25,7 @@
 
 ## Quickstart
 
-**Prerequisites:** Node.js 18+, npm or pnpm
+**Prerequisites:** Node.js 18+, pnpm
 
 1. Enter template directory:
    ```bash
@@ -34,7 +34,7 @@
 
 2. Install & configure:
    ```bash
-   npm install
+   pnpm install
    cp .env.local.example .env.local
    ```
 
@@ -42,7 +42,7 @@
 
 4. Start dev server:
    ```bash
-   npm run dev
+   pnpm dev
    ```
 
 5. Open `http://localhost:3000`
@@ -55,12 +55,12 @@ No required environment variables for the demo.
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run typecheck` | Run TypeScript type checking |
-| `npm run format` | Format code with Prettier |
+| `pnpm dev` | Start development server |
+| `pnpm build` | Build for production |
+| `pnpm start` | Start production server |
+| `pnpm lint` | Run ESLint |
+| `pnpm typecheck` | Run TypeScript type checking |
+| `pnpm format` | Format code with Prettier |
 
 ## Design System
 

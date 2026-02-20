@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import { Upload, ArrowRight, ArrowLeft, CheckCircle2, AlertCircle, FileJson, Sparkles, Home } from 'lucide-react';
 import { KanbanCard, MOCK_DATA } from '../types';
 
+interface ImportConfig {
+  inProgressStatuses: string[];
+  doneStatuses: string[];
+  agingThreshold: number;
+}
+
 interface ImportFlowProps {
-  onComplete: (data: KanbanCard[], config: any) => void;
+  onComplete: (data: KanbanCard[], config: ImportConfig) => void;
   onBack: () => void;
 }
 

@@ -15,6 +15,10 @@ export const Resident: React.FC<ResidentProps> = ({ rules, onBack }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const confirmationNumber = useMemo(
+    () => `ELV-${Math.random().toString(36).substring(2, 10).toUpperCase()}`,
+    []
+  );
 
   const startHour = parseInt(rules.moveInStart.split(':')[0]);
   const endHour = parseInt(rules.moveInEnd.split(':')[0]);
@@ -350,7 +354,7 @@ export const Resident: React.FC<ResidentProps> = ({ rules, onBack }) => {
 
               <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-6 text-white text-left">
                 <p className="text-sm text-slate-400 mb-2">Confirmation #</p>
-                <p className="text-2xl font-mono font-bold tracking-wider">ELV-{Math.random().toString(36).substr(2, 8).toUpperCase()}</p>
+                <p className="text-2xl font-mono font-bold tracking-wider">{confirmationNumber}</p>
                 <p className="text-sm text-slate-400 mt-4">A receipt has been sent to your email.</p>
               </div>
             </div>

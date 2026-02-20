@@ -218,9 +218,10 @@ const ProcessingView = ({ onComplete }: { onComplete: () => void }) => {
       const timeout = setTimeout(() => setStep(s => s + 1), 800);
       return () => clearTimeout(timeout);
     } else {
-      setTimeout(onComplete, 500);
+      const timeout = setTimeout(onComplete, 500);
+      return () => clearTimeout(timeout);
     }
-  }, [step]);
+  }, [step, steps.length, onComplete]);
 
   return (
     <div className="max-w-md mx-auto px-4 py-32 text-center">

@@ -15,13 +15,15 @@ export const extractRulesFromText = async (text: string): Promise<RuleExtraction
   const ai = getAI();
   if (!ai) return null;
 
+  const safeText = text.length > 10000 ? text.substring(0, 10000) : text;
+
   try {
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
-      contents: `You are a building management assistant. Extract the building move-in rules from the following policy text. 
+      contents: `You are a building management assistant. Extract the building move-in rules from the following policy text.
       If a value is missing, use these defaults: 9am start, 5pm end, 3 hour slots, $500 deposit, no blackout days.
-      
-      Policy Text: "${text}"`,
+
+      Policy Text: "${safeText}"`,
       config: {
         responseMimeType: "application/json",
         responseSchema: {
@@ -43,7 +45,12 @@ export const extractRulesFromText = async (text: string): Promise<RuleExtraction
     });
 
     if (response.text) {
-      return JSON.parse(response.text) as RuleExtractionResponse;
+      try {
+        return JSON.parse(response.text) as RuleExtractionResponse;
+      } catch {
+        console.error("Failed to parse AI response as JSON");
+        return null;
+      }
     }
     return null;
   } catch (error) {
