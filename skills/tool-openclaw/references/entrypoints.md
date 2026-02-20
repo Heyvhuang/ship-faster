@@ -17,12 +17,12 @@ This is a curated map into the local snapshot at `references/docs/`.
 
 - `references/docs/start/wizard.md`
 - `references/docs/start/setup.md`
-- `references/docs/start/pairing.md`
+- `references/docs/channels/pairing.md`
 
 ## Gateway
 
 - `references/docs/gateway/configuration.md`
-- `references/docs/gateway/security.md`
+- `references/docs/gateway/security/index.md`
 - `references/docs/gateway/authentication.md`
 - `references/docs/gateway/remote.md`
 - `references/docs/gateway/tailscale.md`
@@ -41,11 +41,11 @@ This is a curated map into the local snapshot at `references/docs/`.
 - `references/docs/channels/imessage.md`
 - `references/docs/channels/troubleshooting.md`
 
-Related concepts:
+Related channel routing/group docs:
 
-- `references/docs/concepts/groups.md`
-- `references/docs/concepts/group-messages.md`
-- `references/docs/concepts/channel-routing.md`
+- `references/docs/channels/groups.md`
+- `references/docs/channels/group-messages.md`
+- `references/docs/channels/channel-routing.md`
 
 ## Nodes / Surfaces
 
