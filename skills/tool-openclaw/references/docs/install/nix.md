@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/nix.md; fetched_at=2026-02-20T10:29:22.364Z; sha256=63723d17b74b9eadae8b0c83814fbbff3d7e520184391ed34b422c3adc71936b; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -12,7 +14,7 @@ The recommended way to run OpenClaw with Nix is via **[nix-openclaw](https://git
 
 Paste this to your AI agent (Claude, Cursor, etc.):
 
-```text  theme={null}
+```text  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 I want to set up nix-openclaw on my Mac.
 Repository: github:openclaw/nix-openclaw
 
@@ -47,21 +49,23 @@ When `OPENCLAW_NIX_MODE=1` is set (automatic with nix-openclaw):
 OpenClaw supports a **Nix mode** that makes configuration deterministic and disables auto-install flows.
 Enable it by exporting:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 OPENCLAW_NIX_MODE=1
 ```
 
 On macOS, the GUI app does not automatically inherit shell env vars. You can
 also enable Nix mode via defaults:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 defaults write bot.molt.mac openclaw.nixMode -bool true
 ```
 
 ### Config + state paths
 
 OpenClaw reads JSON5 config from `OPENCLAW_CONFIG_PATH` and stores mutable data in `OPENCLAW_STATE_DIR`.
+When needed, you can also set `OPENCLAW_HOME` to control the base home directory used for internal path resolution.
 
+* `OPENCLAW_HOME` (default precedence: `HOME` / `USERPROFILE` / `os.homedir()`)
 * `OPENCLAW_STATE_DIR` (default: `~/.openclaw`)
 * `OPENCLAW_CONFIG_PATH` (default: `$OPENCLAW_STATE_DIR/openclaw.json`)
 

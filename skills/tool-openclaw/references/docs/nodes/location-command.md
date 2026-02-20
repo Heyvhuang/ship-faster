@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/location-command.md; fetched_at=2026-02-20T10:29:23.484Z; sha256=2d3262512c6d2ef891ee1ebe5a59952662b9babadf9cbf04021c6f9591edddf3; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -46,7 +48,7 @@ Called via `node.invoke`.
 
 Params (suggested):
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "timeoutMs": 10000,
   "maxAgeMs": 15000,
@@ -56,7 +58,7 @@ Params (suggested):
 
 Response payload:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "lat": 48.20849,
   "lon": 16.37208,

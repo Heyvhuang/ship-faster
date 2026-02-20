@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/configure.md; fetched_at=2026-02-20T10:29:14.751Z; sha256=b1767ad1bff6fe67f98c3bdaa4620e83608aa90487d13b061e423f0f1f477d06; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -26,7 +28,7 @@ Notes:
 
 ## Examples
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw configure
 openclaw configure --section models --section channels
 ```

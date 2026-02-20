@@ -1,8 +1,10 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/session-pruning.md; fetched_at=2026-02-20T10:29:17.946Z; sha256=0ec27f70036b9889bc0aa6abda9935e4eee29bba239f9c13548e811f8faab6ae; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# null
+# Session Pruning
 
 # Session Pruning
 
@@ -87,7 +89,7 @@ If `agents.defaults.contextTokens` is set, it is treated as a cap (min) on the r
 
 Default (off):
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: {
     contextPruning: { mode: "off" },
@@ -97,7 +99,7 @@ Default (off):
 
 Enable TTL-aware pruning:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: {
     contextPruning: { mode: "cache-ttl", ttl: "5m" },
@@ -107,7 +109,7 @@ Enable TTL-aware pruning:
 
 Restrict pruning to specific tools:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: {
     contextPruning: {

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/bonjour.md; fetched_at=2026-02-20T10:29:19.250Z; sha256=4ed29d9481ff1082c45c5a58a313a681e8d98d08c586fd263ff334ad66b869a8; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -29,7 +31,7 @@ iOS/Android nodes browse both `local.` and your configured wide‑area domain.
 
 ### Gateway config (recommended)
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: { bind: "tailnet" }, // tailnet-only (recommended)
   discovery: { wideArea: { enabled: true } }, // enables wide-area DNS-SD publishing
@@ -38,7 +40,7 @@ iOS/Android nodes browse both `local.` and your configured wide‑area domain.
 
 ### One‑time DNS server setup (gateway host)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw dns setup --apply
 ```
 
@@ -49,7 +51,7 @@ This installs CoreDNS and configures it to:
 
 Validate from a tailnet‑connected machine:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 dns-sd -B _openclaw-gw._tcp openclaw.internal.
 dig @<TAILNET_IPV4> -p 53 _openclaw-gw._tcp.openclaw.internal PTR +short
 ```
@@ -92,22 +94,32 @@ The Gateway advertises small non‑secret hints to make UI flows convenient:
 * `gatewayPort=<port>` (Gateway WS + HTTP)
 * `gatewayTls=1` (only when TLS is enabled)
 * `gatewayTlsSha256=<sha256>` (only when TLS is enabled and fingerprint is available)
-* `canvasPort=<port>` (only when the canvas host is enabled; default `18793`)
+* `canvasPort=<port>` (only when the canvas host is enabled; currently the same as `gatewayPort`)
 * `sshPort=<port>` (defaults to 22 when not overridden)
 * `transport=gateway`
 * `cliPath=<path>` (optional; absolute path to a runnable `openclaw` entrypoint)
 * `tailnetDns=<magicdns>` (optional hint when Tailnet is available)
+
+Security notes:
+
+* Bonjour/mDNS TXT records are **unauthenticated**. Clients must not treat TXT as authoritative routing.
+* Clients should route using the resolved service endpoint (SRV + A/AAAA). Treat `lanHost`, `tailnetDns`, `gatewayPort`, and `gatewayTlsSha256` as hints only.
+* TLS pinning must never allow an advertised `gatewayTlsSha256` to override a previously stored pin.
+* iOS/Android nodes should treat discovery-based direct connects as **TLS-only** and require explicit user confirmation before trusting a first-time fingerprint.
 
 ## Debugging on macOS
 
 Useful built‑in tools:
 
 * Browse instances:
-  ```bash  theme={null}
+
+  ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
   dns-sd -B _openclaw-gw._tcp local.
   ```
+
 * Resolve one instance (replace `<instance>`):
-  ```bash  theme={null}
+
+  ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
   dns-sd -L "<instance>" _openclaw-gw._tcp local.
   ```
 

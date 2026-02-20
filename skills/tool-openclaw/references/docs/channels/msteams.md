@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/msteams.md; fetched_at=2026-02-20T10:29:13.751Z; sha256=8e56cf3b0718712bd0fbc931bf303194d77e62c2e47be152153ec86edba4dfd1; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -22,20 +24,20 @@ Explainable: keeps core installs lighter and lets MS Teams dependencies update i
 
 Install via CLI (npm registry):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install @openclaw/msteams
 ```
 
 Local checkout (when running from a git repo):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install ./extensions/msteams
 ```
 
 If you choose Teams during configure/onboarding and a git checkout is detected,
 OpenClaw will offer the local install path automatically.
 
-Details: [Plugins](/plugin)
+Details: [Plugins](/tools/plugin)
 
 ## Quick setup (beginner)
 
@@ -47,7 +49,7 @@ Details: [Plugins](/plugin)
 
 Minimal config:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     msteams: {
@@ -75,7 +77,7 @@ By default, Microsoft Teams is allowed to write config updates triggered by `/co
 
 Disable with:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: { msteams: { configWrites: false } },
 }
@@ -97,7 +99,7 @@ Disable with:
 
 Example:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     msteams: {
@@ -119,7 +121,7 @@ Example:
 
 Example:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     msteams: {
@@ -194,7 +196,7 @@ Teams can't reach `localhost`. Use a tunnel for local development:
 
 **Option A: ngrok**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ngrok http 3978
 # Copy the https URL, e.g., https://abc123.ngrok.io
 # Set messaging endpoint to: https://abc123.ngrok.io/api/messages
@@ -202,7 +204,7 @@ ngrok http 3978
 
 **Option B: Tailscale Funnel**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 tailscale funnel 3978
 # Use your Tailscale funnel URL as the messaging endpoint
 ```
@@ -257,7 +259,7 @@ This is often easier than hand-editing JSON manifests.
 
 4. **Configure OpenClaw**
 
-   ```json  theme={null}
+   ```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
    {
      "msteams": {
        "enabled": true,
@@ -310,7 +312,7 @@ These are the **existing resourceSpecific permissions** in our Teams app manifes
 
 Minimal, valid example with the required fields. Replace IDs and URLs.
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.23/MicrosoftTeams.schema.json",
   "manifestVersion": "1.23",
@@ -423,6 +425,8 @@ If you need images/files in **channels** or want to fetch **message history**, y
 3. Bump the Teams app **manifest version**, re-upload, and **reinstall the app in Teams**.
 4. **Fully quit and relaunch Teams** to clear cached app metadata.
 
+**Additional permission for user mentions:** User @mentions work out of the box for users in the conversation. However, if you want to dynamically search and mention users who are **not in the current conversation**, add `User.Read.All` (Application) permission and grant admin consent.
+
 ## Known Limitations
 
 ### Webhook timeouts
@@ -493,7 +497,7 @@ Teams recently introduced two channel UI styles over the same underlying data mo
 
 **Solution:** Configure `replyStyle` per-channel based on how the channel is set up:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "msteams": {
     "replyStyle": "thread",
@@ -545,7 +549,7 @@ Bots don't have a personal OneDrive drive (the `/me/drive` Graph API endpoint do
 
 3. **Get your SharePoint site ID:**
 
-   ```bash  theme={null}
+   ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
    # Via Graph Explorer or curl with a valid token:
    curl -H "Authorization: Bearer $TOKEN" \
      "https://graph.microsoft.com/v1.0/sites/{hostname}:/{site-path}"
@@ -558,7 +562,8 @@ Bots don't have a personal OneDrive drive (the `/me/drive` Graph API endpoint do
    ```
 
 4. **Configure OpenClaw:**
-   ```json5  theme={null}
+
+   ```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
    {
      channels: {
        msteams: {
@@ -608,7 +613,7 @@ The `card` parameter accepts an Adaptive Card JSON object. When `card` is provid
 
 **Agent tool:**
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "action": "send",
   "channel": "msteams",
@@ -623,7 +628,7 @@ The `card` parameter accepts an Adaptive Card JSON object. When `card` is provid
 
 **CLI:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw message send --channel msteams \
   --target "conversation:19:abc...@thread.tacv2" \
   --card '{"type":"AdaptiveCard","version":"1.5","body":[{"type":"TextBlock","text":"Hello!"}]}'
@@ -644,7 +649,7 @@ MSTeams targets use prefixes to distinguish between users and conversations:
 
 **CLI examples:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Send to a user by ID
 openclaw message send --channel msteams --target "user:40a1a0ed-..." --message "Hello"
 
@@ -661,7 +666,7 @@ openclaw message send --channel msteams --target "conversation:19:abc...@thread.
 
 **Agent tool examples:**
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "action": "send",
   "channel": "msteams",
@@ -670,7 +675,7 @@ openclaw message send --channel msteams --target "conversation:19:abc...@thread.
 }
 ```
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "action": "send",
   "channel": "msteams",

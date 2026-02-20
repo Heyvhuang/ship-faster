@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/security/formal-verification.md; fetched_at=2026-02-20T10:29:27.695Z; sha256=2545055cbf3201f89b9fedce69c72387a1c2f8302368a7c6c4c1f99a3881d86e; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -40,7 +42,7 @@ Today, results are reproduced by cloning the models repo locally and running TLC
 
 Getting started:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 git clone https://github.com/vignesh07/openclaw-formal-models
 cd openclaw-formal-models
 

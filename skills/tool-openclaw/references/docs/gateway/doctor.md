@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/doctor.md; fetched_at=2026-02-20T10:29:19.742Z; sha256=0e95fc16842579f73f93d3ea66028640fa1a19cf54d7a8338ff9b219f10b1158; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -11,38 +13,38 @@ config/state, checks health, and provides actionable repair steps.
 
 ## Quick start
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw doctor
 ```
 
 ### Headless / automation
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw doctor --yes
 ```
 
 Accept defaults without prompting (including restart/service/sandbox repair steps when applicable).
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw doctor --repair
 ```
 
 Apply recommended repairs without prompting (repairs + restarts where safe).
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw doctor --repair --force
 ```
 
 Apply aggressive repairs too (overwrites custom supervisor configs).
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw doctor --non-interactive
 ```
 
 Run without prompts and only apply safe migrations (config normalization + on-disk state moves). Skips restart/service/sandbox actions that require human confirmation.
 Legacy state migrations run automatically when detected.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw doctor --deep
 ```
 
@@ -50,7 +52,7 @@ Scan system services for extra gateway installs (launchd/systemd/schtasks).
 
 If you want to review changes before writing, open the config file first:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 cat ~/.openclaw/openclaw.json
 ```
 

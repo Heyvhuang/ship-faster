@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/googlechat.md; fetched_at=2026-02-20T10:29:13.004Z; sha256=cb0d45455005ea55afdeca397a7bff045a11187b7e0922c08776b8fcd5628223; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -70,7 +72,7 @@ Use Tailscale Serve for the private dashboard and Funnel for the public webhook 
 
 1. **Check what address your gateway is bound to:**
 
-   ```bash  theme={null}
+   ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
    ss -tlnp | grep 18789
    ```
 
@@ -78,7 +80,7 @@ Use Tailscale Serve for the private dashboard and Funnel for the public webhook 
 
 2. **Expose the dashboard to the tailnet only (port 8443):**
 
-   ```bash  theme={null}
+   ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
    # If bound to localhost (127.0.0.1 or 0.0.0.0):
    tailscale serve --bg --https 8443 http://127.0.0.1:18789
 
@@ -88,7 +90,7 @@ Use Tailscale Serve for the private dashboard and Funnel for the public webhook 
 
 3. **Expose only the webhook path publicly:**
 
-   ```bash  theme={null}
+   ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
    # If bound to localhost (127.0.0.1 or 0.0.0.0):
    tailscale funnel --bg --set-path /googlechat http://127.0.0.1:18789/googlechat
 
@@ -100,7 +102,8 @@ Use Tailscale Serve for the private dashboard and Funnel for the public webhook 
    If prompted, visit the authorization URL shown in the output to enable Funnel for this node in your tailnet policy.
 
 5. **Verify the configuration:**
-   ```bash  theme={null}
+
+   ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
    tailscale serve status
    tailscale funnel status
    ```
@@ -119,7 +122,7 @@ Use the public URL (without `:8443`) in the Google Chat app config.
 
 If you use a reverse proxy like Caddy, only proxy the specific path:
 
-```caddy  theme={null}
+```caddy  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 your-domain.com {
     reverse_proxy /googlechat* localhost:18789
 }
@@ -151,12 +154,13 @@ Configure your tunnel's ingress rules to only route the webhook path:
 
 Use these identifiers for delivery and allowlists:
 
-* Direct messages: `users/<userId>` or `users/<email>` (email addresses are accepted).
+* Direct messages: `users/<userId>` (recommended) or raw email `name@example.com` (mutable principal).
+* Deprecated: `users/<email>` is treated as a user id, not an email allowlist.
 * Spaces: `spaces/<spaceId>`.
 
 ## Config highlights
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     googlechat: {
@@ -209,7 +213,7 @@ This means the webhook handler isn't registered. Common causes:
 
 1. **Channel not configured**: The `channels.googlechat` section is missing from your config. Verify with:
 
-   ```bash  theme={null}
+   ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
    openclaw config get channels.googlechat
    ```
 
@@ -217,20 +221,21 @@ This means the webhook handler isn't registered. Common causes:
 
 2. **Plugin not enabled**: Check plugin status:
 
-   ```bash  theme={null}
+   ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
    openclaw plugins list | grep googlechat
    ```
 
    If it shows "disabled", add `plugins.entries.googlechat.enabled: true` to your config.
 
 3. **Gateway not restarted**: After adding config, restart the gateway:
-   ```bash  theme={null}
+
+   ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
    openclaw gateway restart
    ```
 
 Verify the channel is running:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels status
 # Should show: Google Chat default: enabled, configured, ...
 ```

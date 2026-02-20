@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/bun.md; fetched_at=2026-02-20T10:29:21.567Z; sha256=94ac04377a25af4f4b31cc541d980bccce5f7545733a33865045aded6498c759; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -21,19 +23,19 @@ without diverging from pnpm workflows.
 
 Default:
 
-```sh  theme={null}
+```sh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 bun install
 ```
 
 Note: `bun.lock`/`bun.lockb` are gitignored, so there’s no repo churn either way. If you want *no lockfile writes*:
 
-```sh  theme={null}
+```sh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 bun install --no-save
 ```
 
 ## Build / Test (Bun)
 
-```sh  theme={null}
+```sh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 bun run build
 bun run vitest run
 ```
@@ -48,7 +50,7 @@ For this repo, the commonly blocked scripts are not required:
 
 If you hit a real runtime issue that requires these scripts, trust them explicitly:
 
-```sh  theme={null}
+```sh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 bun pm trust @whiskeysockets/baileys protobufjs
 ```
 

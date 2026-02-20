@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/gateway-lock.md; fetched_at=2026-02-20T10:29:19.839Z; sha256=650c336ca81933407d22e65569411fba7788ea74924f6785a9b0b23215a0534c; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.

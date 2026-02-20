@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/plugins/voice-call.md; fetched_at=2026-02-20T10:29:25.479Z; sha256=79ddc401e5d609c21cdef0fef69e945c28859dd267ddffa366ac445080b093bb; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -33,7 +35,7 @@ If you use a remote Gateway, install/configure the plugin on the **machine runni
 
 ### Option A: install from npm (recommended)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install @openclaw/voice-call
 ```
 
@@ -41,7 +43,7 @@ Restart the Gateway afterwards.
 
 ### Option B: install from a local folder (dev, no copying)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install ./extensions/voice-call
 cd ./extensions/voice-call && pnpm install
 ```
@@ -52,7 +54,7 @@ Restart the Gateway afterwards.
 
 Set config under `plugins.entries.voice-call.config`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   plugins: {
     entries: {
@@ -66,6 +68,14 @@ Set config under `plugins.entries.voice-call.config`:
           twilio: {
             accountSid: "ACxxxxxxxx",
             authToken: "...",
+          },
+
+          telnyx: {
+            apiKey: "...",
+            connectionId: "...",
+            // Telnyx webhook public key from the Telnyx Mission Control Portal
+            // (Base64 string; can also be set via TELNYX_PUBLIC_KEY).
+            publicKey: "...",
           },
 
           plivo: {
@@ -110,10 +120,40 @@ Notes:
 * Twilio/Telnyx require a **publicly reachable** webhook URL.
 * Plivo requires a **publicly reachable** webhook URL.
 * `mock` is a local dev provider (no network calls).
+* Telnyx requires `telnyx.publicKey` (or `TELNYX_PUBLIC_KEY`) unless `skipSignatureVerification` is true.
 * `skipSignatureVerification` is for local testing only.
 * If you use ngrok free tier, set `publicUrl` to the exact ngrok URL; signature verification is always enforced.
 * `tunnel.allowNgrokFreeTierLoopbackBypass: true` allows Twilio webhooks with invalid signatures **only** when `tunnel.provider="ngrok"` and `serve.bind` is loopback (ngrok local agent). Use for local dev only.
 * Ngrok free tier URLs can change or add interstitial behavior; if `publicUrl` drifts, Twilio signatures will fail. For production, prefer a stable domain or Tailscale funnel.
+
+## Stale call reaper
+
+Use `staleCallReaperSeconds` to end calls that never receive a terminal webhook
+(for example, notify-mode calls that never complete). The default is `0`
+(disabled).
+
+Recommended ranges:
+
+* **Production:** `120`–`300` seconds for notify-style flows.
+* Keep this value **higher than `maxDurationSeconds`** so normal calls can
+  finish. A good starting point is `maxDurationSeconds + 30–60` seconds.
+
+Example:
+
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{
+  plugins: {
+    entries: {
+      "voice-call": {
+        config: {
+          maxDurationSeconds: 300,
+          staleCallReaperSeconds: 360,
+        },
+      },
+    },
+  },
+}
+```
 
 ## Webhook Security
 
@@ -130,7 +170,7 @@ remote IP matches the list.
 
 Example with a stable public host:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   plugins: {
     entries: {
@@ -153,7 +193,7 @@ Voice Call uses the core `messages.tts` configuration (OpenAI or ElevenLabs) for
 streaming speech on calls. You can override it under the plugin config with the
 **same shape** — it deep‑merges with `messages.tts`.
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   tts: {
     provider: "elevenlabs",
@@ -174,7 +214,7 @@ Notes:
 
 Use core TTS only (no override):
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   messages: {
     tts: {
@@ -187,7 +227,7 @@ Use core TTS only (no override):
 
 Override to ElevenLabs just for calls (keep core default elsewhere):
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   plugins: {
     entries: {
@@ -210,7 +250,7 @@ Override to ElevenLabs just for calls (keep core default elsewhere):
 
 Override only the OpenAI model for calls (deep‑merge example):
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   plugins: {
     entries: {
@@ -233,7 +273,7 @@ Override only the OpenAI model for calls (deep‑merge example):
 
 Inbound policy defaults to `disabled`. To enable inbound calls, set:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   inboundPolicy: "allowlist",
   allowFrom: ["+15550001234"],
@@ -249,7 +289,7 @@ Auto-responses use the agent system. Tune with:
 
 ## CLI
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw voicecall call --to "+15555550123" --message "Hello from OpenClaw"
 openclaw voicecall continue --call-id <id> --message "Any questions?"
 openclaw voicecall speak --call-id <id> --message "One moment"

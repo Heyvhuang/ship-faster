@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/bundled-gateway.md; fetched_at=2026-02-20T10:29:23.962Z; sha256=e891eb0be4373fb4bea4adee29d4dcdad927a6a44be2a33604400859c0d19c1f; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -15,7 +17,7 @@ running (or attaches to an existing local Gateway if one is already running).
 
 You need Node 22+ on the Mac, then install `openclaw` globally:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 npm install -g openclaw@<version>
 ```
 
@@ -55,7 +57,7 @@ incompatible, update the global CLI to match the app version.
 
 ## Smoke check
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw --version
 
 OPENCLAW_SKIP_CHANNELS=1 \
@@ -65,6 +67,6 @@ openclaw gateway --port 18999 --bind loopback
 
 Then:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway call health --url ws://127.0.0.1:18999 --timeout 3000
 ```

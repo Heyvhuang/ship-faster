@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/queue.md; fetched_at=2026-02-20T10:29:17.782Z; sha256=adf79cef8e1c69400242907f631da364ea18631d48945e32253f3e4c46f5f991; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -43,7 +45,7 @@ Defaults (when unset in config):
 
 Configure globally or per channel via `messages.queue`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   messages: {
     queue: {

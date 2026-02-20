@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/index.md; fetched_at=2026-02-20T10:29:15.766Z; sha256=5473e0e9dd57f45c1b6e8cde91f11f1d776f7d04e0374163b296bc00e7daa830; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -253,7 +255,7 @@ Manage extensions and their config:
 * `openclaw plugins enable <id>` / `disable <id>` — toggle `plugins.entries.<id>.enabled`.
 * `openclaw plugins doctor` — report plugin load errors.
 
-Most plugin changes require a gateway restart. See [/plugin](/plugin).
+Most plugin changes require a gateway restart. See [/plugin](/tools/plugin).
 
 ## Memory
 
@@ -301,7 +303,7 @@ Options:
 * `--non-interactive`
 * `--mode <local|remote>`
 * `--flow <quickstart|advanced|manual>` (manual is an alias for advanced)
-* `--auth-choice <setup-token|token|chutes|openai-codex|openai-api-key|openrouter-api-key|ai-gateway-api-key|moonshot-api-key|moonshot-api-key-cn|kimi-code-api-key|synthetic-api-key|venice-api-key|gemini-api-key|zai-api-key|apiKey|minimax-api|minimax-api-lightning|opencode-zen|skip>`
+* `--auth-choice <setup-token|token|chutes|openai-codex|openai-api-key|openrouter-api-key|ai-gateway-api-key|moonshot-api-key|moonshot-api-key-cn|kimi-code-api-key|synthetic-api-key|venice-api-key|gemini-api-key|zai-api-key|apiKey|minimax-api|minimax-api-lightning|opencode-zen|custom-api-key|skip>`
 * `--token-provider <id>` (non-interactive; used with `--auth-choice token`)
 * `--token <token>` (non-interactive; used with `--auth-choice token`)
 * `--token-profile-id <id>` (non-interactive; default: `<provider>:manual`)
@@ -316,6 +318,11 @@ Options:
 * `--zai-api-key <key>`
 * `--minimax-api-key <key>`
 * `--opencode-zen-api-key <key>`
+* `--custom-base-url <url>` (non-interactive; used with `--auth-choice custom-api-key`)
+* `--custom-model-id <id>` (non-interactive; used with `--auth-choice custom-api-key`)
+* `--custom-api-key <key>` (non-interactive; optional; used with `--auth-choice custom-api-key`; falls back to `CUSTOM_API_KEY` when omitted)
+* `--custom-provider-id <id>` (non-interactive; optional custom provider id)
+* `--custom-compatibility <openai|anthropic>` (non-interactive; optional; default `openai`)
 * `--gateway-port <port>`
 * `--gateway-bind <loopback|lan|tailnet|auto|custom>`
 * `--gateway-auth <token|password>`
@@ -410,7 +417,7 @@ More detail: [/concepts/oauth](/concepts/oauth)
 
 Examples:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels add --channel telegram --account alerts --name "Alerts Bot" --token $TELEGRAM_BOT_TOKEN
 openclaw channels add --channel discord --account work --name "Work Bot" --token $DISCORD_BOT_TOKEN
 openclaw channels remove --channel discord --account work --delete
@@ -702,7 +709,7 @@ Notes:
 
 Examples:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw logs --follow
 openclaw logs --limit 200
 openclaw logs --plain
@@ -741,7 +748,7 @@ See [/concepts/models](/concepts/models) for fallback behavior and scanning stra
 
 Preferred Anthropic auth (setup-token):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 claude setup-token
 openclaw models auth setup-token --provider anthropic
 openclaw models status

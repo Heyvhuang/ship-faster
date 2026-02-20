@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/multiple-gateways.md; fetched_at=2026-02-20T10:29:20.243Z; sha256=101b0e3c6469860ecadf60bc5ebfa8ac6ededf5f645c4d1ff505303970edb58c; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -22,7 +24,7 @@ If these are shared, you will hit config races and port conflicts.
 
 Profiles auto-scope `OPENCLAW_STATE_DIR` + `OPENCLAW_CONFIG_PATH` and suffix service names.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # main
 openclaw --profile main setup
 openclaw --profile main gateway --port 18789
@@ -34,7 +36,7 @@ openclaw --profile rescue gateway --port 19001
 
 Per-profile services:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw --profile main gateway install
 openclaw --profile rescue gateway install
 ```
@@ -54,7 +56,7 @@ Port spacing: leave at least 20 ports between base ports so the derived browser/
 
 ### How to install (rescue bot)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Main bot (existing or fresh, without --profile param)
 # Runs on port 18789 + Chrome CDC/Canvas/... Ports
 openclaw onboard
@@ -77,7 +79,7 @@ openclaw --profile rescue gateway install
 Base port = `gateway.port` (or `OPENCLAW_GATEWAY_PORT` / `--port`).
 
 * browser control service port = base + 2 (loopback only)
-* `canvasHost.port = base + 4`
+* canvas host is served on the Gateway HTTP server (same port as `gateway.port`)
 * Browser profile CDP ports auto-allocate from `browser.controlPort + 9 .. + 108`
 
 If you override any of these in config or env, you must keep them unique per instance.
@@ -91,7 +93,7 @@ If you override any of these in config or env, you must keep them unique per ins
 
 ## Manual env example
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 OPENCLAW_CONFIG_PATH=~/.openclaw/main.json \
 OPENCLAW_STATE_DIR=~/.openclaw-main \
 openclaw gateway --port 18789
@@ -103,7 +105,7 @@ openclaw gateway --port 19001
 
 ## Quick checks
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw --profile main status
 openclaw --profile rescue status
 openclaw --profile rescue browser status

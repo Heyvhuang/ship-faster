@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/tailscale.md; fetched_at=2026-02-20T10:29:20.627Z; sha256=b9b284ed7343706c8d71a610c496acc996665853a9faa7671fbd0d9bb7d3dff8; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -38,7 +40,7 @@ force `gateway.auth.mode: "password"`.
 
 ### Tailnet-only (Serve)
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     bind: "loopback",
@@ -53,7 +55,7 @@ Open: `https://<magicdns>/` (or your configured `gateway.controlUi.basePath`)
 
 Use this when you want the Gateway to listen directly on the Tailnet IP (no Serve/Funnel).
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     bind: "tailnet",
@@ -71,7 +73,7 @@ Note: loopback (`http://127.0.0.1:18789`) will **not** work in this mode.
 
 ### Public internet (Funnel + shared password)
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     bind: "loopback",
@@ -85,7 +87,7 @@ Prefer `OPENCLAW_GATEWAY_PASSWORD` over committing a password to disk.
 
 ## CLI examples
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway --tailscale serve
 openclaw gateway --tailscale funnel --auth password
 ```

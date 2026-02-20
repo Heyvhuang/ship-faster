@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/session-management-compaction.md; fetched_at=2026-02-20T10:29:26.873Z; sha256=e0515d80ce84a2c62ae9e275c90944e0747b38cd3010edac905129c6da968bfe; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -151,7 +153,7 @@ If you’re tuning limits:
 * The context window comes from the model catalog (and can be overridden via config).
 * `contextTokens` in the store is a runtime estimate/reporting value; don’t treat it as a strict guarantee.
 
-For more, see [/token-use](/token-use).
+For more, see [/token-use](/reference/token-use).
 
 ***
 
@@ -190,7 +192,7 @@ These are Pi runtime semantics (OpenClaw consumes the events, but Pi decides whe
 
 Pi’s compaction settings live in Pi settings:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   compaction: {
     enabled: true,

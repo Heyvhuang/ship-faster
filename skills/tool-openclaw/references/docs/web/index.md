@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/web/index.md; fetched_at=2026-02-20T10:29:30.041Z; sha256=45026801aca95312f201aa4f430bf5d926d7b848dfdaefcad116e2a97123f0db; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -24,7 +26,7 @@ See [Gateway configuration](/gateway/configuration) → `hooks` for auth + paylo
 The Control UI is **enabled by default** when assets are present (`dist/control-ui`).
 You can control it via config:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     controlUi: { enabled: true, basePath: "/openclaw" }, // basePath optional
@@ -38,7 +40,7 @@ You can control it via config:
 
 Keep the Gateway on loopback and let Tailscale Serve proxy it:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     bind: "loopback",
@@ -49,7 +51,7 @@ Keep the Gateway on loopback and let Tailscale Serve proxy it:
 
 Then start the gateway:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway
 ```
 
@@ -59,7 +61,7 @@ Open:
 
 ### Tailnet bind + token
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     bind: "tailnet",
@@ -71,7 +73,7 @@ Open:
 
 Then start the gateway (token required for non-loopback binds):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway
 ```
 
@@ -81,7 +83,7 @@ Open:
 
 ### Public internet (Funnel)
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     bind: "loopback",
@@ -109,6 +111,6 @@ Open:
 
 The Gateway serves static files from `dist/control-ui`. Build them with:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm ui:build # auto-installs UI deps on first run
 ```

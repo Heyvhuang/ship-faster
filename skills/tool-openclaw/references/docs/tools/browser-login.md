@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/browser-login.md; fetched_at=2026-02-20T10:29:28.785Z; sha256=7904097c201e25742271c043e47223ae079967e311e5ed9784ffb9ab3d217341; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -23,7 +25,7 @@ Two easy ways to access it:
 1. **Ask the agent to open the browser** and then log in yourself.
 2. **Open it via CLI**:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser start
 openclaw browser open https://x.com
 ```
@@ -32,8 +34,7 @@ If you have multiple profiles, pass `--browser-profile <name>` (the default is `
 
 ## X/Twitter: recommended flow
 
-* **Read/search/threads:** use the **bird** CLI skill (no browser, stable).
-  * Repo: [https://github.com/steipete/bird](https://github.com/steipete/bird)
+* **Read/search/threads:** use the **host** browser (manual login).
 * **Post updates:** use the **host** browser (manual login).
 
 ## Sandboxing + host browser access
@@ -42,7 +43,7 @@ Sandboxed browser sessions are **more likely** to trigger bot detection. For X/T
 
 If the agent is sandboxed, the browser tool defaults to the sandbox. To allow host control:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -59,7 +60,7 @@ If the agent is sandboxed, the browser tool defaults to the sandbox. To allow ho
 
 Then target the host browser:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser open https://x.com --browser-profile openclaw --target host
 ```
 

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/android.md; fetched_at=2026-02-20T10:29:23.631Z; sha256=37149be52166c88fae897bebd96d10275b551dbc23119f68b77dc2d1ca47cb03; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -35,7 +37,7 @@ Android connects directly to the Gateway WebSocket (default `ws://<host>:18789`)
 
 ### 1) Start the Gateway
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway --port 18789 --verbose
 ```
 
@@ -52,7 +54,7 @@ For tailnet-only setups (recommended for Vienna ⇄ London), bind the gateway to
 
 From the gateway machine:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 dns-sd -B _openclaw-gw._tcp local.
 ```
 
@@ -85,7 +87,7 @@ After the first successful pairing, Android auto-reconnects on launch:
 
 On the gateway machine:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes pending
 openclaw nodes approve <requestId>
 ```
@@ -95,11 +97,14 @@ Pairing details: [Gateway pairing](/gateway/pairing).
 ### 5) Verify the node is connected
 
 * Via nodes status:
-  ```bash  theme={null}
+
+  ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
   openclaw nodes status
   ```
+
 * Via Gateway:
-  ```bash  theme={null}
+
+  ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
   openclaw gateway call node.list --params "{}"
   ```
 
@@ -117,20 +122,20 @@ The Android node’s Chat sheet uses the gateway’s **primary session key** (`m
 
 If you want the node to show real HTML/CSS/JS that the agent can edit on disk, point the node at the Gateway canvas host.
 
-Note: nodes use the standalone canvas host on `canvasHost.port` (default `18793`).
+Note: nodes load canvas from the Gateway HTTP server (same port as `gateway.port`, default `18789`).
 
 1. Create `~/.openclaw/workspace/canvas/index.html` on the gateway host.
 
 2. Navigate the node to it (LAN):
 
-```bash  theme={null}
-openclaw nodes invoke --node "<Android Node>" --command canvas.navigate --params '{"url":"http://<gateway-hostname>.local:18793/__openclaw__/canvas/"}'
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw nodes invoke --node "<Android Node>" --command canvas.navigate --params '{"url":"http://<gateway-hostname>.local:18789/__openclaw__/canvas/"}'
 ```
 
-Tailnet (optional): if both devices are on Tailscale, use a MagicDNS name or tailnet IP instead of `.local`, e.g. `http://<gateway-magicdns>:18793/__openclaw__/canvas/`.
+Tailnet (optional): if both devices are on Tailscale, use a MagicDNS name or tailnet IP instead of `.local`, e.g. `http://<gateway-magicdns>:18789/__openclaw__/canvas/`.
 
 This server injects a live-reload client into HTML and reloads on file changes.
-The A2UI host lives at `http://<gateway-host>:18793/__openclaw__/a2ui/`.
+The A2UI host lives at `http://<gateway-host>:18789/__openclaw__/a2ui/`.
 
 Canvas commands (foreground only):
 

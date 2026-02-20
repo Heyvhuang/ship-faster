@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/configuration-examples.md; fetched_at=2026-02-20T10:29:19.433Z; sha256=54684082264db2d80b26efd21157e4bfb57e0328bbdc21f9aaf4e85ba1643265; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -12,7 +14,7 @@ Examples below are aligned with the current config schema. For the exhaustive re
 
 ### Absolute minimum
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: { workspace: "~/.openclaw/workspace" },
   channels: { whatsapp: { allowFrom: ["+15555550123"] } },
@@ -23,7 +25,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
 
 ### Recommended starter
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   identity: {
     name: "Clawd",
@@ -47,7 +49,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
 
 > JSON5 lets you use comments and trailing commas. Regular JSON works too.
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   // Environment + shell
   env: {
@@ -64,7 +66,11 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
   // Auth profile metadata (secrets live in auth-profiles.json)
   auth: {
     profiles: {
-      "anthropic:me@example.com": { provider: "anthropic", mode: "oauth", email: "me@example.com" },
+      "anthropic:me@example.com": {
+        provider: "anthropic",
+        mode: "oauth",
+        email: "me@example.com",
+      },
       "anthropic:work": { provider: "anthropic", mode: "api_key" },
       "openai:default": { provider: "openai", mode: "api_key" },
       "openai-codex:default": { provider: "openai-codex", mode: "oauth" },
@@ -157,6 +163,12 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
     },
     resetTriggers: ["/new", "/reset"],
     store: "~/.openclaw/agents/default/sessions/sessions.json",
+    maintenance: {
+      mode: "warn",
+      pruneAfter: "30d",
+      maxEntries: 500,
+      rotateBytes: "10mb",
+    },
     typingIntervalSeconds: 5,
     sendPolicy: {
       default: "allow",
@@ -223,13 +235,13 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
       userTimezone: "America/Chicago",
       model: {
         primary: "anthropic/claude-sonnet-4-5",
-        fallbacks: ["anthropic/claude-opus-4-5", "openai/gpt-5.2"],
+        fallbacks: ["anthropic/claude-opus-4-6", "openai/gpt-5.2"],
       },
       imageModel: {
         primary: "openrouter/anthropic/claude-sonnet-4-5",
       },
       models: {
-        "anthropic/claude-opus-4-5": { alias: "opus" },
+        "anthropic/claude-opus-4-6": { alias: "opus" },
         "anthropic/claude-sonnet-4-5": { alias: "sonnet" },
         "openai/gpt-5.2": { alias: "gpt" },
       },
@@ -341,6 +353,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
     enabled: true,
     store: "~/.openclaw/cron/cron.json",
     maxConcurrentRuns: 2,
+    sessionRetention: "24h",
   },
 
   // Webhooks
@@ -349,7 +362,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
     path: "/hooks",
     token: "shared-secret",
     presets: ["gmail"],
-    transformsDir: "~/.openclaw/hooks",
+    transformsDir: "~/.openclaw/hooks/transforms",
     mappings: [
       {
         id: "gmail-hook",
@@ -365,7 +378,10 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
         to: "+15555550123",
         thinking: "low",
         timeoutSeconds: 300,
-        transform: { module: "./transforms/gmail.js", export: "transformGmail" },
+        transform: {
+          module: "gmail.js",
+          export: "transformGmail",
+        },
       },
     ],
     gmail: {
@@ -424,7 +440,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
 
 ### Multi-platform setup
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: { workspace: "~/.openclaw/workspace" },
   channels: {
@@ -447,7 +463,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
 
 If more than one person can DM your bot (multiple entries in `allowFrom`, pairing approvals for multiple people, or `dmPolicy: "open"`), enable **secure DM mode** so DMs from different senders don’t share one context by default:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   // Secure DM mode (recommended for multi-user or sensitive DM agents)
   session: { dmScope: "per-channel-peer" },
@@ -471,7 +487,7 @@ If more than one person can DM your bot (multiple entries in `allowFrom`, pairin
 
 ### OAuth with API key failover
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   auth: {
     profiles: {
@@ -493,7 +509,7 @@ If more than one person can DM your bot (multiple entries in `allowFrom`, pairin
     workspace: "~/.openclaw/workspace",
     model: {
       primary: "anthropic/claude-sonnet-4-5",
-      fallbacks: ["anthropic/claude-opus-4-5"],
+      fallbacks: ["anthropic/claude-opus-4-6"],
     },
   },
 }
@@ -501,7 +517,7 @@ If more than one person can DM your bot (multiple entries in `allowFrom`, pairin
 
 ### Anthropic subscription + API key, MiniMax fallback
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   auth: {
     profiles: {
@@ -531,7 +547,7 @@ If more than one person can DM your bot (multiple entries in `allowFrom`, pairin
   agent: {
     workspace: "~/.openclaw/workspace",
     model: {
-      primary: "anthropic/claude-opus-4-5",
+      primary: "anthropic/claude-opus-4-6",
       fallbacks: ["minimax/MiniMax-M2.1"],
     },
   },
@@ -540,7 +556,7 @@ If more than one person can DM your bot (multiple entries in `allowFrom`, pairin
 
 ### Work bot (restricted access)
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   identity: {
     name: "WorkBot",
@@ -565,7 +581,7 @@ If more than one person can DM your bot (multiple entries in `allowFrom`, pairin
 
 ### Local models only
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: {
     workspace: "~/.openclaw/workspace",

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/sandbox.md; fetched_at=2026-02-20T10:29:16.082Z; sha256=c474f19eb0db8cde364dfefed0489fbddabc81b91e2373c893737b5b23d9cb84; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -18,7 +20,7 @@ OpenClaw can run agents in isolated Docker containers for security. The `sandbox
 
 Inspect the **effective** sandbox mode/scope/workspace access, sandbox tool policy, and elevated gates (with fix-it config key paths).
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw sandbox explain
 openclaw sandbox explain --session agent:main:main
 openclaw sandbox explain --agent work
@@ -29,7 +31,7 @@ openclaw sandbox explain --json
 
 List all sandbox containers with their status and configuration.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw sandbox list
 openclaw sandbox list --browser  # List only browser containers
 openclaw sandbox list --json     # JSON output
@@ -47,7 +49,7 @@ openclaw sandbox list --json     # JSON output
 
 Remove sandbox containers to force recreation with updated images/config.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw sandbox recreate --all                # Recreate all containers
 openclaw sandbox recreate --session main       # Specific session
 openclaw sandbox recreate --agent mybot        # Specific agent
@@ -69,7 +71,7 @@ openclaw sandbox recreate --all --force        # Skip confirmation
 
 ### After updating Docker images
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Pull new image
 docker pull openclaw-sandbox:latest
 docker tag openclaw-sandbox:latest openclaw-sandbox:bookworm-slim
@@ -83,7 +85,7 @@ openclaw sandbox recreate --all
 
 ### After changing sandbox configuration
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Edit config: agents.defaults.sandbox.* (or agents.list[].sandbox.*)
 
 # Recreate to apply new config
@@ -92,7 +94,7 @@ openclaw sandbox recreate --all
 
 ### After changing setupCommand
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw sandbox recreate --all
 # or just one agent:
 openclaw sandbox recreate --agent family
@@ -100,7 +102,7 @@ openclaw sandbox recreate --agent family
 
 ### For a specific agent only
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Update only one agent's containers
 openclaw sandbox recreate --agent alfred
 ```
@@ -122,7 +124,7 @@ Gateway’s container naming and avoids mismatches when scope/session keys chang
 
 Sandbox settings live in `~/.openclaw/openclaw.json` under `agents.defaults.sandbox` (per-agent overrides go in `agents.list[].sandbox`):
 
-```jsonc  theme={null}
+```jsonc  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "agents": {
     "defaults": {

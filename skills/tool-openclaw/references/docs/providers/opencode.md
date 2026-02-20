@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/opencode.md; fetched_at=2026-02-20T10:29:26.231Z; sha256=eab9d4309db33c67de8011fe5deb1160656e559020f15b46424bca87dee5cc5d; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -12,7 +14,7 @@ Zen is currently in beta.
 
 ## CLI setup
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw onboard --auth-choice opencode-zen
 # or non-interactive
 openclaw onboard --opencode-zen-api-key "$OPENCODE_API_KEY"
@@ -20,10 +22,10 @@ openclaw onboard --opencode-zen-api-key "$OPENCODE_API_KEY"
 
 ## Config snippet
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   env: { OPENCODE_API_KEY: "sk-..." },
-  agents: { defaults: { model: { primary: "opencode/claude-opus-4-5" } } },
+  agents: { defaults: { model: { primary: "opencode/claude-opus-4-6" } } },
 }
 ```
 

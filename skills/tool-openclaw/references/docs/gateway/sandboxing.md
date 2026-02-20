@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/sandboxing.md; fetched_at=2026-02-20T10:29:20.584Z; sha256=111d70b66e260831efecae70f6495d7709d0dddb31ba766afb8d8b8d7957991f; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -70,15 +72,20 @@ Format: `host:container:mode` (e.g., `"/home/user/source:/source:rw"`).
 
 Global and per-agent binds are **merged** (not replaced). Under `scope: "shared"`, per-agent binds are ignored.
 
-Example (read-only source + docker socket):
+`agents.defaults.sandbox.browser.binds` mounts additional host directories into the **sandbox browser** container only.
 
-```json5  theme={null}
+* When set (including `[]`), it replaces `agents.defaults.sandbox.docker.binds` for the browser container.
+* When omitted, the browser container falls back to `agents.defaults.sandbox.docker.binds` (backwards compatible).
+
+Example (read-only source + an extra data directory):
+
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
       sandbox: {
         docker: {
-          binds: ["/home/user/source:/source:ro", "/var/run/docker.sock:/var/run/docker.sock"],
+          binds: ["/home/user/source:/source:ro", "/var/data/myapp:/data:ro"],
         },
       },
     },
@@ -99,7 +106,8 @@ Example (read-only source + docker socket):
 Security notes:
 
 * Binds bypass the sandbox filesystem: they expose host paths with whatever mode you set (`:ro` or `:rw`).
-* Sensitive mounts (e.g., `docker.sock`, secrets, SSH keys) should be `:ro` unless absolutely required.
+* OpenClaw blocks dangerous bind sources (for example: `docker.sock`, `/etc`, `/proc`, `/sys`, `/dev`, and parent mounts that would expose them).
+* Sensitive mounts (secrets, SSH keys, service credentials) should be `:ro` unless absolutely required.
 * Combine with `workspaceAccess: "ro"` if you only need read access to the workspace; bind modes stay independent.
 * See [Sandbox vs Tool Policy vs Elevated](/gateway/sandbox-vs-tool-policy-vs-elevated) for how binds interact with tool policy and elevated exec.
 
@@ -109,7 +117,7 @@ Default image: `openclaw-sandbox:bookworm-slim`
 
 Build it once:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 scripts/sandbox-setup.sh
 ```
 
@@ -120,7 +128,7 @@ root user).
 
 Sandboxed browser image:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 scripts/sandbox-browser-setup.sh
 ```
 
@@ -167,11 +175,11 @@ Debugging:
 
 Each agent can override sandbox + tools:
 `agents.list[].sandbox` and `agents.list[].tools` (plus `agents.list[].tools.sandbox.tools` for sandbox tool policy).
-See [Multi-Agent Sandbox & Tools](/multi-agent-sandbox-tools) for precedence.
+See [Multi-Agent Sandbox & Tools](/tools/multi-agent-sandbox-tools) for precedence.
 
 ## Minimal enable example
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -188,5 +196,5 @@ See [Multi-Agent Sandbox & Tools](/multi-agent-sandbox-tools) for precedence.
 ## Related docs
 
 * [Sandbox Configuration](/gateway/configuration#agentsdefaults-sandbox)
-* [Multi-Agent Sandbox & Tools](/multi-agent-sandbox-tools)
+* [Multi-Agent Sandbox & Tools](/tools/multi-agent-sandbox-tools)
 * [Security](/gateway/security)

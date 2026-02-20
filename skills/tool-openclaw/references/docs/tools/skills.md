@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/skills.md; fetched_at=2026-02-20T10:29:29.795Z; sha256=c619f25dd5a2f418b6421f0d7df0049379973eb218658e265a97e7bd56ad39ba; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -42,7 +44,7 @@ Plugins can ship their own skills by listing `skills` directories in
 `openclaw.plugin.json` (paths relative to the plugin root). Plugin skills load
 when the plugin is enabled and participate in the normal skill precedence rules.
 You can gate them via `metadata.openclaw.requires.config` on the plugin’s config
-entry. See [Plugins](/plugin) for discovery/config and [Tools](/tools) for the
+entry. See [Plugins](/tools/plugin) for discovery/config and [Tools](/tools) for the
 tool surface those skills teach.
 
 ## ClawHub (install + sync)
@@ -76,7 +78,7 @@ that up as `<workspace>/skills` on the next session.
 
 `SKILL.md` must include at least:
 
-```markdown  theme={null}
+```markdown  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ---
 name: nano-banana-pro
 description: Generate or edit images via Gemini 3 Pro Image
@@ -104,7 +106,7 @@ Notes:
 
 OpenClaw **filters skills at load time** using `metadata` (single-line JSON):
 
-```markdown  theme={null}
+```markdown  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ---
 name: nano-banana-pro
 description: Generate or edit images via Gemini 3 Pro Image
@@ -144,7 +146,7 @@ Note on sandboxing:
 
 Installer example:
 
-```markdown  theme={null}
+```markdown  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ---
 name: gemini
 description: Use Gemini CLI for coding assistance and Google search lookups.
@@ -187,7 +189,7 @@ disabled in config or blocked by `skills.allowBundled` for bundled skills).
 
 Bundled/managed skills can be toggled and supplied with env values:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   skills: {
     entries: {
@@ -251,7 +253,7 @@ This relies on the node reporting its command support and on a bin probe via `sy
 
 By default, OpenClaw watches skill folders and bumps the skills snapshot when `SKILL.md` files change. Configure this under `skills.load`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   skills: {
     load: {

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/usage-tracking.md; fetched_at=2026-02-20T10:29:18.289Z; sha256=13f92bc0b9277a7e349be195542919a19b47287b733d114f92e8c35a69c12f34; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.

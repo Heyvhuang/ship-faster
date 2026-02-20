@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/camera.md; fetched_at=2026-02-20T10:29:23.314Z; sha256=93ac15be9ca163701725eb97b13481ae819f7f073268b5c582f98199e78c291a; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -65,7 +67,7 @@ The easiest way to get attachments is via the CLI helper, which writes decoded m
 
 Examples:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes camera snap --node <id>               # default: both front + back (2 MEDIA lines)
 openclaw nodes camera snap --node <id> --facing front
 openclaw nodes camera clip --node <id> --duration 3000
@@ -79,7 +81,7 @@ Notes:
 
 ## Android node
 
-### User setting (default on)
+### Android user setting (default on)
 
 * Android Settings sheet → **Camera** → **Allow Camera** (`camera.enabled`)
   * Default: **on** (missing key is treated as enabled).
@@ -94,7 +96,7 @@ Notes:
 If permissions are missing, the app will prompt when possible; if denied, `camera.*` requests fail with a
 `*_PERMISSION_REQUIRED` error.
 
-### Foreground requirement
+### Android foreground requirement
 
 Like `canvas.*`, the Android node only allows `camera.*` commands in the **foreground**. Background invocations return `NODE_BACKGROUND_UNAVAILABLE`.
 
@@ -118,7 +120,7 @@ Use the main `openclaw` CLI to invoke camera commands on the macOS node.
 
 Examples:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes camera list --node <id>            # list camera ids
 openclaw nodes camera snap --node <id>            # prints MEDIA:<path>
 openclaw nodes camera snap --node <id> --max-width 1280
@@ -145,7 +147,7 @@ Notes:
 
 For *screen* video (not camera), use the macOS companion:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes screen record --node <id> --duration 10s --fps 15   # prints MEDIA:<path>
 ```
 

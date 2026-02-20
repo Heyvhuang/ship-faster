@@ -1,75 +1,137 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/node.md; fetched_at=2026-02-20T10:29:22.522Z; sha256=82d243223bbca0b292c0b7096783b3b5fbcfcc5204364de341ee94c1dadcedfb; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# Node.js + npm (PATH sanity)
+# Node.js
 
-# Node.js + npm (PATH sanity)
+# Node.js
 
-OpenClaw’s runtime baseline is **Node 22+**.
+OpenClaw requires **Node 22 or newer**. The [installer script](/install#install-methods) will detect and install Node automatically — this page is for when you want to set up Node yourself and make sure everything is wired up correctly (versions, PATH, global installs).
 
-If you can run `npm install -g openclaw@latest` but later see `openclaw: command not found`, it’s almost always a **PATH** issue: the directory where npm puts global binaries isn’t on your shell’s PATH.
+## Check your version
 
-## Quick diagnosis
-
-Run:
-
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 node -v
-npm -v
-npm prefix -g
-echo "$PATH"
 ```
 
-If `$(npm prefix -g)/bin` (macOS/Linux) or `$(npm prefix -g)` (Windows) is **not** present inside `echo "$PATH"`, your shell can’t find global npm binaries (including `openclaw`).
+If this prints `v22.x.x` or higher, you're good. If Node isn't installed or the version is too old, pick an install method below.
 
-## Fix: put npm’s global bin dir on PATH
+## Install Node
 
-1. Find your global npm prefix:
+<Tabs>
+  <Tab title="macOS">
+    **Homebrew** (recommended):
 
-```bash  theme={null}
-npm prefix -g
-```
+    ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+    brew install node
+    ```
 
-2. Add the global npm bin directory to your shell startup file:
+    Or download the macOS installer from [nodejs.org](https://nodejs.org/).
+  </Tab>
 
-* zsh: `~/.zshrc`
-* bash: `~/.bashrc`
+  <Tab title="Linux">
+    **Ubuntu / Debian:**
 
-Example (replace the path with your `npm prefix -g` output):
+    ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+    curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    ```
 
-```bash  theme={null}
-# macOS / Linux
-export PATH="/path/from/npm/prefix/bin:$PATH"
-```
+    **Fedora / RHEL:**
 
-Then open a **new terminal** (or run `rehash` in zsh / `hash -r` in bash).
+    ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+    sudo dnf install nodejs
+    ```
 
-On Windows, add the output of `npm prefix -g` to your PATH.
+    Or use a version manager (see below).
+  </Tab>
 
-## Fix: avoid `sudo npm install -g` / permission errors (Linux)
+  <Tab title="Windows">
+    **winget** (recommended):
 
-If `npm install -g ...` fails with `EACCES`, switch npm’s global prefix to a user-writable directory:
+    ```powershell  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+    winget install OpenJS.NodeJS.LTS
+    ```
 
-```bash  theme={null}
+    **Chocolatey:**
+
+    ```powershell  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+    choco install nodejs-lts
+    ```
+
+    Or download the Windows installer from [nodejs.org](https://nodejs.org/).
+  </Tab>
+</Tabs>
+
+<Accordion title="Using a version manager (nvm, fnm, mise, asdf)">
+  Version managers let you switch between Node versions easily. Popular options:
+
+  * [**fnm**](https://github.com/Schniz/fnm) — fast, cross-platform
+  * [**nvm**](https://github.com/nvm-sh/nvm) — widely used on macOS/Linux
+  * [**mise**](https://mise.jdx.dev/) — polyglot (Node, Python, Ruby, etc.)
+
+  Example with fnm:
+
+  ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+  fnm install 22
+  fnm use 22
+  ```
+
+  <Warning>
+    Make sure your version manager is initialized in your shell startup file (`~/.zshrc` or `~/.bashrc`). If it isn't, `openclaw` may not be found in new terminal sessions because the PATH won't include Node's bin directory.
+  </Warning>
+</Accordion>
+
+## Troubleshooting
+
+### `openclaw: command not found`
+
+This almost always means npm's global bin directory isn't on your PATH.
+
+<Steps>
+  <Step title="Find your global npm prefix">
+    ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+    npm prefix -g
+    ```
+  </Step>
+
+  <Step title="Check if it's on your PATH">
+    ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+    echo "$PATH"
+    ```
+
+    Look for `<npm-prefix>/bin` (macOS/Linux) or `<npm-prefix>` (Windows) in the output.
+  </Step>
+
+  <Step title="Add it to your shell startup file">
+    <Tabs>
+      <Tab title="macOS / Linux">
+        Add to `~/.zshrc` or `~/.bashrc`:
+
+        ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+        export PATH="$(npm prefix -g)/bin:$PATH"
+        ```
+
+        Then open a new terminal (or run `rehash` in zsh / `hash -r` in bash).
+      </Tab>
+
+      <Tab title="Windows">
+        Add the output of `npm prefix -g` to your system PATH via Settings → System → Environment Variables.
+      </Tab>
+    </Tabs>
+  </Step>
+</Steps>
+
+### Permission errors on `npm install -g` (Linux)
+
+If you see `EACCES` errors, switch npm's global prefix to a user-writable directory:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 mkdir -p "$HOME/.npm-global"
 npm config set prefix "$HOME/.npm-global"
 export PATH="$HOME/.npm-global/bin:$PATH"
 ```
 
-Persist the `export PATH=...` line in your shell startup file.
-
-## Recommended Node install options
-
-You’ll have the fewest surprises if Node/npm are installed in a way that:
-
-* keeps Node updated (22+)
-* makes the global npm bin dir stable and on PATH in new shells
-
-Common choices:
-
-* macOS: Homebrew (`brew install node`) or a version manager
-* Linux: your preferred version manager, or a distro-supported install that provides Node 22+
-* Windows: official Node installer, `winget`, or a Windows Node version manager
-
-If you use a version manager (nvm/fnm/asdf/etc), ensure it’s initialized in the shell you use day-to-day (zsh vs bash) so the PATH it sets is present when you run installers.
+Add the `export PATH=...` line to your `~/.bashrc` or `~/.zshrc` to make it permanent.

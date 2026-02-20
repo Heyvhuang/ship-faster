@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/vercel-ai-gateway.md; fetched_at=2026-02-20T10:29:26.512Z; sha256=985b080282f1565b021e7a53adb11013759e27cd97fcfb9213c4d8c7072178ec; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -16,17 +18,17 @@ The [Vercel AI Gateway](https://vercel.com/ai-gateway) provides a unified API to
 
 1. Set the API key (recommended: store it for the Gateway):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw onboard --auth-choice ai-gateway-api-key
 ```
 
 2. Set a default model:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
-      model: { primary: "vercel-ai-gateway/anthropic/claude-opus-4.5" },
+      model: { primary: "vercel-ai-gateway/anthropic/claude-opus-4.6" },
     },
   },
 }
@@ -34,7 +36,7 @@ openclaw onboard --auth-choice ai-gateway-api-key
 
 ## Non-interactive example
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw onboard --non-interactive \
   --mode local \
   --auth-choice ai-gateway-api-key \

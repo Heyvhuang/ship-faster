@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/models.md; fetched_at=2026-02-20T10:29:25.860Z; sha256=e80f6c30e5eb889a923043e1095759c6e23a5af3dc3c3dec35e36f0f9bf0f690; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -23,9 +25,9 @@ See [Venice AI](/providers/venice).
 1. Authenticate with the provider (usually via `openclaw onboard`).
 2. Set the default model:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
-  agents: { defaults: { model: { primary: "anthropic/claude-opus-4-5" } } },
+  agents: { defaults: { model: { primary: "anthropic/claude-opus-4-6" } } },
 }
 ```
 
@@ -43,7 +45,8 @@ See [Venice AI](/providers/venice).
 * [GLM models](/providers/glm)
 * [MiniMax](/providers/minimax)
 * [Venice (Venice AI)](/providers/venice)
-* [Amazon Bedrock](/bedrock)
+* [Amazon Bedrock](/providers/bedrock)
+* [Qianfan](/providers/qianfan)
 
 For the full provider catalog (xAI, Groq, Mistral, etc.) and advanced configuration,
 see [Model providers](/concepts/model-providers).

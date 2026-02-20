@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/context.md; fetched_at=2026-02-20T10:29:17.145Z; sha256=0786155e25568df2209dfba6845c0113c918b38ad40454ad21980b325124bd46; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -24,7 +26,7 @@ Context is *not the same thing* as “memory”: memory can be stored on disk an
 * `/usage tokens` → append per-reply usage footer to normal replies.
 * `/compact` → summarize older history into a compact entry to free window space.
 
-See also: [Slash commands](/tools/slash-commands), [Token use & costs](/token-use), [Compaction](/concepts/compaction).
+See also: [Slash commands](/tools/slash-commands), [Token use & costs](/reference/token-use), [Compaction](/concepts/compaction).
 
 ## Example output
 
@@ -109,7 +111,7 @@ By default, OpenClaw injects a fixed set of workspace files (if present):
 * `HEARTBEAT.md`
 * `BOOTSTRAP.md` (first-run only)
 
-Large files are truncated per-file using `agents.defaults.bootstrapMaxChars` (default `20000` chars). `/context` shows **raw vs injected** sizes and whether truncation happened.
+Large files are truncated per-file using `agents.defaults.bootstrapMaxChars` (default `20000` chars). OpenClaw also enforces a total bootstrap injection cap across files with `agents.defaults.bootstrapTotalMaxChars` (default `150000` chars). `/context` shows **raw vs injected** sizes and whether truncation happened.
 
 ## Skills: what’s injected vs loaded on-demand
 

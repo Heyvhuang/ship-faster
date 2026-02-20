@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/browser.md; fetched_at=2026-02-20T10:29:14.658Z; sha256=88555082b924164a59e7cf54a3bf9e124b1ce76ab448543f4d7327650fd0cc5b; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -23,7 +25,7 @@ Related:
 
 ## Quick start (local)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser --browser-profile chrome tabs
 openclaw browser --browser-profile openclaw start
 openclaw browser --browser-profile openclaw open https://example.com
@@ -37,7 +39,7 @@ Profiles are named browser routing configs. In practice:
 * `openclaw`: launches/attaches to a dedicated OpenClaw-managed Chrome instance (isolated user data dir).
 * `chrome`: controls your existing Chrome tab(s) via the Chrome extension relay.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser profiles
 openclaw browser create-profile --name work --color "#FF5A36"
 openclaw browser delete-profile --name work
@@ -45,13 +47,13 @@ openclaw browser delete-profile --name work
 
 Use a specific profile:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser --browser-profile work tabs
 ```
 
 ## Tabs
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser tabs
 openclaw browser open https://docs.openclaw.ai
 openclaw browser focus <targetId>
@@ -62,19 +64,19 @@ openclaw browser close <targetId>
 
 Snapshot:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser snapshot
 ```
 
 Screenshot:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser screenshot
 ```
 
 Navigate/click/type (ref-based UI automation):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser navigate https://example.com
 openclaw browser click <ref>
 openclaw browser type <ref> "hello"
@@ -86,7 +88,7 @@ This mode lets the agent control an existing Chrome tab that you attach manually
 
 Install the unpacked extension to a stable path:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser extension install
 openclaw browser extension path
 ```

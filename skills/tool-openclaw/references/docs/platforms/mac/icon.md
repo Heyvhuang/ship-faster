@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/icon.md; fetched_at=2026-02-20T10:29:24.369Z; sha256=770d1956628707cf18e41919c889bbc4ebb0309c043d493ae7ac708ae090c1ab; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.

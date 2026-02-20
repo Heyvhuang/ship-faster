@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/automation/poll.md; fetched_at=2026-02-20T10:29:12.561Z; sha256=78f13e73db21e774d3f5a1a4e3c728685bfca2a954e1fec2bce26987ef609d98; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -14,7 +16,7 @@
 
 ## CLI
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # WhatsApp
 openclaw message poll --target +15555550123 \
   --poll-question "Lunch today?" --poll-option "Yes" --poll-option "No" --poll-option "Maybe"

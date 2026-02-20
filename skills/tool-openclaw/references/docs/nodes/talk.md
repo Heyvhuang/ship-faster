@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/talk.md; fetched_at=2026-02-20T10:29:23.484Z; sha256=cbba024a45ff6ffd01171e77a29bf4ecc56f4ae09745f8e266236e455f8628b9; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -25,7 +27,7 @@ Talk mode is a continuous voice conversation loop:
 
 The assistant may prefix its reply with a **single JSON line** to control voice:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { "voice": "<voice-id>", "once": true }
 ```
 
@@ -47,7 +49,7 @@ Supported keys:
 
 ## Config (`~/.openclaw/openclaw.json`)
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   talk: {
     voiceId: "elevenlabs_voice_id",

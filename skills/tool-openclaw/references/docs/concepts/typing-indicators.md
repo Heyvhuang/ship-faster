@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/typing-indicators.md; fetched_at=2026-02-20T10:29:18.415Z; sha256=2931e9b79f0836c765357fa0e5cf5dc43fddc716d0729a4b18d3c34c8cac4a80; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -36,7 +38,7 @@ Order of “how early it fires”:
 
 ## Configuration
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: {
     typingMode: "thinking",
@@ -47,7 +49,7 @@ Order of “how early it fires”:
 
 You can override mode or cadence per session:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   session: {
     typingMode: "message",

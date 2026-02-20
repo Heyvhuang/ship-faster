@@ -1,8 +1,10 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/RELEASING.md; fetched_at=2026-02-20T10:29:26.674Z; sha256=7ed625a12c138ec8d363482ebd02ab32a80cb4171ab8357948411cd6ba63aad7; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# null
+# Release Checklist
 
 # Release Checklist (npm + macOS)
 

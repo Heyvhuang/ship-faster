@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/webchat.md; fetched_at=2026-02-20T10:29:25.221Z; sha256=435e99945de7433dd13983baae4c756e011e4b183f75c1af143e59815dd1bb26; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -17,10 +19,13 @@ agent (with a session switcher for other sessions).
 ## Launch & debugging
 
 * Manual: Lobster menu → “Open Chat”.
+
 * Auto‑open for testing:
-  ```bash  theme={null}
+
+  ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
   dist/OpenClaw.app/Contents/MacOS/OpenClaw --webchat
   ```
+
 * Logs: `./scripts/clawlog.sh` (subsystem `bot.molt`, category `WebChatSwiftUI`).
 
 ## How it’s wired

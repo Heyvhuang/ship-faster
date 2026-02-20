@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/nodes.md; fetched_at=2026-02-20T10:29:15.655Z; sha256=c01d2539ebb8b12d8fec29845e531cf80645de5e3c85ad7ab17684b07bc6ae26; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -20,7 +22,7 @@ Common options:
 
 ## Common commands
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes list
 openclaw nodes list --connected
 openclaw nodes list --last-connected 24h
@@ -37,7 +39,7 @@ filter to nodes that connected within a duration (e.g. `24h`, `7d`).
 
 ## Invoke / run
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes invoke --node <id|name|ip> --command <command> --params <json>
 openclaw nodes run --node <id|name|ip> <command...>
 openclaw nodes run --raw "git status"
@@ -62,7 +64,7 @@ Invoke flags:
 Flags:
 
 * `--cwd <path>`: working directory.
-* `--env <key=val>`: env override (repeatable).
+* `--env <key=val>`: env override (repeatable). Note: node hosts ignore `PATH` overrides (and `tools.exec.pathPrepend` is not applied to node hosts).
 * `--command-timeout <ms>`: command timeout.
 * `--invoke-timeout <ms>`: node invoke timeout (default `30000`).
 * `--needs-screen-recording`: require screen recording permission.

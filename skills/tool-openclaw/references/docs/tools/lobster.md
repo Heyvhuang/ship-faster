@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/lobster.md; fetched_at=2026-02-20T10:29:29.388Z; sha256=a967d15e283b415261cd863cc3db6b6cc7889730cee4178a8b25ca71b0c3e1c0; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -41,13 +43,13 @@ If the pipeline pauses for approval, the tool returns a `resumeToken` so you can
 
 Build tiny commands that speak JSON, then chain them into a single Lobster call. (Example command names below — swap in your own.)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 inbox list --json
 inbox categorize --json
 inbox apply --json
 ```
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "action": "run",
   "pipeline": "exec --json --shell 'inbox list --json' | exec --stdin json --shell 'inbox categorize --json' | exec --stdin json --shell 'inbox apply --json' | approve --preview-from-stdin --limit 5 --prompt 'Apply changes?'",
@@ -57,7 +59,7 @@ inbox apply --json
 
 If the pipeline requests approval, resume with the token:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "action": "resume",
   "token": "<resumeToken>",
@@ -69,7 +71,7 @@ AI triggers the workflow; Lobster executes the steps. Approval gates keep side e
 
 Example: map input items into tool calls:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gog.gmail.search --query 'newer_than:1d' \
   | openclaw.invoke --tool message --action send --each --item-key message --args-json '{"provider":"telegram","to":"..."}'
 ```
@@ -82,7 +84,7 @@ deterministic while still letting you classify/summarize/draft with a model.
 
 Enable the tool:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "plugins": {
     "entries": {
@@ -102,7 +104,7 @@ Enable the tool:
 
 Use it in a pipeline:
 
-```lobster  theme={null}
+```lobster  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw.invoke --tool llm-task --action json --args-json '{
   "prompt": "Given the input email, return intent and draft.",
   "input": { "subject": "Hello", "body": "Can you help?" },
@@ -124,7 +126,7 @@ See [LLM Task](/tools/llm-task) for details and configuration options.
 
 Lobster can run YAML/JSON workflow files with `name`, `args`, `steps`, `env`, `condition`, and `approval` fields. In OpenClaw tool calls, set `pipeline` to the file path.
 
-```yaml  theme={null}
+```yaml  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 name: inbox-triage
 args:
   tag:
@@ -153,7 +155,6 @@ Notes:
 ## Install Lobster
 
 Install the Lobster CLI on the **same host** that runs the OpenClaw Gateway (see the [Lobster repo](https://github.com/openclaw/lobster)), and ensure `lobster` is on `PATH`.
-If you want to use a custom binary location, pass an **absolute** `lobsterPath` in the tool call.
 
 ## Enable the tool
 
@@ -161,7 +162,7 @@ Lobster is an **optional** plugin tool (not enabled by default).
 
 Recommended (additive, safe):
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "tools": {
     "alsoAllow": ["lobster"]
@@ -171,7 +172,7 @@ Recommended (additive, safe):
 
 Or per-agent:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "agents": {
     "list": [
@@ -209,7 +210,7 @@ User: "Check my email and draft replies"
 
 With Lobster:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "action": "run",
   "pipeline": "email.triage --limit 20",
@@ -219,7 +220,7 @@ With Lobster:
 
 Returns a JSON envelope (truncated):
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "ok": true,
   "status": "needs_approval",
@@ -235,7 +236,7 @@ Returns a JSON envelope (truncated):
 
 User approves → resume:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "action": "resume",
   "token": "<resumeToken>",
@@ -251,11 +252,11 @@ One workflow. Deterministic. Safe.
 
 Run a pipeline in tool mode.
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "action": "run",
   "pipeline": "gog.gmail.search --query 'newer_than:1d' | email.triage",
-  "cwd": "/path/to/workspace",
+  "cwd": "workspace",
   "timeoutMs": 30000,
   "maxStdoutBytes": 512000
 }
@@ -263,7 +264,7 @@ Run a pipeline in tool mode.
 
 Run a workflow file with args:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "action": "run",
   "pipeline": "/path/to/inbox-triage.lobster",
@@ -275,7 +276,7 @@ Run a workflow file with args:
 
 Continue a halted workflow after approval.
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "action": "resume",
   "token": "<resumeToken>",
@@ -285,8 +286,7 @@ Continue a halted workflow after approval.
 
 ### Optional inputs
 
-* `lobsterPath`: Absolute path to the Lobster binary (omit to use `PATH`).
-* `cwd`: Working directory for the pipeline (defaults to the current process working directory).
+* `cwd`: Relative working directory for the pipeline (must stay within the current process working directory).
 * `timeoutMs`: Kill the subprocess if it exceeds this duration (default: 20000).
 * `maxStdoutBytes`: Kill the subprocess if stdout exceeds this size (default: 512000).
 * `argsJson`: JSON string passed to `lobster run --args-json` (workflow files only).
@@ -319,7 +319,7 @@ OpenProse pairs well with Lobster: use `/prose` to orchestrate multi-agent prep,
 * **Local subprocess only** — no network calls from the plugin itself.
 * **No secrets** — Lobster doesn't manage OAuth; it calls OpenClaw tools that do.
 * **Sandbox-aware** — disabled when the tool context is sandboxed.
-* **Hardened** — `lobsterPath` must be absolute if specified; timeouts and output caps enforced.
+* **Hardened** — fixed executable name (`lobster`) on `PATH`; timeouts and output caps enforced.
 
 ## Troubleshooting
 
@@ -330,7 +330,7 @@ OpenProse pairs well with Lobster: use `/prose` to orchestrate multi-agent prep,
 
 ## Learn more
 
-* [Plugins](/plugin)
+* [Plugins](/tools/plugin)
 * [Plugin tool authoring](/plugins/agent-tools)
 
 ## Case study: community workflows

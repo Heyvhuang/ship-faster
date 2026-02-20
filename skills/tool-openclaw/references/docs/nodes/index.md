@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/index.md; fetched_at=2026-02-20T10:29:23.385Z; sha256=3792c0ff20f1f6d7b5bbc843012ea3a489fd098c8eebca2e076e2496537a85fe; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -16,6 +18,7 @@ Notes:
 
 * Nodes are **peripherals**, not gateways. They don’t run the gateway service.
 * Telegram/WhatsApp/etc. messages land on the **gateway**, not on nodes.
+* Troubleshooting runbook: [/nodes/troubleshooting](/nodes/troubleshooting)
 
 ## Pairing + status
 
@@ -24,7 +27,7 @@ creates a device pairing request for `role: node`. Approve via the devices CLI (
 
 Quick CLI:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw devices list
 openclaw devices approve <requestId>
 openclaw devices reject <requestId>
@@ -54,7 +57,7 @@ forwards `exec` calls to the **node host** when `host=node` is selected.
 
 On the node machine:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw node run --host <gateway-host> --port 18789 --display-name "Build Node"
 ```
 
@@ -66,7 +69,7 @@ node host at the local end of the tunnel.
 
 Example (node host -> gateway host):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Terminal A (keep running): forward local 18790 -> gateway 127.0.0.1:18789
 ssh -N -L 18790:127.0.0.1:18789 user@gateway-host
 
@@ -82,7 +85,7 @@ Notes:
 
 ### Start a node host (service)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw node install --host <gateway-host> --port 18789 --display-name "Build Node"
 openclaw node restart
 ```
@@ -91,7 +94,7 @@ openclaw node restart
 
 On the gateway host:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes pending
 openclaw nodes approve <requestId>
 openclaw nodes list
@@ -106,7 +109,7 @@ Naming options:
 
 Exec approvals are **per node host**. Add allowlist entries from the gateway:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw approvals allowlist add --node <id|name|ip> "/usr/bin/uname"
 openclaw approvals allowlist add --node <id|name|ip> "/usr/bin/sw_vers"
 ```
@@ -117,7 +120,7 @@ Approvals live on the node host at `~/.openclaw/exec-approvals.json`.
 
 Configure defaults (gateway config):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw config set tools.exec.host node
 openclaw config set tools.exec.security allowlist
 openclaw config set tools.exec.node "<id-or-name>"
@@ -142,7 +145,7 @@ Related:
 
 Low-level (raw RPC):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes invoke --node <idOrNameOrIp> --command canvas.eval --params '{"javaScript":"location.href"}'
 ```
 
@@ -154,14 +157,14 @@ If the node is showing the Canvas (WebView), `canvas.snapshot` returns `{ format
 
 CLI helper (writes to a temp file and prints `MEDIA:<path>`):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes canvas snapshot --node <idOrNameOrIp> --format png
 openclaw nodes canvas snapshot --node <idOrNameOrIp> --format jpg --max-width 1200 --quality 0.9
 ```
 
 ### Canvas controls
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes canvas present --node <idOrNameOrIp> --target https://example.com
 openclaw nodes canvas hide --node <idOrNameOrIp>
 openclaw nodes canvas navigate https://example.com --node <idOrNameOrIp>
@@ -175,7 +178,7 @@ Notes:
 
 ### A2UI (Canvas)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes canvas a2ui push --node <idOrNameOrIp> --text "Hello"
 openclaw nodes canvas a2ui push --node <idOrNameOrIp> --jsonl ./payload.jsonl
 openclaw nodes canvas a2ui reset --node <idOrNameOrIp>
@@ -189,7 +192,7 @@ Notes:
 
 Photos (`jpg`):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes camera list --node <idOrNameOrIp>
 openclaw nodes camera snap --node <idOrNameOrIp>            # default: both facings (2 MEDIA lines)
 openclaw nodes camera snap --node <idOrNameOrIp> --facing front
@@ -197,7 +200,7 @@ openclaw nodes camera snap --node <idOrNameOrIp> --facing front
 
 Video clips (`mp4`):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes camera clip --node <idOrNameOrIp> --duration 10s
 openclaw nodes camera clip --node <idOrNameOrIp> --duration 3000 --no-audio
 ```
@@ -212,7 +215,7 @@ Notes:
 
 Nodes expose `screen.record` (mp4). Example:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes screen record --node <idOrNameOrIp> --duration 10s --fps 10
 openclaw nodes screen record --node <idOrNameOrIp> --duration 10s --fps 10 --no-audio
 ```
@@ -231,7 +234,7 @@ Nodes expose `location.get` when Location is enabled in settings.
 
 CLI helper:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes location get --node <idOrNameOrIp>
 openclaw nodes location get --node <idOrNameOrIp> --accuracy precise --max-age 15000 --location-timeout 10000
 ```
@@ -248,7 +251,7 @@ Android nodes can expose `sms.send` when the user grants **SMS** permission and 
 
 Low-level invoke:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes invoke --node <idOrNameOrIp> --command sms.send --params '{"to":"+15555550123","message":"Hello from OpenClaw"}'
 ```
 
@@ -264,7 +267,7 @@ The headless node host exposes `system.run`, `system.which`, and `system.execApp
 
 Examples:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes run --node <idOrNameOrIp> -- echo "Hello from mac node"
 openclaw nodes notify --node <idOrNameOrIp> --title "Ping" --body "Gateway ready"
 ```
@@ -275,7 +278,7 @@ Notes:
 * `system.notify` respects notification permission state on the macOS app.
 * `system.run` supports `--cwd`, `--env KEY=VAL`, `--command-timeout`, and `--needs-screen-recording`.
 * `system.notify` supports `--priority <passive|active|timeSensitive>` and `--delivery <system|overlay|auto>`.
-* macOS nodes drop `PATH` overrides; headless node hosts only accept `PATH` when it prepends the node host PATH.
+* Node hosts ignore `PATH` overrides. If you need extra PATH entries, configure the node host service environment (or install tools in standard locations) instead of passing `PATH` via `--env`.
 * On macOS node mode, `system.run` is gated by exec approvals in the macOS app (Settings → Exec approvals).
   Ask/allowlist/full behave the same as the headless node host; denied prompts return `SYSTEM_RUN_DENIED`.
 * On headless node host, `system.run` is gated by exec approvals (`~/.openclaw/exec-approvals.json`).
@@ -287,20 +290,20 @@ This sets the default node for `exec host=node` (and can be overridden per agent
 
 Global default:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw config set tools.exec.node "node-id-or-name"
 ```
 
 Per-agent override:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw config get agents.list
 openclaw config set agents.list[0].tools.exec.node "node-id-or-name"
 ```
 
 Unset to allow any node:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw config unset tools.exec.node
 openclaw config unset agents.list[0].tools.exec.node
 ```
@@ -317,7 +320,7 @@ or for running a minimal node alongside a server.
 
 Start it:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw node run --host <gateway-host> --port 18789
 ```
 

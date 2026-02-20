@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/setup.md; fetched_at=2026-02-20T10:29:28.394Z; sha256=9c1788f072e88eb7753a482545eaf365e416baaafe11033c561543afcbe1190c; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -34,13 +36,13 @@ If you want “100% tailored to me” *and* easy updates, keep your customizatio
 
 Bootstrap once:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw setup
 ```
 
 From inside this repo, use the local CLI entry:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw setup
 ```
 
@@ -50,7 +52,7 @@ If you don’t have a global install yet, run it via `pnpm openclaw setup`.
 
 After `pnpm build`, you can run the packaged CLI directly:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 node openclaw.mjs gateway --port 18789 --verbose
 ```
 
@@ -61,13 +63,13 @@ node openclaw.mjs gateway --port 18789 --verbose
 3. Ensure Gateway is **Local** and running (the app manages it).
 4. Link surfaces (example: WhatsApp):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels login
 ```
 
 5. Sanity check:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw health
 ```
 
@@ -83,13 +85,13 @@ Goal: work on the TypeScript Gateway, get hot reload, keep the macOS app UI atta
 
 If you also want the macOS app on the bleeding edge:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ./scripts/restart-mac.sh
 ```
 
 ### 1) Start the dev Gateway
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm install
 pnpm gateway:watch
 ```
@@ -108,7 +110,7 @@ In **OpenClaw\.app**:
 * In-app Gateway status should read **“Using existing gateway …”**
 * Or via CLI:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw health
 ```
 
@@ -144,7 +146,7 @@ Linux installs use a systemd **user** service. By default, systemd stops user
 services on logout/idle, which kills the Gateway. Onboarding attempts to enable
 lingering for you (may prompt for sudo). If it’s still off, run:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 sudo loginctl enable-linger $USER
 ```
 

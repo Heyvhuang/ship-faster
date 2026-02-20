@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/ansible.md; fetched_at=2026-02-20T10:29:21.537Z; sha256=5c029aab8e77bdd03a77a755e8a14b3b1afdca7c4be09bba7dc45fadbda6edaf; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -12,7 +14,7 @@ The recommended way to deploy OpenClaw to production servers is via **[openclaw-
 
 One-command install:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 curl -fsSL https://raw.githubusercontent.com/openclaw/openclaw-ansible/main/install.sh | bash
 ```
 
@@ -53,7 +55,7 @@ Note: The gateway runs **directly on the host** (not in Docker), but agent sandb
 
 After installation completes, switch to the openclaw user:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 sudo -i -u openclaw
 ```
 
@@ -66,7 +68,7 @@ The post-install script will guide you through:
 
 ### Quick commands
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Check service status
 sudo systemctl status openclaw
 
@@ -94,7 +96,7 @@ openclaw channels login
 
 Test external attack surface:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 nmap -p- YOUR_SERVER_IP
 ```
 
@@ -104,13 +106,13 @@ Should show **only port 22** (SSH) open. All other services (gateway, Docker) ar
 
 Docker is installed for **agent sandboxes** (isolated tool execution), not for running the gateway itself. The gateway binds to localhost only and is accessible via Tailscale VPN.
 
-See [Multi-Agent Sandbox & Tools](/multi-agent-sandbox-tools) for sandbox configuration.
+See [Multi-Agent Sandbox & Tools](/tools/multi-agent-sandbox-tools) for sandbox configuration.
 
 ## Manual Installation
 
 If you prefer manual control over the automation:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # 1. Install prerequisites
 sudo apt update && sudo apt install -y ansible git
 
@@ -134,7 +136,7 @@ The Ansible installer sets up OpenClaw for manual updates. See [Updating](/insta
 
 To re-run the Ansible playbook (e.g., for configuration changes):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 cd openclaw-ansible
 ./run-playbook.sh
 ```
@@ -153,7 +155,7 @@ If you're locked out:
 
 ### Service won't start
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Check logs
 sudo journalctl -u openclaw -n 100
 
@@ -168,7 +170,7 @@ pnpm start
 
 ### Docker sandbox issues
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Verify Docker is running
 sudo systemctl status docker
 
@@ -184,7 +186,7 @@ sudo -u openclaw ./scripts/sandbox-setup.sh
 
 Make sure you're running as the `openclaw` user:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 sudo -i -u openclaw
 openclaw channels login
 ```
@@ -202,4 +204,4 @@ For detailed security architecture and troubleshooting:
 * [openclaw-ansible](https://github.com/openclaw/openclaw-ansible) — full deployment guide
 * [Docker](/install/docker) — containerized gateway setup
 * [Sandboxing](/gateway/sandboxing) — agent sandbox configuration
-* [Multi-Agent Sandbox & Tools](/multi-agent-sandbox-tools) — per-agent isolation
+* [Multi-Agent Sandbox & Tools](/tools/multi-agent-sandbox-tools) — per-agent isolation

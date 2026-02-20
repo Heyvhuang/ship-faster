@@ -6,8 +6,8 @@
  * - Keep references/docs/ as a local snapshot of https://docs.openclaw.ai
  * - Provide a deterministic index file for "low IQ" models to route queries fast
  * - Support:
- *   - mode=seed   (only fetch placeholders / missing)
- *   - mode=full   (refresh everything)
+ *   - mode=seed   (refresh placeholders + legacy/no-header + stale pages)
+ *   - mode=full   (refresh everything in current llms frontier)
  *   - mode=index  (only rebuild index)
  *   - mode=single (fetch one URL -> mapped local path)
  *
@@ -44,6 +44,11 @@ function setDocsDir(nextDocsDir) {
 
 const DEFAULT_BASE = "https://docs.openclaw.ai";
 const PLACEHOLDER_MARKER = "status=placeholder";
+const INTERNAL_SNAPSHOT_FILES = new Set(["__SNAPSHOT_INDEX.md", "__SNAPSHOT_INDEX.json", "__SNAPSHOT_MANIFEST.json"]);
+
+function isInternalSnapshotFile(rel) {
+  return INTERNAL_SNAPSHOT_FILES.has(rel);
+}
 
 const CATEGORY_LABELS = {
   start: "Start / Onboarding",
@@ -83,6 +88,8 @@ function parseArgs(argv) {
     dryRun: false,
     filter: null, // regex
     url: null, // for single
+    prune: false, // remove local files not present in llms frontier
+    seedMaxAgeDays: 14, // in seed mode, refresh files older than N days
     fallbackToEn: true,
     quiet: false,
   };
@@ -99,6 +106,8 @@ function parseArgs(argv) {
     else if (a === "--retries") out.retries = Number(args.shift());
     else if (a === "--filter") out.filter = args.shift();
     else if (a === "--url") out.url = args.shift();
+    else if (a === "--prune") out.prune = true;
+    else if (a === "--seed-max-age-days") out.seedMaxAgeDays = Number(args.shift());
     else if (a === "--no-fallback") out.fallbackToEn = false;
     else if (a === "--dry-run") out.dryRun = true;
     else if (a === "--quiet") out.quiet = true;
@@ -241,10 +250,21 @@ function urlToRelPath(baseUrl, pageUrl) {
   return rel;
 }
 
-async function syncPlaceholdersFromLlms(cfg) {
+async function loadLlmsFrontier(cfg) {
   const llmsUrl = `${normalizeBase(cfg.base)}/llms.txt`;
   const { text } = await fetchText(llmsUrl, cfg.timeoutMs, cfg.retries, cfg.quiet);
   const urls = extractUrlsFromLlmsTxt(text, cfg.base);
+  const rels = urls.map((u) => urlToRelPath(cfg.base, u));
+  return {
+    urls,
+    rels,
+    relSet: new Set(rels),
+  };
+}
+
+async function syncPlaceholdersFromLlms(cfg, frontier) {
+  const activeFrontier = frontier || (await loadLlmsFrontier(cfg));
+  const urls = activeFrontier.urls;
 
   let created = 0;
   for (const pageUrl of urls) {
@@ -273,6 +293,7 @@ async function syncPlaceholdersFromLlms(cfg) {
   }
 
   if (!cfg.quiet) console.log(`Synced llms.txt frontier: created=${created}, seen=${urls.length}`);
+  return created;
 }
 
 async function walkFiles(dir) {
@@ -299,6 +320,47 @@ async function safeReadText(p) {
 
 async function ensureDir(p) {
   await fs.mkdir(p, { recursive: true });
+}
+
+function isFetchedAtStale(fetchedAt, maxAgeDays) {
+  if (!Number.isFinite(maxAgeDays) || maxAgeDays < 0) return false;
+  if (!fetchedAt || fetchedAt === "null") return true;
+  const ts = Date.parse(fetchedAt);
+  if (Number.isNaN(ts)) return true;
+  const maxAgeMs = maxAgeDays * 24 * 60 * 60 * 1000;
+  return Date.now() - ts >= maxAgeMs;
+}
+
+async function removeEmptyParentDirs(startDir, stopDir) {
+  let cur = startDir;
+  const stop = path.resolve(stopDir);
+  while (path.resolve(cur).startsWith(stop) && path.resolve(cur) !== stop) {
+    const items = await fs.readdir(cur);
+    if (items.length !== 0) break;
+    await fs.rmdir(cur);
+    cur = path.dirname(cur);
+  }
+}
+
+async function pruneLocalNotInFrontier(cfg, frontier) {
+  const all = await walkFiles(DOCS_DIR);
+  const stale = all.filter((p) => {
+    const rel = relFromDocsDir(p);
+    if (!/\.(md|txt)$/i.test(rel)) return false;
+    if (isInternalSnapshotFile(rel)) return false;
+    return !frontier.relSet.has(rel);
+  });
+
+  let removed = 0;
+  for (const abs of stale) {
+    if (!cfg.dryRun) {
+      await fs.unlink(abs);
+      await removeEmptyParentDirs(path.dirname(abs), DOCS_DIR);
+    }
+    removed += 1;
+  }
+  if (!cfg.quiet) console.log(`Pruned stale local pages: removed=${removed}`);
+  return removed;
 }
 
 async function fetchText(url, timeoutMs, retries, quiet) {
@@ -397,19 +459,14 @@ function htmlToMarkdownBasic(html) {
   return h.trim() + "\n";
 }
 
-async function updateOneFile(absPath, cfg) {
+async function updateOneFile(absPath, cfg, frontier = null) {
   const rel = relFromDocsDir(absPath);
-  if (rel === "__SNAPSHOT_INDEX.md" || rel === "__SNAPSHOT_INDEX.json" || rel === "__SNAPSHOT_MANIFEST.json") {
+  if (isInternalSnapshotFile(rel)) {
     return { skipped: true };
   }
 
-  const raw = (await safeReadText(absPath)) || "";
-  const header = parseSnapshotHeader(raw) || {};
-  const status = header.status || (raw.includes(PLACEHOLDER_MARKER) ? "placeholder" : "unknown");
-
-  // seed mode: only placeholders
-  if (cfg.mode === "seed" && status !== "placeholder") {
-    return { skipped: true, rel, reason: "not-placeholder" };
+  if (frontier && !frontier.relSet.has(rel)) {
+    return { skipped: true, rel, reason: "not-in-frontier" };
   }
 
   if (cfg.filter) {
@@ -417,8 +474,27 @@ async function updateOneFile(absPath, cfg) {
     if (!re.test(rel)) return { skipped: true, rel, reason: "filter" };
   }
 
+  const raw = (await safeReadText(absPath)) || "";
+  const parsedHeader = parseSnapshotHeader(raw);
+  const header = parsedHeader || {};
+  const status = header.status || (raw.includes(PLACEHOLDER_MARKER) ? "placeholder" : "unknown");
+
+  // seed mode: refresh placeholders + legacy/no-header + stale pages.
+  if (cfg.mode === "seed") {
+    if (status === "placeholder") {
+      // always refresh placeholders
+    } else if (!parsedHeader) {
+      // migrate legacy snapshot files that have content but no SNAPSHOT header
+    } else if (isFetchedAtStale(header.fetched_at, cfg.seedMaxAgeDays)) {
+      // refresh stale content by age
+    } else {
+      return { skipped: true, rel, reason: "seed-fresh" };
+    }
+  }
+
   const base = normalizeBase(cfg.base);
-  const enUrl = header.source_url || buildUrlFromRel(rel, base);
+  const canonicalUrl = buildUrlFromRel(rel, base);
+  const enUrl = frontier ? canonicalUrl : header.source_url || canonicalUrl;
   let url = enUrl;
 
   if (cfg.locale) {
@@ -480,13 +556,13 @@ async function pMap(items, concurrency, fn) {
   return results;
 }
 
-async function buildIndex() {
+async function buildIndex(cfg, frontier = null) {
   const all = await walkFiles(DOCS_DIR);
   const entries = [];
 
   for (const f of all) {
     const rel = relFromDocsDir(f);
-    if (rel === "__SNAPSHOT_INDEX.md" || rel === "__SNAPSHOT_INDEX.json" || rel === "__SNAPSHOT_MANIFEST.json") continue;
+    if (isInternalSnapshotFile(rel)) continue;
     if (!/\.(md|txt)$/i.test(rel)) continue;
 
     const raw = (await safeReadText(f)) || "";
@@ -494,10 +570,11 @@ async function buildIndex() {
     const title = extractTitle(raw) || titleFromRel(rel);
     const cat = categoryFromRel(rel);
     const tags = tagsFromRel(rel);
-    const url = header.source_url || buildUrlFromRel(rel, DEFAULT_BASE);
-    // Older snapshots may not include SNAPSHOT headers; treat them as OK content
-    // unless they explicitly look like placeholders.
-    const status = header.status || (raw.includes(PLACEHOLDER_MARKER) ? "placeholder" : "ok");
+    const url = frontier && frontier.relSet.has(rel) ? buildUrlFromRel(rel, cfg.base) : header.source_url || buildUrlFromRel(rel, cfg.base);
+    let status = header.status || (raw.includes(PLACEHOLDER_MARKER) ? "placeholder" : "unknown");
+    if (frontier && !frontier.relSet.has(rel) && status !== "placeholder") {
+      status = "stale-local";
+    }
     const fetchedAt = header.fetched_at || null;
     entries.push({ rel, title, category: cat, categoryLabel: CATEGORY_LABELS[cat] || "Misc", tags, url, status, fetchedAt });
   }
@@ -518,13 +595,15 @@ async function buildIndex() {
     2
   );
 
-  await fs.writeFile(INDEX_MD, md.replace(/\r\n/g, "\n"), "utf8");
-  await fs.writeFile(INDEX_JSON, json.replace(/\r\n/g, "\n"), "utf8");
-  await fs.writeFile(
-    MANIFEST_JSON,
-    JSON.stringify({ generated_at: nowIso(), count: entries.length, files: entries.map((e) => e.rel) }, null, 2),
-    "utf8"
-  );
+  if (!cfg.dryRun) {
+    await fs.writeFile(INDEX_MD, md.replace(/\r\n/g, "\n"), "utf8");
+    await fs.writeFile(INDEX_JSON, json.replace(/\r\n/g, "\n"), "utf8");
+    await fs.writeFile(
+      MANIFEST_JSON,
+      JSON.stringify({ generated_at: nowIso(), count: entries.length, files: entries.map((e) => e.rel) }, null, 2),
+      "utf8"
+    );
+  }
 
   return entries.length;
 }
@@ -582,7 +661,7 @@ function renderIndexMarkdown(entries) {
   );
   lines.push(``);
   lines.push(
-    `- **Install / onboarding / pairing** → \`start/getting-started.md\`, \`start/setup.md\`, \`start/pairing.md\`, \`install/index.md\``
+    `- **Install / onboarding / pairing** → \`start/getting-started.md\`, \`start/setup.md\`, \`channels/pairing.md\`, \`install/index.md\``
   );
   lines.push(
     `- **Updates / upgrade channels** → \`install/updating.md\`, \`install/development-channels.md\`, \`cli/update.md\``
@@ -602,10 +681,10 @@ function renderIndexMarkdown(entries) {
   );
   lines.push(`- **Tools (exec/browser/apply_patch/web...)** → \`tools/index.md\` + \`tools/<tool>.md\``);
   lines.push(
-    `- **Providers / config / billing** → \`providers/index.md\`, \`providers/openai.md\`, \`providers/anthropic.md\`, \`token-use.md\``
+    `- **Providers / config / billing** → \`providers/index.md\`, \`providers/openai.md\`, \`providers/anthropic.md\`, \`reference/token-use.md\``
   );
   lines.push(
-    `- **Troubleshooting** → \`help/troubleshooting.md\`, \`gateway/troubleshooting.md\`, \`debugging.md\`, \`cli/logs.md\`, \`cli/doctor.md\``
+    `- **Troubleshooting** → \`help/troubleshooting.md\`, \`gateway/troubleshooting.md\`, \`help/debugging.md\`, \`cli/logs.md\`, \`cli/doctor.md\``
   );
   lines.push(``);
   lines.push(`## Full Directory`);
@@ -638,8 +717,8 @@ Usage:
   node scripts/update_docs_snapshot.mjs [--mode seed|full|sync|index|single] [options]
 
 Modes:
-  --mode seed    Only fetch placeholder files (fast, safe default)
-  --mode full    Refresh every snapshot file (slow)
+  --mode seed    Refresh placeholders + legacy/no-header + stale pages (safe default)
+  --mode full    Refresh every file in current llms frontier
   --mode sync    Sync llms.txt frontier -> create missing placeholders + rebuild index (no page fetch)
   --mode index   Only rebuild __SNAPSHOT_INDEX.(md|json)
   --mode single  Fetch one URL and write it into references/docs/<url-path>
@@ -649,6 +728,8 @@ Options:
   --out <dir>          Output dir (default: references/docs/)
   --locale <name>      e.g. zh-CN (try localized route first, then fallback)
   --no-fallback        Disable locale fallback to English
+  --prune              Remove local pages not present in current llms frontier
+  --seed-max-age-days  In seed mode, also refresh files older than N days (default: 14)
   --filter <regex>     Only update files whose relative path matches regex
   --concurrency <n>    Default: 6
   --timeoutMs <ms>     Default: 25000
@@ -660,7 +741,8 @@ Options:
 Examples:
   node scripts/update_docs_snapshot.mjs --mode seed
   node scripts/update_docs_snapshot.mjs --mode sync
-  node scripts/update_docs_snapshot.mjs --mode full --filter "^gateway/"
+  node scripts/update_docs_snapshot.mjs --mode sync --prune
+  node scripts/update_docs_snapshot.mjs --mode full --filter "^gateway/" --prune
   node scripts/update_docs_snapshot.mjs --mode seed --locale zh-CN
   node scripts/update_docs_snapshot.mjs --mode single --url https://docs.openclaw.ai/cli/update.md
   node scripts/update_docs_snapshot.mjs --mode index
@@ -674,16 +756,27 @@ Examples:
 
   await ensureDir(DOCS_DIR);
 
+  if (!["seed", "full", "sync", "index", "single"].includes(cfg.mode)) {
+    console.error(`Unknown mode: ${cfg.mode}`);
+    process.exit(2);
+  }
+
+  const needsFrontier = ["seed", "full", "sync"].includes(cfg.mode);
+  const frontier = needsFrontier ? await loadLlmsFrontier(cfg) : null;
+
   if (cfg.mode === "index") {
-    const n = await buildIndex();
-    console.log(`Index updated: ${n} entries`);
+    const n = await buildIndex(cfg, null);
+    console.log(`${cfg.dryRun ? "[dry-run] " : ""}Index updated: ${n} entries`);
     return;
   }
 
   if (cfg.mode === "sync") {
-    await syncPlaceholdersFromLlms(cfg);
-    const n = await buildIndex();
-    console.log(`Synced placeholders and rebuilt index: ${n} entries`);
+    const created = await syncPlaceholdersFromLlms(cfg, frontier);
+    const pruned = cfg.prune ? await pruneLocalNotInFrontier(cfg, frontier) : 0;
+    const n = await buildIndex(cfg, frontier);
+    console.log(
+      `${cfg.dryRun ? "[dry-run] " : ""}Synced placeholders and rebuilt index: created=${created}, pruned=${pruned}, entries=${n}`
+    );
     return;
   }
 
@@ -703,13 +796,15 @@ Examples:
     if (!/\.(md|txt)$/i.test(rel)) rel = `${rel}.md`;
 
     const abs = path.join(DOCS_DIR, rel);
-    await ensureDir(path.dirname(abs));
+    if (!cfg.dryRun) {
+      await ensureDir(path.dirname(abs));
+    }
     // Create placeholder if missing
     const exists = await fs
       .stat(abs)
       .then(() => true)
       .catch(() => false);
-    if (!exists) {
+    if (!exists && !cfg.dryRun) {
       const header = buildSnapshotHeader({
         source_url: cfg.url,
         fetched_at: "null",
@@ -720,36 +815,38 @@ Examples:
       await fs.writeFile(abs, `${header}\n\n# ${titleFromRel(rel)}\n\n`, "utf8");
     }
 
-    cfg.mode = "full"; // update regardless of placeholder
-    await updateOneFile(abs, cfg);
-    const n = await buildIndex();
-    console.log(`Fetched -> ${rel}. Index entries: ${n}`);
+    const { text, contentType } = await fetchText(cfg.url, cfg.timeoutMs, cfg.retries, cfg.quiet);
+    await writeFetched(abs, rel, cfg.url, text, contentType, cfg);
+    const n = await buildIndex(cfg, null);
+    console.log(`${cfg.dryRun ? "[dry-run] " : ""}Fetched -> ${rel}. Index entries: ${n}`);
     return;
   }
 
   // seed/full: sync local placeholders from the current llms.txt frontier so
   // newly-added docs pages can be fetched even if they didn't exist locally yet.
-  await syncPlaceholdersFromLlms(cfg);
+  await syncPlaceholdersFromLlms(cfg, frontier);
+  const pruned = cfg.prune ? await pruneLocalNotInFrontier(cfg, frontier) : 0;
 
   // seed/full: update existing snapshot files
   const all = await walkFiles(DOCS_DIR);
-  const targets = all.filter((p) => {
+  const allSnapshotFiles = all.filter((p) => {
     const rel = relFromDocsDir(p);
-    if (rel === "__SNAPSHOT_INDEX.md" || rel === "__SNAPSHOT_INDEX.json" || rel === "__SNAPSHOT_MANIFEST.json") return false;
+    if (isInternalSnapshotFile(rel)) return false;
     return /\.(md|txt)$/i.test(rel);
   });
+  const staleLocalCount = allSnapshotFiles.filter((p) => !frontier.relSet.has(relFromDocsDir(p))).length;
+  const targets = allSnapshotFiles.filter((p) => frontier.relSet.has(relFromDocsDir(p)));
 
   const mode = cfg.mode;
-  if (!["seed", "full"].includes(mode)) {
-    console.error(`Unknown mode: ${mode}`);
-    process.exit(2);
+  if (!cfg.quiet) {
+    console.log(
+      `Updating snapshot: mode=${mode}, files=${targets.length}, stale_local=${staleLocalCount}, seed_max_age_days=${cfg.seedMaxAgeDays}`
+    );
   }
-
-  if (!cfg.quiet) console.log(`Updating snapshot: mode=${mode}, files=${targets.length}`);
 
   const results = await pMap(targets, Math.max(1, cfg.concurrency), async (p) => {
     try {
-      const r = await updateOneFile(p, cfg);
+      const r = await updateOneFile(p, cfg, frontier);
       return { ok: true, ...r };
     } catch (e) {
       return { ok: false, rel: relFromDocsDir(p), error: String(e) };
@@ -760,9 +857,11 @@ Examples:
   const failed = results.filter((r) => r.ok === false).length;
   const skipped = results.filter((r) => r.skipped).length;
 
-  const n = await buildIndex();
+  const n = await buildIndex(cfg, frontier);
 
-  console.log(`Done. updated=${updated}, skipped=${skipped}, failed=${failed}, indexed=${n}`);
+  console.log(
+    `Done. updated=${updated}, skipped=${skipped}, failed=${failed}, stale_local=${staleLocalCount}, pruned=${pruned}, indexed=${n}${cfg.dryRun ? ", dry_run=true" : ""}`
+  );
 
   if (failed) process.exitCode = 1;
 }

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/system.md; fetched_at=2026-02-20T10:29:16.500Z; sha256=8ec29c9cc1f004c06f1b9c70e11702f2938a36ee00e943120bd5a4afc82e3669; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -11,7 +13,7 @@ and view presence.
 
 ## Common commands
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw system event --text "Check for urgent follow-ups" --mode now
 openclaw system heartbeat enable
 openclaw system heartbeat last

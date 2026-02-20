@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/development-channels.md; fetched_at=2026-02-20T10:29:21.941Z; sha256=379cafbe1a39eb29a7dda6b5725f521e2719ac05c04d2c0a5fb15a056bc50355; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -21,7 +23,7 @@ without changing the version number — dist-tags are the source of truth for np
 
 Git checkout:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw update --channel stable
 openclaw update --channel beta
 openclaw update --channel dev
@@ -32,7 +34,7 @@ openclaw update --channel dev
 
 npm/pnpm global install:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw update --channel stable
 openclaw update --channel beta
 openclaw update --channel dev

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/ios.md; fetched_at=2026-02-20T10:29:23.900Z; sha256=d6bfd9106aeab1ced9441813bd5cdb22a10cf1cdece1c741901a0179f6a05d59; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -26,7 +28,7 @@ Availability: internal preview. The iOS app is not publicly distributed yet.
 
 1. Start the Gateway:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway --port 18789
 ```
 
@@ -34,14 +36,14 @@ openclaw gateway --port 18789
 
 3. Approve the pairing request on the gateway host:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes pending
 openclaw nodes approve <requestId>
 ```
 
 4. Verify connection:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes status
 openclaw gateway call node.list --params "{}"
 ```
@@ -65,23 +67,24 @@ In Settings, enable **Manual Host** and enter the gateway host + port (default `
 
 The iOS node renders a WKWebView canvas. Use `node.invoke` to drive it:
 
-```bash  theme={null}
-openclaw nodes invoke --node "iOS Node" --command canvas.navigate --params '{"url":"http://<gateway-host>:18793/__openclaw__/canvas/"}'
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw nodes invoke --node "iOS Node" --command canvas.navigate --params '{"url":"http://<gateway-host>:18789/__openclaw__/canvas/"}'
 ```
 
 Notes:
 
 * The Gateway canvas host serves `/__openclaw__/canvas/` and `/__openclaw__/a2ui/`.
+* It is served from the Gateway HTTP server (same port as `gateway.port`, default `18789`).
 * The iOS node auto-navigates to A2UI on connect when a canvas host URL is advertised.
 * Return to the built-in scaffold with `canvas.navigate` and `{"url":""}`.
 
 ### Canvas eval / snapshot
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes invoke --node "iOS Node" --command canvas.eval --params '{"javaScript":"(() => { const {ctx} = window.__openclaw; ctx.clearRect(0,0,innerWidth,innerHeight); ctx.lineWidth=6; ctx.strokeStyle=\"#ff2d55\"; ctx.beginPath(); ctx.moveTo(40,40); ctx.lineTo(innerWidth-40, innerHeight-40); ctx.stroke(); return \"ok\"; })()"}'
 ```
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes invoke --node "iOS Node" --command canvas.snapshot --params '{"maxWidth":900,"format":"jpeg"}'
 ```
 

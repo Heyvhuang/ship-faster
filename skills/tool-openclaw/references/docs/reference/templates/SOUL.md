@@ -1,8 +1,10 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/SOUL.md; fetched_at=2026-02-20T10:29:27.286Z; sha256=73f611582f0568f3ecf0cc3068bc72ee63abd6427b5bdca3fc9402dc27094998; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# null
+# SOUL.md Template
 
 # SOUL.md - Who You Are
 

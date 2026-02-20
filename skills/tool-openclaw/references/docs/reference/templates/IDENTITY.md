@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/IDENTITY.md; fetched_at=2026-02-20T10:29:27.157Z; sha256=bd820acd370636dce6b18e5a613c321222c973213ed7620a6291b57d6f4602e4; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.

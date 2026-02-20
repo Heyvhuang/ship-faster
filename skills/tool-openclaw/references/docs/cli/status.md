@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/status.md; fetched_at=2026-02-20T10:29:16.445Z; sha256=58b5163861a377b8df486065d9cc6e930c8fd4d46666aef8fa6101e51271be13; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -8,7 +10,7 @@
 
 Diagnostics for channels + sessions.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw status
 openclaw status --all
 openclaw status --deep

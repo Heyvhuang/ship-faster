@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/updating.md; fetched_at=2026-02-20T10:29:23.567Z; sha256=ba8b97fcb137a504b29170b945b8b56ea005aea6935c1adb0201f4980b2d4795; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -14,19 +16,24 @@ The **preferred** update path is to re-run the installer from the website. It
 detects existing installs, upgrades in place, and runs `openclaw doctor` when
 needed.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 curl -fsSL https://openclaw.ai/install.sh | bash
 ```
 
 Notes:
 
 * Add `--no-onboard` if you don’t want the onboarding wizard to run again.
+
 * For **source installs**, use:
-  ```bash  theme={null}
+
+  ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
   curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git --no-onboard
   ```
+
   The installer will `git pull --rebase` **only** if the repo is clean.
+
 * For **global installs**, the script uses `npm install -g openclaw@latest` under the hood.
+
 * Legacy note: `clawdbot` remains available as a compatibility shim.
 
 ## Before you update
@@ -42,11 +49,11 @@ Notes:
 
 Global install (pick one):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 npm i -g openclaw@latest
 ```
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm add -g openclaw@latest
 ```
 
@@ -54,7 +61,7 @@ We do **not** recommend Bun for the Gateway runtime (WhatsApp/Telegram bugs).
 
 To switch update channels (git + npm installs):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw update --channel beta
 openclaw update --channel dev
 openclaw update --channel stable
@@ -68,7 +75,7 @@ Note: on npm installs, the gateway logs an update hint on startup (checks the cu
 
 Then:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw doctor
 openclaw gateway restart
 openclaw health
@@ -83,7 +90,7 @@ Notes:
 
 For **source installs** (git checkout), prefer:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw update
 ```
 
@@ -113,13 +120,13 @@ From the repo checkout:
 
 Preferred:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw update
 ```
 
 Manual (equivalent-ish):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 git pull
 pnpm install
 pnpm build
@@ -155,7 +162,7 @@ Details: [Doctor](/gateway/doctor)
 
 CLI (works regardless of OS):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway status
 openclaw gateway stop
 openclaw gateway restart
@@ -178,11 +185,11 @@ Runbook + exact service labels: [Gateway runbook](/gateway)
 
 Install a known-good version (replace `<version>` with the last working one):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 npm i -g openclaw@<version>
 ```
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm add -g openclaw@<version>
 ```
 
@@ -190,7 +197,7 @@ Tip: to see the current published version, run `npm view openclaw version`.
 
 Then restart + re-run doctor:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw doctor
 openclaw gateway restart
 ```
@@ -199,14 +206,14 @@ openclaw gateway restart
 
 Pick a commit from a date (example: “state of main as of 2026-01-01”):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 git fetch origin
 git checkout "$(git rev-list -n 1 --before=\"2026-01-01\" origin/main)"
 ```
 
 Then reinstall deps + restart:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm install
 pnpm build
 openclaw gateway restart
@@ -214,7 +221,7 @@ openclaw gateway restart
 
 If you want to go back to latest later:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 git checkout main
 git pull
 ```

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/retry.md; fetched_at=2026-02-20T10:29:17.841Z; sha256=4cd3f03c0af268f018afd58018cd0f87dc1fe88b704e8ab0348a58f4ee643d14; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -38,7 +40,7 @@
 
 Set retry policy per provider in `~/.openclaw/openclaw.json`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     telegram: {

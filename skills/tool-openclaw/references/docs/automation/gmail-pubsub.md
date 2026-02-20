@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/automation/gmail-pubsub.md; fetched_at=2026-02-20T10:29:12.135Z; sha256=9b2b508a57dde0d0ce569e6e95eda8d5ade9f990f3fcd8651ff16f9b708f9865; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -19,7 +21,7 @@ Goal: Gmail watch -> Pub/Sub push -> `gog gmail watch serve` -> OpenClaw webhook
 
 Example hook config (enable Gmail preset mapping):
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   hooks: {
     enabled: true,
@@ -33,7 +35,7 @@ Example hook config (enable Gmail preset mapping):
 To deliver the Gmail summary to a chat surface, override the preset with a mapping
 that sets `deliver` + optional `channel`/`to`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   hooks: {
     enabled: true,
@@ -66,7 +68,7 @@ To force a cheaper model for Gmail runs, set `model` in the mapping
 To set a default model and thinking level specifically for Gmail hooks, add
 `hooks.gmail.model` / `hooks.gmail.thinking` in your config:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   hooks: {
     gmail: {
@@ -86,13 +88,13 @@ Notes:
   To disable (dangerous), set `hooks.gmail.allowUnsafeExternalContent: true`.
 
 To customize payload handling further, add `hooks.mappings` or a JS/TS transform module
-under `hooks.transformsDir` (see [Webhooks](/automation/webhook)).
+under `~/.openclaw/hooks/transforms` (see [Webhooks](/automation/webhook)).
 
 ## Wizard (recommended)
 
 Use the OpenClaw helper to wire everything together (installs deps on macOS via brew):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw webhooks gmail setup \
   --account openclaw@gmail.com
 ```
@@ -126,7 +128,7 @@ Gateway auto-start (recommended):
 
 Manual daemon (starts `gog gmail watch serve` + auto-renew):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw webhooks gmail run
 ```
 
@@ -134,7 +136,7 @@ openclaw webhooks gmail run
 
 1. Select the GCP project **that owns the OAuth client** used by `gog`.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gcloud auth login
 gcloud config set project <project-id>
 ```
@@ -143,19 +145,19 @@ Note: Gmail watch requires the Pub/Sub topic to live in the same project as the 
 
 2. Enable APIs:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gcloud services enable gmail.googleapis.com pubsub.googleapis.com
 ```
 
 3. Create a topic:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gcloud pubsub topics create gog-gmail-watch
 ```
 
 4. Allow Gmail push to publish:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gcloud pubsub topics add-iam-policy-binding gog-gmail-watch \
   --member=serviceAccount:gmail-api-push@system.gserviceaccount.com \
   --role=roles/pubsub.publisher
@@ -163,7 +165,7 @@ gcloud pubsub topics add-iam-policy-binding gog-gmail-watch \
 
 ## Start the watch
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gog gmail watch start \
   --account openclaw@gmail.com \
   --label INBOX \
@@ -176,7 +178,7 @@ Save the `history_id` from the output (for debugging).
 
 Local example (shared token auth):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gog gmail watch serve \
   --account openclaw@gmail.com \
   --bind 127.0.0.1 \
@@ -202,13 +204,13 @@ Recommended: `openclaw webhooks gmail run` wraps the same flow and auto-renews t
 If you need a non-Tailscale tunnel, wire it manually and use the public URL in the push
 subscription (unsupported, no guardrails):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 cloudflared tunnel --url http://127.0.0.1:8788 --no-autoupdate
 ```
 
 Use the generated URL as the push endpoint:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gcloud pubsub subscriptions create gog-gmail-watch-push \
   --topic gog-gmail-watch \
   --push-endpoint "https://<public-url>/gmail-pubsub?token=<shared>"
@@ -216,7 +218,7 @@ gcloud pubsub subscriptions create gog-gmail-watch-push \
 
 Production: use a stable HTTPS endpoint and configure Pub/Sub OIDC JWT, then run:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gog gmail watch serve --verify-oidc --oidc-email <svc@...>
 ```
 
@@ -224,7 +226,7 @@ gog gmail watch serve --verify-oidc --oidc-email <svc@...>
 
 Send a message to the watched inbox:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gog gmail send \
   --account openclaw@gmail.com \
   --to openclaw@gmail.com \
@@ -234,7 +236,7 @@ gog gmail send \
 
 Check watch state and history:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gog gmail watch status --account openclaw@gmail.com
 gog gmail history --account openclaw@gmail.com --since <historyId>
 ```
@@ -247,7 +249,7 @@ gog gmail history --account openclaw@gmail.com --since <historyId>
 
 ## Cleanup
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gog gmail watch stop --account openclaw@gmail.com
 gcloud pubsub subscriptions delete gog-gmail-watch-push
 gcloud pubsub topics delete gog-gmail-watch

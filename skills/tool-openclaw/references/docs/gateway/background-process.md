@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/background-process.md; fetched_at=2026-02-20T10:29:19.549Z; sha256=38bb910f65f0af0b172a17ba8a91a7c32264e7d2b2ed2d157bfc8dbd18b7727d; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -44,6 +46,7 @@ Config (preferred):
 * `tools.exec.timeoutSec` (default 1800)
 * `tools.exec.cleanupMs` (default 1800000)
 * `tools.exec.notifyOnExit` (default true): enqueue a system event + request heartbeat when a backgrounded exec exits.
+* `tools.exec.notifyOnExitEmptySuccess` (default false): when true, also enqueue completion events for successful backgrounded runs that produced no output.
 
 ## process tool
 
@@ -64,28 +67,30 @@ Notes:
 * Session logs are only saved to chat history if you run `process poll/log` and the tool result is recorded.
 * `process` is scoped per agent; it only sees sessions started by that agent.
 * `process list` includes a derived `name` (command verb + target) for quick scans.
-* `process log` uses line-based `offset`/`limit` (omit `offset` to grab the last N lines).
+* `process log` uses line-based `offset`/`limit`.
+* When both `offset` and `limit` are omitted, it returns the last 200 lines and includes a paging hint.
+* When `offset` is provided and `limit` is omitted, it returns from `offset` to the end (not capped to 200).
 
 ## Examples
 
 Run a long task and poll later:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { "tool": "exec", "command": "sleep 5 && echo done", "yieldMs": 1000 }
 ```
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { "tool": "process", "action": "poll", "sessionId": "<id>" }
 ```
 
 Start immediately in background:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { "tool": "exec", "command": "npm run build", "background": true }
 ```
 
 Send stdin:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { "tool": "process", "action": "write", "sessionId": "<id>", "data": "y\n" }
 ```

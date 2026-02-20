@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/openai-http-api.md; fetched_at=2026-02-20T10:29:20.230Z; sha256=e37c673c7db05de21fdd5e9a1593f4f5435ab42827ef9c6cf462c962df4f9de4; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -25,6 +27,7 @@ Notes:
 
 * When `gateway.auth.mode="token"`, use `gateway.auth.token` (or `OPENCLAW_GATEWAY_TOKEN`).
 * When `gateway.auth.mode="password"`, use `gateway.auth.password` (or `OPENCLAW_GATEWAY_PASSWORD`).
+* If `gateway.auth.rateLimit` is configured and too many auth failures occur, the endpoint returns `429` with `Retry-After`.
 
 ## Choosing an agent
 
@@ -45,7 +48,7 @@ Advanced:
 
 Set `gateway.http.endpoints.chatCompletions.enabled` to `true`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     http: {
@@ -61,7 +64,7 @@ Set `gateway.http.endpoints.chatCompletions.enabled` to `true`:
 
 Set `gateway.http.endpoints.chatCompletions.enabled` to `false`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     http: {
@@ -91,7 +94,7 @@ Set `stream: true` to receive Server-Sent Events (SSE):
 
 Non-streaming:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 curl -sS http://127.0.0.1:18789/v1/chat/completions \
   -H 'Authorization: Bearer YOUR_TOKEN' \
   -H 'Content-Type: application/json' \
@@ -104,7 +107,7 @@ curl -sS http://127.0.0.1:18789/v1/chat/completions \
 
 Streaming:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 curl -N http://127.0.0.1:18789/v1/chat/completions \
   -H 'Authorization: Bearer YOUR_TOKEN' \
   -H 'Content-Type: application/json' \

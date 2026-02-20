@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/openclaw.md; fetched_at=2026-02-20T10:29:28.182Z; sha256=6166b5163ea1f7e7b280044764d992dd39ba7aaafe46c11ce857dbc37b39871c; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -24,43 +26,17 @@ Start conservative:
 
 ## Prerequisites
 
-* Node **22+**
-* OpenClaw available on PATH (recommended: global install)
+* OpenClaw installed and onboarded — see [Getting Started](/start/getting-started) if you haven't done this yet
 * A second phone number (SIM/eSIM/prepaid) for the assistant
-
-```bash  theme={null}
-npm install -g openclaw@latest
-# or: pnpm add -g openclaw@latest
-```
-
-From source (development):
-
-```bash  theme={null}
-git clone https://github.com/openclaw/openclaw.git
-cd openclaw
-pnpm install
-pnpm ui:build # auto-installs UI deps on first run
-pnpm build
-pnpm link --global
-```
 
 ## The two-phone setup (recommended)
 
 You want this:
 
-```
-Your Phone (personal)          Second Phone (assistant)
-┌─────────────────┐           ┌─────────────────┐
-│  Your WhatsApp  │  ──────▶  │  Assistant WA   │
-│  +1-555-YOU     │  message  │  +1-555-ASSIST  │
-└─────────────────┘           └────────┬────────┘
-                                       │ linked via QR
-                                       ▼
-                              ┌─────────────────┐
-                              │  Your Mac       │
-                              │  (openclaw)      │
-                              │    Pi agent     │
-                              └─────────────────┘
+```mermaid  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+flowchart TB
+    A["<b>Your Phone (personal)<br></b><br>Your WhatsApp<br>+1-555-YOU"] -- message --> B["<b>Second Phone (assistant)<br></b><br>Assistant WA<br>+1-555-ASSIST"]
+    B -- linked via QR --> C["<b>Your Mac (openclaw)<br></b><br>Pi agent"]
 ```
 
 If you link your personal WhatsApp to OpenClaw, every message to you becomes “agent input”. That’s rarely what you want.
@@ -69,19 +45,19 @@ If you link your personal WhatsApp to OpenClaw, every message to you becomes “
 
 1. Pair WhatsApp Web (shows QR; scan with the assistant phone):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels login
 ```
 
 2. Start the Gateway (leave it running):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway --port 18789
 ```
 
 3. Put a minimal config in `~/.openclaw/openclaw.json`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: { whatsapp: { allowFrom: ["+15555550123"] } },
 }
@@ -89,17 +65,17 @@ openclaw gateway --port 18789
 
 Now message the assistant number from your allowlisted phone.
 
-When onboarding finishes, we auto-open the dashboard with your gateway token and print the tokenized link. To reopen later: `openclaw dashboard`.
+When onboarding finishes, we auto-open the dashboard and print a clean (non-tokenized) link. If it prompts for auth, paste the token from `gateway.auth.token` into Control UI settings. To reopen later: `openclaw dashboard`.
 
 ## Give the agent a workspace (AGENTS)
 
 OpenClaw reads operating instructions and “memory” from its workspace directory.
 
-By default, OpenClaw uses `~/.openclaw/workspace` as the agent workspace, and will create it (plus starter `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `IDENTITY.md`, `USER.md`) automatically on setup/first agent run. `BOOTSTRAP.md` is only created when the workspace is brand new (it should not come back after you delete it).
+By default, OpenClaw uses `~/.openclaw/workspace` as the agent workspace, and will create it (plus starter `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `IDENTITY.md`, `USER.md`, `HEARTBEAT.md`) automatically on setup/first agent run. `BOOTSTRAP.md` is only created when the workspace is brand new (it should not come back after you delete it). `MEMORY.md` is optional (not auto-created); when present, it is loaded for normal sessions. Subagent sessions only inject `AGENTS.md` and `TOOLS.md`.
 
 Tip: treat this folder like OpenClaw’s “memory” and make it a git repo (ideally private) so your `AGENTS.md` + memory files are backed up. If git is installed, brand-new workspaces are auto-initialized.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw setup
 ```
 
@@ -108,7 +84,7 @@ Memory workflow: [Memory](/concepts/memory)
 
 Optional: choose a different workspace with `agents.defaults.workspace` (supports `~`).
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: {
     workspace: "~/.openclaw/workspace",
@@ -118,7 +94,7 @@ Optional: choose a different workspace with `agents.defaults.workspace` (support
 
 If you already ship your own workspace files from a repo, you can disable bootstrap file creation entirely:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: {
     skipBootstrap: true,
@@ -136,11 +112,11 @@ OpenClaw defaults to a good assistant setup, but you’ll usually want to tune:
 
 Example:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   logging: { level: "info" },
   agent: {
-    model: "anthropic/claude-opus-4-5",
+    model: "anthropic/claude-opus-4-6",
     workspace: "~/.openclaw/workspace",
     thinkingDefault: "high",
     timeoutSeconds: 1800,
@@ -190,7 +166,7 @@ Set `agents.defaults.heartbeat.every: "0m"` to disable.
 * If the agent replies with `HEARTBEAT_OK` (optionally with short padding; see `agents.defaults.heartbeat.ackMaxChars`), OpenClaw suppresses outbound delivery for that heartbeat.
 * Heartbeats run full agent turns — shorter intervals burn more tokens.
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: {
     heartbeat: { every: "30m" },
@@ -217,7 +193,7 @@ OpenClaw extracts these and sends them as media alongside the text.
 
 ## Operations checklist
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw status          # local status (creds, sessions, queued events)
 openclaw status --all    # full diagnosis (read-only, pasteable)
 openclaw status --deep   # adds gateway health probes (Telegram + Discord)

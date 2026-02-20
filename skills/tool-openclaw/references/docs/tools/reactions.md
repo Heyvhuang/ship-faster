@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/reactions.md; fetched_at=2026-02-20T10:29:29.469Z; sha256=9b6d12dee4105a32303f8f784c587f48a45f45f5b0195113655f5f2ff0ec6cba; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.

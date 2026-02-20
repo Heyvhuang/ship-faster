@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/uninstall.md; fetched_at=2026-02-20T10:29:22.915Z; sha256=e4b328c4a045fc5f1e6c69c463cb7e1ac96a25ea3d3938bd732b2a282e637a8a; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -15,13 +17,13 @@ Two paths:
 
 Recommended: use the built-in uninstaller:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw uninstall
 ```
 
 Non-interactive (automation / npx):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw uninstall --all --yes --non-interactive
 npx -y openclaw uninstall --all --yes --non-interactive
 ```
@@ -30,19 +32,19 @@ Manual steps (same result):
 
 1. Stop the gateway service:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway stop
 ```
 
 2. Uninstall the gateway service (launchd/systemd/schtasks):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway uninstall
 ```
 
 3. Delete state + config:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
 ```
 
@@ -50,13 +52,13 @@ If you set `OPENCLAW_CONFIG_PATH` to a custom location outside the state dir, de
 
 4. Delete your workspace (optional, removes agent files):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 rm -rf ~/.openclaw/workspace
 ```
 
 5. Remove the CLI install (pick the one you used):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 npm rm -g openclaw
 pnpm remove -g openclaw
 bun remove -g openclaw
@@ -64,7 +66,7 @@ bun remove -g openclaw
 
 6. If you installed the macOS app:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 rm -rf /Applications/OpenClaw.app
 ```
 
@@ -81,7 +83,7 @@ Use this if the gateway service keeps running but `openclaw` is missing.
 
 Default label is `bot.molt.gateway` (or `bot.molt.<profile>`; legacy `com.openclaw.*` may still exist):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 launchctl bootout gui/$UID/bot.molt.gateway
 rm -f ~/Library/LaunchAgents/bot.molt.gateway.plist
 ```
@@ -92,7 +94,7 @@ If you used a profile, replace the label and plist name with `bot.molt.<profile>
 
 Default unit name is `openclaw-gateway.service` (or `openclaw-gateway-<profile>.service`):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 systemctl --user disable --now openclaw-gateway.service
 rm -f ~/.config/systemd/user/openclaw-gateway.service
 systemctl --user daemon-reload
@@ -103,7 +105,7 @@ systemctl --user daemon-reload
 Default task name is `OpenClaw Gateway` (or `OpenClaw Gateway (<profile>)`).
 The task script lives under your state dir.
 
-```powershell  theme={null}
+```powershell  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 schtasks /Delete /F /TN "OpenClaw Gateway"
 Remove-Item -Force "$env:USERPROFILE\.openclaw\gateway.cmd"
 ```

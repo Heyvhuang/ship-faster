@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/docs-directory.md; fetched_at=2026-02-20T10:29:27.770Z; sha256=615e60e5c6864ea4a011f71794fe59124ebb16a2a306f235ca3f33ed967d6aff; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -18,7 +20,7 @@
 * [Slash commands](/tools/slash-commands)
 * [Multi-agent routing](/concepts/multi-agent)
 * [Updating and rollback](/install/updating)
-* [Pairing (DM and nodes)](/start/pairing)
+* [Pairing (DM and nodes)](/channels/pairing)
 * [Nix mode](/install/nix)
 * [OpenClaw assistant setup](/start/openclaw)
 * [Skills](/tools/skills)
@@ -40,8 +42,8 @@
 * [Mattermost (plugin)](/channels/mattermost)
 * [BlueBubbles (iMessage)](/channels/bluebubbles)
 * [iMessage (legacy)](/channels/imessage)
-* [Groups](/concepts/groups)
-* [WhatsApp group messages](/concepts/group-messages)
+* [Groups](/channels/groups)
+* [WhatsApp group messages](/channels/group-messages)
 * [Media images](/nodes/images)
 * [Media audio](/nodes/audio)
 

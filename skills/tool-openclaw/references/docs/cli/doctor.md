@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/doctor.md; fetched_at=2026-02-20T10:29:15.175Z; sha256=53715d9bd7b71783d25c5264d423c7331ab44fe5d40b0e84c7bc298e671e9632; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -15,7 +17,7 @@ Related:
 
 ## Examples
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw doctor
 openclaw doctor --repair
 openclaw doctor --deep
@@ -30,7 +32,7 @@ Notes:
 
 If you previously ran `launchctl setenv OPENCLAW_GATEWAY_TOKEN ...` (or `...PASSWORD`), that value overrides your config file and can cause persistent “unauthorized” errors.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 launchctl getenv OPENCLAW_GATEWAY_TOKEN
 launchctl getenv OPENCLAW_GATEWAY_PASSWORD
 

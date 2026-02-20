@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/models.md; fetched_at=2026-02-20T10:29:15.507Z; sha256=ffacaf849de142c891db99d4ee27b413bb9639829abed4b04fd6fb38b7e47ca8; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -15,7 +17,7 @@ Related:
 
 ## Common commands
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models status
 openclaw models list
 openclaw models set <model-or-alias>
@@ -54,14 +56,14 @@ Options:
 
 ## Aliases + fallbacks
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models aliases list
 openclaw models fallbacks list
 ```
 
 ## Auth profiles
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models auth add
 openclaw models auth login --provider <id>
 openclaw models auth setup-token

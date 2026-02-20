@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/timezone.md; fetched_at=2026-02-20T10:29:18.357Z; sha256=4e33f8e5af296bf0d90539a6f0d351ea680f7a83a0c6e8b499dd1b09400cffdf; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -20,7 +22,7 @@ The timestamp in the envelope is **host-local by default**, with minutes precisi
 
 You can override this with:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -73,7 +75,7 @@ Raw provider fields are preserved.
 Set `agents.defaults.userTimezone` to tell the model the user's local time zone. If it is
 unset, OpenClaw resolves the **host timezone at runtime** (no config write).
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: { defaults: { userTimezone: "America/Chicago" } },
 }

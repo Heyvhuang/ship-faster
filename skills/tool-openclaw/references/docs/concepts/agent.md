@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/agent.md; fetched_at=2026-02-20T10:29:16.969Z; sha256=c06215f0167b3e7af0cd6325ffe879442a84734b8f4ee48c211ab8baf5648f2b; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -41,7 +43,7 @@ If a file is missing, OpenClaw injects a single “missing file” marker line (
 
 To disable bootstrap file creation entirely (for pre-seeded workspaces), set:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { agent: { skipBootstrap: true } }
 ```
 
@@ -119,4 +121,4 @@ At minimum, set:
 
 ***
 
-*Next: [Group Chats](/concepts/group-messages)* 🦞
+*Next: [Group Chats](/channels/group-messages)* 🦞

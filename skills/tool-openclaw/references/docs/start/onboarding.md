@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/onboarding.md; fetched_at=2026-02-20T10:29:28.149Z; sha256=3f78659e0a2fd5dd11709df881b51bea983a2f888726bcb0c395610c664ccf9f; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -9,6 +11,7 @@
 This doc describes the **current** first‑run onboarding flow. The goal is a
 smooth “day 0” experience: pick where the Gateway runs, connect auth, run the
 wizard, and let the agent bootstrap itself.
+For a general overview of onboarding paths, see [Onboarding Overview](/start/onboarding-overview).
 
 <Steps>
   <Step title="Approve macOS warning">

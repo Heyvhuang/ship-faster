@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/automation/auth-monitoring.md; fetched_at=2026-02-20T10:29:12.579Z; sha256=b014a834a380ac3088fa7e4ccc1dafa94cc664a8d08454d731b99b063af44f28; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -11,7 +13,7 @@ automation and alerting; scripts are optional extras for phone workflows.
 
 ## Preferred: CLI check (portable)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models status --check
 ```
 

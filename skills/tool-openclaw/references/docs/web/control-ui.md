@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/web/control-ui.md; fetched_at=2026-02-20T10:29:30.156Z; sha256=a2ae696376650acc02d5d37bd02deeb20e6e183303b47fc16c5def60d1966e22; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -39,7 +41,7 @@ unauthorized access.
 
 **To approve the device:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # List pending requests
 openclaw devices list
 
@@ -81,16 +83,25 @@ Cron jobs panel notes:
 
 * For isolated jobs, delivery defaults to announce summary. You can switch to none if you want internal-only runs.
 * Channel/target fields appear when announce is selected.
+* Webhook mode uses `delivery.mode = "webhook"` with `delivery.to` set to a valid HTTP(S) webhook URL.
+* For main-session jobs, webhook and none delivery modes are available.
+* Set `cron.webhookToken` to send a dedicated bearer token, if omitted the webhook is sent without an auth header.
+* Deprecated fallback: stored legacy jobs with `notify: true` can still use `cron.webhook` until migrated.
 
 ## Chat behavior
 
 * `chat.send` is **non-blocking**: it acks immediately with `{ runId, status: "started" }` and the response streams via `chat` events.
 * Re-sending with the same `idempotencyKey` returns `{ status: "in_flight" }` while running, and `{ status: "ok" }` after completion.
+* `chat.history` responses are size-bounded for UI safety. When transcript entries are too large, Gateway may truncate long text fields, omit heavy metadata blocks, and replace oversized messages with a placeholder (`[chat.history omitted: message too large]`).
 * `chat.inject` appends an assistant note to the session transcript and broadcasts a `chat` event for UI-only updates (no agent run, no channel delivery).
 * Stop:
   * Click **Stop** (calls `chat.abort`)
   * Type `/stop` (or `stop|esc|abort|wait|exit|interrupt`) to abort out-of-band
   * `chat.abort` supports `{ sessionKey }` (no `runId`) to abort all active runs for that session
+* Abort partial retention:
+  * When a run is aborted, partial assistant text can still be shown in the UI
+  * Gateway persists aborted partial assistant text into transcript history when buffered output exists
+  * Persisted entries include abort metadata so transcript consumers can tell abort partials from normal completion output
 
 ## Tailnet access (recommended)
 
@@ -98,7 +109,7 @@ Cron jobs panel notes:
 
 Keep the Gateway on loopback and let Tailscale Serve proxy it with HTTPS:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway --tailscale serve
 ```
 
@@ -116,7 +127,7 @@ if you want to require a token/password even for Serve traffic.
 
 ### Bind to tailnet + token
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway --bind tailnet --token "$(openssl rand -hex 32)"
 ```
 
@@ -139,7 +150,7 @@ OpenClaw **blocks** Control UI connections without device identity.
 
 **Downgrade example (token-only over HTTP):**
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     controlUi: { allowInsecureAuth: true },
@@ -158,19 +169,19 @@ See [Tailscale](/gateway/tailscale) for HTTPS setup guidance.
 
 The Gateway serves static files from `dist/control-ui`. Build them with:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm ui:build # auto-installs UI deps on first run
 ```
 
 Optional absolute base (when you want fixed asset URLs):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 OPENCLAW_CONTROL_UI_BASE_PATH=/openclaw/ pnpm ui:build
 ```
 
 For local development (separate dev server):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm ui:dev # auto-installs UI deps on first run
 ```
 
@@ -185,13 +196,13 @@ locally but the Gateway runs elsewhere.
 1. Start the UI dev server: `pnpm ui:dev`
 2. Open a URL like:
 
-```text  theme={null}
+```text  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 http://localhost:5173/?gatewayUrl=ws://<gateway-host>:18789
 ```
 
 Optional one-time auth (if needed):
 
-```text  theme={null}
+```text  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 http://localhost:5173/?gatewayUrl=wss://<gateway-host>:18789&token=<gateway-token>
 ```
 
@@ -208,7 +219,7 @@ Notes:
 
 Example:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     controlUi: {

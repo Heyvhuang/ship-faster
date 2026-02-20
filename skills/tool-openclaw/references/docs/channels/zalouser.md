@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/zalouser.md; fetched_at=2026-02-20T10:29:14.334Z; sha256=b64605e8da61b1a103f898c71883d2d841065953840137ca3506a9e7101f0484; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -16,7 +18,7 @@ Zalo Personal ships as a plugin and is not bundled with the core install.
 
 * Install via CLI: `openclaw plugins install @openclaw/zalouser`
 * Or from a source checkout: `openclaw plugins install ./extensions/zalouser`
-* Details: [Plugins](/plugin)
+* Details: [Plugins](/tools/plugin)
 
 ## Prerequisite: zca-cli
 
@@ -33,7 +35,7 @@ The Gateway machine must have the `zca` binary available in `PATH`.
    * Scan the QR code in the terminal with the Zalo mobile app.
 3. Enable the channel:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     zalouser: {
@@ -61,7 +63,7 @@ Channel id is `zalouser` to make it explicit this automates a **personal Zalo us
 
 Use the directory CLI to discover peers/groups and their IDs:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw directory self --channel zalouser
 openclaw directory peers list --channel zalouser --query "name"
 openclaw directory groups list --channel zalouser --query "work"
@@ -94,7 +96,7 @@ Approve via:
 
 Example:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     zalouser: {
@@ -112,7 +114,7 @@ Example:
 
 Accounts map to zca profiles. Example:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     zalouser: {

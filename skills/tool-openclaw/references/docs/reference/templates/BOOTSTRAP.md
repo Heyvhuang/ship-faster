@@ -1,8 +1,10 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/BOOTSTRAP.md; fetched_at=2026-02-20T10:29:27.142Z; sha256=22de4ed2a6c99263465a4b2efa1d3318b43eced0c86d62c266f28fbcfa029302; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# null
+# BOOTSTRAP.md Template
 
 # BOOTSTRAP.md - Hello, World
 

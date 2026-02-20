@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/hooks.md; fetched_at=2026-02-20T10:29:15.493Z; sha256=ac2480db6dca16d111926abf01ac19d9ba91414651dafd68fd89de0df18139d5; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -10,12 +12,12 @@ Manage agent hooks (event-driven automations for commands like `/new`, `/reset`,
 
 Related:
 
-* Hooks: [Hooks](/hooks)
-* Plugin hooks: [Plugins](/plugin#plugin-hooks)
+* Hooks: [Hooks](/automation/hooks)
+* Plugin hooks: [Plugins](/tools/plugin#plugin-hooks)
 
 ## List All Hooks
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks list
 ```
 
@@ -34,14 +36,14 @@ Hooks (4/4 ready)
 
 Ready:
   🚀 boot-md ✓ - Run BOOT.md on gateway startup
+  📎 bootstrap-extra-files ✓ - Inject extra workspace bootstrap files during agent bootstrap
   📝 command-logger ✓ - Log all command events to a centralized audit file
   💾 session-memory ✓ - Save session context to memory when /new command is issued
-  😈 soul-evil ✓ - Swap injected SOUL content during a purge window or by random chance
 ```
 
 **Example (verbose):**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks list --verbose
 ```
 
@@ -49,7 +51,7 @@ Shows missing requirements for ineligible hooks.
 
 **Example (JSON):**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks list --json
 ```
 
@@ -57,7 +59,7 @@ Returns structured JSON for programmatic use.
 
 ## Get Hook Information
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks info <name>
 ```
 
@@ -73,7 +75,7 @@ Show detailed information about a specific hook.
 
 **Example:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks info session-memory
 ```
 
@@ -88,7 +90,7 @@ Details:
   Source: openclaw-bundled
   Path: /path/to/openclaw/hooks/bundled/session-memory/HOOK.md
   Handler: /path/to/openclaw/hooks/bundled/session-memory/handler.ts
-  Homepage: https://docs.openclaw.ai/hooks#session-memory
+  Homepage: https://docs.openclaw.ai/automation/hooks#session-memory
   Events: command:new
 
 Requirements:
@@ -97,7 +99,7 @@ Requirements:
 
 ## Check Hooks Eligibility
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks check
 ```
 
@@ -119,7 +121,7 @@ Not ready: 0
 
 ## Enable a Hook
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks enable <name>
 ```
 
@@ -134,7 +136,7 @@ can’t be enabled/disabled here. Enable/disable the plugin instead.
 
 **Example:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks enable session-memory
 ```
 
@@ -156,7 +158,7 @@ openclaw hooks enable session-memory
 
 ## Disable a Hook
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks disable <name>
 ```
 
@@ -168,7 +170,7 @@ Disable a specific hook by updating your config.
 
 **Example:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks disable command-logger
 ```
 
@@ -184,11 +186,15 @@ openclaw hooks disable command-logger
 
 ## Install Hooks
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks install <path-or-spec>
+openclaw hooks install <npm-spec> --pin
 ```
 
 Install a hook pack from a local folder/archive or npm.
+
+Npm specs are **registry-only** (package name + optional version/tag). Git/URL/file
+specs are rejected. Dependency installs run with `--ignore-scripts` for safety.
 
 **What it does:**
 
@@ -199,12 +205,13 @@ Install a hook pack from a local folder/archive or npm.
 **Options:**
 
 * `-l, --link`: Link a local directory instead of copying (adds it to `hooks.internal.load.extraDirs`)
+* `--pin`: Record npm installs as exact resolved `name@version` in `hooks.internal.installs`
 
 **Supported archives:** `.zip`, `.tgz`, `.tar.gz`, `.tar`
 
 **Examples:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Local directory
 openclaw hooks install ./my-hook-pack
 
@@ -220,7 +227,7 @@ openclaw hooks install -l ./my-hook-pack
 
 ## Update Hooks
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks update <id>
 openclaw hooks update --all
 ```
@@ -232,6 +239,10 @@ Update installed hook packs (npm installs only).
 * `--all`: Update all tracked hook packs
 * `--dry-run`: Show what would change without writing
 
+When a stored integrity hash exists and the fetched artifact hash changes,
+OpenClaw prints a warning and asks for confirmation before proceeding. Use
+global `--yes` to bypass prompts in CI/non-interactive runs.
+
 ## Bundled Hooks
 
 ### session-memory
@@ -240,13 +251,25 @@ Saves session context to memory when you issue `/new`.
 
 **Enable:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks enable session-memory
 ```
 
 **Output:** `~/.openclaw/workspace/memory/YYYY-MM-DD-slug.md`
 
-**See:** [session-memory documentation](/hooks#session-memory)
+**See:** [session-memory documentation](/automation/hooks#session-memory)
+
+### bootstrap-extra-files
+
+Injects additional bootstrap files (for example monorepo-local `AGENTS.md` / `TOOLS.md`) during `agent:bootstrap`.
+
+**Enable:**
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw hooks enable bootstrap-extra-files
+```
+
+**See:** [bootstrap-extra-files documentation](/automation/hooks#bootstrap-extra-files)
 
 ### command-logger
 
@@ -254,7 +277,7 @@ Logs all command events to a centralized audit file.
 
 **Enable:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks enable command-logger
 ```
 
@@ -262,7 +285,7 @@ openclaw hooks enable command-logger
 
 **View logs:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Recent commands
 tail -n 20 ~/.openclaw/logs/commands.log
 
@@ -273,19 +296,7 @@ cat ~/.openclaw/logs/commands.log | jq .
 grep '"action":"new"' ~/.openclaw/logs/commands.log | jq .
 ```
 
-**See:** [command-logger documentation](/hooks#command-logger)
-
-### soul-evil
-
-Swaps injected `SOUL.md` content with `SOUL_EVIL.md` during a purge window or by random chance.
-
-**Enable:**
-
-```bash  theme={null}
-openclaw hooks enable soul-evil
-```
-
-**See:** [SOUL Evil Hook](/hooks/soul-evil)
+**See:** [command-logger documentation](/automation/hooks#command-logger)
 
 ### boot-md
 
@@ -295,8 +306,8 @@ Runs `BOOT.md` when the gateway starts (after channels start).
 
 **Enable**:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw hooks enable boot-md
 ```
 
-**See:** [boot-md documentation](/hooks#boot-md)
+**See:** [boot-md documentation](/automation/hooks#boot-md)

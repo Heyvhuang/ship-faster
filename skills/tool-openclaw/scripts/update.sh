@@ -4,6 +4,7 @@
 #   ./scripts/update.sh --mode index
 #   ./scripts/update.sh --mode seed --locale zh-CN
 #   ./scripts/update.sh --mode full --filter "^gateway/"
+#   ./scripts/update.sh --mode sync --prune
 
 set -euo pipefail
 

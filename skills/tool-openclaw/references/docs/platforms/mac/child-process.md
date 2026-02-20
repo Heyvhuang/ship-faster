@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/child-process.md; fetched_at=2026-02-20T10:29:24.770Z; sha256=acb0f3b65dcc8a58e72b565cdd98d444119ab9734c790dcd53275bd7d4deb566; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -25,7 +27,7 @@ If you need tighter coupling to the UI, run the Gateway manually in a terminal.
 
 Common commands:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 launchctl kickstart -k gui/$UID/bot.molt.gateway
 launchctl bootout gui/$UID/bot.molt.gateway
 ```
@@ -42,7 +44,7 @@ signing keys. To prevent launchd from pointing at an unsigned relay binary, it:
 Signed runs of `scripts/restart-mac.sh` clear this override if the marker is
 present. To reset manually:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 rm ~/.openclaw/disable-launchagent
 ```
 

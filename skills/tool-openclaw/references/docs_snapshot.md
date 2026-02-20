@@ -23,16 +23,28 @@ cd tool-openclaw
 ./scripts/update.sh --mode index
 ```
 
-Fetch missing/placeholder pages (recommended default):
+Refresh placeholders + legacy/no-header pages + stale pages (recommended default):
 
 ```bash
 ./scripts/update.sh --mode seed
+```
+
+Tune seed freshness window (days):
+
+```bash
+./scripts/update.sh --mode seed --seed-max-age-days 7
 ```
 
 Sync `/llms.txt` frontier (create missing placeholders + rebuild index, no page fetch):
 
 ```bash
 ./scripts/update.sh --mode sync
+```
+
+Sync and prune stale local pages not in current frontier (recommended weekly):
+
+```bash
+./scripts/update.sh --mode sync --prune
 ```
 
 Best-effort zh-CN routing (falls back to English unless `--no-fallback`):
@@ -45,4 +57,10 @@ Fetch a single page:
 
 ```bash
 ./scripts/update.sh --mode single --url https://docs.openclaw.ai/cli/update.md
+```
+
+Dry-run validation (no file writes, including index files):
+
+```bash
+./scripts/update.sh --mode full --dry-run --prune
 ```

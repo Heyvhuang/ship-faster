@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/dev-setup.md; fetched_at=2026-02-20T10:29:24.306Z; sha256=afa83c61b6b639d3a6aab66a9bfef623cf4444c04c79c9f91ac663b1062396ad; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -19,7 +21,7 @@ Before building the app, ensure you have the following installed:
 
 Install the project-wide dependencies:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm install
 ```
 
@@ -27,7 +29,7 @@ pnpm install
 
 To build the macOS app and package it into `dist/OpenClaw.app`, run:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ./scripts/package-mac-app.sh
 ```
 
@@ -50,7 +52,7 @@ The macOS app expects a global `openclaw` CLI install to manage background tasks
 
 Alternatively, install it manually:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 npm install -g openclaw@<version>
 ```
 
@@ -67,7 +69,7 @@ The macOS app build expects the latest macOS SDK and Swift 6.2 toolchain.
 
 **Checks:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 xcodebuild -version
 xcrun swift --version
 ```
@@ -81,16 +83,18 @@ If the app crashes when you try to allow **Speech Recognition** or **Microphone*
 **Fix:**
 
 1. Reset the TCC permissions:
-   ```bash  theme={null}
+
+   ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
    tccutil reset All bot.molt.mac.debug
    ```
+
 2. If that fails, change the `BUNDLE_ID` temporarily in [`scripts/package-mac-app.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/package-mac-app.sh) to force a "clean slate" from macOS.
 
 ### Gateway "Starting..." indefinitely
 
 If the gateway status stays on "Starting...", check if a zombie process is holding the port:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway status
 openclaw gateway stop
 

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/messages.md; fetched_at=2026-02-20T10:29:17.380Z; sha256=52a9ad47629e5f1428d6f6de0dd81bea105aaac49b8ea765157169961eb073fb; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -41,7 +43,7 @@ and uses the most recent message for reply threading/IDs.
 
 Config (global default + per-channel overrides):
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   messages: {
     inbound: {
@@ -139,7 +141,7 @@ OpenClaw can expose or hide model reasoning:
 * Reasoning content still counts toward token usage when produced by the model.
 * Telegram supports reasoning stream into the draft bubble.
 
-Details: [Thinking + reasoning directives](/tools/thinking) and [Token use](/token-use).
+Details: [Thinking + reasoning directives](/tools/thinking) and [Token use](/reference/token-use).
 
 ## Prefixes, threading, and replies
 

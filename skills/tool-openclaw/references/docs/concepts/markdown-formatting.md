@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/markdown-formatting.md; fetched_at=2026-02-20T10:29:17.149Z; sha256=d4b89d1961f2f3a696f6cf617b52fb8f85fbb9796d4366c3698283ad962d9ab3; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -37,13 +39,13 @@ stay consistent across channels.
 
 Input Markdown:
 
-```markdown  theme={null}
+```markdown  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 Hello **world** — see [docs](https://docs.openclaw.ai).
 ```
 
 IR (schematic):
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "text": "Hello world — see docs.",
   "styles": [{ "start": 6, "end": 11, "style": "bold" }],
@@ -69,7 +71,7 @@ Markdown tables are not consistently supported across chat clients. Use
 
 Config keys:
 
-```yaml  theme={null}
+```yaml  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 channels:
   discord:
     markdown:

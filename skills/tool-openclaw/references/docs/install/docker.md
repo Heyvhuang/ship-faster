@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/docker.md; fetched_at=2026-02-20T10:29:21.935Z; sha256=fb49eb79c95c2cd12a6071010fd87d1dd836d5fb7e03aad2394a205593107fe0; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -32,7 +34,7 @@ Sandboxing details: [Sandboxing](/gateway/sandboxing)
 
 From repo root:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ./docker-setup.sh
 ```
 
@@ -54,18 +56,36 @@ After it finishes:
 
 * Open `http://127.0.0.1:18789/` in your browser.
 * Paste the token into the Control UI (Settings → token).
-* Need the tokenized URL again? Run `docker compose run --rm openclaw-cli dashboard --no-open`.
+* Need the URL again? Run `docker compose run --rm openclaw-cli dashboard --no-open`.
 
 It writes config/workspace on the host:
 
 * `~/.openclaw/`
 * `~/.openclaw/workspace`
 
-Running on a VPS? See [Hetzner (Docker VPS)](/platforms/hetzner).
+Running on a VPS? See [Hetzner (Docker VPS)](/install/hetzner).
+
+### Shell Helpers (optional)
+
+For easier day-to-day Docker management, install `ClawDock`:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+mkdir -p ~/.clawdock && curl -sL https://raw.githubusercontent.com/openclaw/openclaw/main/scripts/shell-helpers/clawdock-helpers.sh -o ~/.clawdock/clawdock-helpers.sh
+```
+
+**Add to your shell config (zsh):**
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+echo 'source ~/.clawdock/clawdock-helpers.sh' >> ~/.zshrc && source ~/.zshrc
+```
+
+Then use `clawdock-start`, `clawdock-stop`, `clawdock-dashboard`, etc. Run `clawdock-help` for all commands.
+
+See [`ClawDock` Helper README](https://github.com/openclaw/openclaw/blob/main/scripts/shell-helpers/README.md) for details.
 
 ### Manual flow (compose)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 docker build -t openclaw:local -f Dockerfile .
 docker compose run --rm openclaw-cli onboard
 docker compose up -d openclaw-gateway
@@ -75,7 +95,7 @@ Note: run `docker compose ...` from the repo root. If you enabled
 `OPENCLAW_EXTRA_MOUNTS` or `OPENCLAW_HOME_VOLUME`, the setup script writes
 `docker-compose.extra.yml`; include it when running Compose elsewhere:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 docker compose -f docker-compose.yml -f docker-compose.extra.yml <command>
 ```
 
@@ -84,7 +104,7 @@ docker compose -f docker-compose.yml -f docker-compose.extra.yml <command>
 If you see “unauthorized” or “disconnected (1008): pairing required”, fetch a
 fresh dashboard link and approve the browser device:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 docker compose run --rm openclaw-cli dashboard --no-open
 docker compose run --rm openclaw-cli devices list
 docker compose run --rm openclaw-cli devices approve <requestId>
@@ -101,7 +121,7 @@ comma-separated list of Docker bind mounts and applies them to both
 
 Example:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export OPENCLAW_EXTRA_MOUNTS="$HOME/.codex:/home/node/.codex:ro,$HOME/github:/home/node/github:rw"
 ./docker-setup.sh
 ```
@@ -109,6 +129,7 @@ export OPENCLAW_EXTRA_MOUNTS="$HOME/.codex:/home/node/.codex:ro,$HOME/github:/ho
 Notes:
 
 * Paths must be shared with Docker Desktop on macOS/Windows.
+* Each entry must be `source:target[:options]` with no spaces, tabs, or newlines.
 * If you edit `OPENCLAW_EXTRA_MOUNTS`, rerun `docker-setup.sh` to regenerate the
   extra compose file.
 * `docker-compose.extra.yml` is generated. Don’t hand-edit it.
@@ -123,14 +144,14 @@ named volume here (not a bind path); for bind mounts, use
 
 Example:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export OPENCLAW_HOME_VOLUME="openclaw_home"
 ./docker-setup.sh
 ```
 
 You can combine this with extra mounts:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export OPENCLAW_HOME_VOLUME="openclaw_home"
 export OPENCLAW_EXTRA_MOUNTS="$HOME/.codex:/home/node/.codex:ro,$HOME/github:/home/node/github:rw"
 ./docker-setup.sh
@@ -138,6 +159,7 @@ export OPENCLAW_EXTRA_MOUNTS="$HOME/.codex:/home/node/.codex:ro,$HOME/github:/ho
 
 Notes:
 
+* Named volumes must match `^[A-Za-z0-9][A-Za-z0-9_.-]*$`.
 * If you change `OPENCLAW_HOME_VOLUME`, rerun `docker-setup.sh` to regenerate the
   extra compose file.
 * The named volume persists until removed with `docker volume rm <name>`.
@@ -151,7 +173,7 @@ container is deleted.
 
 Example:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export OPENCLAW_DOCKER_APT_PACKAGES="ffmpeg build-essential"
 ./docker-setup.sh
 ```
@@ -175,21 +197,21 @@ If you want a more full-featured container, use these opt-in knobs:
 
 1. **Persist `/home/node`** so browser downloads and tool caches survive:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export OPENCLAW_HOME_VOLUME="openclaw_home"
 ./docker-setup.sh
 ```
 
 2. **Bake system deps into the image** (repeatable + persistent):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export OPENCLAW_DOCKER_APT_PACKAGES="git curl jq"
 ./docker-setup.sh
 ```
 
 3. **Install Playwright browsers without `npx`** (avoids npm override conflicts):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 docker compose run --rm openclaw-cli \
   node /app/node_modules/playwright-core/cli.js install chromium
 ```
@@ -211,7 +233,7 @@ The image runs as `node` (uid 1000). If you see permission errors on
 
 Example (Linux host):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 sudo chown -R 1000:1000 /path/to/openclaw-config /path/to/openclaw-workspace
 ```
 
@@ -222,7 +244,7 @@ If you choose to run as root for convenience, you accept the security tradeoff.
 To speed up rebuilds, order your Dockerfile so dependency layers are cached.
 This avoids re-running `pnpm install` unless lockfiles change:
 
-```dockerfile  theme={null}
+```dockerfile  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 FROM node:22-bookworm
 
 # Install Bun (required for build scripts)
@@ -256,19 +278,19 @@ Use the CLI container to configure channels, then restart the gateway if needed.
 
 WhatsApp (QR):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 docker compose run --rm openclaw-cli channels login
 ```
 
 Telegram (bot token):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 docker compose run --rm openclaw-cli channels add --channel telegram --token "<token>"
 ```
 
 Discord (bot token):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 docker compose run --rm openclaw-cli channels add --channel discord --token "<token>"
 ```
 
@@ -283,19 +305,19 @@ URL you land on and paste it back into the wizard to finish auth.
 
 ### Health check
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 docker compose exec openclaw-gateway node dist/index.js health --token "$OPENCLAW_GATEWAY_TOKEN"
 ```
 
 ### E2E smoke test (Docker)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 scripts/e2e/onboard-docker.sh
 ```
 
 ### QR import smoke test (Docker)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm test:docker:qr
 ```
 
@@ -334,7 +356,7 @@ mixed access levels in one gateway:
 * Read-only tools + read-only workspace (family/work agent)
 * No filesystem/shell tools (public agent)
 
-See [Multi-Agent Sandbox & Tools](/multi-agent-sandbox-tools) for examples,
+See [Multi-Agent Sandbox & Tools](/tools/multi-agent-sandbox-tools) for examples,
 precedence, and troubleshooting.
 
 ### Default behavior
@@ -360,7 +382,7 @@ If you plan to install packages in `setupCommand`, note:
   unless the container was **recently used** (within \~5 minutes). Hot containers
   log a warning with the exact `openclaw sandbox recreate ...` command.
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -430,7 +452,7 @@ Multi-agent: override `agents.defaults.sandbox.{docker,browser,prune}.*` per age
 
 ### Build the default sandbox image
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 scripts/sandbox-setup.sh
 ```
 
@@ -440,13 +462,13 @@ This builds `openclaw-sandbox:bookworm-slim` using `Dockerfile.sandbox`.
 
 If you want a sandbox image with common build tooling (Node, Go, Rust, etc.), build the common image:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 scripts/sandbox-common-setup.sh
 ```
 
 This builds `openclaw-sandbox-common:bookworm-slim`. To use it:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -460,7 +482,7 @@ This builds `openclaw-sandbox-common:bookworm-slim`. To use it:
 
 To run the browser tool inside the sandbox, build the browser image:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 scripts/sandbox-browser-setup.sh
 ```
 
@@ -476,7 +498,7 @@ Notes:
 
 Use config:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -490,7 +512,7 @@ Use config:
 
 Custom browser image:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -513,11 +535,11 @@ Prune rules (`agents.defaults.sandbox.prune`) apply to browser containers too.
 
 Build your own image and point config to it:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 docker build -t my-openclaw-sbx -f Dockerfile.sandbox .
 ```
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {

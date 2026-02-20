@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/migrating.md; fetched_at=2026-02-20T10:29:22.366Z; sha256=32eeaf35a37500feabe16c9240ca196897b8dd4834c436741100b035d6fb44e9; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -30,7 +32,7 @@ But it may be different if you use:
 
 If you’re not sure, run on the **old** machine:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw status
 ```
 
@@ -69,13 +71,13 @@ Those live under `$OPENCLAW_STATE_DIR`.
 
 On the **old** machine, stop the gateway first so files aren’t changing mid-copy:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway stop
 ```
 
 (Optional but recommended) archive the state dir and workspace:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Adjust paths if you use a profile or custom locations
 cd ~
 tar -czf openclaw-state.tgz .openclaw
@@ -115,7 +117,7 @@ After copying, ensure:
 
 On the **new** machine:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw doctor
 ```
 
@@ -123,7 +125,7 @@ Doctor is the “safe boring” command. It repairs services, applies config mig
 
 Then:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway restart
 openclaw status
 ```
@@ -140,7 +142,7 @@ If you ran the old gateway with a profile (or `OPENCLAW_STATE_DIR`), and the new
 
 Fix: run the gateway/service using the **same** profile/state dir you migrated, then rerun:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw doctor
 ```
 

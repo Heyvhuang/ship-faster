@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/model-failover.md; fetched_at=2026-02-20T10:29:17.337Z; sha256=e5c3a9eb39de9825c41aad2e6232feee8bdf0c0d0fb94bd97925025b1d8fdc1c; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -91,7 +93,7 @@ Cooldowns use exponential backoff:
 
 State is stored in `auth-profiles.json` under `usageStats`:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "usageStats": {
     "provider:profile": {
@@ -109,7 +111,7 @@ Billing/credit failures (for example “insufficient credits” / “credit bala
 
 State is stored in `auth-profiles.json`:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "usageStats": {
     "provider:profile": {

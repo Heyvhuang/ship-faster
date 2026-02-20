@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/logging.md; fetched_at=2026-02-20T10:29:24.414Z; sha256=8c5edb27bb2c6299a00a9a3b62f6df13c8539bac60289ec92f6b1372cfc647b4; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -28,7 +30,7 @@ Unified logging redacts most payloads unless a subsystem opts into `privacy -off
 
 * Write the plist to a temp file first, then install it atomically as root:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 cat <<'EOF' >/tmp/bot.molt.plist
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/skills.md; fetched_at=2026-02-20T10:29:24.938Z; sha256=c57df29ff36784fa2b5daa0a06adc2e327288776c1147b3b7a35a6caf969e56c; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/feishu.md; fetched_at=2026-02-20T10:29:13.051Z; sha256=73ed17f313979c21231c7c845f5686288925a773396c2149e1a1cc5f4cdfb406; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -14,13 +16,13 @@ Feishu (Lark) is a team chat platform used by companies for messaging and collab
 
 Install the Feishu plugin:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install @openclaw/feishu
 ```
 
 Local checkout (when running from a git repo):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install ./extensions/feishu
 ```
 
@@ -34,7 +36,7 @@ There are two ways to add the Feishu channel:
 
 If you just installed OpenClaw, run the wizard:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw onboard
 ```
 
@@ -53,7 +55,7 @@ The wizard guides you through:
 
 If you already completed initial install, add the channel via CLI:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels add
 ```
 
@@ -98,7 +100,7 @@ From **Credentials & Basic Info**, copy:
 
 On **Permissions**, click **Batch import** and paste:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "scopes": {
     "tenant": [
@@ -163,7 +165,7 @@ In **Event Subscription**:
 
 ### Configure with the wizard (recommended)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels add
 ```
 
@@ -173,7 +175,7 @@ Choose **Feishu** and paste your App ID + App Secret.
 
 Edit `~/.openclaw/openclaw.json`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     feishu: {
@@ -191,9 +193,11 @@ Edit `~/.openclaw/openclaw.json`:
 }
 ```
 
+If you use `connectionMode: "webhook"`, set `verificationToken`. The Feishu webhook server binds to `127.0.0.1` by default; set `webhookHost` only if you intentionally need a different bind address.
+
 ### Configure via environment variables
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export FEISHU_APP_ID="cli_xxx"
 export FEISHU_APP_SECRET="xxx"
 ```
@@ -202,7 +206,7 @@ export FEISHU_APP_SECRET="xxx"
 
 If your tenant is on Lark (international), set the domain to `lark` (or a full domain string). You can set it at `channels.feishu.domain` or per account (`channels.feishu.accounts.<id>.domain`).
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     feishu: {
@@ -224,7 +228,7 @@ If your tenant is on Lark (international), set the domain to `lark` (or a full d
 
 ### 1. Start the gateway
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway
 ```
 
@@ -236,7 +240,7 @@ In Feishu, find your bot and send a message.
 
 By default, the bot replies with a pairing code. Approve it:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw pairing approve feishu <CODE>
 ```
 
@@ -258,11 +262,14 @@ After approval, you can chat normally.
 ### Direct messages
 
 * **Default**: `dmPolicy: "pairing"` (unknown users get a pairing code)
+
 * **Approve pairing**:
-  ```bash  theme={null}
+
+  ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
   openclaw pairing list feishu
   openclaw pairing approve feishu <CODE>
   ```
+
 * **Allowlist mode**: set `channels.feishu.allowFrom` with allowed Open IDs
 
 ### Group chats
@@ -284,7 +291,7 @@ After approval, you can chat normally.
 
 ### Allow all groups, require @mention (default)
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     feishu: {
@@ -297,7 +304,7 @@ After approval, you can chat normally.
 
 ### Allow all groups, no @mention required
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     feishu: {
@@ -311,7 +318,7 @@ After approval, you can chat normally.
 
 ### Allow specific users in groups only
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     feishu: {
@@ -352,7 +359,7 @@ User IDs look like `ou_xxx`.
 
 Check pairing requests for user Open IDs:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw pairing list feishu
 ```
 
@@ -416,7 +423,7 @@ openclaw pairing list feishu
 
 ### Multiple accounts
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     feishu: {
@@ -447,7 +454,7 @@ openclaw pairing list feishu
 
 Feishu supports streaming replies via interactive cards. When enabled, the bot updates a card as it generates text.
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     feishu: {
@@ -464,7 +471,7 @@ Set `streaming: false` to wait for the full reply before sending.
 
 Use `bindings` to route Feishu DMs or groups to different agents.
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     list: [
@@ -486,14 +493,14 @@ Use `bindings` to route Feishu DMs or groups to different agents.
       agentId: "main",
       match: {
         channel: "feishu",
-        peer: { kind: "dm", id: "ou_xxx" },
+        peer: { kind: "direct", id: "ou_xxx" },
       },
     },
     {
       agentId: "clawd-fan",
       match: {
         channel: "feishu",
-        peer: { kind: "dm", id: "ou_yyy" },
+        peer: { kind: "direct", id: "ou_yyy" },
       },
     },
     {
@@ -510,7 +517,7 @@ Use `bindings` to route Feishu DMs or groups to different agents.
 Routing fields:
 
 * `match.channel`: `"feishu"`
-* `match.peer.kind`: `"dm"` or `"group"`
+* `match.peer.kind`: `"direct"` or `"group"`
 * `match.peer.id`: user Open ID (`ou_xxx`) or group ID (`oc_xxx`)
 
 See [Get group/user IDs](#get-groupuser-ids) for lookup tips.
@@ -523,23 +530,28 @@ Full configuration: [Gateway configuration](/gateway/configuration)
 
 Key options:
 
-| Setting                                           | Description                     | Default   |
-| ------------------------------------------------- | ------------------------------- | --------- |
-| `channels.feishu.enabled`                         | Enable/disable channel          | `true`    |
-| `channels.feishu.domain`                          | API domain (`feishu` or `lark`) | `feishu`  |
-| `channels.feishu.accounts.<id>.appId`             | App ID                          | -         |
-| `channels.feishu.accounts.<id>.appSecret`         | App Secret                      | -         |
-| `channels.feishu.accounts.<id>.domain`            | Per-account API domain override | `feishu`  |
-| `channels.feishu.dmPolicy`                        | DM policy                       | `pairing` |
-| `channels.feishu.allowFrom`                       | DM allowlist (open\_id list)    | -         |
-| `channels.feishu.groupPolicy`                     | Group policy                    | `open`    |
-| `channels.feishu.groupAllowFrom`                  | Group allowlist                 | -         |
-| `channels.feishu.groups.<chat_id>.requireMention` | Require @mention                | `true`    |
-| `channels.feishu.groups.<chat_id>.enabled`        | Enable group                    | `true`    |
-| `channels.feishu.textChunkLimit`                  | Message chunk size              | `2000`    |
-| `channels.feishu.mediaMaxMb`                      | Media size limit                | `30`      |
-| `channels.feishu.streaming`                       | Enable streaming card output    | `true`    |
-| `channels.feishu.blockStreaming`                  | Enable block streaming          | `true`    |
+| Setting                                           | Description                     | Default          |
+| ------------------------------------------------- | ------------------------------- | ---------------- |
+| `channels.feishu.enabled`                         | Enable/disable channel          | `true`           |
+| `channels.feishu.domain`                          | API domain (`feishu` or `lark`) | `feishu`         |
+| `channels.feishu.connectionMode`                  | Event transport mode            | `websocket`      |
+| `channels.feishu.verificationToken`               | Required for webhook mode       | -                |
+| `channels.feishu.webhookPath`                     | Webhook route path              | `/feishu/events` |
+| `channels.feishu.webhookHost`                     | Webhook bind host               | `127.0.0.1`      |
+| `channels.feishu.webhookPort`                     | Webhook bind port               | `3000`           |
+| `channels.feishu.accounts.<id>.appId`             | App ID                          | -                |
+| `channels.feishu.accounts.<id>.appSecret`         | App Secret                      | -                |
+| `channels.feishu.accounts.<id>.domain`            | Per-account API domain override | `feishu`         |
+| `channels.feishu.dmPolicy`                        | DM policy                       | `pairing`        |
+| `channels.feishu.allowFrom`                       | DM allowlist (open\_id list)    | -                |
+| `channels.feishu.groupPolicy`                     | Group policy                    | `open`           |
+| `channels.feishu.groupAllowFrom`                  | Group allowlist                 | -                |
+| `channels.feishu.groups.<chat_id>.requireMention` | Require @mention                | `true`           |
+| `channels.feishu.groups.<chat_id>.enabled`        | Enable group                    | `true`           |
+| `channels.feishu.textChunkLimit`                  | Message chunk size              | `2000`           |
+| `channels.feishu.mediaMaxMb`                      | Media size limit                | `30`             |
+| `channels.feishu.streaming`                       | Enable streaming card output    | `true`           |
+| `channels.feishu.blockStreaming`                  | Enable block streaming          | `true`           |
 
 ***
 

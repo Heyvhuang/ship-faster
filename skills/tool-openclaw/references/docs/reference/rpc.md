@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/rpc.md; fetched_at=2026-02-20T10:29:26.847Z; sha256=122c50b8cfe56d253303ec246a54301882c31db0daf72e66f19acae81df4a19d; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.

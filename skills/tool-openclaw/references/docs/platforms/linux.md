@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/linux.md; fetched_at=2026-02-20T10:29:23.988Z; sha256=873303a459c6eacfba7801f52392fb0f038540c24b93abc568ef0d5201bc06bd; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -19,7 +21,7 @@ Native Linux companion apps are planned. Contributions are welcome if you want t
 4. From your laptop: `ssh -N -L 18789:127.0.0.1:18789 <user>@<host>`
 5. Open `http://127.0.0.1:18789/` and paste your token
 
-Step-by-step VPS guide: [exe.dev](/platforms/exe-dev)
+Step-by-step VPS guide: [exe.dev](/install/exe-dev)
 
 ## Install
 

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/permissions.md; fetched_at=2026-02-20T10:29:24.745Z; sha256=362a8a0f1dcb58b8c7e3482cdcff5bad57b4fb8a01dcbc86cd79e45511ecca8a; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -31,11 +33,17 @@ grants, and prompts can disappear entirely until the stale entries are cleared.
 
 Example resets (replace bundle ID as needed):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 sudo tccutil reset Accessibility bot.molt.mac
 sudo tccutil reset ScreenCapture bot.molt.mac
 sudo tccutil reset AppleEvents
 ```
+
+## Files and folders permissions (Desktop/Documents/Downloads)
+
+macOS may also gate Desktop, Documents, and Downloads for terminal/background processes. If file reads or directory listings hang, grant access to the same process context that performs file operations (for example Terminal/iTerm, LaunchAgent-launched app, or SSH process).
+
+Workaround: move files into the OpenClaw workspace (`~/.openclaw/workspace`) if you want to avoid per-folder grants.
 
 If you are testing permissions, always sign with a real certificate. Ad-hoc
 builds are only acceptable for quick local runs where permissions do not matter.

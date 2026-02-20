@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/agent-send.md; fetched_at=2026-02-20T10:29:28.601Z; sha256=e130b78a60961980707f9bb7270153edc67f0cfcb02c04502a2fb051c4400e1e; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -29,7 +31,7 @@ If the Gateway is unreachable, the CLI **falls back** to the embedded local run.
 
 ## Examples
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw agent --to +15555550123 --message "status update"
 openclaw agent --agent ops --message "Summarize logs"
 openclaw agent --session-id 1234 --message "Summarize inbox" --thinking medium

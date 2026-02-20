@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/automation/cron-vs-heartbeat.md; fetched_at=2026-02-20T10:29:12.535Z; sha256=85b4506856a30b0845b5e7052782ae076ca8de54ef6d7d09d0faa4c514f4a9db; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -40,7 +42,7 @@ Heartbeats run in the **main session** at a regular interval (default: 30 min). 
 
 ### Heartbeat example: HEARTBEAT.md checklist
 
-```md  theme={null}
+```md  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Heartbeat checklist
 
 - Check email for urgent messages
@@ -53,7 +55,7 @@ The agent reads this on each heartbeat and handles all items in one turn.
 
 ### Configuring heartbeat
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -71,7 +73,9 @@ See [Heartbeat](/gateway/heartbeat) for full configuration.
 
 ## Cron: Precise Scheduling
 
-Cron jobs run at **exact times** and can run in isolated sessions without affecting main context.
+Cron jobs run at precise times and can run in isolated sessions without affecting main context.
+Recurring top-of-hour schedules are automatically spread by a deterministic
+per-job offset in a 0-5 minute window.
 
 ### When to use cron
 
@@ -84,7 +88,9 @@ Cron jobs run at **exact times** and can run in isolated sessions without affect
 
 ### Cron advantages
 
-* **Exact timing**: 5-field cron expressions with timezone support.
+* **Precise timing**: 5-field or 6-field (seconds) cron expressions with timezone support.
+* **Built-in load spreading**: recurring top-of-hour schedules are staggered by up to 5 minutes by default.
+* **Per-job control**: override stagger with `--stagger <duration>` or force exact timing with `--exact`.
 * **Session isolation**: Runs in `cron:<jobId>` without polluting main history.
 * **Model overrides**: Use a cheaper or more powerful model per job.
 * **Delivery control**: Isolated jobs default to `announce` (summary); choose `none` as needed.
@@ -94,7 +100,7 @@ Cron jobs run at **exact times** and can run in isolated sessions without affect
 
 ### Cron example: Daily morning briefing
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw cron add \
   --name "Morning briefing" \
   --cron "0 7 * * *" \
@@ -111,7 +117,7 @@ This runs at exactly 7:00 AM New York time, uses Opus for quality, and announces
 
 ### Cron example: One-shot reminder
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw cron add \
   --name "Meeting reminder" \
   --at "20m" \
@@ -158,7 +164,7 @@ The most efficient setup uses **both**:
 
 **HEARTBEAT.md** (checked every 30 min):
 
-```md  theme={null}
+```md  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Heartbeat checklist
 
 - Scan inbox for urgent emails
@@ -169,7 +175,7 @@ The most efficient setup uses **both**:
 
 **Cron jobs** (precise timing):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Daily morning briefing at 7am
 openclaw cron add --name "Morning brief" --cron "0 7 * * *" --session isolated --message "..." --announce
 
@@ -204,7 +210,7 @@ For ad-hoc workflows, call Lobster directly.
 * Lobster runs as a **local subprocess** (`lobster` CLI) in tool mode and returns a **JSON envelope**.
 * If the tool returns `needs_approval`, you resume with a `resumeToken` and `approve` flag.
 * The tool is an **optional plugin**; enable it additively via `tools.alsoAllow: ["lobster"]` (recommended).
-* If you pass `lobsterPath`, it must be an **absolute path**.
+* Lobster expects the `lobster` CLI to be available on `PATH`.
 
 See [Lobster](/tools/lobster) for full usage and examples.
 
@@ -228,7 +234,7 @@ Use `--session main` with `--system-event` when you want:
 * The agent to handle it during the next heartbeat with full context
 * No separate isolated run
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw cron add \
   --name "Check project" \
   --every "4h" \
@@ -246,7 +252,7 @@ Use `--session isolated` when you want:
 * Announce summaries directly to a channel
 * History that doesn't clutter main session
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw cron add \
   --name "Deep analysis" \
   --cron "0 6 * * 0" \

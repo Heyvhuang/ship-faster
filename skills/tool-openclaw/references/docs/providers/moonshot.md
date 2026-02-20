@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/moonshot.md; fetched_at=2026-02-20T10:29:26.105Z; sha256=c64eb3bb59b045dc9f0ef33c608715848b3824d3f0b68a6f99f2987e1deb70f5; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -12,22 +14,22 @@ Kimi Coding with `kimi-coding/k2p5`.
 
 Current Kimi K2 model IDs:
 
-{/_ moonshot-kimi-k2-ids:start _/ && null}
+{/_moonshot-kimi-k2-ids:start_/ && null}
 
 * `kimi-k2.5`
 * `kimi-k2-0905-preview`
 * `kimi-k2-turbo-preview`
 * `kimi-k2-thinking`
 * `kimi-k2-thinking-turbo`
-  {/_ moonshot-kimi-k2-ids:end _/ && null}
+  {/_moonshot-kimi-k2-ids:end_/ && null}
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw onboard --auth-choice moonshot-api-key
 ```
 
 Kimi Coding:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw onboard --auth-choice kimi-code-api-key
 ```
 
@@ -35,7 +37,7 @@ Note: Moonshot and Kimi Coding are separate providers. Keys are not interchangea
 
 ## Config snippet (Moonshot API)
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   env: { MOONSHOT_API_KEY: "sk-..." },
   agents: {
@@ -116,7 +118,7 @@ Note: Moonshot and Kimi Coding are separate providers. Keys are not interchangea
 
 ## Kimi Coding
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   env: { KIMI_API_KEY: "sk-..." },
   agents: {

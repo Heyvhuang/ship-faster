@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/peekaboo.md; fetched_at=2026-02-20T10:29:24.707Z; sha256=da531386311e9d49a745e5efd9fd322ae85a755b6c0841f45e8c5ce9065813d3; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -36,7 +38,7 @@ Peekaboo clients typically try hosts in this order:
 Use `peekaboo bridge status --verbose` to see which host is active and which
 socket path is in use. You can override with:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export PEEKABOO_BRIDGE_SOCKET=/path/to/bridge.sock
 ```
 

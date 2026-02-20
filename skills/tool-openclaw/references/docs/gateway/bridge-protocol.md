@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/bridge-protocol.md; fetched_at=2026-02-20T10:29:19.250Z; sha256=45e4b1c482f3a5dc150ef5af27a0469f042cae19611b604380f737673b5b494b; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -32,7 +34,9 @@ Legacy `bridge.*` config keys are no longer part of the config schema.
 * Legacy default listener port was `18790` (current builds do not start a TCP bridge).
 
 When TLS is enabled, discovery TXT records include `bridgeTls=1` plus
-`bridgeTlsSha256` so nodes can pin the certificate.
+`bridgeTlsSha256` as a non-secret hint. Note that Bonjour/mDNS TXT records are
+unauthenticated; clients must not treat the advertised fingerprint as an
+authoritative pin without explicit user intent or other out-of-band verification.
 
 ## Handshake + pairing
 

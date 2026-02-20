@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/minimax.md; fetched_at=2026-02-20T10:29:25.899Z; sha256=496184b62456beab78a1e9e6cf500075ae43d7924eb0de60bc5de9c5a9d4fb70; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -41,7 +43,7 @@ MiniMax highlights these improvements in M2.1:
 
 Enable the bundled OAuth plugin and authenticate:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins enable minimax-portal-auth  # skip if already loaded.
 openclaw gateway restart  # restart if gateway is already running
 openclaw onboard --auth-choice minimax-portal
@@ -64,7 +66,7 @@ Configure via CLI:
 * Select **Model/auth**
 * Choose **MiniMax M2.1**
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   env: { MINIMAX_API_KEY: "sk-..." },
   agents: { defaults: { model: { primary: "minimax/MiniMax-M2.1" } } },
@@ -94,19 +96,19 @@ Configure via CLI:
 
 ### MiniMax M2.1 as fallback (Opus primary)
 
-**Best for:** keep Opus 4.5 as primary, fail over to MiniMax M2.1.
+**Best for:** keep Opus 4.6 as primary, fail over to MiniMax M2.1.
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   env: { MINIMAX_API_KEY: "sk-..." },
   agents: {
     defaults: {
       models: {
-        "anthropic/claude-opus-4-5": { alias: "opus" },
+        "anthropic/claude-opus-4-6": { alias: "opus" },
         "minimax/MiniMax-M2.1": { alias: "minimax" },
       },
       model: {
-        primary: "anthropic/claude-opus-4-5",
+        primary: "anthropic/claude-opus-4-6",
         fallbacks: ["minimax/MiniMax-M2.1"],
       },
     },
@@ -122,7 +124,7 @@ desktop/server) using LM Studio's local server.
 
 Configure manually via `openclaw.json`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -201,6 +203,6 @@ Make sure the model id is **case‑sensitive**:
 
 Then recheck with:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models list
 ```

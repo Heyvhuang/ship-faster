@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/cli-backends.md; fetched_at=2026-02-20T10:29:19.324Z; sha256=bf46d4b5b11be1b2b7dacf6425a5496f91fa65f66a17307389dca8132cdd457a; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -21,20 +23,20 @@ want “always works” text responses without relying on external APIs.
 
 You can use Claude Code CLI **without any config** (OpenClaw ships a built-in default):
 
-```bash  theme={null}
-openclaw agent --message "hi" --model claude-cli/opus-4.5
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw agent --message "hi" --model claude-cli/opus-4.6
 ```
 
 Codex CLI also works out of the box:
 
-```bash  theme={null}
-openclaw agent --message "hi" --model codex-cli/gpt-5.2-codex
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw agent --message "hi" --model codex-cli/gpt-5.3-codex
 ```
 
 If your gateway runs under launchd/systemd and PATH is minimal, add just the
 command path:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -54,16 +56,17 @@ That’s it. No keys, no extra auth config needed beyond the CLI itself.
 
 Add a CLI backend to your fallback list so it only runs when primary models fail:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
       model: {
-        primary: "anthropic/claude-opus-4-5",
-        fallbacks: ["claude-cli/opus-4.5"],
+        primary: "anthropic/claude-opus-4-6",
+        fallbacks: ["claude-cli/opus-4.6", "claude-cli/opus-4.5"],
       },
       models: {
-        "anthropic/claude-opus-4-5": { alias: "Opus" },
+        "anthropic/claude-opus-4-6": { alias: "Opus" },
+        "claude-cli/opus-4.6": {},
         "claude-cli/opus-4.5": {},
       },
     },
@@ -94,7 +97,7 @@ The provider id becomes the left side of your model ref:
 
 ### Example configuration
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -109,6 +112,7 @@ The provider id becomes the left side of your model ref:
           input: "arg",
           modelArg: "--model",
           modelAliases: {
+            "claude-opus-4-6": "opus",
             "claude-opus-4-5": "opus",
             "claude-sonnet-4-5": "sonnet",
           },
@@ -152,7 +156,7 @@ The provider id becomes the left side of your model ref:
 
 If your CLI accepts image paths, set `imageArg`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 imageArg: "--image",
 imageMode: "repeat"
 ```

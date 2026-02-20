@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/web.md; fetched_at=2026-02-20T10:29:30.041Z; sha256=3090f326bb783291a459a88b510cb08e194846118dbe0b46b3124841ad5a6518; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -35,7 +37,7 @@ See [Brave Search setup](/brave-search) and [Perplexity Sonar](/perplexity) for 
 
 Set the provider in config:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   tools: {
     web: {
@@ -49,7 +51,7 @@ Set the provider in config:
 
 Example: switch to Perplexity Sonar (direct API):
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   tools: {
     web: {
@@ -98,7 +100,7 @@ crypto/prepaid).
 
 ### Setting up Perplexity search
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   tools: {
     web: {
@@ -149,7 +151,7 @@ Search the web using your configured provider.
 
 ### Config
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   tools: {
     web: {
@@ -172,11 +174,13 @@ Search the web using your configured provider.
 * `country` (optional): 2-letter country code for region-specific results (e.g., "DE", "US", "ALL"). If omitted, Brave chooses its default region.
 * `search_lang` (optional): ISO language code for search results (e.g., "de", "en", "fr")
 * `ui_lang` (optional): ISO language code for UI elements
-* `freshness` (optional, Brave only): filter by discovery time (`pd`, `pw`, `pm`, `py`, or `YYYY-MM-DDtoYYYY-MM-DD`)
+* `freshness` (optional): filter by discovery time
+  * Brave: `pd`, `pw`, `pm`, `py`, or `YYYY-MM-DDtoYYYY-MM-DD`
+  * Perplexity: `pd`, `pw`, `pm`, `py`
 
 **Examples:**
 
-```javascript  theme={null}
+```javascript  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 // German-specific search
 await web_search({
   query: "TV online schauen",
@@ -204,14 +208,14 @@ await web_search({
 
 Fetch a URL and extract readable content.
 
-### Requirements
+### web\_fetch requirements
 
 * `tools.web.fetch.enabled` must not be `false` (default: enabled)
 * Optional Firecrawl fallback: set `tools.web.fetch.firecrawl.apiKey` or `FIRECRAWL_API_KEY`.
 
-### Config
+### web\_fetch config
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   tools: {
     web: {
@@ -219,6 +223,7 @@ Fetch a URL and extract readable content.
         enabled: true,
         maxChars: 50000,
         maxCharsCap: 50000,
+        maxResponseBytes: 2000000,
         timeoutSeconds: 30,
         cacheTtlMinutes: 15,
         maxRedirects: 3,
@@ -238,7 +243,7 @@ Fetch a URL and extract readable content.
 }
 ```
 
-### Tool parameters
+### web\_fetch tool parameters
 
 * `url` (required, http/https only)
 * `extractMode` (`markdown` | `text`)
@@ -251,6 +256,7 @@ Notes:
 * `web_fetch` sends a Chrome-like User-Agent and `Accept-Language` by default; override `userAgent` if needed.
 * `web_fetch` blocks private/internal hostnames and re-checks redirects (limit with `maxRedirects`).
 * `maxChars` is clamped to `tools.web.fetch.maxCharsCap`.
+* `web_fetch` caps the downloaded response body size to `tools.web.fetch.maxResponseBytes` before parsing; oversized responses are truncated and include a warning.
 * `web_fetch` is best-effort extraction; some sites will need the browser tool.
 * See [Firecrawl](/tools/firecrawl) for key setup and service details.
 * Responses are cached (default 15 minutes) to reduce repeated fetches.

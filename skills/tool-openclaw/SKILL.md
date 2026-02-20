@@ -126,9 +126,11 @@ cd tool-openclaw
 
 Most common modes:
 
-- `--mode seed`: fetch placeholders/missing pages only (fast, safe default)
-- `--mode full`: refresh everything (slow)
+- `--mode seed`: refresh placeholders + legacy/no-header pages + stale pages (default stale threshold: 14 days)
+- `--mode full`: refresh all pages in current `/llms.txt` frontier
 - `--mode sync`: sync `/llms.txt` frontier → create missing placeholders + rebuild index (no page fetch)
+- `--prune` (optional): remove local pages that are no longer in `/llms.txt` frontier
+- `--seed-max-age-days <n>` (optional): tune seed-mode freshness window (`0` = always refresh, `<0` = disable age refresh)
 - `--mode index`: only rebuild `__SNAPSHOT_INDEX.(md|json)`
 - `--mode single --url <url>`: fetch one page and map it into `references/docs/**`
 
@@ -136,6 +138,18 @@ Optional localization (best-effort, falls back to English by default):
 
 ```bash
 ./scripts/update.sh --mode seed --locale zh-CN
+```
+
+Recommended periodic cleanup run:
+
+```bash
+./scripts/update.sh --mode sync --prune
+```
+
+Dry-run validation (no file writes, including index files):
+
+```bash
+./scripts/update.sh --mode full --dry-run --prune
 ```
 
 Requires Node.js >= 18.

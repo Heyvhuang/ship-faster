@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/plugins/zalouser.md; fetched_at=2026-02-20T10:29:25.389Z; sha256=c4c95d4a863097e54d7d465987f3ca9079b3d902bd5351c08b8fdcaef7fb8baa; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -24,7 +26,7 @@ If you use a remote Gateway, install/configure it on the **machine running the G
 
 ### Option A: install from npm
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install @openclaw/zalouser
 ```
 
@@ -32,7 +34,7 @@ Restart the Gateway afterwards.
 
 ### Option B: install from a local folder (dev)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install ./extensions/zalouser
 cd ./extensions/zalouser && pnpm install
 ```
@@ -43,7 +45,7 @@ Restart the Gateway afterwards.
 
 The Gateway machine must have `zca` on `PATH`:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 zca --version
 ```
 
@@ -51,7 +53,7 @@ zca --version
 
 Channel config lives under `channels.zalouser` (not `plugins.entries.*`):
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     zalouser: {
@@ -64,7 +66,7 @@ Channel config lives under `channels.zalouser` (not `plugins.entries.*`):
 
 ## CLI
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels login --channel zalouser
 openclaw channels logout --channel zalouser
 openclaw channels status --probe

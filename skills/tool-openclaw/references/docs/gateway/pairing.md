@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/pairing.md; fetched_at=2026-02-20T10:29:20.351Z; sha256=8b52485cdba1d6454c3267acb196a52f5863007bc91295770d145d9e6b85435d; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -33,7 +35,7 @@ Pending requests expire automatically after **5 minutes**.
 
 ## CLI workflow (headless friendly)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes pending
 openclaw nodes approve <requestId>
 openclaw nodes reject <requestId>

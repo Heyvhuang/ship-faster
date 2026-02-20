@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/index.md; fetched_at=2026-02-20T10:29:25.798Z; sha256=ed58db9a9a3c05af3509146e8e3f1e9565811229b9af9a39efbfeb78c7a16c9c; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -25,9 +27,9 @@ See [Venice AI](/providers/venice).
 1. Authenticate with the provider (usually via `openclaw onboard`).
 2. Set the default model:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
-  agents: { defaults: { model: { primary: "anthropic/claude-opus-4-5" } } },
+  agents: { defaults: { model: { primary: "anthropic/claude-opus-4-6" } } },
 }
 ```
 
@@ -37,17 +39,23 @@ See [Venice AI](/providers/venice).
 * [Anthropic (API + Claude Code CLI)](/providers/anthropic)
 * [Qwen (OAuth)](/providers/qwen)
 * [OpenRouter](/providers/openrouter)
+* [LiteLLM (unified gateway)](/providers/litellm)
 * [Vercel AI Gateway](/providers/vercel-ai-gateway)
+* [Together AI](/providers/together)
 * [Cloudflare AI Gateway](/providers/cloudflare-ai-gateway)
 * [Moonshot AI (Kimi + Kimi Coding)](/providers/moonshot)
 * [OpenCode Zen](/providers/opencode)
-* [Amazon Bedrock](/bedrock)
+* [Amazon Bedrock](/providers/bedrock)
 * [Z.AI](/providers/zai)
 * [Xiaomi](/providers/xiaomi)
 * [GLM models](/providers/glm)
 * [MiniMax](/providers/minimax)
 * [Venice (Venice AI, privacy-focused)](/providers/venice)
+* [Hugging Face (Inference)](/providers/huggingface)
 * [Ollama (local models)](/providers/ollama)
+* [vLLM (local models)](/providers/vllm)
+* [Qianfan](/providers/qianfan)
+* [NVIDIA](/providers/nvidia)
 
 ## Transcription providers
 

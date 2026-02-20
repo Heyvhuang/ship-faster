@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/logging.md; fetched_at=2026-02-20T10:29:20.153Z; sha256=b3b45edcc84b2b36d0c07c17d4126f07458d97444f28a44640e93635d64eca1d; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -26,7 +28,7 @@ The file format is one JSON object per line.
 The Control UI Logs tab tails this file via the gateway (`logs.tail`).
 CLI can do the same:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw logs --follow
 ```
 
@@ -80,7 +82,7 @@ The gateway prints WebSocket protocol logs in two modes:
 
 Examples:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # optimized (only errors/slow)
 openclaw gateway
 

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/presence.md; fetched_at=2026-02-20T10:29:17.771Z; sha256=a8aab1ab5be9eb030865a36403e8f824f614ac63c4c354c9f7108a640e5d078c; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.

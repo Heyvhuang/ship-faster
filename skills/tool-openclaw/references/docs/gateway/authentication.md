@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/authentication.md; fetched_at=2026-02-20T10:29:19.034Z; sha256=63731fe11473fdc72951c5b6f22ca13503768bed056acc6f3f4f5c48852eec08; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -20,7 +22,7 @@ If you’re using Anthropic directly, use an API key.
 1. Create an API key in the Anthropic Console.
 2. Put it on the **gateway host** (the machine running `openclaw gateway`).
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export ANTHROPIC_API_KEY="..."
 openclaw models status
 ```
@@ -28,7 +30,7 @@ openclaw models status
 3. If the Gateway runs under systemd/launchd, prefer putting the key in
    `~/.openclaw/.env` so the daemon can read it:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 cat >> ~/.openclaw/.env <<'EOF'
 ANTHROPIC_API_KEY=...
 EOF
@@ -36,7 +38,7 @@ EOF
 
 Then restart the daemon (or restart your Gateway process) and re-check:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models status
 openclaw doctor
 ```
@@ -52,19 +54,19 @@ See [Help](/help) for details on env inheritance (`env.shellEnv`,
 For Anthropic, the recommended path is an **API key**. If you’re using a Claude
 subscription, the setup-token flow is also supported. Run it on the **gateway host**:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 claude setup-token
 ```
 
 Then paste it into OpenClaw:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models auth setup-token --provider anthropic
 ```
 
 If the token was created on another machine, paste it manually:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models auth paste-token --provider anthropic
 ```
 
@@ -78,14 +80,14 @@ This credential is only authorized for use with Claude Code and cannot be used f
 
 Manual token entry (any provider; writes `auth-profiles.json` + updates config):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models auth paste-token --provider anthropic
 openclaw models auth paste-token --provider openrouter
 ```
 
 Automation-friendly check (exit `1` when expired/missing, `2` when expiring):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models status --check
 ```
 
@@ -96,10 +98,27 @@ Optional ops scripts (systemd/Termux) are documented here:
 
 ## Checking model auth status
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models status
 openclaw doctor
 ```
+
+## API key rotation behavior (gateway)
+
+Some providers support retrying a request with alternative keys when an API call
+hits a provider rate limit.
+
+* Priority order:
+  * `OPENCLAW_LIVE_<PROVIDER>_KEY` (single override)
+  * `<PROVIDER>_API_KEYS`
+  * `<PROVIDER>_API_KEY`
+  * `<PROVIDER>_API_KEY_*`
+* Google providers also include `GOOGLE_API_KEY` as an additional fallback.
+* The same key list is deduplicated before use.
+* OpenClaw retries with the next key only for rate-limit errors (for example
+  `429`, `rate_limit`, `quota`, `resource exhausted`).
+* Non-rate-limit errors are not retried with alternate keys.
+* If all keys fail, the final error from the last attempt is returned.
 
 ## Controlling which credential is used
 
@@ -113,7 +132,7 @@ Use `/model` (or `/model list`) for a compact picker; use `/model status` for th
 
 Set an explicit auth profile order override for an agent (stored in that agent’s `auth-profiles.json`):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models auth order get --provider anthropic
 openclaw models auth order set --provider anthropic anthropic:default
 openclaw models auth order clear --provider anthropic
@@ -128,7 +147,7 @@ Use `--agent <id>` to target a specific agent; omit it to use the configured def
 If the Anthropic token profile is missing, run `claude setup-token` on the
 **gateway host**, then re-check:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models status
 ```
 

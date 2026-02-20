@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/typebox.md; fetched_at=2026-02-20T10:29:18.361Z; sha256=3d8ad5e6a399f9ff5343d997dcd389ebb180d851346d6e7a1bbdc643188f8c03; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -83,7 +85,7 @@ Authoritative list lives in `src/gateway/server.ts` (`METHODS`, `EVENTS`).
 
 Connect (first message):
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "type": "req",
   "id": "c1",
@@ -105,7 +107,7 @@ Connect (first message):
 
 Hello-ok response:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "type": "res",
   "id": "c1",
@@ -128,17 +130,17 @@ Hello-ok response:
 
 Request + response:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { "type": "req", "id": "r1", "method": "health" }
 ```
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { "type": "res", "id": "r1", "ok": true, "payload": { "ok": true } }
 ```
 
 Event:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { "type": "event", "event": "tick", "payload": { "ts": 1730000000 }, "seq": 12 }
 ```
 
@@ -146,7 +148,7 @@ Event:
 
 Smallest useful flow: connect + health.
 
-```ts  theme={null}
+```ts  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 import { WebSocket } from "ws";
 
 const ws = new WebSocket("ws://127.0.0.1:18789");
@@ -192,7 +194,7 @@ Example: add a new `system.echo` request that returns `{ ok: true, text }`.
 
 Add to `src/gateway/protocol/schema.ts`:
 
-```ts  theme={null}
+```ts  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export const SystemEchoParamsSchema = Type.Object(
   { text: NonEmptyString },
   { additionalProperties: false },
@@ -206,12 +208,12 @@ export const SystemEchoResultSchema = Type.Object(
 
 Add both to `ProtocolSchemas` and export types:
 
-```ts  theme={null}
+```ts  theme={"theme":{"light":"min-light","dark":"min-dark"}}
   SystemEchoParams: SystemEchoParamsSchema,
   SystemEchoResult: SystemEchoResultSchema,
 ```
 
-```ts  theme={null}
+```ts  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export type SystemEchoParams = Static<typeof SystemEchoParamsSchema>;
 export type SystemEchoResult = Static<typeof SystemEchoResultSchema>;
 ```
@@ -220,7 +222,7 @@ export type SystemEchoResult = Static<typeof SystemEchoResultSchema>;
 
 In `src/gateway/protocol/index.ts`, export an AJV validator:
 
-```ts  theme={null}
+```ts  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export const validateSystemEchoParams = ajv.compile<SystemEchoParams>(SystemEchoParamsSchema);
 ```
 
@@ -228,7 +230,7 @@ export const validateSystemEchoParams = ajv.compile<SystemEchoParams>(SystemEcho
 
 Add a handler in `src/gateway/server-methods/system.ts`:
 
-```ts  theme={null}
+```ts  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export const systemHandlers: GatewayRequestHandlers = {
   "system.echo": ({ params, respond }) => {
     const text = String(params.text ?? "");
@@ -242,7 +244,7 @@ then add `"system.echo"` to `METHODS` in `src/gateway/server.ts`.
 
 4. **Regenerate**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm protocol:check
 ```
 

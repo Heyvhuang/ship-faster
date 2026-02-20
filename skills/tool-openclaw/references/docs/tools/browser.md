@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/browser.md; fetched_at=2026-02-20T10:29:28.797Z; sha256=19630c792580d232a11f5aa7e8a61d156a4da7e047f444b25ae0dc74f10338b9; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -30,7 +32,7 @@ agent automation and verification.
 
 ## Quick start
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser --browser-profile openclaw status
 openclaw browser --browser-profile openclaw start
 openclaw browser --browser-profile openclaw open https://example.com
@@ -52,7 +54,7 @@ Set `browser.defaultProfile: "openclaw"` if you want managed mode by default.
 
 Browser settings live in `~/.openclaw/openclaw.json`.
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   browser: {
     enabled: true, // default: true
@@ -97,11 +99,11 @@ auto-detection:
 
 CLI example:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw config set browser.executablePath "/usr/bin/google-chrome"
 ```
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 // macOS
 {
   browser: {
@@ -162,7 +164,7 @@ Browserless region endpoint and authenticate with your API key.
 
 Example:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   browser: {
     enabled: true,
@@ -189,6 +191,7 @@ Notes:
 Key ideas:
 
 * Browser control is loopback-only; access flows through the Gateway’s auth or node pairing.
+* If browser control is enabled and no auth is configured, OpenClaw auto-generates `gateway.auth.token` on startup and persists it to config.
 * Keep the Gateway and any node hosts on a private network (Tailscale); avoid public exposure.
 * Treat remote CDP URLs/tokens as secrets; prefer env vars or a secrets manager.
 
@@ -241,7 +244,7 @@ Chrome extension relay takeover requires host browser control, so either:
 
 1. Load the extension (dev/unpacked):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser extension install
 ```
 
@@ -256,7 +259,7 @@ openclaw browser extension install
 
 Optional: if you want a different name or relay port, create your own profile:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser create-profile \
   --name my-chrome \
   --driver extension \
@@ -312,6 +315,11 @@ For local integrations only, the Gateway exposes a small loopback HTTP API:
 
 All endpoints accept `?profile=<name>`.
 
+If gateway auth is configured, browser HTTP routes require auth too:
+
+* `Authorization: Bearer <gateway token>`
+* `x-openclaw-password: <gateway password>` or HTTP Basic auth with that password
+
 ### Playwright requirement
 
 Some features (navigate/act/AI snapshot/role snapshot, element screenshots, PDF) require
@@ -328,7 +336,7 @@ OpenClaw with browser support.
 If your Gateway runs in Docker, avoid `npx playwright` (npm override conflicts).
 Use the bundled CLI instead:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 docker compose run --rm openclaw-cli \
   node /app/node_modules/playwright-core/cli.js install chromium
 ```
@@ -400,9 +408,9 @@ Actions:
 * `openclaw browser scrollintoview e12`
 * `openclaw browser drag 10 11`
 * `openclaw browser select 9 OptionA OptionB`
-* `openclaw browser download e12 /tmp/report.pdf`
-* `openclaw browser waitfordownload /tmp/report.pdf`
-* `openclaw browser upload /tmp/file.pdf`
+* `openclaw browser download e12 report.pdf`
+* `openclaw browser waitfordownload report.pdf`
+* `openclaw browser upload /tmp/openclaw/uploads/file.pdf`
 * `openclaw browser fill --fields '[{"ref":"1","type":"text","value":"Ada"}]'`
 * `openclaw browser dialog --accept`
 * `openclaw browser wait --text "Done"`
@@ -421,7 +429,7 @@ State:
 * `openclaw browser storage local set theme dark`
 * `openclaw browser storage session clear`
 * `openclaw browser set offline on`
-* `openclaw browser set headers --json '{"X-Debug":"1"}'`
+* `openclaw browser set headers --headers-json '{"X-Debug":"1"}'`
 * `openclaw browser set credentials user pass`
 * `openclaw browser set credentials --clear`
 * `openclaw browser set geo 37.7749 -122.4194 --origin "https://example.com"`
@@ -435,6 +443,11 @@ Notes:
 
 * `upload` and `dialog` are **arming** calls; run them before the click/press
   that triggers the chooser/dialog.
+* Download and trace output paths are constrained to OpenClaw temp roots:
+  * traces: `/tmp/openclaw` (fallback: `${os.tmpdir()}/openclaw`)
+  * downloads: `/tmp/openclaw/downloads` (fallback: `${os.tmpdir()}/openclaw/downloads`)
+* Upload paths are constrained to an OpenClaw temp uploads root:
+  * uploads: `/tmp/openclaw/uploads` (fallback: `${os.tmpdir()}/openclaw/uploads`)
 * `upload` can also set file inputs directly via `--input-ref` or `--element`.
 * `snapshot`:
   * `--format ai` (default when Playwright is installed): returns an AI snapshot with numeric refs (`aria-ref="<n>"`).
@@ -483,7 +496,7 @@ You can wait on more than just time/text:
 
 These can be combined:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser wait "#main" \
   --url "**/dash" \
   --load networkidle \
@@ -512,7 +525,7 @@ When an action fails (e.g. “not visible”, “strict mode violation”, “co
 
 Examples:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser status --json
 openclaw browser snapshot --interactive --json
 openclaw browser requests --filter api --json
@@ -528,7 +541,7 @@ These are useful for “make the site behave like X” workflows:
 * Cookies: `cookies`, `cookies set`, `cookies clear`
 * Storage: `storage local|session get|set|clear`
 * Offline: `set offline on|off`
-* Headers: `set headers --json '{"X-Debug":"1"}'` (or `--clear`)
+* Headers: `set headers --headers-json '{"X-Debug":"1"}'` (legacy `set headers --json '{"X-Debug":"1"}'` remains supported)
 * HTTP basic auth: `set credentials user pass` (or `--clear`)
 * Geolocation: `set geo <lat> <lon> --origin "https://example.com"` (or `--clear`)
 * Media: `set media dark|light|no-preference|none`

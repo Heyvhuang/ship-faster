@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/discovery.md; fetched_at=2026-02-20T10:29:19.670Z; sha256=340f272ee3d748368d94a7efb562849770a8cca36cb581c14a11d6ba040ade5b; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -61,9 +63,16 @@ Troubleshooting and beacon details: [Bonjour](/gateway/bonjour).
   * `gatewayPort=18789` (Gateway WS + HTTP)
   * `gatewayTls=1` (only when TLS is enabled)
   * `gatewayTlsSha256=<sha256>` (only when TLS is enabled and fingerprint is available)
-  * `canvasPort=18793` (default canvas host port; serves `/__openclaw__/canvas/`)
+  * `canvasPort=<port>` (canvas host port; currently the same as `gatewayPort` when the canvas host is enabled)
   * `cliPath=<path>` (optional; absolute path to a runnable `openclaw` entrypoint or binary)
   * `tailnetDns=<magicdns>` (optional hint; auto-detected when Tailscale is available)
+
+Security notes:
+
+* Bonjour/mDNS TXT records are **unauthenticated**. Clients must treat TXT values as UX hints only.
+* Routing (host/port) should prefer the **resolved service endpoint** (SRV + A/AAAA) over TXT-provided `lanHost`, `tailnetDns`, or `gatewayPort`.
+* TLS pinning must never allow an advertised `gatewayTlsSha256` to override a previously stored pin.
+* iOS/Android nodes should treat discovery-based direct connects as **TLS-only** and require an explicit “trust this fingerprint” confirmation before storing a first-time pin (out-of-band verification).
 
 Disable/override:
 

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/llm-task.md; fetched_at=2026-02-20T10:29:29.044Z; sha256=309227536de546be197329764852996f94c674021ca6144aca8f601e11895389; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -16,7 +18,7 @@ without writing custom OpenClaw code for each workflow.
 
 1. Enable the plugin:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "plugins": {
     "entries": {
@@ -28,7 +30,7 @@ without writing custom OpenClaw code for each workflow.
 
 2. Allowlist the tool (it is registered with `optional: true`):
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "agents": {
     "list": [
@@ -43,7 +45,7 @@ without writing custom OpenClaw code for each workflow.
 
 ## Config (optional)
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "plugins": {
     "entries": {
@@ -53,7 +55,7 @@ without writing custom OpenClaw code for each workflow.
           "defaultProvider": "openai-codex",
           "defaultModel": "gpt-5.2",
           "defaultAuthProfileId": "main",
-          "allowedModels": ["openai-codex/gpt-5.2"],
+          "allowedModels": ["openai-codex/gpt-5.3-codex"],
           "maxTokens": 800,
           "timeoutMs": 30000
         }
@@ -85,7 +87,7 @@ Returns `details.json` containing the parsed JSON (and validates against
 
 ## Example: Lobster workflow step
 
-```lobster  theme={null}
+```lobster  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw.invoke --tool llm-task --action json --args-json '{
   "prompt": "Given the input email, return intent and draft.",
   "input": {

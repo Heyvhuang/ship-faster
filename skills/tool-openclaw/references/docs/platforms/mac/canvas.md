@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/canvas.md; fetched_at=2026-02-20T10:29:24.057Z; sha256=d512084bde902c0f166abbf1014e9aaa1a5681b46c39d3d6ad549df38a450abb; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -49,7 +51,7 @@ Canvas is exposed via the **Gateway WebSocket**, so the agent can:
 
 CLI examples:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes canvas present --node <id>
 openclaw nodes canvas navigate --node <id> --url "/"
 openclaw nodes canvas eval --node <id> --js "document.title"
@@ -70,7 +72,7 @@ A2UI host page on first open.
 Default A2UI host URL:
 
 ```
-http://<gateway-host>:18793/__openclaw__/a2ui/
+http://<gateway-host>:18789/__openclaw__/a2ui/
 ```
 
 ### A2UI commands (v0.8)
@@ -86,7 +88,7 @@ Canvas currently accepts **A2UI v0.8** server→client messages:
 
 CLI example:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 cat > /tmp/a2ui-v0.8.jsonl <<'EOFA2'
 {"surfaceUpdate":{"surfaceId":"main","components":[{"id":"root","component":{"Column":{"children":{"explicitList":["title","content"]}}}},{"id":"title","component":{"Text":{"text":{"literalString":"Canvas (A2UI v0.8)"},"usageHint":"h1"}}},{"id":"content","component":{"Text":{"text":{"literalString":"If you can read this, A2UI push works."},"usageHint":"body"}}}]}}
 {"beginRendering":{"surfaceId":"main","root":"root"}}
@@ -97,7 +99,7 @@ openclaw nodes canvas a2ui push --jsonl /tmp/a2ui-v0.8.jsonl --node <id>
 
 Quick smoke:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes canvas a2ui push --node <id> --text "Hello from A2UI"
 ```
 
@@ -109,7 +111,7 @@ Canvas can trigger new agent runs via deep links:
 
 Example (in JS):
 
-```js  theme={null}
+```js  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 window.location.href = "openclaw://agent?message=Review%20this%20design";
 ```
 

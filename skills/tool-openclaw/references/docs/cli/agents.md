@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/agents.md; fetched_at=2026-02-20T10:29:14.573Z; sha256=a645954f37a1d1b5cad50ea9897529cf026130ea07a503b3d180e34cf2a50329; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -15,7 +17,7 @@ Related:
 
 ## Examples
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw agents list
 openclaw agents add work --workspace ~/.openclaw/workspace-work
 openclaw agents set-identity --workspace ~/.openclaw/workspace --from-identity
@@ -43,19 +45,19 @@ Avatar paths resolve relative to the workspace root.
 
 Load from `IDENTITY.md`:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw agents set-identity --workspace ~/.openclaw/workspace --from-identity
 ```
 
 Override fields explicitly:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw agents set-identity --agent main --name "OpenClaw" --emoji "🦞" --avatar avatars/openclaw.png
 ```
 
 Config sample:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     list: [

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/index.md; fetched_at=2026-02-20T10:29:23.898Z; sha256=af42624cd9b10049fdacd4d3c2a3ab77a6a8696c74d7d44ab808e59cb4699f20; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -24,10 +26,10 @@ Native companion apps for Windows are also planned; the Gateway is recommended v
 ## VPS & hosting
 
 * VPS hub: [VPS hosting](/vps)
-* Fly.io: [Fly.io](/platforms/fly)
-* Hetzner (Docker): [Hetzner](/platforms/hetzner)
-* GCP (Compute Engine): [GCP](/platforms/gcp)
-* exe.dev (VM + HTTPS proxy): [exe.dev](/platforms/exe-dev)
+* Fly.io: [Fly.io](/install/fly)
+* Hetzner (Docker): [Hetzner](/install/hetzner)
+* GCP (Compute Engine): [GCP](/install/gcp)
+* exe.dev (VM + HTTPS proxy): [exe.dev](/install/exe-dev)
 
 ## Common links
 

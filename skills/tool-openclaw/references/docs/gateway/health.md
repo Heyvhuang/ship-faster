@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/health.md; fetched_at=2026-02-20T10:29:19.961Z; sha256=72a7d593de472345fe50e192c1e9280b4f0e3d114c73557658ccb0d40b40d4cd; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.

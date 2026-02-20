@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/compaction.md; fetched_at=2026-02-20T10:29:17.092Z; sha256=d96fbe233ab7b4aa6adc0a1bc4ac3863606ac67c785c34f4edf5b92d6ec3dc71; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -19,7 +21,7 @@ Compaction **persists** in the session’s JSONL history.
 
 ## Configuration
 
-See [Compaction config & modes](/concepts/compaction) for the `agents.defaults.compaction` settings.
+Use the `agents.defaults.compaction` setting in your `openclaw.json` to configure compaction behavior (mode, target tokens, etc.).
 
 ## Auto-compaction (default on)
 

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/update.md; fetched_at=2026-02-20T10:29:16.628Z; sha256=5c8cb8fddd8c7b15da2051ba4515a1652d0121b70afee96a7189549aa819b8ac; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -12,7 +14,7 @@ If you installed via **npm/pnpm** (global install, no git metadata), updates hap
 
 ## Usage
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw update
 openclaw update status
 openclaw update wizard
@@ -38,7 +40,7 @@ Note: downgrades require confirmation because older versions can break configura
 
 Show the active update channel + git tag/branch/SHA (for source checkouts), plus update availability.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw update status
 openclaw update status --json
 openclaw update status --timeout 10

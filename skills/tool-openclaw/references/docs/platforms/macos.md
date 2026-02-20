@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/macos.md; fetched_at=2026-02-20T10:29:25.149Z; sha256=278ea84e9cc362c04b5cb44695099181d83c77c01222d699da82437e903327b4; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -35,7 +37,7 @@ capabilities to the agent as a node.
 The app manages a per‑user LaunchAgent labeled `bot.molt.gateway`
 (or `bot.molt.<profile>` when using `--profile`/`OPENCLAW_PROFILE`; legacy `com.openclaw.*` still unloads).
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 launchctl kickstart -k gui/$UID/bot.molt.gateway
 launchctl bootout gui/$UID/bot.molt.gateway
 ```
@@ -81,7 +83,7 @@ Security + ask + allowlist are stored locally on the Mac in:
 
 Example:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "version": 1,
   "defaults": {
@@ -112,7 +114,7 @@ The app registers the `openclaw://` URL scheme for local actions.
 
 Triggers a Gateway `agent` request.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 open 'openclaw://agent?message=Hello%20from%20deep%20link'
 ```
 
@@ -128,6 +130,7 @@ Query parameters:
 Safety:
 
 * Without `key`, the app prompts for confirmation.
+* Without `key`, the app enforces a short message limit for the confirmation prompt and ignores `deliver` / `to` / `channel`.
 * With a valid `key`, the run is unattended (intended for personal automations).
 
 ## Onboarding flow (typical)
@@ -148,7 +151,7 @@ Safety:
 Use the debug CLI to exercise the same Gateway WebSocket handshake and discovery
 logic that the macOS app uses, without launching the app.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 cd apps/macos
 swift run openclaw-mac connect --json
 swift run openclaw-mac discover --timeout 3000 --json

@@ -1,8 +1,10 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/TOOLS.md; fetched_at=2026-02-20T10:29:27.337Z; sha256=5c70bc3afa490a00f1e43686e6f562bf409a09594b12ac7d12628b28f4a50ae7; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# null
+# TOOLS.md Template
 
 # TOOLS.md - Local Notes
 
@@ -21,7 +23,7 @@ Things like:
 
 ## Examples
 
-```markdown  theme={null}
+```markdown  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ### Cameras
 
 - living-room → Main area, 180° wide angle

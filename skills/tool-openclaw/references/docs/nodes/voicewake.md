@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/voicewake.md; fetched_at=2026-02-20T10:29:23.567Z; sha256=68ef8d01d29ea45fd170b878dc95bc6d21125300fc5965ff2e68e45c8c256dff; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -20,7 +22,7 @@ Wake words are stored on the gateway machine at:
 
 Shape:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { "triggers": ["openclaw", "claude", "computer"], "updatedAtMs": 1730000000000 }
 ```
 

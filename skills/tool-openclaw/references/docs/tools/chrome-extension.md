@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/chrome-extension.md; fetched_at=2026-02-20T10:29:28.966Z; sha256=5132541c2eb6246b7cd936ae5fec7a424088d896389084a51f1d93f14f1e99be; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -24,13 +26,13 @@ OpenClaw then controls the attached tab through the normal `browser` tool surfac
 
 1. Install the extension to a stable local path:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser extension install
 ```
 
 2. Print the installed extension directory path:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser extension path
 ```
 
@@ -50,9 +52,14 @@ After upgrading OpenClaw:
 * Re-run `openclaw browser extension install` to refresh the installed files under your OpenClaw state directory.
 * Chrome → `chrome://extensions` → click “Reload” on the extension.
 
-## Use it (no extra config)
+## Use it (set gateway token once)
 
 OpenClaw ships with a built-in browser profile named `chrome` that targets the extension relay on the default port.
+
+Before first attach, open extension Options and set:
+
+* `Port` (default `18792`)
+* `Gateway token` (must match `gateway.auth.token` / `OPENCLAW_GATEWAY_TOKEN`)
 
 Use it:
 
@@ -61,7 +68,7 @@ Use it:
 
 If you want a different name or a different relay port, create your own profile:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw browser create-profile \
   --name my-chrome \
   --driver extension \
@@ -86,12 +93,12 @@ openclaw browser create-profile \
 
 * `ON`: attached; OpenClaw can drive that tab.
 * `…`: connecting to the local relay.
-* `!`: relay not reachable (most common: browser relay server isn’t running on this machine).
+* `!`: relay not reachable/authenticated (most common: relay server not running, or gateway token missing/wrong).
 
 If you see `!`:
 
 * Make sure the Gateway is running locally (default setup), or run a node host on this machine if the Gateway runs elsewhere.
-* Open the extension Options page; it shows whether the relay is reachable.
+* Open the extension Options page; it validates relay reachability + gateway-token auth.
 
 ## Remote Gateway (use a node host)
 
@@ -119,7 +126,7 @@ Options:
 * Easiest: use the extension from a **non-sandboxed** session/agent.
 * Or allow host browser control for sandboxed sessions:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
@@ -166,7 +173,7 @@ Recommendations:
 * Prefer a dedicated Chrome profile (separate from your personal browsing) for extension relay usage.
 * Keep the Gateway and any node hosts tailnet-only; rely on Gateway auth + node pairing.
 * Avoid exposing relay ports over LAN (`0.0.0.0`) and avoid Funnel (public).
-* The relay blocks non-extension origins and requires an internal auth token for CDP clients.
+* The relay blocks non-extension origins and requires gateway-token auth for both `/cdp` and `/extension`.
 
 Related:
 

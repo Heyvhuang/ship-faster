@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/signing.md; fetched_at=2026-02-20T10:29:24.902Z; sha256=35b29eb34c6f8484d0b887f36d49d4f749a5009f539347a3b676f166e800dbe4; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -19,7 +21,7 @@ This app is usually built from [`scripts/package-mac-app.sh`](https://github.com
 
 ## Usage
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # from repo root
 scripts/package-mac-app.sh               # auto-selects identity; errors if none found
 SIGN_IDENTITY="Developer ID Application: Your Name" scripts/package-mac-app.sh   # real cert

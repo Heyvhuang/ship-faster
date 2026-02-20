@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/index.md; fetched_at=2026-02-20T10:29:21.500Z; sha256=be5fc30be9fe46331eca6e4c7a55dfb839c2ca29a0682aad476a4f6ce5134d31; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -33,11 +35,24 @@
   </Card>
 </Columns>
 
-OpenClaw connects chat apps to coding agents like Pi through a single Gateway process. It powers the OpenClaw assistant and supports local or remote setups.
+## What is OpenClaw?
+
+OpenClaw is a **self-hosted gateway** that connects your favorite chat apps — WhatsApp, Telegram, Discord, iMessage, and more — to AI coding agents like Pi. You run a single Gateway process on your own machine (or a server), and it becomes the bridge between your messaging apps and an always-available AI assistant.
+
+**Who is it for?** Developers and power users who want a personal AI assistant they can message from anywhere — without giving up control of their data or relying on a hosted service.
+
+**What makes it different?**
+
+* **Self-hosted**: runs on your hardware, your rules
+* **Multi-channel**: one Gateway serves WhatsApp, Telegram, Discord, and more simultaneously
+* **Agent-native**: built for coding agents with tool use, sessions, memory, and multi-agent routing
+* **Open source**: MIT licensed, community-driven
+
+**What do you need?** Node 22+, an API key (Anthropic recommended), and 5 minutes.
 
 ## How it works
 
-```mermaid  theme={null}
+```mermaid  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 flowchart LR
   A["Chat apps + plugins"] --> B["Gateway"]
   B --> C["Pi agent"]
@@ -81,19 +96,19 @@ The Gateway is the single source of truth for sessions, routing, and channel con
 
 <Steps>
   <Step title="Install OpenClaw">
-    ```bash  theme={null}
+    ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
     npm install -g openclaw@latest
     ```
   </Step>
 
   <Step title="Onboard and install the service">
-    ```bash  theme={null}
+    ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
     openclaw onboard --install-daemon
     ```
   </Step>
 
   <Step title="Pair WhatsApp and start the Gateway">
-    ```bash  theme={null}
+    ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
     openclaw channels login
     openclaw gateway --port 18789
     ```
@@ -122,7 +137,7 @@ Config lives at `~/.openclaw/openclaw.json`.
 
 Example:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     whatsapp: {

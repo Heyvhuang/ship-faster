@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/skills-config.md; fetched_at=2026-02-20T10:29:29.608Z; sha256=78440b87fb9ed7391655e120670bdc01ee6e436a80aef4de78634833cbf4e278; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -8,7 +10,7 @@
 
 All skills-related configuration lives under `skills` in `~/.openclaw/openclaw.json`.
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   skills: {
     allowBundled: ["gemini", "peekaboo"],

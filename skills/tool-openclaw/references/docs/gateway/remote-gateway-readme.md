@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/remote-gateway-readme.md; fetched_at=2026-02-20T10:29:20.384Z; sha256=d42c6399f69950d32b48a0d86bf52635ec83915c71d8e7665ce0d541964b8870; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -10,24 +12,25 @@ OpenClaw\.app uses SSH tunneling to connect to a remote gateway. This guide show
 
 ## Overview
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        Client Machine                          │
-│                                                              │
-│  OpenClaw.app ──► ws://127.0.0.1:18789 (local port)           │
-│                     │                                        │
-│                     ▼                                        │
-│  SSH Tunnel ────────────────────────────────────────────────│
-│                     │                                        │
-└─────────────────────┼──────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                         Remote Machine                        │
-│                                                              │
-│  Gateway WebSocket ──► ws://127.0.0.1:18789 ──►              │
-│                                                              │
-└─────────────────────────────────────────────────────────────┘
+```mermaid  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+flowchart TB
+    subgraph Client["Client Machine"]
+        direction TB
+        A["OpenClaw.app"]
+        B["ws://127.0.0.1:18789\n(local port)"]
+        T["SSH Tunnel"]
+
+        A --> B
+        B --> T
+    end
+    subgraph Remote["Remote Machine"]
+        direction TB
+        C["Gateway WebSocket"]
+        D["ws://127.0.0.1:18789"]
+
+        C --> D
+    end
+    T --> C
 ```
 
 ## Quick Setup
@@ -36,7 +39,7 @@ OpenClaw\.app uses SSH tunneling to connect to a remote gateway. This guide show
 
 Edit `~/.ssh/config` and add:
 
-```ssh  theme={null}
+```ssh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 Host remote-gateway
     HostName <REMOTE_IP>          # e.g., 172.27.187.184
     User <REMOTE_USER>            # e.g., jefferson
@@ -50,25 +53,25 @@ Replace `<REMOTE_IP>` and `<REMOTE_USER>` with your values.
 
 Copy your public key to the remote machine (enter password once):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ssh-copy-id -i ~/.ssh/id_rsa <REMOTE_USER>@<REMOTE_IP>
 ```
 
 ### Step 3: Set Gateway Token
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 launchctl setenv OPENCLAW_GATEWAY_TOKEN "<your-token>"
 ```
 
 ### Step 4: Start SSH Tunnel
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ssh -N remote-gateway &
 ```
 
 ### Step 5: Restart OpenClaw\.app
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 # Quit OpenClaw.app (⌘Q), then reopen:
 open /path/to/OpenClaw.app
 ```
@@ -85,7 +88,7 @@ To have the SSH tunnel start automatically when you log in, create a Launch Agen
 
 Save this as `~/Library/LaunchAgents/bot.molt.ssh-tunnel.plist`:
 
-```xml  theme={null}
+```xml  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -108,7 +111,7 @@ Save this as `~/Library/LaunchAgents/bot.molt.ssh-tunnel.plist`:
 
 ### Load the Launch Agent
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 launchctl bootstrap gui/$UID ~/Library/LaunchAgents/bot.molt.ssh-tunnel.plist
 ```
 
@@ -126,20 +129,20 @@ Legacy note: remove any leftover `com.openclaw.ssh-tunnel` LaunchAgent if presen
 
 **Check if tunnel is running:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ps aux | grep "ssh -N remote-gateway" | grep -v grep
 lsof -i :18789
 ```
 
 **Restart the tunnel:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 launchctl kickstart -k gui/$UID/bot.molt.ssh-tunnel
 ```
 
 **Stop the tunnel:**
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 launchctl bootout gui/$UID/bot.molt.ssh-tunnel
 ```
 

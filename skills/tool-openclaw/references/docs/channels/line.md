@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/line.md; fetched_at=2026-02-20T10:29:13.502Z; sha256=370e20aff3a0a49f6e31a2faafcb95edb3f96839fc3366b5f83a8f9517bad10a; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -18,13 +20,13 @@ are not supported.
 
 Install the LINE plugin:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install @openclaw/line
 ```
 
 Local checkout (when running from a git repo):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install ./extensions/line
 ```
 
@@ -49,7 +51,7 @@ If you need a custom path, set `channels.line.webhookPath` or
 
 Minimal config:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     line: {
@@ -69,7 +71,7 @@ Env vars (default account only):
 
 Token/secret files:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     line: {
@@ -82,7 +84,7 @@ Token/secret files:
 
 Multiple accounts:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     line: {
@@ -103,7 +105,7 @@ Multiple accounts:
 Direct messages default to pairing. Unknown senders get a pairing code and their
 messages are ignored until approved.
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw pairing list line
 openclaw pairing approve line <CODE>
 ```
@@ -136,7 +138,7 @@ LINE IDs are case-sensitive. Valid IDs look like:
 Use `channelData.line` to send quick replies, locations, Flex cards, or template
 messages.
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   text: "Here you go",
   channelData: {

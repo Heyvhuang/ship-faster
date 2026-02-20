@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/remote.md; fetched_at=2026-02-20T10:29:24.833Z; sha256=db952eb6034689c33b6f1905f6a4283bb78ba37a6c8324bc79f12fbcedcda619; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -55,6 +57,7 @@ Remote mode supports two transports:
 ## Security notes
 
 * Prefer loopback binds on the remote host and connect via SSH or Tailscale.
+* SSH tunneling uses strict host-key checking; trust the host key first so it exists in `~/.ssh/known_hosts`.
 * If you bind the Gateway to a non-loopback interface, require token/password auth.
 * See [Security](/gateway/security) and [Tailscale](/gateway/tailscale).
 
@@ -75,7 +78,7 @@ Remote mode supports two transports:
 
 Pick sounds per notification from scripts with `openclaw` and `node.invoke`, e.g.:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes notify --node <id> --title "Ping" --body "Remote gateway ready" --sound Glass
 ```
 

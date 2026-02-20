@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/oauth.md; fetched_at=2026-02-20T10:29:17.589Z; sha256=d14a63a1a3f3e815cb89a7b4aef769a7922fbaf97301898149398bb625c18109; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -15,7 +17,7 @@ OpenClaw supports “subscription auth” via OAuth for providers that offer it 
 OpenClaw also supports **provider plugins** that ship their own OAuth or API‑key
 flows. Run them via:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models auth login --provider <id>
 ```
 
@@ -49,19 +51,19 @@ All of the above also respect `$OPENCLAW_STATE_DIR` (state dir override). Full r
 
 Run `claude setup-token` on any machine, then paste it into OpenClaw:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models auth setup-token --provider anthropic
 ```
 
 If you generated the token elsewhere, paste it manually:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models auth paste-token --provider anthropic
 ```
 
 Verify:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models status
 ```
 
@@ -111,7 +113,7 @@ Two patterns:
 
 If you want “personal” and “work” to never interact, use isolated agents (separate sessions + credentials + workspace):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw agents add work
 openclaw agents add personal
 ```

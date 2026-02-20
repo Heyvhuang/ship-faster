@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/clawhub.md; fetched_at=2026-02-20T10:29:29.017Z; sha256=0c3c206d1e19dee9f71c18f9ec83158df3f9991edea06a444f624a38cda41eba; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -53,11 +55,11 @@ If you want to add new capabilities to your OpenClaw agent, ClawHub is the easie
 
 Pick one:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 npm i -g clawhub
 ```
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm add -g clawhub
 ```
 
@@ -186,19 +188,19 @@ Sync (scan local skills + publish new/updated):
 
 ### Search for skills
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 clawhub search "postgres backups"
 ```
 
 ### Download new skills
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 clawhub install my-skill-pack
 ```
 
 ### Update installed skills
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 clawhub update --all
 ```
 
@@ -206,13 +208,13 @@ clawhub update --all
 
 For a single skill folder:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 clawhub publish ./my-skill --slug my-skill --name "My Skill" --version 1.0.0 --tags latest
 ```
 
 To scan and back up many skills at once:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 clawhub sync --all
 ```
 
@@ -241,7 +243,7 @@ Updates compare the local skill contents to registry versions using a content ha
 
 When you run `clawhub sync` while logged in, the CLI sends a minimal snapshot to compute install counts. You can disable this entirely:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 export CLAWHUB_DISABLE_TELEMETRY=1
 ```
 

@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/windows.md; fetched_at=2026-02-20T10:29:25.161Z; sha256=0c7174e8aa99cdab2992e26da166452048ffe9465a40e0803016cdf74a3a2358; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -62,7 +64,7 @@ so you may need to refresh the forwarding rule.
 
 Example (PowerShell **as Administrator**):
 
-```powershell  theme={null}
+```powershell  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 $Distro = "Ubuntu-24.04"
 $ListenPort = 2222
 $TargetPort = 22
@@ -76,14 +78,14 @@ netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=$ListenPor
 
 Allow the port through Windows Firewall (one-time):
 
-```powershell  theme={null}
+```powershell  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 New-NetFirewallRule -DisplayName "WSL SSH $ListenPort" -Direction Inbound `
   -Protocol TCP -LocalPort $ListenPort -Action Allow
 ```
 
 Refresh the portproxy after WSL restarts:
 
-```powershell  theme={null}
+```powershell  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 netsh interface portproxy delete v4tov4 listenport=$ListenPort listenaddress=0.0.0.0 | Out-Null
 netsh interface portproxy add v4tov4 listenport=$ListenPort listenaddress=0.0.0.0 `
   connectaddress=$WslIp connectport=$TargetPort | Out-Null
@@ -104,7 +106,7 @@ Notes:
 
 Open PowerShell (Admin):
 
-```powershell  theme={null}
+```powershell  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 wsl --install
 # Or pick a distro explicitly:
 wsl --list --online
@@ -117,7 +119,7 @@ Reboot if Windows asks.
 
 In your WSL terminal:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 sudo tee /etc/wsl.conf >/dev/null <<'EOF'
 [boot]
 systemd=true
@@ -126,13 +128,13 @@ EOF
 
 Then from PowerShell:
 
-```powershell  theme={null}
+```powershell  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 wsl --shutdown
 ```
 
 Re-open Ubuntu, then verify:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 systemctl --user status
 ```
 
@@ -140,7 +142,7 @@ systemctl --user status
 
 Follow the Linux Getting Started flow inside WSL:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 git clone https://github.com/openclaw/openclaw.git
 cd openclaw
 pnpm install

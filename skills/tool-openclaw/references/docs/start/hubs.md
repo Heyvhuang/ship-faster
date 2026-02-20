@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/hubs.md; fetched_at=2026-02-20T10:29:27.985Z; sha256=bc0750c6996118dd9d206607de80dad1c6d0ccb72d61bdde6adc8ff1513f3766; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -60,9 +62,9 @@ Use these hubs to discover every page, including deep dives and reference docs t
 * [Presence](/concepts/presence)
 * [Discovery + transports](/gateway/discovery)
 * [Bonjour](/gateway/bonjour)
-* [Channel routing](/concepts/channel-routing)
-* [Groups](/concepts/groups)
-* [Group messages](/concepts/group-messages)
+* [Channel routing](/channels/channel-routing)
+* [Groups](/channels/groups)
+* [Group messages](/channels/group-messages)
 * [Model failover](/concepts/model-failover)
 * [OAuth](/concepts/oauth)
 
@@ -117,7 +119,7 @@ Use these hubs to discover every page, including deep dives and reference docs t
 * [Models](/concepts/models)
 * [Sub-agents](/tools/subagents)
 * [Agent send CLI](/tools/agent-send)
-* [Terminal UI](/tui)
+* [Terminal UI](/web/tui)
 * [Browser control](/tools/browser)
 * [Browser (Linux troubleshooting)](/tools/browser-linux-troubleshooting)
 * [Polls](/automation/poll)

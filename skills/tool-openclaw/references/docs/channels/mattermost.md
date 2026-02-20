@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/mattermost.md; fetched_at=2026-02-20T10:29:13.746Z; sha256=a499231d780a80d4fe3833b6638fbb5a93c45d68d41809f6d28d984fb3b945a4; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -16,20 +18,20 @@ Mattermost ships as a plugin and is not bundled with the core install.
 
 Install via CLI (npm registry):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install @openclaw/mattermost
 ```
 
 Local checkout (when running from a git repo):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install ./extensions/mattermost
 ```
 
 If you choose Mattermost during configure/onboarding and a git checkout is detected,
 OpenClaw will offer the local install path automatically.
 
-Details: [Plugins](/plugin)
+Details: [Plugins](/tools/plugin)
 
 ## Quick setup
 
@@ -40,7 +42,7 @@ Details: [Plugins](/plugin)
 
 Minimal config:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     mattermost: {
@@ -72,7 +74,7 @@ Mattermost responds to DMs automatically. Channel behavior is controlled by `cha
 
 Config example:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     mattermost: {
@@ -112,11 +114,31 @@ Use these target formats with `openclaw message send` or cron/webhooks:
 
 Bare IDs are treated as channels.
 
+## Reactions (message tool)
+
+* Use `message action=react` with `channel=mattermost`.
+* `messageId` is the Mattermost post id.
+* `emoji` accepts names like `thumbsup` or `:+1:` (colons are optional).
+* Set `remove=true` (boolean) to remove a reaction.
+* Reaction add/remove events are forwarded as system events to the routed agent session.
+
+Examples:
+
+```
+message action=react channel=mattermost target=channel:<channelId> messageId=<postId> emoji=thumbsup
+message action=react channel=mattermost target=channel:<channelId> messageId=<postId> emoji=thumbsup remove=true
+```
+
+Config:
+
+* `channels.mattermost.actions.reactions`: enable/disable reaction actions (default true).
+* Per-account override: `channels.mattermost.accounts.<id>.actions.reactions`.
+
 ## Multi-account
 
 Mattermost supports multiple accounts under `channels.mattermost.accounts`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     mattermost: {

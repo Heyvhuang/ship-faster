@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/sandbox-vs-tool-policy-vs-elevated.md; fetched_at=2026-02-20T10:29:20.474Z; sha256=2f7cbf33d4b8246ecec79f4a5e12199dac400522b624d388f65a07f752e3ced8; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -16,7 +18,7 @@ OpenClaw has three related (but different) controls:
 
 Use the inspector to see what OpenClaw is *actually* doing:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw sandbox explain
 openclaw sandbox explain --session agent:main:main
 openclaw sandbox explain --agent work
@@ -70,7 +72,7 @@ Rules of thumb:
 
 Tool policies (global, agent, sandbox) support `group:*` entries that expand to multiple tools:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   tools: {
     sandbox: {

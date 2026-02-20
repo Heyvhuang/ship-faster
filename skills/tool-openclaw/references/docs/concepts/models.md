@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/models.md; fetched_at=2026-02-20T10:29:17.546Z; sha256=647de022a27fabd0b2dd1fa3caf409b3f0d0763c72dcba7737e682a8b5109f65; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -34,7 +36,7 @@ Related:
 
 If you don’t want to hand-edit config, run the onboarding wizard:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw onboard
 ```
 
@@ -74,13 +76,13 @@ like it “didn’t respond.” The fix is to either:
 
 Example allowlist config:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: {
     model: { primary: "anthropic/claude-sonnet-4-5" },
     models: {
       "anthropic/claude-sonnet-4-5": { alias: "Sonnet" },
-      "anthropic/claude-opus-4-5": { alias: "Opus" },
+      "anthropic/claude-opus-4-6": { alias: "Opus" },
     },
   },
 }
@@ -111,7 +113,7 @@ Full command behavior/config: [Slash commands](/tools/slash-commands).
 
 ## CLI commands
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models list
 openclaw models status
 openclaw models set <provider/model>
@@ -158,7 +160,7 @@ Use `--check` for automation (exit `1` when missing/expired, `2` when expiring).
 
 Preferred Anthropic auth is the Claude Code CLI setup-token (run anywhere; paste on the gateway host if needed):
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 claude setup-token
 openclaw models status
 ```
@@ -191,7 +193,7 @@ Scan results are ranked by:
 Input
 
 * OpenRouter `/models` list (filter `:free`)
-* Requires OpenRouter API key from auth profiles or `OPENROUTER_API_KEY` (see [/environment](/environment))
+* Requires OpenRouter API key from auth profiles or `OPENROUTER_API_KEY` (see [/environment](/help/environment))
 * Optional filters: `--max-age-days`, `--min-params`, `--provider`, `--max-candidates`
 * Probe controls: `--timeout`, `--concurrency`
 

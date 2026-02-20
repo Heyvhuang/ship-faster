@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/local-models.md; fetched_at=2026-02-20T10:29:20.145Z; sha256=6ee2a53453687ab3aca1732074c2fdfae0b9426d82174cb76c7eb8f589866f19; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -12,13 +14,13 @@ Local is doable, but OpenClaw expects large context + strong defenses against pr
 
 Best current local stack. Load MiniMax M2.1 in LM Studio, enable the local server (default `http://127.0.0.1:1234`), and use Responses API to keep reasoning separate from final text.
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
       model: { primary: "lmstudio/minimax-m2.1-gs32" },
       models: {
-        "anthropic/claude-opus-4-5": { alias: "Opus" },
+        "anthropic/claude-opus-4-6": { alias: "Opus" },
         "lmstudio/minimax-m2.1-gs32": { alias: "Minimax" },
       },
     },
@@ -59,18 +61,18 @@ Keep hosted models configured even when running local; use `models.mode: "merge"
 
 ### Hybrid config: hosted primary, local fallback
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agents: {
     defaults: {
       model: {
         primary: "anthropic/claude-sonnet-4-5",
-        fallbacks: ["lmstudio/minimax-m2.1-gs32", "anthropic/claude-opus-4-5"],
+        fallbacks: ["lmstudio/minimax-m2.1-gs32", "anthropic/claude-opus-4-6"],
       },
       models: {
         "anthropic/claude-sonnet-4-5": { alias: "Sonnet" },
         "lmstudio/minimax-m2.1-gs32": { alias: "MiniMax Local" },
-        "anthropic/claude-opus-4-5": { alias: "Opus" },
+        "anthropic/claude-opus-4-6": { alias: "Opus" },
       },
     },
   },
@@ -111,7 +113,7 @@ Swap the primary and fallback order; keep the same providers block and `models.m
 
 vLLM, LiteLLM, OAI-proxy, or custom gateways work if they expose an OpenAI-style `/v1` endpoint. Replace the provider block above with your endpoint and model ID:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   models: {
     mode: "merge",

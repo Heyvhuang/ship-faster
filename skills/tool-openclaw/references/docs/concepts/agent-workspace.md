@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/agent-workspace.md; fetched_at=2026-02-20T10:29:16.901Z; sha256=eeadba37bed6bf5c23c0b81108001e1681cfefd20051ebcb5003ff1f9ee56dc6; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -26,7 +28,7 @@ inside a sandbox workspace under `~/.openclaw/sandboxes`, not your host workspac
   `~/.openclaw/workspace-<profile>`.
 * Override in `~/.openclaw/openclaw.json`:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: {
     workspace: "~/.openclaw/workspace",
@@ -40,7 +42,7 @@ workspace and seed the bootstrap files if they are missing.
 If you already manage the workspace files yourself, you can disable bootstrap
 file creation:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { agent: { skipBootstrap: true } }
 ```
 
@@ -114,7 +116,8 @@ See [Memory](/concepts/memory) for the workflow and automatic memory flush.
 
 If any bootstrap file is missing, OpenClaw injects a "missing file" marker into
 the session and continues. Large bootstrap files are truncated when injected;
-adjust the limit with `agents.defaults.bootstrapMaxChars` (default: 20000).
+adjust limits with `agents.defaults.bootstrapMaxChars` (default: 20000) and
+`agents.defaults.bootstrapTotalMaxChars` (default: 150000).
 `openclaw setup` can recreate missing defaults without overwriting existing
 files.
 
@@ -143,7 +146,7 @@ workspace lives).
 If git is installed, brand-new workspaces are initialized automatically. If this
 workspace is not already a repo, run:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 cd ~/.openclaw/workspace
 git init
 git add AGENTS.md SOUL.md TOOLS.md IDENTITY.md USER.md HEARTBEAT.md memory/
@@ -159,7 +162,7 @@ Option A: GitHub web UI
 3. Copy the HTTPS remote URL.
 4. Add the remote and push:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 git branch -M main
 git remote add origin <https-url>
 git push -u origin main
@@ -167,7 +170,7 @@ git push -u origin main
 
 Option B: GitHub CLI (`gh`)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 gh auth login
 gh repo create openclaw-workspace --private --source . --remote origin --push
 ```
@@ -179,7 +182,7 @@ Option C: GitLab web UI
 3. Copy the HTTPS remote URL.
 4. Add the remote and push:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 git branch -M main
 git remote add origin <https-url>
 git push -u origin main
@@ -187,7 +190,7 @@ git push -u origin main
 
 ### 3) Ongoing updates
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 git status
 git add .
 git commit -m "Update memory"
@@ -207,7 +210,7 @@ secret elsewhere (password manager, environment variables, or `~/.openclaw/`).
 
 Suggested `.gitignore` starter:
 
-```gitignore  theme={null}
+```gitignore  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 .DS_Store
 .env
 **/*.key
@@ -226,6 +229,6 @@ Suggested `.gitignore` starter:
 ## Advanced notes
 
 * Multi-agent routing can use different workspaces per agent. See
-  [Channel routing](/concepts/channel-routing) for routing configuration.
+  [Channel routing](/channels/channel-routing) for routing configuration.
 * If `agents.defaults.sandbox` is enabled, non-main sessions can use per-session sandbox
   workspaces under `agents.defaults.sandbox.workspaceRoot`.

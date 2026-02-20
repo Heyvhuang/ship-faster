@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/remote.md; fetched_at=2026-02-20T10:29:20.467Z; sha256=0f9c24fb500c9cd0dbc8baca3e4633fe7f110e052ce619a2349e1c9ef9ed3fde; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -27,7 +29,7 @@ Run the Gateway on a persistent host and reach it via **Tailscale** or SSH.
 
 * **Best UX:** keep `gateway.bind: "loopback"` and use **Tailscale Serve** for the Control UI.
 * **Fallback:** keep loopback + SSH tunnel from any machine that needs access.
-* **Examples:** [exe.dev](/platforms/exe-dev) (easy VM) or [Hetzner](/platforms/hetzner) (production VPS).
+* **Examples:** [exe.dev](/install/exe-dev) (easy VM) or [Hetzner](/install/hetzner) (production VPS).
 
 This is ideal when your laptop sleeps often but you want the agent always-on.
 
@@ -69,7 +71,7 @@ Notes:
 
 Create a local tunnel to the remote Gateway WS:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 ssh -N -L 18789:127.0.0.1:18789 user@host
 ```
 
@@ -86,7 +88,7 @@ Include `--token` or `--password` explicitly. Missing explicit credentials is an
 
 You can persist a remote target so CLI commands use it by default:
 
-```json5  theme={null}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
     mode: "remote",

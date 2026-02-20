@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/thinking.md; fetched_at=2026-02-20T10:29:29.880Z; sha256=dd4ac781c4b979bd9c62080707fdecc967a6af9c5b350958be549050eb7f8013; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -15,6 +17,7 @@
   * medium → “think harder”
   * high → “ultrathink” (max budget)
   * xhigh → “ultrathink+” (GPT-5.2 + Codex models only)
+  * `x-high`, `x_high`, `extra-high`, `extra high`, and `extra_high` map to `xhigh`.
   * `highest`, `max` map to `high`.
 * Provider notes:
   * Z.AI (`zai/*`) only supports binary thinking (`on`/`off`). Any non-`off` level is treated as `on` (mapped to `low`).

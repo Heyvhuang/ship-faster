@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/channels.md; fetched_at=2026-02-20T10:29:14.746Z; sha256=0758e7aacd0e1d4c7cf7b6243b225270e35a930e460f9242ded5a9a2d737ae87; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -15,7 +17,7 @@ Related docs:
 
 ## Common commands
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels list
 openclaw channels status
 openclaw channels capabilities
@@ -26,7 +28,7 @@ openclaw channels logs --channel all
 
 ## Add / remove accounts
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels add --channel telegram --token <bot-token>
 openclaw channels remove --channel telegram --delete
 ```
@@ -35,7 +37,7 @@ Tip: `openclaw channels add --help` shows per-channel flags (token, app token, s
 
 ## Login / logout (interactive)
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels login --channel whatsapp
 openclaw channels logout --channel whatsapp
 ```
@@ -50,7 +52,7 @@ openclaw channels logout --channel whatsapp
 
 Fetch provider capability hints (intents/scopes where available) plus static feature support:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels capabilities
 openclaw channels capabilities --channel discord --target channel:123
 ```
@@ -65,7 +67,7 @@ Notes:
 
 Resolve channel/user names to IDs using the provider directory:
 
-```bash  theme={null}
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw channels resolve --channel slack "#general" "@jane"
 openclaw channels resolve --channel discord "My Server/#support" "@someone"
 openclaw channels resolve --channel matrix "Project Room"

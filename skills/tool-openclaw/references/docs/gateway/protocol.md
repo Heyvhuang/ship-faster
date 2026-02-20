@@ -1,3 +1,5 @@
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/protocol.md; fetched_at=2026-02-20T10:29:20.582Z; sha256=51f03d4aa6fb3fc00bab89ca5069e89c528154e5db7702210765af3a411b9056; content_type=text/markdown; charset=utf-8; status=ok -->
+
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
@@ -20,7 +22,7 @@ handshake time.
 
 Gateway → Client (pre-connect challenge):
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "type": "event",
   "event": "connect.challenge",
@@ -30,7 +32,7 @@ Gateway → Client (pre-connect challenge):
 
 Client → Gateway:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "type": "req",
   "id": "…",
@@ -65,7 +67,7 @@ Client → Gateway:
 
 Gateway → Client:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "type": "res",
   "id": "…",
@@ -76,7 +78,7 @@ Gateway → Client:
 
 When a device token is issued, `hello-ok` also includes:
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "auth": {
     "deviceToken": "…",
@@ -88,7 +90,7 @@ When a device token is issued, `hello-ok` also includes:
 
 ### Node example
 
-```json  theme={null}
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   "type": "req",
   "id": "…",
