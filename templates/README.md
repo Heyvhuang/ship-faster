@@ -18,6 +18,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `009-ops-status-page-starter-template` | Ops Status Page Starter Template | [`009-ops-status-page-starter-template/`](009-ops-status-page-starter-template/) |
 
+| `010-ai-nutrition-coach-via-photo-analysis` | AI nutrition coach via photo analysis | [`010-ai-nutrition-coach-via-photo-analysis/`](010-ai-nutrition-coach-via-photo-analysis/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

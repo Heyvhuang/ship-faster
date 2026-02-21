@@ -1,0 +1,5 @@
+{
+  "name": "AI nutrition coach via photo analysis",
+  "description": "Mobile app that identifies foods from photos and delivers instant macro tracking without manual entry.",
+  "requestFramePermissions": []
+}
