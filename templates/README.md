@@ -16,6 +16,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `008-code-dependency-risk-monitor` | Code Dependency Risk Monitor | [`008-code-dependency-risk-monitor/`](008-code-dependency-risk-monitor/) |
 
+| `009-ops-status-page-starter-template` | Ops Status Page Starter Template | [`009-ops-status-page-starter-template/`](009-ops-status-page-starter-template/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
