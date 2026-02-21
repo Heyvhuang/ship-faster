@@ -20,6 +20,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `010-ai-nutrition-coach-via-photo-analysis` | AI nutrition coach via photo analysis | [`010-ai-nutrition-coach-via-photo-analysis/`](010-ai-nutrition-coach-via-photo-analysis/) |
 
+| `011-ai-powered-bookkeeping-for-freelancers` | AI-Powered Bookkeeping for Freelancers | [`011-ai-powered-bookkeeping-for-freelancers/`](011-ai-powered-bookkeeping-for-freelancers/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
