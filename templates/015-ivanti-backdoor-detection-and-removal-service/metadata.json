@@ -1,0 +1,5 @@
+{
+  "name": "Ivanti Backdoor Detection and Removal Service",
+  "description": "Emergency security service detecting and removing dormant backdoors specifically planted in Ivanti EPMM systems by attackers.",
+  "requestFramePermissions": []
+}

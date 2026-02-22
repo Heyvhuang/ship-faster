@@ -28,6 +28,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `014-enterprise-github-security-scanner` | Enterprise GitHub Security Scanner | [`014-enterprise-github-security-scanner/`](014-enterprise-github-security-scanner/) |
 
+| `015-ivanti-backdoor-detection-and-removal-service` | Ivanti Backdoor Detection and Removal Service | [`015-ivanti-backdoor-detection-and-removal-service/`](015-ivanti-backdoor-detection-and-removal-service/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
