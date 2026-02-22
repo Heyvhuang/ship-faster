@@ -1,0 +1,5 @@
+{
+  "name": "Enterprise GitHub Security Scanner",
+  "description": "Paid service scanning company GitHub organizations for trending repositories with security vulnerabilities before developers can introduce them.",
+  "requestFramePermissions": []
+}

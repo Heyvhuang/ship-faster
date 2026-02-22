@@ -26,6 +26,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `013-enterprise-research-intelligence-dashboard` | Enterprise Research Intelligence Dashboard | [`013-enterprise-research-intelligence-dashboard/`](013-enterprise-research-intelligence-dashboard/) |
 
+| `014-enterprise-github-security-scanner` | Enterprise GitHub Security Scanner | [`014-enterprise-github-security-scanner/`](014-enterprise-github-security-scanner/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
