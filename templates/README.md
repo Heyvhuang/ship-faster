@@ -24,6 +24,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `012-research-paper-translation-service-for-non-english` | Research Paper Translation Service for Non-English Markets | [`012-research-paper-translation-service-for-non-english/`](012-research-paper-translation-service-for-non-english/) |
 
+| `013-enterprise-research-intelligence-dashboard` | Enterprise Research Intelligence Dashboard | [`013-enterprise-research-intelligence-dashboard/`](013-enterprise-research-intelligence-dashboard/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
