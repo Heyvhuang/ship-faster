@@ -22,6 +22,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `011-ai-powered-bookkeeping-for-freelancers` | AI-Powered Bookkeeping for Freelancers | [`011-ai-powered-bookkeeping-for-freelancers/`](011-ai-powered-bookkeeping-for-freelancers/) |
 
+| `012-research-paper-translation-service-for-non-english` | Research Paper Translation Service for Non-English Markets | [`012-research-paper-translation-service-for-non-english/`](012-research-paper-translation-service-for-non-english/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
