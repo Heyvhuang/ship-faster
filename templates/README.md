@@ -34,6 +34,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `017-developer-skill-gap-analysis-from-github-language-` | Developer Skill Gap Analysis from GitHub Language Trends | [`017-developer-skill-gap-analysis-from-github-language-/`](017-developer-skill-gap-analysis-from-github-language-/) |
 
+| `018-ivanti-backdoor-detection-scanner` | Ivanti Backdoor Detection Scanner | [`018-ivanti-backdoor-detection-scanner/`](018-ivanti-backdoor-detection-scanner/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

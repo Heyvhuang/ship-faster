@@ -1,0 +1,5 @@
+{
+  "name": "Ivanti Backdoor Detection Scanner",
+  "description": "Specialized scanner to detect dormant backdoors in Ivanti EPMM installations before they activate.",
+  "requestFramePermissions": []
+}
