@@ -1,0 +1,5 @@
+{
+  "name": "Developer Skill Gap Analysis from GitHub Language Trends",
+  "description": "Analyze team GitHub activity against trending languages to identify skill gaps and recommend hiring or training priorities.",
+  "requestFramePermissions": []
+}

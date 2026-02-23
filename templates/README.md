@@ -32,6 +32,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `016-ai-agent-security-audit-service-for-messaging-apps` | AI Agent Security Audit Service for Messaging Apps | [`016-ai-agent-security-audit-service-for-messaging-apps/`](016-ai-agent-security-audit-service-for-messaging-apps/) |
 
+| `017-developer-skill-gap-analysis-from-github-language-` | Developer Skill Gap Analysis from GitHub Language Trends | [`017-developer-skill-gap-analysis-from-github-language-/`](017-developer-skill-gap-analysis-from-github-language-/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
