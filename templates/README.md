@@ -30,6 +30,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `015-ivanti-backdoor-detection-and-removal-service` | Ivanti Backdoor Detection and Removal Service | [`015-ivanti-backdoor-detection-and-removal-service/`](015-ivanti-backdoor-detection-and-removal-service/) |
 
+| `016-ai-agent-security-audit-service-for-messaging-apps` | AI Agent Security Audit Service for Messaging Apps | [`016-ai-agent-security-audit-service-for-messaging-apps/`](016-ai-agent-security-audit-service-for-messaging-apps/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

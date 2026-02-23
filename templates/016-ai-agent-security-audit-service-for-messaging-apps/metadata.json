@@ -1,0 +1,5 @@
+{
+  "name": "AI Agent Security Audit Service for Messaging Apps",
+  "description": "Security assessment service testing AI agents for data exfiltration vulnerabilities through URL previews and messaging integrations.",
+  "requestFramePermissions": []
+}
