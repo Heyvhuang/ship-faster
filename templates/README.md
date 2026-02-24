@@ -42,6 +42,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `021-multi-agent-compliance-simulator` | Multi-Agent Compliance Simulator | [`021-multi-agent-compliance-simulator/`](021-multi-agent-compliance-simulator/) |
 
+| `022-audio-model-debugging-console-for-production-teams` | Audio Model Debugging Console for Production Teams | [`022-audio-model-debugging-console-for-production-teams/`](022-audio-model-debugging-console-for-production-teams/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

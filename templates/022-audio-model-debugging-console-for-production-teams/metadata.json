@@ -1,0 +1,5 @@
+{
+  "name": "Audio Model Debugging Console for Production Teams",
+  "description": "Dashboard showing real-time audio processing model failures with SAE-based feature explanations for speech recognition and audio classification systems.",
+  "requestFramePermissions": []
+}
