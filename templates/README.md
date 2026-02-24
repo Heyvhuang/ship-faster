@@ -40,6 +40,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `020-ai-agent-security-audit` | AI Agent Security Audit | [`020-ai-agent-security-audit/`](020-ai-agent-security-audit/) |
 
+| `021-multi-agent-compliance-simulator` | Multi-Agent Compliance Simulator | [`021-multi-agent-compliance-simulator/`](021-multi-agent-compliance-simulator/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

@@ -1,0 +1,5 @@
+{
+  "name": "Multi-Agent Compliance Simulator",
+  "description": "Simulate multi-agent AI societies to detect emergent compliance violations before production deployment",
+  "requestFramePermissions": []
+}
