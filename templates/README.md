@@ -38,6 +38,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `019-line-of-sight-calculation-service` | Line of Sight Calculation Service | [`019-line-of-sight-calculation-service/`](019-line-of-sight-calculation-service/) |
 
+| `020-ai-agent-security-audit` | AI Agent Security Audit | [`020-ai-agent-security-audit/`](020-ai-agent-security-audit/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

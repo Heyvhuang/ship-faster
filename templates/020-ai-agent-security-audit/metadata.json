@@ -1,0 +1,5 @@
+{
+  "name": "AI Agent Security Audit",
+  "description": "Automated security testing service for AI agent deployments that checks for prompt injection, data leakage, and sandbox escape vulnerabilities.",
+  "requestFramePermissions": []
+}
