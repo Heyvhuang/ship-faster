@@ -44,6 +44,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `022-audio-model-debugging-console-for-production-teams` | Audio Model Debugging Console for Production Teams | [`022-audio-model-debugging-console-for-production-teams/`](022-audio-model-debugging-console-for-production-teams/) |
 
+| `023-llm-data-exfiltration-testing-service` | LLM Data Exfiltration Testing Service | [`023-llm-data-exfiltration-testing-service/`](023-llm-data-exfiltration-testing-service/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

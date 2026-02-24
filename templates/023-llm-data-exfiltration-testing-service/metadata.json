@@ -1,0 +1,5 @@
+{
+  "name": "LLM Data Exfiltration Testing Service",
+  "description": "Test enterprise messaging apps for LLM data exfiltration vulnerabilities and provide detailed security reports.",
+  "requestFramePermissions": []
+}
