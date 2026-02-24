@@ -36,6 +36,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `018-ivanti-backdoor-detection-scanner` | Ivanti Backdoor Detection Scanner | [`018-ivanti-backdoor-detection-scanner/`](018-ivanti-backdoor-detection-scanner/) |
 
+| `019-line-of-sight-calculation-service` | Line of Sight Calculation Service | [`019-line-of-sight-calculation-service/`](019-line-of-sight-calculation-service/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

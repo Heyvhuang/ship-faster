@@ -1,0 +1,5 @@
+{
+  "name": "Line of Sight Calculation Service",
+  "description": "API service for calculating optimal viewpoints and line-of-sight analysis for photography, real estate, and telecommunications applications.",
+  "requestFramePermissions": []
+}
