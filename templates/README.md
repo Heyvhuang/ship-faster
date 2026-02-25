@@ -50,6 +50,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `025-code-generation-workflow-optimizer` | Code Generation Workflow Optimizer | [`025-code-generation-workflow-optimizer/`](025-code-generation-workflow-optimizer/) |
 
+| `026-devtool-performance-audit-api` | DevTool Performance Audit API | [`026-devtool-performance-audit-api/`](026-devtool-performance-audit-api/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

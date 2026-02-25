@@ -1,0 +1,5 @@
+{
+  "name": "DevTool Performance Audit API",
+  "description": "API that analyzes Apple Silicon performance bottlenecks for development teams, highlighting E-core vs P-core optimization opportunities.",
+  "requestFramePermissions": []
+}
