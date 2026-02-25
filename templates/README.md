@@ -48,6 +48,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `024-llm-data-exfiltration-scanner` | LLM Data Exfiltration Scanner | [`024-llm-data-exfiltration-scanner/`](024-llm-data-exfiltration-scanner/) |
 
+| `025-code-generation-workflow-optimizer` | Code Generation Workflow Optimizer | [`025-code-generation-workflow-optimizer/`](025-code-generation-workflow-optimizer/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

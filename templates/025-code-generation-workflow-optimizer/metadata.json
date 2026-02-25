@@ -1,0 +1,5 @@
+{
+  "name": "Code Generation Workflow Optimizer",
+  "description": "Tool that analyzes agentic coding patterns and optimizes LLM prompting workflows for faster, more accurate code generation.",
+  "requestFramePermissions": []
+}
