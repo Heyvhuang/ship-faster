@@ -1,0 +1,5 @@
+{
+  "name": "LLM Data Exfiltration Scanner",
+  "description": "Security tool that monitors messaging apps and AI agents for data leakage attempts via URL previews and malicious prompts.",
+  "requestFramePermissions": []
+}

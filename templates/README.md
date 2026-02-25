@@ -46,6 +46,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `023-llm-data-exfiltration-testing-service` | LLM Data Exfiltration Testing Service | [`023-llm-data-exfiltration-testing-service/`](023-llm-data-exfiltration-testing-service/) |
 
+| `024-llm-data-exfiltration-scanner` | LLM Data Exfiltration Scanner | [`024-llm-data-exfiltration-scanner/`](024-llm-data-exfiltration-scanner/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
