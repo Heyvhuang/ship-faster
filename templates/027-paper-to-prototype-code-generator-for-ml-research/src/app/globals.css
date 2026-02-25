@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-mono: var(--font-geist-mono);
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+}
+
+::selection {
+  background: #22c55e;
+  color: #000;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}

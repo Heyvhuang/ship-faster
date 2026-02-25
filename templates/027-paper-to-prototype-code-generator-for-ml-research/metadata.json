@@ -1,0 +1,5 @@
+{
+  "name": "Paper-to-Prototype Code Generator for ML Research",
+  "description": "Service that converts ML paper abstracts and GitHub links into working prototype implementations with standardized API interfaces.",
+  "requestFramePermissions": []
+}

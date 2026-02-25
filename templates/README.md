@@ -52,6 +52,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `026-devtool-performance-audit-api` | DevTool Performance Audit API | [`026-devtool-performance-audit-api/`](026-devtool-performance-audit-api/) |
 
+| `027-paper-to-prototype-code-generator-for-ml-research` | Paper-to-Prototype Code Generator for ML Research | [`027-paper-to-prototype-code-generator-for-ml-research/`](027-paper-to-prototype-code-generator-for-ml-research/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
