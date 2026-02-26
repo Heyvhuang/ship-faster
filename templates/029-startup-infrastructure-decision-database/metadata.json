@@ -1,0 +1,5 @@
+{
+  "name": "Startup Infrastructure Decision Database",
+  "description": "Searchable database of infrastructure choices (databases, clouds, tools) made by startups, with regret ratings and advice.",
+  "requestFramePermissions": []
+}

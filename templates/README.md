@@ -56,6 +56,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `028-vision-language-model-decision-framework` | Vision-Language Model Decision Framework | [`028-vision-language-model-decision-framework/`](028-vision-language-model-decision-framework/) |
 
+| `029-startup-infrastructure-decision-database` | Startup Infrastructure Decision Database | [`029-startup-infrastructure-decision-database/`](029-startup-infrastructure-decision-database/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
