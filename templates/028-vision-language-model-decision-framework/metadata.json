@@ -1,0 +1,5 @@
+{
+  "name": "Vision-Language Model Decision Framework",
+  "description": "Decision tree tool helping engineers choose VLMs based on specific use case requirements and constraint parameters.",
+  "requestFramePermissions": []
+}

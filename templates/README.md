@@ -54,6 +54,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `027-paper-to-prototype-code-generator-for-ml-research` | Paper-to-Prototype Code Generator for ML Research | [`027-paper-to-prototype-code-generator-for-ml-research/`](027-paper-to-prototype-code-generator-for-ml-research/) |
 
+| `028-vision-language-model-decision-framework` | Vision-Language Model Decision Framework | [`028-vision-language-model-decision-framework/`](028-vision-language-model-decision-framework/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
