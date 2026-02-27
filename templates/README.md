@@ -58,6 +58,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `029-startup-infrastructure-decision-database` | Startup Infrastructure Decision Database | [`029-startup-infrastructure-decision-database/`](029-startup-infrastructure-decision-database/) |
 
+| `030-ai-agent-system-prompt-analyzer` | AI-Agent System Prompt Analyzer | [`030-ai-agent-system-prompt-analyzer/`](030-ai-agent-system-prompt-analyzer/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

@@ -1,0 +1,5 @@
+{
+  "name": "AI-Agent System Prompt Analyzer",
+  "description": "Tool that analyzes and scores AI agent system prompts for effectiveness, edge cases, and potential prompt injection vulnerabilities.",
+  "requestFramePermissions": []
+}
