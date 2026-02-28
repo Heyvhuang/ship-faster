@@ -1,0 +1,5 @@
+{
+  "name": "GitHub Repo Health Score API",
+  "description": "API that scores GitHub repositories on maintenance health, security, and activity to help identify well-maintained dependencies.",
+  "requestFramePermissions": []
+}

@@ -60,6 +60,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `030-ai-agent-system-prompt-analyzer` | AI-Agent System Prompt Analyzer | [`030-ai-agent-system-prompt-analyzer/`](030-ai-agent-system-prompt-analyzer/) |
 
+| `031-github-repo-health-score-api` | GitHub Repo Health Score API | [`031-github-repo-health-score-api/`](031-github-repo-health-score-api/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
