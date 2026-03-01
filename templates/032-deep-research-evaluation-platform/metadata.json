@@ -1,0 +1,5 @@
+{
+  "name": "Deep Research Evaluation Platform",
+  "description": "A SaaS that evaluates AI research agents using DREAM-style agentic metrics, scoring reasoning quality.",
+  "requestFramePermissions": []
+}

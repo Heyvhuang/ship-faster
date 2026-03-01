@@ -62,6 +62,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `031-github-repo-health-score-api` | GitHub Repo Health Score API | [`031-github-repo-health-score-api/`](031-github-repo-health-score-api/) |
 
+| `032-deep-research-evaluation-platform` | Deep Research Evaluation Platform | [`032-deep-research-evaluation-platform/`](032-deep-research-evaluation-platform/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
