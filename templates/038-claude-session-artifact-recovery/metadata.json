@@ -1,0 +1,5 @@
+{
+  "name": "Claude Session Artifact Recovery",
+  "description": "Recover and visualize lost code from Claude Code sessions that users accidentally closed or lost due to disk issues.",
+  "requestFramePermissions": []
+}

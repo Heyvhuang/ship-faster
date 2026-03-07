@@ -74,6 +74,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `037-ai-agent-sandbox-infrastructure-service` | AI Agent Sandbox Infrastructure Service | [`037-ai-agent-sandbox-infrastructure-service/`](037-ai-agent-sandbox-infrastructure-service/) |
 
+| `038-claude-session-artifact-recovery` | Claude Session Artifact Recovery | [`038-claude-session-artifact-recovery/`](038-claude-session-artifact-recovery/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
