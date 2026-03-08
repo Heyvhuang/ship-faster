@@ -1,0 +1,5 @@
+{
+  "name": "GitHub Maintainer AI Triage Agent",
+  "description": "AI agent that drafts contextual responses to new issues and PRs for maintainers of mid-sized open source repos, learning from past maintainer communication patterns.",
+  "requestFramePermissions": []
+}

@@ -76,6 +76,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `038-claude-session-artifact-recovery` | Claude Session Artifact Recovery | [`038-claude-session-artifact-recovery/`](038-claude-session-artifact-recovery/) |
 
+| `039-github-maintainer-ai-triage-agent` | GitHub Maintainer AI Triage Agent | [`039-github-maintainer-ai-triage-agent/`](039-github-maintainer-ai-triage-agent/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
