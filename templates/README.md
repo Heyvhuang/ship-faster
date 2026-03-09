@@ -78,6 +78,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `039-github-maintainer-ai-triage-agent` | GitHub Maintainer AI Triage Agent | [`039-github-maintainer-ai-triage-agent/`](039-github-maintainer-ai-triage-agent/) |
 
+| `040-video-model-paper-tracker` | Video Model Paper Tracker | [`040-video-model-paper-tracker/`](040-video-model-paper-tracker/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

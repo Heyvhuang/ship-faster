@@ -1,0 +1,5 @@
+{
+  "name": "Video Model Paper Tracker",
+  "description": "Weekly email digest tracking video generation and editing papers with benchmark scores and open-source model links.",
+  "requestFramePermissions": []
+}
