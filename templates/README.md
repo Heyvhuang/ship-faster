@@ -80,6 +80,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `040-video-model-paper-tracker` | Video Model Paper Tracker | [`040-video-model-paper-tracker/`](040-video-model-paper-tracker/) |
 
+| `041-hn-account-age-filter-extension` | HN Account Age Filter Extension | [`041-hn-account-age-filter-extension/`](041-hn-account-age-filter-extension/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

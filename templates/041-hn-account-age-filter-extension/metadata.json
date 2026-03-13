@@ -1,0 +1,5 @@
+{
+  "name": "HN Account Age Filter Extension",
+  "description": "Browser extension to filter HN by account age, helping users avoid low-quality posts from new accounts.",
+  "requestFramePermissions": []
+}
