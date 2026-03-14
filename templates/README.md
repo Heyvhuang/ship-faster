@@ -82,6 +82,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `041-hn-account-age-filter-extension` | HN Account Age Filter Extension | [`041-hn-account-age-filter-extension/`](041-hn-account-age-filter-extension/) |
 
+| `042-hn-account-age-filter` | HN Account Age Filter | [`042-hn-account-age-filter/`](042-hn-account-age-filter/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

@@ -1,0 +1,5 @@
+{
+  "name": "HN Account Age Filter",
+  "description": "A browser extension that adds an account age filter to Hacker News, letting users hide posts from accounts under a configurable age threshold.",
+  "requestFramePermissions": []
+}
