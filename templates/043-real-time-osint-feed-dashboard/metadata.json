@@ -1,0 +1,5 @@
+{
+  "name": "Real-Time OSINT Feed Dashboard",
+  "description": "Curated OSINT dashboard pulling from 15+ verified global feeds with alerting, for researchers and journalists.",
+  "requestFramePermissions": []
+}

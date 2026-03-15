@@ -84,6 +84,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `042-hn-account-age-filter` | HN Account Age Filter | [`042-hn-account-age-filter/`](042-hn-account-age-filter/) |
 
+| `043-real-time-osint-feed-dashboard` | Real-Time OSINT Feed Dashboard | [`043-real-time-osint-feed-dashboard/`](043-real-time-osint-feed-dashboard/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
