@@ -1,0 +1,5 @@
+{
+  "name": "Paper Reproducibility Cloud",
+  "description": "One-click cloud environments that reproduce exact results from trending HF papers with verified dependencies",
+  "requestFramePermissions": []
+}

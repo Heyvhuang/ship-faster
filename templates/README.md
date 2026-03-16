@@ -86,6 +86,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `043-real-time-osint-feed-dashboard` | Real-Time OSINT Feed Dashboard | [`043-real-time-osint-feed-dashboard/`](043-real-time-osint-feed-dashboard/) |
 
+| `044-paper-reproducibility-cloud` | Paper Reproducibility Cloud | [`044-paper-reproducibility-cloud/`](044-paper-reproducibility-cloud/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

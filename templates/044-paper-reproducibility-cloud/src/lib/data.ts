@@ -1,0 +1,273 @@
+export interface Paper {
+  id: string;
+  title: string;
+  authors: string[];
+  abstract: string;
+  framework: "PyTorch" | "TensorFlow" | "JAX";
+  status: "verified" | "building" | "deprecated";
+  trendingRank: number;
+  likes: number;
+  reproductionTime: string;
+  gpu: string;
+  tags: string[];
+  publishedDate: string;
+  hfUrl: string;
+}
+
+export const papers: Paper[] = [
+  {
+    id: "llama-4-scout",
+    title: "LLaMA 4 Scout: Efficient Mixture-of-Experts for Long-Context Understanding",
+    authors: ["Meta AI Research"],
+    abstract: "We introduce LLaMA 4 Scout, a 17B active parameter MoE model with 16 experts achieving state-of-the-art performance on long-context benchmarks up to 10M tokens.",
+    framework: "PyTorch",
+    status: "verified",
+    trendingRank: 1,
+    likes: 4821,
+    reproductionTime: "1m 42s",
+    gpu: "A10G",
+    tags: ["LLM", "MoE", "Long-Context"],
+    publishedDate: "2025-04-05",
+    hfUrl: "https://huggingface.co/papers/llama-4-scout",
+  },
+  {
+    id: "diffusion-forcing-v2",
+    title: "Diffusion Forcing v2: Controllable Video Generation with Temporal Consistency",
+    authors: ["Chen et al."],
+    abstract: "An improved diffusion forcing framework that enables frame-level control while maintaining temporal coherence across long video sequences.",
+    framework: "PyTorch",
+    status: "verified",
+    trendingRank: 2,
+    likes: 3156,
+    reproductionTime: "1m 18s",
+    gpu: "A10G",
+    tags: ["Video Generation", "Diffusion", "Controllable"],
+    publishedDate: "2025-03-28",
+    hfUrl: "https://huggingface.co/papers/diffusion-forcing-v2",
+  },
+  {
+    id: "reward-model-ensemble",
+    title: "Reward Model Ensembles Eliminate Reward Hacking in RLHF",
+    authors: ["Anthropic Research"],
+    abstract: "We show that ensembling diverse reward models during RLHF training provably eliminates reward hacking while maintaining alignment performance.",
+    framework: "JAX",
+    status: "verified",
+    trendingRank: 3,
+    likes: 2847,
+    reproductionTime: "1m 55s",
+    gpu: "T4",
+    tags: ["RLHF", "Alignment", "Reward Models"],
+    publishedDate: "2025-04-01",
+    hfUrl: "https://huggingface.co/papers/reward-ensemble",
+  },
+  {
+    id: "sparse-attention-linear",
+    title: "Linear-Time Sparse Attention via Learned Hash Functions",
+    authors: ["Google DeepMind"],
+    abstract: "A novel sparse attention mechanism using learned locality-sensitive hashing that achieves linear time complexity while retaining 99.2% of full attention quality.",
+    framework: "JAX",
+    status: "verified",
+    trendingRank: 4,
+    likes: 2531,
+    reproductionTime: "1m 30s",
+    gpu: "T4",
+    tags: ["Attention", "Efficiency", "Transformers"],
+    publishedDate: "2025-03-25",
+    hfUrl: "https://huggingface.co/papers/sparse-attention-linear",
+  },
+  {
+    id: "img-gen-consistency",
+    title: "Consistency Flow Matching for Real-Time Image Generation",
+    authors: ["Stability AI"],
+    abstract: "Combining consistency models with flow matching to generate high-quality 1024x1024 images in a single forward pass at 30fps on consumer GPUs.",
+    framework: "PyTorch",
+    status: "verified",
+    trendingRank: 5,
+    likes: 2204,
+    reproductionTime: "0m 58s",
+    gpu: "T4",
+    tags: ["Image Generation", "Real-Time", "Flow Matching"],
+    publishedDate: "2025-04-02",
+    hfUrl: "https://huggingface.co/papers/consistency-flow",
+  },
+  {
+    id: "code-reasoning-tree",
+    title: "Tree-of-Thought Code Generation with Execution Feedback",
+    authors: ["OpenAI"],
+    abstract: "Applying tree-structured reasoning with real-time code execution feedback to achieve 94.2% pass@1 on HumanEval+ benchmark.",
+    framework: "PyTorch",
+    status: "building",
+    trendingRank: 6,
+    likes: 1987,
+    reproductionTime: "~2m",
+    gpu: "T4",
+    tags: ["Code Generation", "Reasoning", "Tree-of-Thought"],
+    publishedDate: "2025-04-03",
+    hfUrl: "https://huggingface.co/papers/code-tree-reasoning",
+  },
+  {
+    id: "protein-fold-3",
+    title: "ProteinFold3: Structure Prediction with Molecular Dynamics Priors",
+    authors: ["DeepMind"],
+    abstract: "Incorporating molecular dynamics simulation priors into protein structure prediction, achieving sub-angstrom accuracy on CASP16 targets.",
+    framework: "JAX",
+    status: "verified",
+    trendingRank: 7,
+    likes: 1823,
+    reproductionTime: "1m 45s",
+    gpu: "A10G",
+    tags: ["Protein", "Structure Prediction", "MD"],
+    publishedDate: "2025-03-30",
+    hfUrl: "https://huggingface.co/papers/proteinfold3",
+  },
+  {
+    id: "world-model-driving",
+    title: "Driving World Models: End-to-End Autonomous Navigation via Video Prediction",
+    authors: ["Wayve"],
+    abstract: "A world model approach to autonomous driving that predicts future video frames and plans actions in the learned latent space.",
+    framework: "PyTorch",
+    status: "deprecated",
+    trendingRank: 8,
+    likes: 1654,
+    reproductionTime: "N/A",
+    gpu: "A10G",
+    tags: ["Autonomous Driving", "World Models", "Video"],
+    publishedDate: "2025-03-15",
+    hfUrl: "https://huggingface.co/papers/world-model-driving",
+  },
+  {
+    id: "multimodal-rag",
+    title: "Vision-Language RAG: Grounding Retrieval in Visual Context",
+    authors: ["Microsoft Research"],
+    abstract: "A multimodal retrieval-augmented generation system that grounds text generation in visual document understanding, improving factual accuracy by 34%.",
+    framework: "PyTorch",
+    status: "verified",
+    trendingRank: 9,
+    likes: 1542,
+    reproductionTime: "1m 12s",
+    gpu: "T4",
+    tags: ["RAG", "Multimodal", "Vision-Language"],
+    publishedDate: "2025-04-04",
+    hfUrl: "https://huggingface.co/papers/multimodal-rag",
+  },
+  {
+    id: "speech-tokenizer",
+    title: "Universal Speech Tokenizer for Multilingual TTS and ASR",
+    authors: ["Meta FAIR"],
+    abstract: "A single discrete speech tokenizer that supports both text-to-speech and speech recognition across 100+ languages with a unified codebook.",
+    framework: "PyTorch",
+    status: "verified",
+    trendingRank: 10,
+    likes: 1398,
+    reproductionTime: "1m 05s",
+    gpu: "T4",
+    tags: ["Speech", "TTS", "ASR", "Multilingual"],
+    publishedDate: "2025-03-27",
+    hfUrl: "https://huggingface.co/papers/universal-speech-tok",
+  },
+];
+
+export const testimonials = [
+  {
+    name: "Dr. Sarah Chen",
+    role: "ML Researcher, Stanford",
+    quote: "I used to spend 2-3 days setting up environments for paper reproduction. Now it takes under 2 minutes. This has genuinely changed my research workflow.",
+    timeSaved: "~15 hours/paper",
+  },
+  {
+    name: "Marcus Rodriguez",
+    role: "PhD Student, MIT CSAIL",
+    quote: "Had a conference deadline and needed a working baseline from a CVPR paper. Paper Cloud had it running in 90 seconds. Absolute lifesaver.",
+    timeSaved: "~8 hours",
+  },
+  {
+    name: "Dr. Yuki Tanaka",
+    role: "ML Engineer, Anthropic",
+    quote: "We use this to quickly validate paper claims before investing engineering time. The pre-built containers are incredibly reliable.",
+    timeSaved: "~20 hours/month",
+  },
+  {
+    name: "Prof. James Wright",
+    role: "CS Department, CMU",
+    quote: "I recommend this to all my students. Reproducibility shouldn't be a barrier to research. This tool makes it trivially easy.",
+    timeSaved: "~40 hours/semester",
+  },
+];
+
+export const faqItems = [
+  {
+    question: "What frameworks are supported?",
+    answer: "We support PyTorch, TensorFlow, JAX, and all major ML frameworks. Our dependency resolver automatically detects the framework from the paper's code and builds the appropriate container.",
+  },
+  {
+    question: "How does GPU allocation work?",
+    answer: "Each reproduction gets a dedicated GPU (T4 for standard papers, A10G for larger models). GPU time is included in the per-paper price. Monthly subscribers get priority GPU access with no queuing.",
+  },
+  {
+    question: "Can I save my results and model weights?",
+    answer: "Yes! All outputs, model weights, and intermediate results are preserved for 30 days. You can download them at any time or push directly to your own HuggingFace repo.",
+  },
+  {
+    question: "What about papers with private datasets?",
+    answer: "For papers using public datasets, we pre-download and cache them. For private datasets, you can upload your own data to the container. We support datasets up to 50GB per session.",
+  },
+  {
+    question: "How do you handle dependency conflicts?",
+    answer: "Our dependency resolver uses a combination of static analysis and tested lock files. Each top-50 paper has a manually verified environment. For other papers, we use our AI-powered resolver that succeeds 94% of the time.",
+  },
+  {
+    question: "What's your licensing model?",
+    answer: "We respect all original paper licenses. You own your outputs. Our platform fee covers compute, storage, and dependency resolution—not the paper's code or models.",
+  },
+];
+
+export const pricingPlans = [
+  {
+    name: "Pay Per Paper",
+    price: "$3",
+    unit: "per paper",
+    description: "Perfect for occasional use",
+    features: [
+      "Single paper reproduction",
+      "T4 GPU included (up to 2 hours)",
+      "Download results & weights",
+      "JupyterLab or VSCode access",
+      "30-day result storage",
+    ],
+    cta: "Reproduce a Paper",
+    highlighted: false,
+  },
+  {
+    name: "Researcher",
+    price: "$29",
+    unit: "per month",
+    description: "For active researchers",
+    features: [
+      "Unlimited paper reproductions",
+      "Priority GPU access (T4 + A10G)",
+      "Up to 8 hours per session",
+      "Team sharing & collaboration",
+      "90-day result storage",
+      "Priority support",
+    ],
+    cta: "Start Free Trial",
+    highlighted: true,
+  },
+  {
+    name: "Lab",
+    price: "$99",
+    unit: "per month",
+    description: "For research labs & teams",
+    features: [
+      "Everything in Researcher",
+      "Up to 10 team members",
+      "A100 GPU access",
+      "Unlimited session time",
+      "1-year result storage",
+      "Custom container support",
+      "Dedicated support",
+    ],
+    cta: "Contact Sales",
+    highlighted: false,
+  },
+];
