@@ -1,0 +1,5 @@
+{
+  "name": "Notification Compliance Scanner",
+  "description": "Automated scanner that audits mobile apps for notification permission compliance across GDPR, CCPA, and platform-specific privacy requirements.",
+  "requestFramePermissions": []
+}

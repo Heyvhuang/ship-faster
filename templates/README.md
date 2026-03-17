@@ -88,6 +88,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `044-paper-reproducibility-cloud` | Paper Reproducibility Cloud | [`044-paper-reproducibility-cloud/`](044-paper-reproducibility-cloud/) |
 
+| `045-notification-compliance-scanner` | Notification Compliance Scanner | [`045-notification-compliance-scanner/`](045-notification-compliance-scanner/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
