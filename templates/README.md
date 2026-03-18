@@ -90,6 +90,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `045-notification-compliance-scanner` | Notification Compliance Scanner | [`045-notification-compliance-scanner/`](045-notification-compliance-scanner/) |
 
+| `046-new-account-quality-filter` | New Account Quality Filter | [`046-new-account-quality-filter/`](046-new-account-quality-filter/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

@@ -1,0 +1,5 @@
+{
+  "name": "New Account Quality Filter",
+  "description": "Paid service for HN/Reddit-style communities that filters new account submissions based on posting history and quality signals.",
+  "requestFramePermissions": []
+}
