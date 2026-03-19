@@ -92,6 +92,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `046-new-account-quality-filter` | New Account Quality Filter | [`046-new-account-quality-filter/`](046-new-account-quality-filter/) |
 
+| `047-repository-dependency-health-scanner` | Repository Dependency Health Scanner | [`047-repository-dependency-health-scanner/`](047-repository-dependency-health-scanner/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

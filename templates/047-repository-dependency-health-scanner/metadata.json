@@ -1,0 +1,5 @@
+{
+  "name": "Repository Dependency Health Scanner",
+  "description": "Service that scans repos for dependency health issues: abandoned packages, security vulnerabilities, maintainer activity.",
+  "requestFramePermissions": []
+}
