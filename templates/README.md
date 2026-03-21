@@ -94,6 +94,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `047-repository-dependency-health-scanner` | Repository Dependency Health Scanner | [`047-repository-dependency-health-scanner/`](047-repository-dependency-health-scanner/) |
 
+| `048-literate-programming-notebook-for-agents` | Literate Programming Notebook for Agents | [`048-literate-programming-notebook-for-agents/`](048-literate-programming-notebook-for-agents/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).

@@ -1,0 +1,5 @@
+{
+  "name": "Literate Programming Notebook for Agents",
+  "description": "Notebook interface that converts AI agent conversations into literate programming documents with code extraction and documentation.",
+  "requestFramePermissions": []
+}
