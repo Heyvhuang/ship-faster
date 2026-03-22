@@ -1,0 +1,5 @@
+{
+  "name": "Weekly Paper Summary Service",
+  "description": "Curated weekly email with 3-5 paper summaries focused on actionable insights, not just abstracts.",
+  "requestFramePermissions": []
+}

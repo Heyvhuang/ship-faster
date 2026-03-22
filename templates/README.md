@@ -96,6 +96,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `048-literate-programming-notebook-for-agents` | Literate Programming Notebook for Agents | [`048-literate-programming-notebook-for-agents/`](048-literate-programming-notebook-for-agents/) |
 
+| `049-weekly-paper-summary-service` | Weekly Paper Summary Service | [`049-weekly-paper-summary-service/`](049-weekly-paper-summary-service/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
