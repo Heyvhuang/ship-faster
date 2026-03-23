@@ -1,0 +1,5 @@
+{
+  "name": "Reproducibility Score Service",
+  "description": "Score ML papers on code availability, quality, and ease of setup to help practitioners filter for deployable research.",
+  "requestFramePermissions": []
+}
