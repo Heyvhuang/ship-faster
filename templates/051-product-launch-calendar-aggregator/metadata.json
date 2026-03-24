@@ -1,0 +1,5 @@
+{
+  "name": "Product launch calendar aggregator",
+  "description": "Calendar view of upcoming product launches across Product Hunt, BetaList, and other platforms, organized by category.",
+  "requestFramePermissions": []
+}

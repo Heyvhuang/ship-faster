@@ -100,6 +100,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `050-reproducibility-score-service` | Reproducibility Score Service | [`050-reproducibility-score-service/`](050-reproducibility-score-service/) |
 
+| `051-product-launch-calendar-aggregator` | Product launch calendar aggregator | [`051-product-launch-calendar-aggregator/`](051-product-launch-calendar-aggregator/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
