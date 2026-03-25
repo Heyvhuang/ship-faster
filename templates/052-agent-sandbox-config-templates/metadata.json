@@ -1,0 +1,5 @@
+{
+  "name": "Agent Sandbox Config Templates",
+  "description": "Pre-built macOS sandbox configuration templates for popular local AI agents (Claude, GPT, local models) that users can import with one click.",
+  "requestFramePermissions": []
+}

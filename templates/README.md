@@ -102,6 +102,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `051-product-launch-calendar-aggregator` | Product launch calendar aggregator | [`051-product-launch-calendar-aggregator/`](051-product-launch-calendar-aggregator/) |
 
+| `052-agent-sandbox-config-templates` | Agent Sandbox Config Templates | [`052-agent-sandbox-config-templates/`](052-agent-sandbox-config-templates/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
