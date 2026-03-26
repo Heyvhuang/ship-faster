@@ -104,6 +104,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `052-agent-sandbox-config-templates` | Agent Sandbox Config Templates | [`052-agent-sandbox-config-templates/`](052-agent-sandbox-config-templates/) |
 
+| `053-paper-implementation-bug-fix-service` | Paper Implementation Bug Fix Service | [`053-paper-implementation-bug-fix-service/`](053-paper-implementation-bug-fix-service/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
