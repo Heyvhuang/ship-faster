@@ -1,6 +1,62 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "MemoryGuard — Automated PII Scrubbing for AI Agent Memory | GDPR Compliant",
+  description:
+    "MemoryGuard automatically detects and scrubs PII from AI agent conversation memory. GDPR Art. 17 compliant deletion with audit trails. Works with LangChain, AutoGen, CrewAI. Free tier available.",
+  keywords: [
+    "AI agent PII scrubbing",
+    "GDPR agent memory",
+    "AI memory hygiene",
+    "PII detection AI agents",
+    "agent memory compliance",
+    "LangChain GDPR",
+    "conversational AI privacy",
+  ],
+  openGraph: {
+    title: "MemoryGuard — Automated PII Scrubbing for AI Agent Memory",
+    description:
+      "Your AI agents store PII in every conversation. MemoryGuard continuously detects, scrubs, and proves deletion — GDPR compliant in one click.",
+    type: "website",
+    siteName: "MemoryGuard",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MemoryGuard — PII Scrubbing for AI Agent Memory",
+    description:
+      "Automated PII detection and scrubbing for AI agent conversation logs. GDPR compliant. Free tier with 1 agent.",
+  },
+};
+
+const faqItems = [
+  {
+    q: "What types of PII does MemoryGuard detect in agent memory?",
+    a: "MemoryGuard detects names, email addresses, phone numbers, physical addresses, social security numbers, credit card numbers, and custom patterns you define. Our ML-powered scanner works across conversation chains, not just single messages.",
+  },
+  {
+    q: "How does MemoryGuard differ from database privacy tools like Nightfall or Immuta?",
+    a: "Database privacy tools target tabular data in SQL or NoSQL stores. MemoryGuard is purpose-built for conversational agent memory — structured as conversation chains, not rows and columns. We preserve agent context and capability while scrubbing PII, which generic tools cannot do.",
+  },
+  {
+    q: "Does MemoryGuard store my agent's conversation data?",
+    a: "No. MemoryGuard processes memory in-stream. PII is identified and scrubbed without storing raw conversation data on our servers. We only retain metadata for audit logs — never the conversations themselves.",
+  },
+  {
+    q: "Which agent frameworks does MemoryGuard integrate with?",
+    a: "MemoryGuard has native integrations with LangChain, AutoGen, CrewAI, OpenAI Assistants, Custom GPTs, Haystack, LlamaIndex, and Semantic Kernel. You can also connect any agent via our SDK or log export API.",
+  },
+  {
+    q: "How long does it take to get a GDPR compliance report?",
+    a: "Under 5 minutes. Connect your agent memory source, run the scan, and MemoryGuard generates a full PII audit with deletion proof. Scheduled hygiene runs can then happen daily, weekly, or monthly.",
+  },
+  {
+    q: "What happens to agent performance after PII is scrubbed?",
+    a: "MemoryGuard uses selective memory pruning — it removes PII while preserving business-critical context. Agents retain their capabilities and conversation continuity. In most cases, memory compression actually improves performance by removing redundant context.",
+  },
+];
 
 const stats = [
   { value: "2.4M+", label: "PII records scrubbed" },
@@ -55,9 +111,45 @@ const checklistItems = [
   { q: "Is your scrubbing process automated, or does it depend on manual review?", risk: "Operational scalability risk" },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      name: "MemoryGuard",
+      applicationCategory: "SecurityApplication",
+      operatingSystem: "Web",
+      description:
+        "Automated PII scrubbing and memory compression for AI agent conversation memory. GDPR compliant with audit trails and deletion certificates.",
+      offers: {
+        "@type": "AggregateOffer",
+        lowPrice: "0",
+        highPrice: "29",
+        priceCurrency: "USD",
+        offerCount: 3,
+      },
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.a,
+        },
+      })),
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main className="flex-1">
         {/* Hero */}
@@ -397,6 +489,28 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className="py-20 sm:py-24">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                Frequently asked questions
+              </h2>
+              <p className="mt-4 text-lg text-muted">
+                Common questions from engineering leads and DPOs evaluating MemoryGuard.
+              </p>
+            </div>
+            <dl className="space-y-4">
+              {faqItems.map((item, i) => (
+                <div key={i} className="bg-white rounded-xl border border-border p-6">
+                  <dt className="font-semibold text-foreground leading-snug">{item.q}</dt>
+                  <dd className="mt-2 text-muted leading-relaxed text-sm">{item.a}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </section>
 

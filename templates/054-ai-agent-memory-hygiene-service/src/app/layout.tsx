@@ -13,14 +13,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MemoryGuard — AI Agent Memory Hygiene Service",
+  metadataBase: new URL("https://memoryguard.dev"),
+  title: {
+    default: "MemoryGuard — Automated PII Scrubbing for AI Agent Memory",
+    template: "%s | MemoryGuard",
+  },
   description:
-    "Automated PII scrubbing and memory compression for long-running AI coworkers. GDPR compliant in one click.",
+    "Automated PII scrubbing and memory compression for AI agent conversation memory. GDPR Art. 17 compliant with audit trails. Free tier available.",
   openGraph: {
-    title: "MemoryGuard — AI Agent Memory Hygiene Service",
+    title: "MemoryGuard — Automated PII Scrubbing for AI Agent Memory",
     description:
-      "Automated PII scrubbing and memory compression for long-running AI coworkers. GDPR compliant in one click.",
+      "Your AI agents store PII in every conversation. MemoryGuard detects, scrubs, and proves deletion — GDPR compliant in one click.",
     type: "website",
+    siteName: "MemoryGuard",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
