@@ -1,11 +1,13 @@
 import Link from "next/link";
 import Nav from "@/components/Nav";
+import PromptCalculator from "@/components/PromptCalculator";
+import FAQ from "@/components/FAQ";
 
 const stats = [
   { value: "40%", label: "Faster Code Generation" },
   { value: "2.3x", label: "Prompt Success Rate" },
   { value: "31 min", label: "Saved Per Dev Per Day" },
-  { value: "500+", label: "Teams Optimized" },
+  { value: "94%", label: "Teams Renew After Trial" },
 ];
 
 const features = [
@@ -134,74 +136,39 @@ export default function Home() {
       <Nav />
 
       {/* Hero */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 text-center">
         <div className="inline-flex items-center gap-2 bg-accent/10 text-accent text-sm font-medium px-4 py-1.5 rounded-full mb-6">
           <span className="w-2 h-2 bg-green rounded-full animate-pulse" />
-          Now analyzing 12,000+ prompts daily
+          Teams report 40% faster code generation after 2 weeks
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl mx-auto leading-tight">
-          Stop guessing.{" "}
-          <span className="text-accent">Start measuring</span> your AI coding
-          workflow.
+          Your team wastes 31 min/dev/day on{" "}
+          <span className="text-accent">bad AI prompts</span>
         </h1>
         <p className="mt-6 text-lg sm:text-xl text-muted max-w-2xl mx-auto">
-          PromptFlow analyzes your team&apos;s LLM prompting patterns and
-          delivers data-driven optimizations for faster, more accurate Python
-          code generation.
+          PromptFlow analyzes your Python team&apos;s LLM prompting patterns,
+          finds the bottlenecks, and delivers optimized templates that ship code faster.
         </p>
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/dashboard"
-            className="bg-accent hover:bg-accent-hover text-white font-semibold px-8 py-3 rounded-lg transition-colors text-base w-full sm:w-auto"
+            className="bg-accent hover:bg-accent-hover text-white font-semibold px-8 py-3.5 rounded-lg transition-colors text-base w-full sm:w-auto"
           >
-            Start Free Audit
+            Get Your Free Team Audit
           </Link>
           <Link
             href="/recommendations"
-            className="border border-card-border text-foreground hover:bg-card font-semibold px-8 py-3 rounded-lg transition-colors text-base w-full sm:w-auto"
+            className="border border-card-border text-foreground hover:bg-card font-semibold px-8 py-3.5 rounded-lg transition-colors text-base w-full sm:w-auto"
           >
-            View Templates
+            Browse Prompt Templates
           </Link>
         </div>
+        <p className="mt-3 text-xs text-muted">No credit card. Connects in under 5 minutes. Works with VS Code, PyCharm, and Cursor.</p>
+      </section>
 
-        {/* Terminal Preview */}
-        <div className="mt-16 max-w-3xl mx-auto bg-card border border-card-border rounded-xl p-6 sm:p-8 text-left">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="w-3 h-3 rounded-full bg-red" />
-            <span className="w-3 h-3 rounded-full bg-yellow" />
-            <span className="w-3 h-3 rounded-full bg-green" />
-            <span className="ml-2 text-sm text-muted font-mono">
-              promptflow analyze --team acme
-            </span>
-          </div>
-          <div className="font-mono text-sm space-y-2 text-muted">
-            <p>
-              <span className="text-green">$</span> Scanning 2,847 prompts
-              across 8 team members...
-            </p>
-            <p>
-              <span className="text-green">$</span> Analyzing code generation
-              patterns...
-            </p>
-            <p>
-              <span className="text-yellow">!</span> Found 12 inefficient
-              prompt patterns
-            </p>
-            <p>
-              <span className="text-green">$</span> Generating optimization
-              recommendations...
-            </p>
-            <p className="text-foreground pt-2">
-              Efficiency Score:{" "}
-              <span className="text-yellow font-bold">62/100</span> → Potential:{" "}
-              <span className="text-green font-bold">91/100</span>
-            </p>
-            <p className="text-foreground">
-              Estimated time savings:{" "}
-              <span className="text-green font-bold">4.1 hours/dev/week</span>
-            </p>
-          </div>
-        </div>
+      {/* Interactive Calculator */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <PromptCalculator />
       </section>
 
       {/* Stats */}
@@ -393,6 +360,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <FAQ />
+
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
         <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -405,7 +375,7 @@ export default function Home() {
           href="/dashboard"
           className="inline-block bg-accent hover:bg-accent-hover text-white font-semibold px-8 py-3 rounded-lg transition-colors"
         >
-          Start Free Audit
+          Get Your Free Team Audit
         </Link>
       </section>
 
