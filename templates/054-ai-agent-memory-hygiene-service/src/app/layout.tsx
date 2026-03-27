@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { getSiteUrl } from "@/lib/site-url";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,8 +13,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
-  metadataBase: new URL("https://h9932-1774622526141.vercel.app"),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "MemoryGuard — Automated PII Scrubbing for AI Agent Memory",
     template: "%s | MemoryGuard",

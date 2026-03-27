@@ -1,4 +1,6 @@
-# MemoryGuard — AI Agent Memory Hygiene Service
+import { NextResponse } from "next/server";
+
+const LLMS_TEMPLATE = `# MemoryGuard — AI Agent Memory Hygiene Service
 
 ## What it is
 MemoryGuard is an automated PII scrubbing and memory compression service for AI agent conversation memory. It helps companies running persistent AI coworkers (support agents, AI assistants, autonomous agents) stay GDPR compliant.
@@ -28,3 +30,25 @@ SOC 2 Type II, GDPR, CCPA, HIPAA ready. Zero data retention — processes memory
 - Features: https://h9932-1774622526141.vercel.app/features
 - Pricing: https://h9932-1774622526141.vercel.app/pricing
 - Documentation: https://h9932-1774622526141.vercel.app/docs
+`;
+const SITE_ORIGINS = [
+  "https://h9932-1774622526141.vercel.app"
+];
+
+export const dynamic = "force-dynamic";
+
+export function GET(request: Request) {
+  const siteUrl = new URL(request.url).origin;
+  let body = LLMS_TEMPLATE;
+
+  for (const origin of SITE_ORIGINS) {
+    body = body.split(origin).join(siteUrl);
+  }
+
+  return new NextResponse(body, {
+    headers: {
+      "content-type": "text/plain; charset=utf-8",
+      "cache-control": "public, max-age=0, s-maxage=300",
+    },
+  });
+}

@@ -95,10 +95,10 @@ const integrations = [
 ];
 
 const badges = [
-  { name: "SOC 2 Type II", icon: "🛡️" },
-  { name: "GDPR Compliant", icon: "🇪🇺" },
-  { name: "CCPA Ready", icon: "📋" },
-  { name: "HIPAA Ready", icon: "🏥" },
+  { name: "SOC 2 Type II" },
+  { name: "GDPR Compliant" },
+  { name: "CCPA Ready" },
+  { name: "HIPAA Ready" },
 ];
 
 const checklistItems = [
@@ -463,31 +463,90 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               {badges.map((b) => (
                 <div key={b.name} className="flex items-center gap-3 px-6 py-4 rounded-xl border border-border bg-white">
-                  <span className="text-2xl">{b.icon}</span>
+                  <svg className="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
                   <span className="font-semibold text-foreground">{b.name}</span>
                 </div>
               ))}
             </div>
-            <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {[
-                {
-                  title: "Immutable audit logs",
-                  desc: "Every scrub, scan, and deletion is recorded with timestamps, agent IDs, and PII categories — exportable as PDF or CSV for auditors.",
-                },
-                {
-                  title: "Zero data retention",
-                  desc: "MemoryGuard processes memory in-stream. PII is identified and scrubbed without storing raw conversation data on our servers.",
-                },
-                {
-                  title: "Deletion certificates",
-                  desc: "Generate per-user deletion certificates that prove GDPR Art. 17 compliance — ready to share with DPOs and regulators.",
-                },
-              ].map((item) => (
-                <div key={item.title} className="bg-background rounded-xl border border-border p-6">
-                  <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
+
+            <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+              {/* Trust cards */}
+              <div className="space-y-4">
+                {[
+                  {
+                    title: "Immutable audit logs",
+                    desc: "Every scrub, scan, and deletion is recorded with timestamps, agent IDs, and PII categories — exportable as PDF or CSV for auditors.",
+                  },
+                  {
+                    title: "Zero data retention",
+                    desc: "MemoryGuard processes memory in-stream. PII is identified and scrubbed without storing raw conversation data on our servers.",
+                  },
+                  {
+                    title: "Deletion certificates",
+                    desc: "Generate per-user deletion certificates that prove GDPR Art. 17 compliance — ready to share with DPOs and regulators.",
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="bg-background rounded-xl border border-border p-6">
+                    <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
+                    <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Sample deletion certificate — concrete proof cue */}
+              <div className="rounded-2xl border border-accent/30 bg-emerald-50/30 overflow-hidden">
+                <div className="px-5 py-3 border-b border-accent/20 flex items-center gap-2">
+                  <svg className="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
+                  <span className="text-sm font-semibold text-accent">Sample deletion certificate</span>
                 </div>
-              ))}
+                <div className="p-5 font-mono text-xs leading-relaxed text-foreground space-y-3">
+                  <div className="flex justify-between">
+                    <span className="text-muted">Certificate ID</span>
+                    <span>MG-DEL-2026-04821</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted">Subject</span>
+                    <span>user_id: 8f3a…c91d</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted">PII fields removed</span>
+                    <span>7 across 34 conversations</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted">Agent</span>
+                    <span>support-agent-prod-01</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted">Completed</span>
+                    <span>2026-03-25T14:32:08Z</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted">Latency</span>
+                    <span>1.4s</span>
+                  </div>
+                  <hr className="border-accent/20" />
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted">Verification</span>
+                    <span className="inline-flex items-center gap-1 text-accent font-semibold">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      GDPR Art. 17 compliant
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-muted">Hash</span>
+                    <span className="text-muted/70">sha256:e3b0c44…f1fc1</span>
+                  </div>
+                </div>
+                <div className="px-5 py-3 border-t border-accent/20 text-xs text-muted">
+                  Exportable as PDF or CSV. Every certificate is cryptographically signed.
+                </div>
+              </div>
             </div>
           </div>
         </section>

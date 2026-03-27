@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
-
+import { getSiteUrl } from "@/lib/site-url";
 export default function robots(): MetadataRoute.Robots {
+  const siteUrl = getSiteUrl();
+
   return {
     rules: [
       {
@@ -8,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://h9932-1774622526141.vercel.app/sitemap.xml",
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }
