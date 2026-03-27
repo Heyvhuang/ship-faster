@@ -45,6 +45,16 @@ const badges = [
   { name: "HIPAA Ready", icon: "🏥" },
 ];
 
+const checklistItems = [
+  { q: "Can you locate every PII instance across all agent conversation logs?", risk: "GDPR Art. 15 — Right of Access" },
+  { q: "Can you delete a specific user's data from agent memory within 30 days?", risk: "GDPR Art. 17 — Right to Erasure" },
+  { q: "Do you have an audit trail proving what was deleted and when?", risk: "GDPR Art. 5(2) — Accountability" },
+  { q: "Are agent memory stores included in your data processing records?", risk: "GDPR Art. 30 — Records of Processing" },
+  { q: "Can you export all PII an agent has collected about a single user?", risk: "GDPR Art. 20 — Data Portability" },
+  { q: "Do you scrub PII from agent context windows before they reach the LLM?", risk: "Data minimization risk" },
+  { q: "Is your scrubbing process automated, or does it depend on manual review?", risk: "Operational scalability risk" },
+];
+
 export default function Home() {
   return (
     <>
@@ -60,28 +70,29 @@ export default function Home() {
                 Now in public beta
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
-                Automated PII scrubbing for{" "}
+                GDPR-safe memory hygiene for{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                  AI agent memory
+                  AI agents
                 </span>
               </h1>
               <p className="mt-6 text-lg sm:text-xl text-muted leading-relaxed max-w-2xl">
-                GDPR compliant in one click. Continuously detect and remove personal data from your AI coworkers&apos; conversation history without breaking agent capabilities.
+                Your AI coworkers store PII in every conversation. MemoryGuard continuously detects, scrubs, and proves deletion — so you pass audits without manual log searches.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/dashboard"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-colors text-base"
                 >
-                  Start free trial — 1 agent free
+                  Start free trial — 1 agent included
                 </Link>
                 <Link
-                  href="/features"
+                  href="#compliance-checklist"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-card-hover transition-colors text-base"
                 >
-                  See how it works
+                  Check your GDPR readiness
                 </Link>
               </div>
+              <p className="mt-3 text-sm text-muted">No credit card required. First hygiene report in under 5 minutes.</p>
             </div>
 
             <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6">
@@ -138,63 +149,47 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Solution */}
+        {/* Before / After evidence */}
         <section className="py-20 sm:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center mb-14">
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                Continuous memory hygiene for persistent AI coworkers
+                See what a scrub actually does
               </h2>
               <p className="mt-4 text-lg text-muted">
-                MemoryGuard automatically detects and scrubs PII from agent memory while preserving the business context your agents need to function.
+                MemoryGuard preserves agent capability while removing every PII trace. Here&apos;s real output from a support agent&apos;s memory.
               </p>
             </div>
 
-            {/* Dashboard preview */}
-            <div className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden">
-              <div className="border-b border-border px-6 py-4 flex items-center gap-3">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-amber-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              {/* Before */}
+              <div className="rounded-2xl border border-red-200 bg-red-50/50 overflow-hidden">
+                <div className="px-5 py-3 border-b border-red-200 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-red-400" />
+                  <span className="text-sm font-semibold text-red-600">Before — Raw agent memory</span>
                 </div>
-                <div className="text-sm text-muted font-mono">app.memoryguard.io/dashboard</div>
+                <div className="p-5 font-mono text-sm leading-relaxed text-foreground space-y-3">
+                  <p>User <mark className="bg-red-200/60 rounded px-0.5">John Martinez</mark> called about order #4821. Email: <mark className="bg-red-200/60 rounded px-0.5">john.m@acmecorp.com</mark>. Phone: <mark className="bg-red-200/60 rounded px-0.5">+1 (415) 555-0173</mark>. Shipping to <mark className="bg-red-200/60 rounded px-0.5">742 Evergreen Terrace, Springfield IL 62704</mark>.</p>
+                  <p>Resolved: refund issued for defective item. User prefers email follow-up.</p>
+                </div>
               </div>
-              <div className="p-6 sm:p-8">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-                  {[
-                    { label: "Memory Hygiene Score", value: "94/100", color: "text-accent" },
-                    { label: "PII Detected Today", value: "127", color: "text-amber-500" },
-                    { label: "Auto-Scrubbed", value: "124", color: "text-primary" },
-                    { label: "Memory Reduction", value: "43%", color: "text-accent" },
-                  ].map((m) => (
-                    <div key={m.label} className="bg-background rounded-lg p-4 border border-border">
-                      <div className="text-xs text-muted mb-1">{m.label}</div>
-                      <div className={`text-xl font-bold ${m.color}`}>{m.value}</div>
-                    </div>
-                  ))}
+
+              {/* After */}
+              <div className="rounded-2xl border border-accent/30 bg-emerald-50/50 overflow-hidden">
+                <div className="px-5 py-3 border-b border-accent/30 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-accent" />
+                  <span className="text-sm font-semibold text-accent">After — Scrubbed memory</span>
                 </div>
-                <div className="space-y-3">
-                  {[
-                    { type: "Email", example: "j***@company.com", agent: "Support Agent #3", status: "Scrubbed", time: "2m ago" },
-                    { type: "Phone", example: "+1 (555) ***-**42", agent: "Sales Agent #1", status: "Scrubbed", time: "5m ago" },
-                    { type: "Name", example: "J*** D***", agent: "Onboarding Agent", status: "Review", time: "8m ago" },
-                    { type: "Address", example: "*** Elm St, ***", agent: "Support Agent #1", status: "Scrubbed", time: "12m ago" },
-                  ].map((row, i) => (
-                    <div key={i} className="flex items-center justify-between px-4 py-3 rounded-lg bg-background border border-border text-sm">
-                      <div className="flex items-center gap-4">
-                        <span className="px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary">{row.type}</span>
-                        <span className="text-muted font-mono text-xs">{row.example}</span>
-                      </div>
-                      <div className="hidden sm:flex items-center gap-4">
-                        <span className="text-muted">{row.agent}</span>
-                        <span className={`px-2 py-0.5 rounded text-xs font-medium ${row.status === "Scrubbed" ? "bg-accent/10 text-accent" : "bg-amber-100 text-amber-600"}`}>
-                          {row.status}
-                        </span>
-                        <span className="text-muted text-xs">{row.time}</span>
-                      </div>
-                    </div>
-                  ))}
+                <div className="p-5 font-mono text-sm leading-relaxed text-foreground space-y-3">
+                  <p>User <span className="px-1 py-0.5 rounded bg-accent/15 text-accent font-semibold">[REDACTED]</span> called about order #4821. Email: <span className="px-1 py-0.5 rounded bg-accent/15 text-accent font-semibold">[REDACTED]</span>. Phone: <span className="px-1 py-0.5 rounded bg-accent/15 text-accent font-semibold">[REDACTED]</span>. Shipping to <span className="px-1 py-0.5 rounded bg-accent/15 text-accent font-semibold">[REDACTED]</span>.</p>
+                  <p>Resolved: refund issued for defective item. User prefers email follow-up.</p>
+                </div>
+                <div className="px-5 py-3 border-t border-accent/30 flex flex-wrap gap-3 text-xs text-muted">
+                  <span>4 PII fields scrubbed</span>
+                  <span className="text-border">|</span>
+                  <span>Business context preserved</span>
+                  <span className="text-border">|</span>
+                  <span>Audit log generated</span>
                 </div>
               </div>
             </div>
@@ -218,11 +213,55 @@ export default function Home() {
                 </div>
               ))}
             </div>
+            <div className="mt-12 text-center">
+              <Link
+                href="/dashboard"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-colors text-base"
+              >
+                Start free trial — connect your first agent
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* GDPR Readiness Checklist */}
+        <section id="compliance-checklist" className="py-20 sm:py-24">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                Is your AI agent stack GDPR-ready?
+              </h2>
+              <p className="mt-4 text-lg text-muted">
+                7 questions compliance teams ask before an audit. If you can&apos;t answer &ldquo;yes&rdquo; to all of them, you have a gap.
+              </p>
+            </div>
+            <ol className="space-y-4">
+              {checklistItems.map((item, i) => (
+                <li key={i} className="flex gap-4 items-start bg-white rounded-xl border border-border p-5">
+                  <span className="shrink-0 w-7 h-7 rounded-full bg-primary/10 text-primary text-sm font-bold flex items-center justify-center mt-0.5">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <p className="text-foreground font-medium leading-snug">{item.q}</p>
+                    <p className="text-sm text-muted mt-1">{item.risk}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-8 rounded-xl bg-primary/5 border border-primary/20 p-6 text-center">
+              <p className="text-foreground font-medium">MemoryGuard automates all 7 — connect one agent and see your readiness score in minutes.</p>
+              <Link
+                href="/dashboard"
+                className="mt-4 inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-colors text-base"
+              >
+                Run a free compliance scan
+              </Link>
+            </div>
           </div>
         </section>
 
         {/* Integrations */}
-        <section className="py-20 sm:py-24">
+        <section className="py-20 sm:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Works with your agent framework
@@ -241,7 +280,7 @@ export default function Home() {
         </section>
 
         {/* Pricing preview */}
-        <section className="py-20 sm:py-24 bg-white">
+        <section className="py-20 sm:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mx-auto text-center mb-14">
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
@@ -272,7 +311,7 @@ export default function Home() {
                   price: "Custom",
                   desc: "volume pricing",
                   features: ["Everything in Pro", "HIPAA BAA", "SSO & SCIM", "Dedicated support", "Custom integrations", "SLA guarantee"],
-                  cta: "Contact sales",
+                  cta: "Request compliance demo",
                   highlight: false,
                 },
               ].map((plan) => (
@@ -319,19 +358,42 @@ export default function Home() {
         </section>
 
         {/* Trust / Compliance */}
-        <section className="py-20 sm:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Enterprise-grade security and compliance
-            </h2>
-            <p className="text-lg text-muted mb-10 max-w-xl mx-auto">
-              Audit-ready from day one. Every scrub is logged, every deletion is verifiable.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
+        <section className="py-20 sm:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mx-auto text-center mb-10">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+                Enterprise-grade security and compliance
+              </h2>
+              <p className="text-lg text-muted">
+                Audit-ready from day one. Every scrub is logged, every deletion is verifiable.
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
               {badges.map((b) => (
                 <div key={b.name} className="flex items-center gap-3 px-6 py-4 rounded-xl border border-border bg-white">
                   <span className="text-2xl">{b.icon}</span>
                   <span className="font-semibold text-foreground">{b.name}</span>
+                </div>
+              ))}
+            </div>
+            <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {[
+                {
+                  title: "Immutable audit logs",
+                  desc: "Every scrub, scan, and deletion is recorded with timestamps, agent IDs, and PII categories — exportable as PDF or CSV for auditors.",
+                },
+                {
+                  title: "Zero data retention",
+                  desc: "MemoryGuard processes memory in-stream. PII is identified and scrubbed without storing raw conversation data on our servers.",
+                },
+                {
+                  title: "Deletion certificates",
+                  desc: "Generate per-user deletion certificates that prove GDPR Art. 17 compliance — ready to share with DPOs and regulators.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="bg-background rounded-xl border border-border p-6">
+                  <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -343,17 +405,25 @@ export default function Home() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="rounded-2xl bg-gradient-to-br from-primary to-accent p-10 sm:p-14 text-center text-white">
               <h2 className="text-3xl sm:text-4xl font-bold">
-                Start your free trial with a single agent
+                See your first compliance report in 5 minutes
               </h2>
               <p className="mt-4 text-lg text-white/80 max-w-xl mx-auto">
-                No credit card required. See your first hygiene report in under 5 minutes.
+                Connect one agent, run the scan, and get a full PII audit with deletion proof. No credit card required.
               </p>
-              <Link
-                href="/dashboard"
-                className="mt-8 inline-flex items-center justify-center px-8 py-3.5 rounded-lg bg-white text-primary font-semibold hover:bg-white/90 transition-colors"
-              >
-                Start free trial
-              </Link>
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/dashboard"
+                  className="inline-flex items-center justify-center px-8 py-3.5 rounded-lg bg-white text-primary font-semibold hover:bg-white/90 transition-colors"
+                >
+                  Start free trial
+                </Link>
+                <Link
+                  href="/pricing"
+                  className="inline-flex items-center justify-center px-8 py-3.5 rounded-lg border border-white/30 text-white font-semibold hover:bg-white/10 transition-colors"
+                >
+                  Request compliance demo
+                </Link>
+              </div>
             </div>
           </div>
         </section>
