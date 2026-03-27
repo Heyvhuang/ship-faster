@@ -1,0 +1,5 @@
+{
+  "name": "AI Agent Memory Hygiene Service",
+  "description": "Automated PII scrubbing and memory compression for long-running AI coworkers.",
+  "requestFramePermissions": []
+}

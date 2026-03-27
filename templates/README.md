@@ -106,6 +106,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `053-paper-implementation-bug-fix-service` | Paper Implementation Bug Fix Service | [`053-paper-implementation-bug-fix-service/`](053-paper-implementation-bug-fix-service/) |
 
+| `054-ai-agent-memory-hygiene-service` | AI Agent Memory Hygiene Service | [`054-ai-agent-memory-hygiene-service/`](054-ai-agent-memory-hygiene-service/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
