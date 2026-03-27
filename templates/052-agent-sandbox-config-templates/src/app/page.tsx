@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { templates, testimonials } from "@/lib/data";
+import { templates, testimonials, type Template } from "@/lib/data";
 import { useState } from "react";
 
 function Nav() {
@@ -15,8 +15,11 @@ function Nav() {
         <Link href="#templates" className="hover:text-green transition-colors">
           Templates
         </Link>
-        <Link href="#pricing" className="hover:text-green transition-colors">
-          Pricing
+        <Link href="#compare" className="hover:text-green transition-colors">
+          Compare
+        </Link>
+        <Link href="#faq" className="hover:text-green transition-colors">
+          FAQ
         </Link>
         <a
           href="https://github.com/agent-safespace/templates"
@@ -98,7 +101,7 @@ function AgentBadge({ agent }: { agent: string }) {
   );
 }
 
-function TemplateCard({ template }: { template: (typeof templates)[0] }) {
+function TemplateCard({ template }: { template: Template }) {
   return (
     <Link
       href={`/templates/${template.slug}`}
@@ -147,6 +150,95 @@ function Templates() {
   );
 }
 
+function PermissionCompare() {
+  const [selected, setSelected] = useState<string[]>([
+    templates[0].id,
+    templates[4].id,
+  ]);
+
+  const toggle = (id: string) => {
+    setSelected((prev) => {
+      if (prev.includes(id)) return prev.length > 1 ? prev.filter((s) => s !== id) : prev;
+      if (prev.length >= 3) return [...prev.slice(1), id];
+      return [...prev, id];
+    });
+  };
+
+  const selectedTemplates = templates.filter((t) => selected.includes(t.id));
+
+  const allPermTypes = ["Filesystem Read", "Filesystem Write", "Network", "Process Allow", "Process Deny"] as const;
+
+  function getPermRow(t: Template, type: string): string {
+    const cfg = JSON.parse(t.configPreview);
+    switch (type) {
+      case "Filesystem Read":
+        return (cfg.fs?.allow_read || []).join(", ") || "—";
+      case "Filesystem Write":
+        return (cfg.fs?.allow_write || []).join(", ") || (cfg.fs?.deny_write ? `Denied: ${cfg.fs.deny_write.join(", ")}` : "—");
+      case "Network":
+        return cfg.network?.allow?.length ? cfg.network.allow.join(", ") : "None (isolated)";
+      case "Process Allow":
+        return (cfg.process?.allow || []).join(", ") || "—";
+      case "Process Deny":
+        return (cfg.process?.deny || []).join(", ") || "—";
+      default:
+        return "—";
+    }
+  }
+
+  return (
+    <section id="compare" className="px-6 py-20 max-w-5xl mx-auto">
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
+        Compare Permissions
+      </h2>
+      <p className="text-muted text-center mb-8 max-w-xl mx-auto">
+        Select up to 3 templates to compare their sandbox permissions side by side.
+      </p>
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
+        {templates.map((t) => (
+          <button
+            key={t.id}
+            onClick={() => toggle(t.id)}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              selected.includes(t.id)
+                ? "bg-green text-black"
+                : "bg-card-bg border border-card-border text-muted hover:text-foreground"
+            }`}
+          >
+            {t.icon} {t.title}
+          </button>
+        ))}
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm border-collapse">
+          <thead>
+            <tr className="border-b border-card-border">
+              <th className="text-left py-3 px-4 text-muted font-medium">Permission</th>
+              {selectedTemplates.map((t) => (
+                <th key={t.id} className="text-left py-3 px-4 font-medium">
+                  {t.icon} {t.title}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {allPermTypes.map((type) => (
+              <tr key={type} className="border-b border-card-border/50">
+                <td className="py-3 px-4 text-muted whitespace-nowrap">{type}</td>
+                {selectedTemplates.map((t) => (
+                  <td key={t.id} className="py-3 px-4 text-xs leading-relaxed">
+                    <code className="text-green/80">{getPermRow(t, type)}</code>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
 function HowItWorks() {
   const steps = [
     { num: "01", title: "Choose a template", desc: "Pick a use-case preset from the gallery." },
@@ -168,6 +260,65 @@ function HowItWorks() {
           </div>
         ))}
       </div>
+    </section>
+  );
+}
+
+const faqItems = [
+  {
+    q: "What is a .safespace file?",
+    a: "A .safespace file is a JSON configuration that defines sandbox permissions for an AI agent running inside Agent Safehouse on macOS. It specifies which files the agent can read or write, which network domains it can access, and which processes it can execute.",
+  },
+  {
+    q: "Do I need Agent Safehouse installed?",
+    a: "Yes. These templates are designed for Agent Safehouse, a macOS app that runs AI agents in sandboxed environments. Download Agent Safehouse first, then import any .safespace template with one click.",
+  },
+  {
+    q: "Which AI agents are supported?",
+    a: "Templates are available for Claude (Anthropic), GPT (OpenAI), and Ollama-based local models. Each template adjusts its permissions based on the agent's typical behavior and API requirements.",
+  },
+  {
+    q: "Can I customize a template after importing?",
+    a: "Absolutely. After importing a .safespace file, you can edit every permission in Agent Safehouse's UI. Templates are starting points — tune filesystem paths, network allowlists, and process rules to match your exact workflow.",
+  },
+  {
+    q: "Are the templates auditable?",
+    a: "Every template lists its full permission breakdown — allowed and denied rules for filesystem, network, and process access. You can review the raw JSON config before importing.",
+  },
+  {
+    q: "Is this free?",
+    a: "All 5 use-case templates are free for the first 100 users. A Pro template pack with 20+ advanced configs and auto-update support is coming soon for $9.99 (one-time).",
+  },
+];
+
+function FAQ() {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <section id="faq" className="px-6 py-20 max-w-3xl mx-auto">
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
+        Frequently Asked Questions
+      </h2>
+      <dl className="space-y-2">
+        {faqItems.map((item, i) => (
+          <div key={i} className="border border-card-border rounded-lg overflow-hidden">
+            <dt>
+              <button
+                onClick={() => setOpen(open === i ? null : i)}
+                className="w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium hover:bg-card-bg transition-colors"
+                aria-expanded={open === i}
+              >
+                {item.q}
+                <span className="text-muted ml-4 shrink-0">{open === i ? "−" : "+"}</span>
+              </button>
+            </dt>
+            {open === i && (
+              <dd className="px-5 pb-4 text-sm text-muted leading-relaxed">
+                {item.a}
+              </dd>
+            )}
+          </div>
+        ))}
+      </dl>
     </section>
   );
 }
@@ -270,13 +421,16 @@ function Footer() {
   return (
     <footer className="border-t border-card-border px-6 py-8 mt-12">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
-        <span>© 2026 Agent Sandbox Config Templates</span>
+        <span>© 2026 Safespace Templates</span>
         <div className="flex gap-6">
           <a href="https://github.com/agent-safespace/templates" className="hover:text-green transition-colors">
             GitHub
           </a>
           <Link href="#templates" className="hover:text-green transition-colors">
             Templates
+          </Link>
+          <Link href="#faq" className="hover:text-green transition-colors">
+            FAQ
           </Link>
           <Link href="#pricing" className="hover:text-green transition-colors">
             Pricing
@@ -287,15 +441,36 @@ function Footer() {
   );
 }
 
+function StructuredData() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
+  );
+}
+
 export default function Home() {
   return (
     <>
+      <StructuredData />
       <Nav />
       <Hero />
       <Templates />
+      <PermissionCompare />
       <HowItWorks />
       <Pricing />
       <Testimonials />
+      <FAQ />
       <Footer />
     </>
   );
