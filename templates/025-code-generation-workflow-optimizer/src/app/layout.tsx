@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { getSiteUrl } from "@/lib/site-url";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -17,13 +16,13 @@ const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "PromptFlow — Measure & Optimize Your Team's AI Coding Prompts",
+  title: "PromptFlow — Cut AI Prompt Waste by 40% for Python Teams",
   description:
-    "PromptFlow analyzes your Python team's LLM prompting patterns and delivers data-driven optimizations. Teams report 40% faster code generation and 31 minutes saved per developer per day.",
+    "PromptFlow scans your Python team's LLM prompt patterns, scores efficiency, and delivers optimized templates. 127 teams audited. 31 min saved per dev per day. Free 5-minute setup.",
   openGraph: {
-    title: "PromptFlow — Measure & Optimize Your Team's AI Coding Prompts",
+    title: "PromptFlow — Cut AI Prompt Waste by 40% for Python Teams",
     description:
-      "Analyze prompt efficiency across your team. 40% faster code generation for Python teams using Django and Flask.",
+      "127 Python teams audited. 40% faster code generation with optimized prompt templates for Django and Flask.",
     type: "website",
     url: siteUrl,
     siteName: "PromptFlow",
