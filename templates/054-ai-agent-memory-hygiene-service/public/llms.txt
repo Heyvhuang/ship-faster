@@ -24,7 +24,7 @@ First automated PII scrubber purpose-built for conversational AI agent memory co
 SOC 2 Type II, GDPR, CCPA, HIPAA ready. Zero data retention — processes memory in-stream without storing raw conversations.
 
 ## Links
-- Homepage: https://memoryguard.dev
-- Features: https://memoryguard.dev/features
-- Pricing: https://memoryguard.dev/pricing
-- Documentation: https://memoryguard.dev/docs
+- Homepage: https://h9932-1774622526141.vercel.app
+- Features: https://h9932-1774622526141.vercel.app/features
+- Pricing: https://h9932-1774622526141.vercel.app/pricing
+- Documentation: https://h9932-1774622526141.vercel.app/docs

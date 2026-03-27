@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://memoryguard.dev"),
+  metadataBase: new URL("https://h9932-1774622526141.vercel.app"),
   title: {
     default: "MemoryGuard — Automated PII Scrubbing for AI Agent Memory",
     template: "%s | MemoryGuard",
