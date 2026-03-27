@@ -108,6 +108,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `054-ai-agent-memory-hygiene-service` | AI Agent Memory Hygiene Service | [`054-ai-agent-memory-hygiene-service/`](054-ai-agent-memory-hygiene-service/) |
 
+| `055-ai-agent-security-audit` | AI Agent Security Audit | [`055-ai-agent-security-audit/`](055-ai-agent-security-audit/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
