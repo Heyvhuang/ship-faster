@@ -1,0 +1,5 @@
+{
+  "name": "Research Agent Eval Runner",
+  "description": "Hosted benchmarking service to test LLM agents against real-world AI research tasks without setup",
+  "requestFramePermissions": []
+}

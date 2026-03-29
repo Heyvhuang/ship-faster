@@ -110,6 +110,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `055-ai-agent-security-audit` | AI Agent Security Audit | [`055-ai-agent-security-audit/`](055-ai-agent-security-audit/) |
 
+| `056-research-agent-eval-runner` | Research Agent Eval Runner | [`056-research-agent-eval-runner/`](056-research-agent-eval-runner/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
