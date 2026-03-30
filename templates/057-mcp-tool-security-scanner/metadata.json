@@ -1,0 +1,5 @@
+{
+  "name": "MCP Tool Security Scanner",
+  "description": "Automated security audit service for Model Context Protocol tools before enterprise deployment, checking data exfiltration and permission risks.",
+  "requestFramePermissions": []
+}

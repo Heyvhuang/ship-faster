@@ -112,6 +112,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `056-research-agent-eval-runner` | Research Agent Eval Runner | [`056-research-agent-eval-runner/`](056-research-agent-eval-runner/) |
 
+| `057-mcp-tool-security-scanner` | MCP Tool Security Scanner | [`057-mcp-tool-security-scanner/`](057-mcp-tool-security-scanner/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
