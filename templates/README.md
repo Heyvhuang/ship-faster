@@ -114,6 +114,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `057-mcp-tool-security-scanner` | MCP Tool Security Scanner | [`057-mcp-tool-security-scanner/`](057-mcp-tool-security-scanner/) |
 
+| `058-technical-content-strategy-platform` | Technical Content Strategy Platform | [`058-technical-content-strategy-platform/`](058-technical-content-strategy-platform/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
