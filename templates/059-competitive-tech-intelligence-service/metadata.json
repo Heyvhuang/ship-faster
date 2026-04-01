@@ -1,0 +1,5 @@
+{
+  "name": "Competitive Tech Intelligence Service",
+  "description": "Paid reports tracking competitor technology choices by analyzing their employees' GitHub activity and trending repository adoptions.",
+  "requestFramePermissions": []
+}
