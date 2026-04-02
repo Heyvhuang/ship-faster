@@ -118,6 +118,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `059-competitive-tech-intelligence-service` | Competitive Tech Intelligence Service | [`059-competitive-tech-intelligence-service/`](059-competitive-tech-intelligence-service/) |
 
+| `060-startup-idea-validation-marketplace` | Startup idea validation marketplace | [`060-startup-idea-validation-marketplace/`](060-startup-idea-validation-marketplace/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
