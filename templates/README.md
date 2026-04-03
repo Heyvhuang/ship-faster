@@ -120,6 +120,8 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 | `060-startup-idea-validation-marketplace` | Startup idea validation marketplace | [`060-startup-idea-validation-marketplace/`](060-startup-idea-validation-marketplace/) |
 
+| `061-tungsten-supply-chain-monitor` | Tungsten Supply Chain Monitor | [`061-tungsten-supply-chain-monitor/`](061-tungsten-supply-chain-monitor/) |
+
 ## Usage
 
 1. Enter a template directory (example: `templates/001-copyback-studio`).
