@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/agent-workspace.md; fetched_at=2026-02-20T10:29:16.901Z; sha256=eeadba37bed6bf5c23c0b81108001e1681cfefd20051ebcb5003ff1f9ee56dc6; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/agent-workspace.md; fetched_at=2026-04-04T20:36:06.110Z; sha256=4d4c413589894bce6a52b76318a1098ba75afe336d7ab803ecd74250a9bb4031; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -38,6 +38,8 @@ inside a sandbox workspace under `~/.openclaw/sandboxes`, not your host workspac
 
 `openclaw onboard`, `openclaw configure`, or `openclaw setup` will create the
 workspace and seed the bootstrap files if they are missing.
+Sandbox seed copies only accept regular in-workspace files; symlink/hardlink
+aliases that resolve outside the source workspace are ignored.
 
 If you already manage the workspace files yourself, you can disable bootstrap
 file creation:
@@ -71,6 +73,7 @@ These are the standard files OpenClaw expects inside the workspace:
 * `SOUL.md`
   * Persona, tone, and boundaries.
   * Loaded every session.
+  * Guide: [SOUL.md Personality Guide](/concepts/soul)
 
 * `USER.md`
   * Who the user is and how to address them.
@@ -109,7 +112,8 @@ See [Memory](/concepts/memory) for the workflow and automatic memory flush.
 
 * `skills/` (optional)
   * Workspace-specific skills.
-  * Overrides managed/bundled skills when names collide.
+  * Highest-precedence skill location for that workspace.
+  * Overrides project agent skills, personal agent skills, managed skills, bundled skills, and `skills.load.extraDirs` when names collide.
 
 * `canvas/` (optional)
   * Canvas UI files for node displays (for example `canvas/index.html`).
@@ -126,7 +130,8 @@ files.
 These live under `~/.openclaw/` and should NOT be committed to the workspace repo:
 
 * `~/.openclaw/openclaw.json` (config)
-* `~/.openclaw/credentials/` (OAuth tokens, API keys)
+* `~/.openclaw/agents/<agentId>/agent/auth-profiles.json` (model auth profiles: OAuth + API keys)
+* `~/.openclaw/credentials/` (channel/provider state plus legacy OAuth import data)
 * `~/.openclaw/agents/<agentId>/sessions/` (session transcripts + metadata)
 * `~/.openclaw/skills/` (managed skills)
 
@@ -232,3 +237,13 @@ Suggested `.gitignore` starter:
   [Channel routing](/channels/channel-routing) for routing configuration.
 * If `agents.defaults.sandbox` is enabled, non-main sessions can use per-session sandbox
   workspaces under `agents.defaults.sandbox.workspaceRoot`.
+
+## Related
+
+* [Standing Orders](/automation/standing-orders) — persistent instructions in workspace files
+* [Heartbeat](/gateway/heartbeat) — HEARTBEAT.md workspace file
+* [Session](/concepts/session) — session storage paths
+* [Sandboxing](/gateway/sandboxing) — workspace access in sandboxed environments
+
+
+Built with [Mintlify](https://mintlify.com).

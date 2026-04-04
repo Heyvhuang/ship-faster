@@ -1,10 +1,10 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/health.md; fetched_at=2026-02-20T10:29:24.319Z; sha256=179737e2589cd0d2701ae19d9a16594c804f3294aef491c943124502e53a5205; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/health.md; fetched_at=2026-04-04T20:36:07.235Z; sha256=5f404bc27b4f80d5c67b3fcb6967b72dec10f10cde210080c0fb10d7d6ebfa9b; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# Health Checks
+# Health Checks (macOS)
 
 # Health Checks on macOS
 
@@ -33,3 +33,6 @@ How to see whether the linked channel is healthy from the menu bar app.
 ## When in doubt
 
 * You can still use the CLI flow in [Gateway health](/gateway/health) (`openclaw status`, `openclaw status --deep`, `openclaw health --json`) and tail `/tmp/openclaw/openclaw-*.log` for `web-heartbeat` / `web-reconnect`.
+
+
+Built with [Mintlify](https://mintlify.com).

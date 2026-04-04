@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/voice-overlay.md; fetched_at=2026-02-20T10:29:24.983Z; sha256=4157d3072e36895839898be4dd5fd3d5867bd1ae9cc9b4d8d0e7c39fa6fd51f9; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/voice-overlay.md; fetched_at=2026-04-04T20:36:07.297Z; sha256=2f889526b1cbb011f0c1a8347bb006d3f1bd461d1a65af6694a0c1a3c5943cf1; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -38,7 +38,7 @@ Audience: macOS app contributors. Goal: keep the voice overlay predictable when 
    * Push-to-talk: no delay; wake-word: optional delay for auto-send.
    * Apply a short cooldown to the wake runtime after push-to-talk finishes so wake-word doesn’t immediately retrigger.
 5. **Logging**
-   * Coordinator emits `.info` logs in subsystem `bot.molt`, categories `voicewake.overlay` and `voicewake.chime`.
+   * Coordinator emits `.info` logs in subsystem `ai.openclaw`, categories `voicewake.overlay` and `voicewake.chime`.
    * Key events: `session_started`, `adopted_by_push_to_talk`, `partial`, `finalized`, `send`, `dismiss`, `cancel`, `cooldown`.
 
 ## Debugging checklist
@@ -46,7 +46,7 @@ Audience: macOS app contributors. Goal: keep the voice overlay predictable when 
 * Stream logs while reproducing a sticky overlay:
 
   ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-  sudo log stream --predicate 'subsystem == "bot.molt" AND category CONTAINS "voicewake"' --level info --style compact
+  sudo log stream --predicate 'subsystem == "ai.openclaw" AND category CONTAINS "voicewake"' --level info --style compact
   ```
 
 * Verify only one active session token; stale callbacks should be dropped by the coordinator.
@@ -60,3 +60,6 @@ Audience: macOS app contributors. Goal: keep the voice overlay predictable when 
 3. Refactor `VoicePushToTalk` to adopt existing sessions and call `endCapture` on release; apply runtime cooldown.
 4. Wire `VoiceWakeOverlayController` to the publisher; remove direct calls from runtime/PTT.
 5. Add integration tests for session adoption, cooldown, and empty-text dismissal.
+
+
+Built with [Mintlify](https://mintlify.com).

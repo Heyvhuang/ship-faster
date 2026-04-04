@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/typebox.md; fetched_at=2026-02-20T10:29:18.361Z; sha256=3d8ad5e6a399f9ff5343d997dcd389ebb180d851346d6e7a1bbdc643188f8c03; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/typebox.md; fetched_at=2026-04-04T20:36:06.377Z; sha256=c6f445e5e0579b3c5b74417e686047176e64f8f9980b61f0da3da708c9694c98; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -43,22 +43,25 @@ Client                    Gateway
 
 Common methods + events:
 
-| Category  | Examples                                                  | Notes                              |
-| --------- | --------------------------------------------------------- | ---------------------------------- |
-| Core      | `connect`, `health`, `status`                             | `connect` must be first            |
-| Messaging | `send`, `poll`, `agent`, `agent.wait`                     | side-effects need `idempotencyKey` |
-| Chat      | `chat.history`, `chat.send`, `chat.abort`, `chat.inject`  | WebChat uses these                 |
-| Sessions  | `sessions.list`, `sessions.patch`, `sessions.delete`      | session admin                      |
-| Nodes     | `node.list`, `node.invoke`, `node.pair.*`                 | Gateway WS + node actions          |
-| Events    | `tick`, `presence`, `agent`, `chat`, `health`, `shutdown` | server push                        |
+| Category   | Examples                                                   | Notes                              |
+| ---------- | ---------------------------------------------------------- | ---------------------------------- |
+| Core       | `connect`, `health`, `status`                              | `connect` must be first            |
+| Messaging  | `send`, `agent`, `agent.wait`, `system-event`, `logs.tail` | side-effects need `idempotencyKey` |
+| Chat       | `chat.history`, `chat.send`, `chat.abort`                  | WebChat uses these                 |
+| Sessions   | `sessions.list`, `sessions.patch`, `sessions.delete`       | session admin                      |
+| Automation | `wake`, `cron.list`, `cron.run`, `cron.runs`               | wake + cron control                |
+| Nodes      | `node.list`, `node.invoke`, `node.pair.*`                  | Gateway WS + node actions          |
+| Events     | `tick`, `presence`, `agent`, `chat`, `health`, `shutdown`  | server push                        |
 
-Authoritative list lives in `src/gateway/server.ts` (`METHODS`, `EVENTS`).
+Authoritative advertised **discovery** inventory lives in
+`src/gateway/server-methods-list.ts` (`listGatewayMethods`, `GATEWAY_EVENTS`).
 
 ## Where the schemas live
 
 * Source: `src/gateway/protocol/schema.ts`
 * Runtime validators (AJV): `src/gateway/protocol/index.ts`
-* Server handshake + method dispatch: `src/gateway/server.ts`
+* Advertised feature/discovery registry: `src/gateway/server-methods-list.ts`
+* Server handshake + method dispatch: `src/gateway/server.impl.ts`
 * Node client: `src/gateway/client.ts`
 * Generated JSON Schema: `dist/protocol.schema.json`
 * Generated Swift models: `apps/macos/Sources/OpenClawProtocol/GatewayModels.swift`
@@ -78,8 +81,13 @@ Authoritative list lives in `src/gateway/server.ts` (`METHODS`, `EVENTS`).
   accepts a `connect` request whose params match `ConnectParams`.
 * **Client side**: the JS client validates event and response frames before
   using them.
-* **Method surface**: the Gateway advertises the supported `methods` and
-  `events` in `hello-ok`.
+* **Feature discovery**: the Gateway sends a conservative `features.methods`
+  and `features.events` list in `hello-ok` from `listGatewayMethods()` and
+  `GATEWAY_EVENTS`.
+* That discovery list is not a generated dump of every callable helper in
+  `coreGatewayHandlers`; some helper RPCs are implemented in
+  `src/gateway/server-methods/*.ts` without being enumerated in the advertised
+  feature list.
 
 ## Example frames
 
@@ -91,8 +99,8 @@ Connect (first message):
   "id": "c1",
   "method": "connect",
   "params": {
-    "minProtocol": 2,
-    "maxProtocol": 2,
+    "minProtocol": 3,
+    "maxProtocol": 3,
     "client": {
       "id": "openclaw-macos",
       "displayName": "macos",
@@ -114,7 +122,7 @@ Hello-ok response:
   "ok": true,
   "payload": {
     "type": "hello-ok",
-    "protocol": 2,
+    "protocol": 3,
     "server": { "version": "dev", "connId": "ws-1" },
     "features": { "methods": ["health"], "events": ["tick"] },
     "snapshot": {
@@ -186,7 +194,7 @@ ws.on("message", (data) => {
 });
 ```
 
-## Worked example: add a method end‑to‑end
+## Worked example: add a method end-to-end
 
 Example: add a new `system.echo` request that returns `{ ok: true, text }`.
 
@@ -240,7 +248,12 @@ export const systemHandlers: GatewayRequestHandlers = {
 ```
 
 Register it in `src/gateway/server-methods.ts` (already merges `systemHandlers`),
-then add `"system.echo"` to `METHODS` in `src/gateway/server.ts`.
+then add `"system.echo"` to `listGatewayMethods` input in
+`src/gateway/server-methods-list.ts`.
+
+If the method is callable by operator or node clients, also classify it in
+`src/gateway/method-scopes.ts` so scope enforcement and `hello-ok` feature
+advertising stay aligned.
 
 4. **Regenerate**
 
@@ -275,6 +288,8 @@ Unknown frame types are preserved as raw payloads for forward compatibility.
 * The top-level `GatewayFrame` uses a **discriminator** on `type`.
 * Methods with side effects usually require an `idempotencyKey` in params
   (example: `send`, `poll`, `agent`, `chat.send`).
+* `agent` accepts optional `internalEvents` for runtime-generated orchestration context
+  (for example subagent/cron task completion handoff); treat this as internal API surface.
 
 ## Live schema JSON
 
@@ -286,5 +301,11 @@ published raw file is typically available at:
 ## When you change schemas
 
 1. Update the TypeBox schemas.
-2. Run `pnpm protocol:check`.
-3. Commit the regenerated schema + Swift models.
+2. Register the method/event in `src/gateway/server-methods-list.ts`.
+3. Update `src/gateway/method-scopes.ts` when the new RPC needs operator or
+   node scope classification.
+4. Run `pnpm protocol:check`.
+5. Commit the regenerated schema + Swift models.
+
+
+Built with [Mintlify](https://mintlify.com).

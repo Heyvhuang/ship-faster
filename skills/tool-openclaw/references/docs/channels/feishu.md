@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/feishu.md; fetched_at=2026-02-20T10:29:13.051Z; sha256=73ed17f313979c21231c7c845f5686288925a773396c2149e1a1cc5f4cdfb406; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/feishu.md; fetched_at=2026-04-04T20:36:05.402Z; sha256=0045a956fd2ba2802262399b6b42b10ccc5c89617edb1f585bb66473d447a7a0; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -12,18 +12,16 @@ Feishu (Lark) is a team chat platform used by companies for messaging and collab
 
 ***
 
-## Plugin required
+## Bundled plugin
 
-Install the Feishu plugin:
+Feishu ships bundled with current OpenClaw releases, so no separate plugin install
+is required.
+
+If you are using an older build or a custom install that does not include bundled
+Feishu, install it manually:
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw plugins install @openclaw/feishu
-```
-
-Local checkout (when running from a git repo):
-
-```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-openclaw plugins install ./extensions/feishu
 ```
 
 ***
@@ -32,9 +30,9 @@ openclaw plugins install ./extensions/feishu
 
 There are two ways to add the Feishu channel:
 
-### Method 1: onboarding wizard (recommended)
+### Method 1: onboarding (recommended)
 
-If you just installed OpenClaw, run the wizard:
+If you just installed OpenClaw, run onboarding:
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw onboard
@@ -83,7 +81,7 @@ Lark (global) tenants should use [https://open.larksuite.com/app](https://open.l
 2. Fill in the app name + description
 3. Choose an app icon
 
-<img src="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step2-create-app.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=a3d0a511fea278250c353f5c33f03584" alt="Create enterprise app" data-og-width="2888" width="2888" data-og-height="1070" height="1070" data-path="images/feishu-step2-create-app.png" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step2-create-app.png?w=280&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=4ffcf64d6a76220152e76c4bfabaa62d 280w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step2-create-app.png?w=560&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=24900d0ddd1de10e4a32c321ae8f6372 560w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step2-create-app.png?w=840&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=62e9203c34fb4216bed8d0de8529c89b 840w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step2-create-app.png?w=1100&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=1eb92424c734bff1c0e004a3d85c5d77 1100w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step2-create-app.png?w=1650&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=6761ca220e7751910a4b753c594d0b11 1650w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step2-create-app.png?w=2500&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=557c61a223bc55c58ca1bdc30165ef38 2500w" />
+<img src="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step2-create-app.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=a3d0a511fea278250c353f5c33f03584" alt="Create enterprise app" width="2888" height="1070" data-path="images/feishu-step2-create-app.png" />
 
 ### 3. Copy credentials
 
@@ -94,7 +92,7 @@ From **Credentials & Basic Info**, copy:
 
 ❗ **Important:** keep the App Secret private.
 
-<img src="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step3-credentials.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=3a6ac22e96d76e4b85a1171ea207608b" alt="Get credentials" data-og-width="2870" width="2870" data-og-height="1266" height="1266" data-path="images/feishu-step3-credentials.png" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step3-credentials.png?w=280&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=d2662f17a15898237647d0e4dbad2b33 280w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step3-credentials.png?w=560&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=7d848229a7cc89f191a1fcdddeaf6241 560w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step3-credentials.png?w=840&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=82b2984cb3199b91478021339efe353a 840w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step3-credentials.png?w=1100&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=fad3a366183ca561c8b6a0d808aa7158 1100w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step3-credentials.png?w=1650&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=bc45a5b1a5735f97f53134ab03b716f8 1650w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step3-credentials.png?w=2500&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=0a70aa721db7c57bfe8f2ea01cb93e78 2500w" />
+<img src="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step3-credentials.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=3a6ac22e96d76e4b85a1171ea207608b" alt="Get credentials" width="2870" height="1266" data-path="images/feishu-step3-credentials.png" />
 
 ### 4. Configure permissions
 
@@ -109,6 +107,8 @@ On **Permissions**, click **Batch import** and paste:
       "application:application.app_message_stats.overview:readonly",
       "application:application:self_manage",
       "application:bot.menu:write",
+      "cardkit:card:read",
+      "cardkit:card:write",
       "contact:user.employee_id:readonly",
       "corehr:file:download",
       "event:ip_list",
@@ -126,7 +126,7 @@ On **Permissions**, click **Batch import** and paste:
 }
 ```
 
-<img src="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step4-permissions.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=a386d201628f65771d9d423056d9dc59" alt="Configure permissions" data-og-width="2866" width="2866" data-og-height="1312" height="1312" data-path="images/feishu-step4-permissions.png" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step4-permissions.png?w=280&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=c1aec31f0d59907669b93775c8701bf1 280w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step4-permissions.png?w=560&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=012ae662bfe843e7c5837ea6b3c596c8 560w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step4-permissions.png?w=840&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=9e5dbe887ab3549fec66e918f676ad85 840w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step4-permissions.png?w=1100&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=04c44566762d323e6dafec830b3b12f2 1100w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step4-permissions.png?w=1650&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=b2c45f350ad16025cc60d516ce140865 1650w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step4-permissions.png?w=2500&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=3a255ce38f028ee2eb0086d5897b82e1 2500w" />
+<img src="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step4-permissions.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=a386d201628f65771d9d423056d9dc59" alt="Configure permissions" width="2866" height="1312" data-path="images/feishu-step4-permissions.png" />
 
 ### 5. Enable bot capability
 
@@ -135,7 +135,7 @@ In **App Capability** > **Bot**:
 1. Enable bot capability
 2. Set the bot name
 
-<img src="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step5-bot-capability.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=4c330500fd7db2e72569dc2a379697ee" alt="Enable bot capability" data-og-width="2888" width="2888" data-og-height="1386" height="1386" data-path="images/feishu-step5-bot-capability.png" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step5-bot-capability.png?w=280&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=0fc9e0cd641ff71a7c6e48e8cb99fc9a 280w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step5-bot-capability.png?w=560&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=475309c74e732d60a6242c6930e72dd6 560w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step5-bot-capability.png?w=840&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=cbbb8cdbd30bdd76b0141f0a8ea111da 840w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step5-bot-capability.png?w=1100&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=29107c5a0a58b1e8cfe033ae2d76b011 1100w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step5-bot-capability.png?w=1650&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=c628d853222de2a8958217e76aba1ccf 1650w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step5-bot-capability.png?w=2500&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=97dcaf96c2bc7e0f6b803b4135a35a2a 2500w" />
+<img src="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step5-bot-capability.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=4c330500fd7db2e72569dc2a379697ee" alt="Enable bot capability" width="2888" height="1386" data-path="images/feishu-step5-bot-capability.png" />
 
 ### 6. Configure event subscription
 
@@ -148,10 +148,11 @@ In **Event Subscription**:
 
 1. Choose **Use long connection to receive events** (WebSocket)
 2. Add the event: `im.message.receive_v1`
+3. (Optional) For Drive comment workflows, also add: `drive.notice.comment_add_v1`
 
 ⚠️ If the gateway is not running, the long-connection setup may fail to save.
 
-<img src="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step6-event-subscription.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=00aeb4809d9df159d846e0be19bc871e" alt="Configure event subscription" data-og-width="2886" width="2886" data-og-height="1488" height="1488" data-path="images/feishu-step6-event-subscription.png" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step6-event-subscription.png?w=280&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=080bfac95f9b7e574947104c6bfef1ab 280w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step6-event-subscription.png?w=560&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=87d1b5c8142e12af5f37bbbe3c2f11cb 560w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step6-event-subscription.png?w=840&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=0e9a17e7b79e58204ed6bceb4892d814 840w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step6-event-subscription.png?w=1100&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=f11ce5b381e1820794d2020c82f07be9 1100w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step6-event-subscription.png?w=1650&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=6481ac2279de0a5858e0537af700e727 1650w, https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step6-event-subscription.png?w=2500&fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=bd43f9b379e63e537950aaad8baed907 2500w" />
+<img src="https://mintcdn.com/clawdhub/6NERQ7Dymau_gJ4k/images/feishu-step6-event-subscription.png?fit=max&auto=format&n=6NERQ7Dymau_gJ4k&q=85&s=00aeb4809d9df159d846e0be19bc871e" alt="Configure event subscription" width="2886" height="1488" data-path="images/feishu-step6-event-subscription.png" />
 
 ### 7. Publish the app
 
@@ -185,7 +186,7 @@ Edit `~/.openclaw/openclaw.json`:
         main: {
           appId: "cli_xxx",
           appSecret: "xxx",
-          botName: "My AI assistant",
+          name: "My AI assistant",
         },
       },
     },
@@ -193,7 +194,20 @@ Edit `~/.openclaw/openclaw.json`:
 }
 ```
 
-If you use `connectionMode: "webhook"`, set `verificationToken`. The Feishu webhook server binds to `127.0.0.1` by default; set `webhookHost` only if you intentionally need a different bind address.
+If you use `connectionMode: "webhook"`, set both `verificationToken` and `encryptKey`. The Feishu webhook server binds to `127.0.0.1` by default; set `webhookHost` only if you intentionally need a different bind address.
+
+#### Verification Token and Encrypt Key (webhook mode)
+
+When using webhook mode, set both `channels.feishu.verificationToken` and `channels.feishu.encryptKey` in your config. To get the values:
+
+1. In Feishu Open Platform, open your app
+2. Go to **Development** → **Events & Callbacks** (开发配置 → 事件与回调)
+3. Open the **Encryption** tab (加密策略)
+4. Copy **Verification Token** and **Encrypt Key**
+
+The screenshot below shows where to find the **Verification Token**. The **Encrypt Key** is listed in the same **Encryption** section.
+
+<img src="https://mintcdn.com/clawdhub/coDyKPKdey9mC-El/images/feishu-verification-token.png?fit=max&auto=format&n=coDyKPKdey9mC-El&q=85&s=5595773f961373eb8de4267054eef1e8" alt="Verification Token location" width="1024" height="608" data-path="images/feishu-verification-token.png" />
 
 ### Configure via environment variables
 
@@ -215,6 +229,34 @@ If your tenant is on Lark (international), set the domain to `lark` (or a full d
         main: {
           appId: "cli_xxx",
           appSecret: "xxx",
+        },
+      },
+    },
+  },
+}
+```
+
+### Quota optimization flags
+
+You can reduce Feishu API usage with two optional flags:
+
+* `typingIndicator` (default `true`): when `false`, skip typing reaction calls.
+* `resolveSenderNames` (default `true`): when `false`, skip sender profile lookup calls.
+
+Set them at top level or per account:
+
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{
+  channels: {
+    feishu: {
+      typingIndicator: false,
+      resolveSenderNames: false,
+      accounts: {
+        main: {
+          appId: "cli_xxx",
+          appSecret: "xxx",
+          typingIndicator: true,
+          resolveSenderNames: false,
         },
       },
     },
@@ -276,60 +318,86 @@ After approval, you can chat normally.
 
 **1. Group policy** (`channels.feishu.groupPolicy`):
 
-* `"open"` = allow everyone in groups (default)
+* `"open"` = allow everyone in groups
 * `"allowlist"` = only allow `groupAllowFrom`
 * `"disabled"` = disable group messages
 
-**2. Mention requirement** (`channels.feishu.groups.<chat_id>.requireMention`):
+Default: `allowlist`
 
-* `true` = require @mention (default)
-* `false` = respond without mentions
+**2. Mention requirement** (`channels.feishu.requireMention`, overridable via `channels.feishu.groups.<chat_id>.requireMention`):
+
+* explicit `true` = require @mention
+* explicit `false` = respond without mentions
+* when unset and `groupPolicy: "open"` = default to `false`
+* when unset and `groupPolicy` is not `"open"` = default to `true`
 
 ***
 
 ## Group configuration examples
 
-### Allow all groups, require @mention (default)
+### Allow all groups, no @mention required (default for open groups)
 
 ```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     feishu: {
       groupPolicy: "open",
-      // Default requireMention: true
     },
   },
 }
 ```
 
-### Allow all groups, no @mention required
+### Allow all groups, but still require @mention
 
 ```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     feishu: {
-      groups: {
-        oc_xxx: { requireMention: false },
-      },
+      groupPolicy: "open",
+      requireMention: true,
     },
   },
 }
 ```
 
-### Allow specific users in groups only
+### Allow specific groups only
 
 ```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   channels: {
     feishu: {
       groupPolicy: "allowlist",
-      groupAllowFrom: ["ou_xxx", "ou_yyy"],
+      // Feishu group IDs (chat_id) look like: oc_xxx
+      groupAllowFrom: ["oc_xxx", "oc_yyy"],
+    },
+  },
+}
+```
+
+### Restrict which senders can message in a group (sender allowlist)
+
+In addition to allowing the group itself, **all messages** in that group are gated by the sender open\_id: only users listed in `groups.<chat_id>.allowFrom` have their messages processed; messages from other members are ignored (this is full sender-level gating, not only for control commands like /reset or /new).
+
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{
+  channels: {
+    feishu: {
+      groupPolicy: "allowlist",
+      groupAllowFrom: ["oc_xxx"],
+      groups: {
+        oc_xxx: {
+          // Feishu user IDs (open_id) look like: ou_xxx
+          allowFrom: ["ou_user1", "ou_user2"],
+        },
+      },
     },
   },
 }
 ```
 
 ***
+
+<a id="get-groupuser-ids" />
 
 ## Get group/user IDs
 
@@ -427,16 +495,17 @@ openclaw pairing list feishu
 {
   channels: {
     feishu: {
+      defaultAccount: "main",
       accounts: {
         main: {
           appId: "cli_xxx",
           appSecret: "xxx",
-          botName: "Primary bot",
+          name: "Primary bot",
         },
         backup: {
           appId: "cli_yyy",
           appSecret: "yyy",
-          botName: "Backup bot",
+          name: "Backup bot",
           enabled: false,
         },
       },
@@ -444,6 +513,8 @@ openclaw pairing list feishu
   },
 }
 ```
+
+`defaultAccount` controls which Feishu account is used when outbound APIs do not specify an `accountId` explicitly.
 
 ### Message limits
 
@@ -466,6 +537,75 @@ Feishu supports streaming replies via interactive cards. When enabled, the bot u
 ```
 
 Set `streaming: false` to wait for the full reply before sending.
+
+### ACP sessions
+
+Feishu supports ACP for:
+
+* DMs
+* group topic conversations
+
+Feishu ACP is text-command driven. There are no native slash-command menus, so use `/acp ...` messages directly in the conversation.
+
+#### Persistent ACP bindings
+
+Use top-level typed ACP bindings to pin a Feishu DM or topic conversation to a persistent ACP session.
+
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{
+  agents: {
+    list: [
+      {
+        id: "codex",
+        runtime: {
+          type: "acp",
+          acp: {
+            agent: "codex",
+            backend: "acpx",
+            mode: "persistent",
+            cwd: "/workspace/openclaw",
+          },
+        },
+      },
+    ],
+  },
+  bindings: [
+    {
+      type: "acp",
+      agentId: "codex",
+      match: {
+        channel: "feishu",
+        accountId: "default",
+        peer: { kind: "direct", id: "ou_1234567890" },
+      },
+    },
+    {
+      type: "acp",
+      agentId: "codex",
+      match: {
+        channel: "feishu",
+        accountId: "default",
+        peer: { kind: "group", id: "oc_group_chat:topic:om_topic_root" },
+      },
+      acp: { label: "codex-feishu-topic" },
+    },
+  ],
+}
+```
+
+#### Thread-bound ACP spawn from chat
+
+In a Feishu DM or topic conversation, you can spawn and bind an ACP session in place:
+
+```text  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+/acp spawn codex --thread here
+```
+
+Notes:
+
+* `--thread here` works for DMs and Feishu topics.
+* Follow-up messages in the bound DM/topic route directly to that ACP session.
+* v1 does not target generic non-topic group chats.
 
 ### Multi-agent routing
 
@@ -530,28 +670,31 @@ Full configuration: [Gateway configuration](/gateway/configuration)
 
 Key options:
 
-| Setting                                           | Description                     | Default          |
-| ------------------------------------------------- | ------------------------------- | ---------------- |
-| `channels.feishu.enabled`                         | Enable/disable channel          | `true`           |
-| `channels.feishu.domain`                          | API domain (`feishu` or `lark`) | `feishu`         |
-| `channels.feishu.connectionMode`                  | Event transport mode            | `websocket`      |
-| `channels.feishu.verificationToken`               | Required for webhook mode       | -                |
-| `channels.feishu.webhookPath`                     | Webhook route path              | `/feishu/events` |
-| `channels.feishu.webhookHost`                     | Webhook bind host               | `127.0.0.1`      |
-| `channels.feishu.webhookPort`                     | Webhook bind port               | `3000`           |
-| `channels.feishu.accounts.<id>.appId`             | App ID                          | -                |
-| `channels.feishu.accounts.<id>.appSecret`         | App Secret                      | -                |
-| `channels.feishu.accounts.<id>.domain`            | Per-account API domain override | `feishu`         |
-| `channels.feishu.dmPolicy`                        | DM policy                       | `pairing`        |
-| `channels.feishu.allowFrom`                       | DM allowlist (open\_id list)    | -                |
-| `channels.feishu.groupPolicy`                     | Group policy                    | `open`           |
-| `channels.feishu.groupAllowFrom`                  | Group allowlist                 | -                |
-| `channels.feishu.groups.<chat_id>.requireMention` | Require @mention                | `true`           |
-| `channels.feishu.groups.<chat_id>.enabled`        | Enable group                    | `true`           |
-| `channels.feishu.textChunkLimit`                  | Message chunk size              | `2000`           |
-| `channels.feishu.mediaMaxMb`                      | Media size limit                | `30`             |
-| `channels.feishu.streaming`                       | Enable streaming card output    | `true`           |
-| `channels.feishu.blockStreaming`                  | Enable block streaming          | `true`           |
+| Setting                                           | Description                             | Default          |
+| ------------------------------------------------- | --------------------------------------- | ---------------- |
+| `channels.feishu.enabled`                         | Enable/disable channel                  | `true`           |
+| `channels.feishu.domain`                          | API domain (`feishu` or `lark`)         | `feishu`         |
+| `channels.feishu.connectionMode`                  | Event transport mode                    | `websocket`      |
+| `channels.feishu.defaultAccount`                  | Default account ID for outbound routing | `default`        |
+| `channels.feishu.verificationToken`               | Required for webhook mode               | -                |
+| `channels.feishu.encryptKey`                      | Required for webhook mode               | -                |
+| `channels.feishu.webhookPath`                     | Webhook route path                      | `/feishu/events` |
+| `channels.feishu.webhookHost`                     | Webhook bind host                       | `127.0.0.1`      |
+| `channels.feishu.webhookPort`                     | Webhook bind port                       | `3000`           |
+| `channels.feishu.accounts.<id>.appId`             | App ID                                  | -                |
+| `channels.feishu.accounts.<id>.appSecret`         | App Secret                              | -                |
+| `channels.feishu.accounts.<id>.domain`            | Per-account API domain override         | `feishu`         |
+| `channels.feishu.dmPolicy`                        | DM policy                               | `pairing`        |
+| `channels.feishu.allowFrom`                       | DM allowlist (open\_id list)            | -                |
+| `channels.feishu.groupPolicy`                     | Group policy                            | `allowlist`      |
+| `channels.feishu.groupAllowFrom`                  | Group allowlist                         | -                |
+| `channels.feishu.requireMention`                  | Default require @mention                | conditional      |
+| `channels.feishu.groups.<chat_id>.requireMention` | Per-group require @mention override     | inherited        |
+| `channels.feishu.groups.<chat_id>.enabled`        | Enable group                            | `true`           |
+| `channels.feishu.textChunkLimit`                  | Message chunk size                      | `2000`           |
+| `channels.feishu.mediaMaxMb`                      | Media size limit                        | `30`             |
+| `channels.feishu.streaming`                       | Enable streaming card output            | `true`           |
+| `channels.feishu.blockStreaming`                  | Enable block streaming                  | `true`           |
 
 ***
 
@@ -575,7 +718,7 @@ Key options:
 * ✅ Images
 * ✅ Files
 * ✅ Audio
-* ✅ Video
+* ✅ Video/media
 * ✅ Stickers
 
 ### Send
@@ -584,4 +727,70 @@ Key options:
 * ✅ Images
 * ✅ Files
 * ✅ Audio
-* ⚠️ Rich text (partial support)
+* ✅ Video/media
+* ✅ Interactive cards
+* ⚠️ Rich text (post-style formatting and cards, not arbitrary Feishu authoring features)
+
+### Threads and replies
+
+* ✅ Inline replies
+* ✅ Topic-thread replies where Feishu exposes `reply_in_thread`
+* ✅ Media replies stay thread-aware when replying to a thread/topic message
+
+## Drive comments
+
+Feishu can trigger the agent when someone adds a comment on a Feishu Drive document (Docs, Sheets,
+etc.). The agent receives the comment text, document context, and the comment thread so it can
+respond in-thread or make document edits.
+
+Requirements:
+
+* Subscribe to `drive.notice.comment_add_v1` in your Feishu app event subscription settings
+  (alongside the existing `im.message.receive_v1`)
+* The Drive tool is enabled by default; disable with `channels.feishu.tools.drive: false`
+
+The `feishu_drive` tool exposes these comment actions:
+
+| Action                 | Description                         |
+| ---------------------- | ----------------------------------- |
+| `list_comments`        | List comments on a document         |
+| `list_comment_replies` | List replies in a comment thread    |
+| `add_comment`          | Add a new top-level comment         |
+| `reply_comment`        | Reply to an existing comment thread |
+
+When the agent handles a Drive comment event, it receives:
+
+* the comment text and sender
+* document metadata (title, type, URL)
+* the comment thread context for in-thread replies
+
+After making document edits, the agent is guided to use `feishu_drive.reply_comment` to notify the
+commenter and then output `NO_REPLY` to avoid duplicate sends.
+
+## Runtime action surface
+
+Feishu currently exposes these runtime actions:
+
+* `send`
+* `read`
+* `edit`
+* `thread-reply`
+* `pin`
+* `list-pins`
+* `unpin`
+* `member-info`
+* `channel-info`
+* `channel-list`
+* `react` and `reactions` when reactions are enabled in config
+* `feishu_drive` comment actions: `list_comments`, `list_comment_replies`, `add_comment`, `reply_comment`
+
+## Related
+
+* [Channels Overview](/channels) — all supported channels
+* [Pairing](/channels/pairing) — DM authentication and pairing flow
+* [Groups](/channels/groups) — group chat behavior and mention gating
+* [Channel Routing](/channels/channel-routing) — session routing for messages
+* [Security](/gateway/security) — access model and hardening
+
+
+Built with [Mintlify](https://mintlify.com).

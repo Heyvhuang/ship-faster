@@ -1,10 +1,10 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/litellm.md; fetched_at=2026-02-20T10:29:25.864Z; sha256=fd1e8f25fadb7ff6967dda788d0685b6ca6c84a971c234581462223c0143c067; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/litellm.md; fetched_at=2026-04-04T20:36:07.568Z; sha256=360fa32e541f222fa9ec5683e71580ddc5c29e4ee73610006fda4d27b2c1a86a; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# null
+# LiteLLM
 
 # LiteLLM
 
@@ -145,10 +145,18 @@ curl "http://localhost:4000/spend/logs" \
 ## Notes
 
 * LiteLLM runs on `http://localhost:4000` by default
-* OpenClaw connects via the OpenAI-compatible `/v1/chat/completions` endpoint
-* All OpenClaw features work through LiteLLM — no limitations
+* OpenClaw connects through LiteLLM's proxy-style OpenAI-compatible `/v1`
+  endpoint
+* Native OpenAI-only request shaping does not apply through LiteLLM:
+  no `service_tier`, no Responses `store`, no prompt-cache hints, and no
+  OpenAI reasoning-compat payload shaping
+* Hidden OpenClaw attribution headers (`originator`, `version`, `User-Agent`)
+  are not injected on custom LiteLLM base URLs
 
 ## See also
 
 * [LiteLLM Docs](https://docs.litellm.ai)
 * [Model Providers](/concepts/model-providers)
+
+
+Built with [Mintlify](https://mintlify.com).

@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/timezone.md; fetched_at=2026-02-20T10:29:18.357Z; sha256=4e33f8e5af296bf0d90539a6f0d351ea680f7a83a0c6e8b499dd1b09400cffdf; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/timezone.md; fetched_at=2026-04-04T20:36:06.376Z; sha256=462d3344905a21f42a0e36acd66ce694ff4585a2760da500e96bfd1832e374f1; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -89,3 +89,12 @@ The system prompt includes:
 You can control the prompt format with `agents.defaults.timeFormat` (`auto` | `12` | `24`).
 
 See [Date & Time](/date-time) for the full behavior and examples.
+
+## Related
+
+* [Heartbeat](/gateway/heartbeat) — active hours use timezone for scheduling
+* [Cron Jobs](/automation/cron-jobs) — cron expressions use timezone for scheduling
+* [Date & Time](/date-time) — full date/time behavior and examples
+
+
+Built with [Mintlify](https://mintlify.com).

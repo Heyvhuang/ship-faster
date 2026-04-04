@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/multi-agent-sandbox-tools.md; fetched_at=2026-02-20T10:29:29.460Z; sha256=9208423d9d5e0a31605cf164c65fbd9461027ee945db44d3dae6761e3df17f91; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/multi-agent-sandbox-tools.md; fetched_at=2026-04-04T20:36:08.345Z; sha256=83604d1534951b98462b3bd9d06adbe2f47006ef1be6120be91eb691753e4b36; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -8,33 +8,18 @@
 
 # Multi-Agent Sandbox & Tools Configuration
 
-## Overview
+Each agent in a multi-agent setup can override the global sandbox and tool
+policy. This page covers per-agent configuration, precedence rules, and
+examples.
 
-Each agent in a multi-agent setup can now have its own:
+* **Sandbox backends and modes**: see [Sandboxing](/gateway/sandboxing).
+* **Debugging blocked tools**: see [Sandbox vs Tool Policy vs Elevated](/gateway/sandbox-vs-tool-policy-vs-elevated) and `openclaw sandbox explain`.
+* **Elevated exec**: see [Elevated Mode](/tools/elevated).
 
-* **Sandbox configuration** (`agents.list[].sandbox` overrides `agents.defaults.sandbox`)
-* **Tool restrictions** (`tools.allow` / `tools.deny`, plus `agents.list[].tools`)
-
-This allows you to run multiple agents with different security profiles:
-
-* Personal assistant with full access
-* Family/work agents with restricted tools
-* Public-facing agents in sandboxes
-
-`setupCommand` belongs under `sandbox.docker` (global or per-agent) and runs once
-when the container is created.
-
-Auth is per-agent: each agent reads from its own `agentDir` auth store at:
-
-```
-~/.openclaw/agents/<agentId>/agent/auth-profiles.json
-```
-
+Auth is per-agent: each agent reads from its own `agentDir` auth store at
+`~/.openclaw/agents/<agentId>/agent/auth-profiles.json`.
 Credentials are **not** shared between agents. Never reuse `agentDir` across agents.
 If you want to share creds, copy `auth-profiles.json` into the other agent's `agentDir`.
-
-For how sandboxing behaves at runtime, see [Sandboxing](/gateway/sandboxing).
-For debugging “why is this blocked?”, see [Sandbox vs Tool Policy vs Elevated](/gateway/sandbox-vs-tool-policy-vs-elevated) and `openclaw sandbox explain`.
 
 ***
 
@@ -221,32 +206,11 @@ The filtering order is:
 Each level can further restrict tools, but cannot grant back denied tools from earlier levels.
 If `agents.list[].tools.sandbox.tools` is set, it replaces `tools.sandbox.tools` for that agent.
 If `agents.list[].tools.profile` is set, it overrides `tools.profile` for that agent.
-Provider tool keys accept either `provider` (e.g. `google-antigravity`) or `provider/model` (e.g. `openai/gpt-5.2`).
+Provider tool keys accept either `provider` (e.g. `google-antigravity`) or `provider/model` (e.g. `openai/gpt-5.4`).
 
-### Tool groups (shorthands)
+Tool policies support `group:*` shorthands that expand to multiple tools. See [Tool groups](/gateway/sandbox-vs-tool-policy-vs-elevated#tool-groups-shorthands) for the full list.
 
-Tool policies (global, agent, sandbox) support `group:*` entries that expand to multiple concrete tools:
-
-* `group:runtime`: `exec`, `bash`, `process`
-* `group:fs`: `read`, `write`, `edit`, `apply_patch`
-* `group:sessions`: `sessions_list`, `sessions_history`, `sessions_send`, `sessions_spawn`, `session_status`
-* `group:memory`: `memory_search`, `memory_get`
-* `group:ui`: `browser`, `canvas`
-* `group:automation`: `cron`, `gateway`
-* `group:messaging`: `message`
-* `group:nodes`: `nodes`
-* `group:openclaw`: all built-in OpenClaw tools (excludes provider plugins)
-
-### Elevated Mode
-
-`tools.elevated` is the global baseline (sender-based allowlist). `agents.list[].tools.elevated` can further restrict elevated for specific agents (both must allow).
-
-Mitigation patterns:
-
-* Deny `exec` for untrusted agents (`agents.list[].tools.deny: ["exec"]`)
-* Avoid allowlisting senders that route to restricted agents
-* Disable elevated globally (`tools.elevated.enabled: false`) if you only want sandboxed execution
-* Disable elevated per agent (`agents.list[].tools.elevated.enabled: false`) for sensitive profiles
+Per-agent elevated overrides (`agents.list[].tools.elevated`) can further restrict elevated exec for specific agents. See [Elevated Mode](/tools/elevated) for details.
 
 ***
 
@@ -332,6 +296,12 @@ Legacy `agent.*` configs are migrated by `openclaw doctor`; prefer `agents.defau
 }
 ```
 
+`sessions_history` in this profile still returns a bounded, sanitized recall
+view rather than a raw transcript dump. Assistant recall strips thinking tags,
+`<relevant-memories>` scaffolding, plain-text tool-call XML payloads,
+downgraded tool-call scaffolding, leaked model control tokens, and malformed
+MiniMax tool-call XML before redaction/truncation.
+
 ***
 
 ## Common Pitfall: "non-main"
@@ -391,8 +361,14 @@ After configuring multi-agent sandbox and tools:
 
 ***
 
-## See Also
+## See also
 
+* [Sandboxing](/gateway/sandboxing) -- full sandbox reference (modes, scopes, backends, images)
+* [Sandbox vs Tool Policy vs Elevated](/gateway/sandbox-vs-tool-policy-vs-elevated) -- debugging "why is this blocked?"
+* [Elevated Mode](/tools/elevated)
 * [Multi-Agent Routing](/concepts/multi-agent)
-* [Sandbox Configuration](/gateway/configuration#agentsdefaults-sandbox)
+* [Sandbox Configuration](/gateway/configuration-reference#agentsdefaultssandbox)
 * [Session Management](/concepts/session)
+
+
+Built with [Mintlify](https://mintlify.com).

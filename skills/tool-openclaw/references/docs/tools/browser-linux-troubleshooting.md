@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/browser-linux-troubleshooting.md; fetched_at=2026-02-20T10:29:28.788Z; sha256=83b48baf5cf17bd35f6a71d06c05397c39dc794fabcc05a2a90981c7fa99f49a; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/browser-linux-troubleshooting.md; fetched_at=2026-04-04T20:36:08.149Z; sha256=0e0e5aa5ec45df942daf8aeebc66f49dae9bc20dbe4b553cbe87fbb37139d08b; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -27,7 +27,7 @@ Note, selecting 'chromium-browser' instead of 'chromium'
 chromium-browser is already the newest version (2:1snap1-0ubuntu2).
 ```
 
-This is NOT a real browser — it's just a wrapper.
+This is NOT a real browser - it's just a wrapper.
 
 ### Solution 1: Install Google Chrome (Recommended)
 
@@ -123,19 +123,28 @@ curl -s http://127.0.0.1:18791/tabs
 | `browser.attachOnly`     | Don't launch browser, only attach to existing                        | `false`                                                     |
 | `browser.cdpPort`        | Chrome DevTools Protocol port                                        | `18800`                                                     |
 
-### Problem: "Chrome extension relay is running, but no tab is connected"
+### Problem: "No Chrome tabs found for profile="user""
 
-You’re using the `chrome` profile (extension relay). It expects the OpenClaw
-browser extension to be attached to a live tab.
+You're using an `existing-session` / Chrome MCP profile. OpenClaw can see local Chrome,
+but there are no open tabs available to attach to.
 
 Fix options:
 
 1. **Use the managed browser:** `openclaw browser start --browser-profile openclaw`
    (or set `browser.defaultProfile: "openclaw"`).
-2. **Use the extension relay:** install the extension, open a tab, and click the
-   OpenClaw extension icon to attach it.
+2. **Use Chrome MCP:** make sure local Chrome is running with at least one open tab, then retry with `--browser-profile user`.
 
 Notes:
 
-* The `chrome` profile uses your **system default Chromium browser** when possible.
+* `user` is host-only. For Linux servers, containers, or remote hosts, prefer CDP profiles.
+* `user` / other `existing-session` profiles keep the current Chrome MCP limits:
+  ref-driven actions, one-file upload hooks, no dialog timeout overrides, no
+  `wait --load networkidle`, and no `responsebody`, PDF export, download
+  interception, or batch actions.
 * Local `openclaw` profiles auto-assign `cdpPort`/`cdpUrl`; only set those for remote CDP.
+* Remote CDP profiles accept `http://`, `https://`, `ws://`, and `wss://`.
+  Use HTTP(S) for `/json/version` discovery, or WS(S) when your browser
+  service gives you a direct DevTools socket URL.
+
+
+Built with [Mintlify](https://mintlify.com).

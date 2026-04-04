@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/agent.md; fetched_at=2026-02-20T10:29:16.969Z; sha256=c06215f0167b3e7af0cd6325ffe879442a84734b8f4ee48c211ab8baf5648f2b; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/agent.md; fetched_at=2026-04-04T20:36:06.133Z; sha256=79f37beb15fb090ace320196765278601ff68ba411e50ae4d1d053b219d1b807; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -6,9 +6,9 @@
 
 # Agent Runtime
 
-# Agent Runtime 🤖
+# Agent Runtime
 
-OpenClaw runs a single embedded agent runtime derived from **pi-mono**.
+OpenClaw runs a single embedded agent runtime.
 
 ## Workspace (required)
 
@@ -56,20 +56,22 @@ guidance for how *you* want them used.
 
 ## Skills
 
-OpenClaw loads skills from three locations (workspace wins on name conflict):
+OpenClaw loads skills from these locations (highest precedence first):
 
-* Bundled (shipped with the install)
-* Managed/local: `~/.openclaw/skills`
 * Workspace: `<workspace>/skills`
+* Project agent skills: `<workspace>/.agents/skills`
+* Personal agent skills: `~/.agents/skills`
+* Managed/local: `~/.openclaw/skills`
+* Bundled (shipped with the install)
+* Extra skill folders: `skills.load.extraDirs`
 
 Skills can be gated by config/env (see `skills` in [Gateway configuration](/gateway/configuration)).
 
-## pi-mono integration
+## Runtime boundaries
 
-OpenClaw reuses pieces of the pi-mono codebase (models/tools), but **session management, discovery, and tool wiring are OpenClaw-owned**.
-
-* No pi-coding agent runtime.
-* No `~/.pi/agent` or `<workspace>/.pi` settings are consulted.
+The embedded agent runtime is built on the Pi agent core (models, tools, and
+prompt pipeline). Session management, discovery, tool wiring, and channel
+delivery are OpenClaw-owned layers on top of that core.
 
 ## Sessions
 
@@ -78,15 +80,15 @@ Session transcripts are stored as JSONL at:
 * `~/.openclaw/agents/<agentId>/sessions/<SessionId>.jsonl`
 
 The session ID is stable and chosen by OpenClaw.
-Legacy Pi/Tau session folders are **not** read.
+Legacy session folders from other tools are not read.
 
 ## Steering while streaming
 
 When queue mode is `steer`, inbound messages are injected into the current run.
-The queue is checked **after each tool call**; if a queued message is present,
-remaining tool calls from the current assistant message are skipped (error tool
-results with "Skipped due to queued user message."), then the queued user
-message is injected before the next assistant response.
+Queued steering is delivered **after the current assistant turn finishes
+executing its tool calls**, before the next LLM call. Steering no longer skips
+remaining tool calls from the current assistant message; it injects the queued
+message at the next model boundary instead.
 
 When queue mode is `followup` or `collect`, inbound messages are held until the
 current turn ends, then a new agent turn starts with the queued payloads. See
@@ -110,7 +112,11 @@ Model refs in config (for example `agents.defaults.model` and `agents.defaults.m
 
 * Use `provider/model` when configuring models.
 * If the model ID itself contains `/` (OpenRouter-style), include the provider prefix (example: `openrouter/moonshotai/kimi-k2`).
-* If you omit the provider, OpenClaw treats the input as an alias or a model for the **default provider** (only works when there is no `/` in the model ID).
+* If you omit the provider, OpenClaw tries an alias first, then a unique
+  configured-provider match for that exact model id, and only then falls back
+  to the configured default provider. If that provider no longer exposes the
+  configured default model, OpenClaw falls back to the first configured
+  provider/model instead of surfacing a stale removed-provider default.
 
 ## Configuration (minimal)
 
@@ -122,3 +128,6 @@ At minimum, set:
 ***
 
 *Next: [Group Chats](/channels/group-messages)* 🦞
+
+
+Built with [Mintlify](https://mintlify.com).

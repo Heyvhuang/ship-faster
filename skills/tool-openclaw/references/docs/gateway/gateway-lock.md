@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/gateway-lock.md; fetched_at=2026-02-20T10:29:19.839Z; sha256=650c336ca81933407d22e65569411fba7788ea74924f6785a9b0b23215a0534c; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/gateway-lock.md; fetched_at=2026-04-04T20:36:06.506Z; sha256=ec0bb3437aeb3970006dfe677bab58bd6dcda9e22960dc5fa5f9ec6d837080bf; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -7,8 +7,6 @@
 # Gateway Lock
 
 # Gateway lock
-
-Last updated: 2025-12-11
 
 ## Why
 
@@ -32,3 +30,11 @@ Last updated: 2025-12-11
 
 * If the port is occupied by *another* process, the error is the same; free the port or choose another with `openclaw gateway --port <port>`.
 * The macOS app still maintains its own lightweight PID guard before spawning the gateway; the runtime lock is enforced by the WebSocket bind.
+
+## Related
+
+* [Multiple Gateways](/gateway/multiple-gateways) — running multiple instances with unique ports
+* [Troubleshooting](/gateway/troubleshooting) — diagnosing `EADDRINUSE` and port conflicts
+
+
+Built with [Mintlify](https://mintlify.com).

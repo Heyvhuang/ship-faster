@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/web/index.md; fetched_at=2026-02-20T10:29:30.041Z; sha256=45026801aca95312f201aa4f430bf5d926d7b848dfdaefcad116e2a97123f0db; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/web/index.md; fetched_at=2026-04-04T20:36:08.500Z; sha256=e3878478e30a4b958924fd3bf85ad1e1d3cf2bee09fa56a32fcd7e9cd3109943; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -71,7 +71,8 @@ Open:
 }
 ```
 
-Then start the gateway (token required for non-loopback binds):
+Then start the gateway (this non-loopback example uses shared-secret token
+auth):
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway
@@ -95,16 +96,25 @@ Open:
 
 ## Security notes
 
-* Gateway auth is required by default (token/password or Tailscale identity headers).
-* Non-loopback binds still **require** a shared token/password (`gateway.auth` or env).
-* The wizard generates a gateway token by default (even on loopback).
-* The UI sends `connect.params.auth.token` or `connect.params.auth.password`.
-* The Control UI sends anti-clickjacking headers and only accepts same-origin browser
-  websocket connections unless `gateway.controlUi.allowedOrigins` is set.
-* With Serve, Tailscale identity headers can satisfy auth when
-  `gateway.auth.allowTailscale` is `true` (no token/password required). Set
+* Gateway auth is required by default (token, password, trusted-proxy, or Tailscale Serve identity headers when enabled).
+* Non-loopback binds still **require** gateway auth. In practice that means token/password auth or an identity-aware reverse proxy with `gateway.auth.mode: "trusted-proxy"`.
+* The wizard creates shared-secret auth by default and usually generates a
+  gateway token (even on loopback).
+* In shared-secret mode, the UI sends `connect.params.auth.token` or
+  `connect.params.auth.password`.
+* In identity-bearing modes such as Tailscale Serve or `trusted-proxy`, the
+  WebSocket auth check is satisfied from request headers instead.
+* For non-loopback Control UI deployments, set `gateway.controlUi.allowedOrigins`
+  explicitly (full origins). Without it, gateway startup is refused by default.
+* `gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback=true` enables
+  Host-header origin fallback mode, but is a dangerous security downgrade.
+* With Serve, Tailscale identity headers can satisfy Control UI/WebSocket auth
+  when `gateway.auth.allowTailscale` is `true` (no token/password required).
+  HTTP API endpoints do not use those Tailscale identity headers; they follow
+  the gateway's normal HTTP auth mode instead. Set
   `gateway.auth.allowTailscale: false` to require explicit credentials. See
-  [Tailscale](/gateway/tailscale) and [Security](/gateway/security).
+  [Tailscale](/gateway/tailscale) and [Security](/gateway/security). This
+  tokenless flow assumes the gateway host is trusted.
 * `gateway.tailscale.mode: "funnel"` requires `gateway.auth.mode: "password"` (shared password).
 
 ## Building the UI
@@ -114,3 +124,6 @@ The Gateway serves static files from `dist/control-ui`. Build them with:
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 pnpm ui:build # auto-installs UI deps on first run
 ```
+
+
+Built with [Mintlify](https://mintlify.com).

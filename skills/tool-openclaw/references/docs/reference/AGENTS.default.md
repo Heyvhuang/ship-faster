@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/AGENTS.default.md; fetched_at=2026-02-20T10:29:26.463Z; sha256=c32e078084944b1713ff087f19fcf60fae95579982f482a479b0cad6f90ba0f3; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/AGENTS.default; fetched_at=2026-04-04T20:36:08.001Z; sha256=ee3b232448ab14a40d965e0aec029cbbe6f9f8ebb0cd58a003a42f5a162a66da; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -6,7 +6,7 @@
 
 # Default AGENTS.md
 
-# AGENTS.md — OpenClaw Personal Assistant (default)
+# AGENTS.md - OpenClaw Personal Assistant (default)
 
 ## First run (recommended)
 
@@ -48,7 +48,8 @@ cp docs/reference/AGENTS.default.md ~/.openclaw/workspace/AGENTS.md
 
 ## Session start (required)
 
-* Read `SOUL.md`, `USER.md`, `memory.md`, and today+yesterday in `memory/`.
+* Read `SOUL.md`, `USER.md`, and today+yesterday in `memory/`.
+* Read `MEMORY.md` when present; only fall back to lowercase `memory.md` when `MEMORY.md` is absent.
 * Do it before responding.
 
 ## Soul (required)
@@ -65,8 +66,9 @@ cp docs/reference/AGENTS.default.md ~/.openclaw/workspace/AGENTS.md
 ## Memory system (recommended)
 
 * Daily log: `memory/YYYY-MM-DD.md` (create `memory/` if needed).
-* Long-term memory: `memory.md` for durable facts, preferences, and decisions.
-* On session start, read today + yesterday + `memory.md` if present.
+* Long-term memory: `MEMORY.md` for durable facts, preferences, and decisions.
+* Lowercase `memory.md` is legacy fallback only; do not keep both root files on purpose.
+* On session start, read today + yesterday + `MEMORY.md` when present, otherwise `memory.md`.
 * Capture: decisions, preferences, constraints, open loops.
 * Avoid secrets unless explicitly requested.
 
@@ -122,3 +124,6 @@ git commit -m "Add Clawd workspace"
 * For browser-driven verification, use `openclaw browser` (tabs/status/screenshot) with the OpenClaw-managed Chrome profile.
 * For DOM inspection, use `openclaw browser eval|query|dom|snapshot` (and `--json`/`--out` when you need machine output).
 * For interactions, use `openclaw browser click|type|hover|drag|select|upload|press|wait|navigate|back|evaluate|run` (click/type require snapshot refs; use `evaluate` for CSS selectors).
+
+
+Built with [Mintlify](https://mintlify.com).

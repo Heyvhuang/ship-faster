@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/dev-setup.md; fetched_at=2026-02-20T10:29:24.306Z; sha256=afa83c61b6b639d3a6aab66a9bfef623cf4444c04c79c9f91ac663b1062396ad; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/dev-setup.md; fetched_at=2026-04-04T20:36:07.227Z; sha256=fd48f712bf873f7582631f73512d6ef49eceaa6bcba681d93685f9c8cc13bfd3; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -15,7 +15,7 @@ This guide covers the necessary steps to build and run the OpenClaw macOS applic
 Before building the app, ensure you have the following installed:
 
 1. **Xcode 26.2+**: Required for Swift development.
-2. **Node.js 22+ & pnpm**: Required for the gateway, CLI, and packaging scripts.
+2. **Node.js 24 & pnpm**: Recommended for the gateway, CLI, and packaging scripts. Node 22 LTS, currently `22.14+`, remains supported for compatibility.
 
 ## 1. Install Dependencies
 
@@ -56,6 +56,9 @@ Alternatively, install it manually:
 npm install -g openclaw@<version>
 ```
 
+`pnpm add -g openclaw@<version>` and `bun add -g openclaw@<version>` also work.
+For the Gateway runtime, Node remains the recommended path.
+
 ## Troubleshooting
 
 ### Build Fails: Toolchain or SDK Mismatch
@@ -85,7 +88,7 @@ If the app crashes when you try to allow **Speech Recognition** or **Microphone*
 1. Reset the TCC permissions:
 
    ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-   tccutil reset All bot.molt.mac.debug
+   tccutil reset All ai.openclaw.mac.debug
    ```
 
 2. If that fails, change the `BUNDLE_ID` temporarily in [`scripts/package-mac-app.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/package-mac-app.sh) to force a "clean slate" from macOS.
@@ -98,8 +101,11 @@ If the gateway status stays on "Starting...", check if a zombie process is holdi
 openclaw gateway status
 openclaw gateway stop
 
-# If you’re not using a LaunchAgent (dev mode / manual runs), find the listener:
+# If you're not using a LaunchAgent (dev mode / manual runs), find the listener:
 lsof -nP -iTCP:18789 -sTCP:LISTEN
 ```
 
 If a manual run is holding the port, stop that process (Ctrl+C). As a last resort, kill the PID you found above.
+
+
+Built with [Mintlify](https://mintlify.com).

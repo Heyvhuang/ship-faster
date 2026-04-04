@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/permissions.md; fetched_at=2026-02-20T10:29:24.745Z; sha256=362a8a0f1dcb58b8c7e3482cdcff5bad57b4fb8a01dcbc86cd79e45511ecca8a; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/permissions.md; fetched_at=2026-04-04T20:36:07.268Z; sha256=aa32e467ad0774f701bd5f793fb6fd4844aec5d667b869eb062450dbde8fd7ec; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -34,8 +34,8 @@ grants, and prompts can disappear entirely until the stale entries are cleared.
 Example resets (replace bundle ID as needed):
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-sudo tccutil reset Accessibility bot.molt.mac
-sudo tccutil reset ScreenCapture bot.molt.mac
+sudo tccutil reset Accessibility ai.openclaw.mac
+sudo tccutil reset ScreenCapture ai.openclaw.mac
 sudo tccutil reset AppleEvents
 ```
 
@@ -47,3 +47,6 @@ Workaround: move files into the OpenClaw workspace (`~/.openclaw/workspace`) if 
 
 If you are testing permissions, always sign with a real certificate. Ad-hoc
 builds are only acceptable for quick local runs where permissions do not matter.
+
+
+Built with [Mintlify](https://mintlify.com).

@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/macos.md; fetched_at=2026-02-20T10:29:25.149Z; sha256=278ea84e9cc362c04b5cb44695099181d83c77c01222d699da82437e903327b4; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/macos.md; fetched_at=2026-04-04T20:36:07.329Z; sha256=e7a6ae6196cb77b1db87778a9771001925c7674923ccd4e4dbf6fe7645337333; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -21,7 +21,7 @@ capabilities to the agent as a node.
 * Exposes macOS‑only tools (Canvas, Camera, Screen Recording, `system.run`).
 * Starts the local node host service in **remote** mode (launchd), and stops it in **local** mode.
 * Optionally hosts **PeekabooBridge** for UI automation.
-* Installs the global CLI (`openclaw`) via npm/pnpm on request (bun not recommended for the Gateway runtime).
+* Installs the global CLI (`openclaw`) on request via npm, pnpm, or bun (the app prefers npm, then pnpm, then bun; Node remains the recommended Gateway runtime).
 
 ## Local vs remote mode
 
@@ -31,18 +31,20 @@ capabilities to the agent as a node.
   a local process.
   The app starts the local **node host service** so the remote Gateway can reach this Mac.
   The app does not spawn the Gateway as a child process.
+  Gateway discovery now prefers Tailscale MagicDNS names over raw tailnet IPs,
+  so the Mac app recovers more reliably when tailnet IPs change.
 
 ## Launchd control
 
-The app manages a per‑user LaunchAgent labeled `bot.molt.gateway`
-(or `bot.molt.<profile>` when using `--profile`/`OPENCLAW_PROFILE`; legacy `com.openclaw.*` still unloads).
+The app manages a per‑user LaunchAgent labeled `ai.openclaw.gateway`
+(or `ai.openclaw.<profile>` when using `--profile`/`OPENCLAW_PROFILE`; legacy `com.openclaw.*` still unloads).
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-launchctl kickstart -k gui/$UID/bot.molt.gateway
-launchctl bootout gui/$UID/bot.molt.gateway
+launchctl kickstart -k gui/$UID/ai.openclaw.gateway
+launchctl bootout gui/$UID/ai.openclaw.gateway
 ```
 
-Replace the label with `bot.molt.<profile>` when running a named profile.
+Replace the label with `ai.openclaw.<profile>` when running a named profile.
 
 If the LaunchAgent isn’t installed, enable it from the app or run
 `openclaw gateway install`.
@@ -103,8 +105,11 @@ Example:
 Notes:
 
 * `allowlist` entries are glob patterns for resolved binary paths.
+* Raw shell command text that contains shell control or expansion syntax (`&&`, `||`, `;`, `|`, `` ` ``, `$`, `<`, `>`, `(`, `)`) is treated as an allowlist miss and requires explicit approval (or allowlisting the shell binary).
 * Choosing “Always Allow” in the prompt adds that command to the allowlist.
-* `system.run` environment overrides are filtered (drops `PATH`, `DYLD_*`, `LD_*`, `NODE_OPTIONS`, `PYTHON*`, `PERL*`, `RUBYOPT`) and then merged with the app’s environment.
+* `system.run` environment overrides are filtered (drops `PATH`, `DYLD_*`, `LD_*`, `NODE_OPTIONS`, `PYTHON*`, `PERL*`, `RUBYOPT`, `SHELLOPTS`, `PS4`) and then merged with the app’s environment.
+* For shell wrappers (`bash|sh|zsh ... -c/-lc`), request-scoped environment overrides are reduced to a small explicit allowlist (`TERM`, `LANG`, `LC_*`, `COLORTERM`, `NO_COLOR`, `FORCE_COLOR`).
+* For allow-always decisions in allowlist mode, known dispatch wrappers (`env`, `nice`, `nohup`, `stdbuf`, `timeout`) persist inner executable paths instead of wrapper paths. If unwrapping is not safe, no allowlist entry is persisted automatically.
 
 ## Deep links
 
@@ -140,6 +145,25 @@ Safety:
 3. Ensure **Local** mode is active and the Gateway is running.
 4. Install the CLI if you want terminal access.
 
+## State dir placement (macOS)
+
+Avoid putting your OpenClaw state dir in iCloud or other cloud-synced folders.
+Sync-backed paths can add latency and occasionally cause file-lock/sync races for
+sessions and credentials.
+
+Prefer a local non-synced state path such as:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+OPENCLAW_STATE_DIR=~/.openclaw
+```
+
+If `openclaw doctor` detects state under:
+
+* `~/Library/Mobile Documents/com~apple~CloudDocs/...`
+* `~/Library/CloudStorage/...`
+
+it will warn and recommend moving back to a local path.
+
 ## Build & dev workflow (native)
 
 * `cd apps/macos && swift build`
@@ -172,7 +196,8 @@ Discovery options:
 * `--json`: structured output for diffing
 
 Tip: compare against `openclaw gateway discover --json` to see whether the
-macOS app’s discovery pipeline (NWBrowser + tailnet DNS‑SD fallback) differs from
+macOS app’s discovery pipeline (`local.` plus the configured wide-area domain, with
+wide-area and Tailscale Serve fallbacks) differs from
 the Node CLI’s `dns-sd` based discovery.
 
 ## Remote connection plumbing (SSH tunnels)
@@ -202,3 +227,6 @@ details, see [Gateway protocol](/gateway/protocol).
 * [Gateway (macOS)](/platforms/mac/bundled-gateway)
 * [macOS permissions](/platforms/mac/permissions)
 * [Canvas](/platforms/mac/canvas)
+
+
+Built with [Mintlify](https://mintlify.com).

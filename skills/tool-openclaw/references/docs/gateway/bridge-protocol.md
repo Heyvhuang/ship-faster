@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/bridge-protocol.md; fetched_at=2026-02-20T10:29:19.250Z; sha256=45e4b1c482f3a5dc150ef5af27a0469f042cae19611b604380f737673b5b494b; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/bridge-protocol.md; fetched_at=2026-04-04T20:36:06.481Z; sha256=85d003a92c15368c052ac1697dc6ea7e40690ef59ffe10fe7897141049b9ae1c; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -8,16 +8,11 @@
 
 # Bridge protocol (legacy node transport)
 
-The Bridge protocol is a **legacy** node transport (TCP JSONL). New node clients
-should use the unified Gateway WebSocket protocol instead.
+<Warning>
+  The TCP bridge has been **removed**. Current OpenClaw builds do not ship the bridge listener and `bridge.*` config keys are no longer in the schema. This page is kept for historical reference only. Use the [Gateway Protocol](/gateway/protocol) for all node/operator clients.
+</Warning>
 
-If you are building an operator or node client, use the
-[Gateway protocol](/gateway/protocol).
-
-**Note:** Current OpenClaw builds no longer ship the TCP bridge listener; this document is kept for historical reference.
-Legacy `bridge.*` config keys are no longer part of the config schema.
-
-## Why we have both
+## Why it existed
 
 * **Security boundary**: the bridge exposes a small allowlist instead of the
   full gateway API surface.
@@ -31,7 +26,8 @@ Legacy `bridge.*` config keys are no longer part of the config schema.
 
 * TCP, one JSON object per line (JSONL).
 * Optional TLS (when `bridge.tls.enabled` is true).
-* Legacy default listener port was `18790` (current builds do not start a TCP bridge).
+* Historical default listener port was `18790` (current builds do not start a
+  TCP bridge).
 
 When TLS is enabled, discovery TXT records include `bridgeTls=1` plus
 `bridgeTlsSha256` as a non-secret hint. Note that Bonjour/mDNS TXT records are
@@ -45,7 +41,8 @@ authoritative pin without explicit user intent or other out-of-band verification
 3. Client sends `pair-request`.
 4. Gateway waits for approval, then sends `pair-ok` and `hello-ok`.
 
-`hello-ok` returns `serverName` and may include `canvasHostUrl`.
+Historically, `hello-ok` returned `serverName` and could include
+`canvasHostUrl`.
 
 ## Frames
 
@@ -76,15 +73,19 @@ Payload fields (all optional unless noted):
 * `exitCode`, `timedOut`, `success`, `output`: completion details (finished only).
 * `reason`: denial reason (denied only).
 
-## Tailnet usage
+## Historical tailnet usage
 
 * Bind the bridge to a tailnet IP: `bridge.bind: "tailnet"` in
-  `~/.openclaw/openclaw.json`.
+  `~/.openclaw/openclaw.json` (historical only; `bridge.*` is no longer valid).
 * Clients connect via MagicDNS name or tailnet IP.
 * Bonjour does **not** cross networks; use manual host/port or wide-area DNS‑SD
   when needed.
 
 ## Versioning
 
-Bridge is currently **implicit v1** (no min/max negotiation). Backward‑compat
-is expected; add a bridge protocol version field before any breaking changes.
+The bridge was **implicit v1** (no min/max negotiation). This section is
+historical reference only; current node/operator clients use the WebSocket
+[Gateway Protocol](/gateway/protocol).
+
+
+Built with [Mintlify](https://mintlify.com).

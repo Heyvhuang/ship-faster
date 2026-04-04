@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/broadcast-groups.md; fetched_at=2026-02-20T10:29:13.091Z; sha256=df9e5532c6b1dcfa2af0d655b06d38499942656064c4429dd3ce5e1f17962d72; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/broadcast-groups.md; fetched_at=2026-04-04T20:36:05.380Z; sha256=6f4e71f918020eb49ca3aad13ebead603b5f6042bbdb9d0926a136318d1fc5f3; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -191,7 +191,7 @@ In group `120363403215116621@g.us` with agents `["alfred", "baerbel"]`:
 ```
 Session: agent:alfred:whatsapp:group:120363403215116621@g.us
 History: [user message, alfred's previous responses]
-Workspace: /Users/pascal/openclaw-alfred/
+Workspace: /Users/user/openclaw-alfred/
 Tools: read, write, exec
 ```
 
@@ -200,7 +200,7 @@ Tools: read, write, exec
 ```
 Session: agent:baerbel:whatsapp:group:120363403215116621@g.us
 History: [user message, baerbel's previous responses]
-Workspace: /Users/pascal/openclaw-baerbel/
+Workspace: /Users/user/openclaw-baerbel/
 Tools: read only
 ```
 
@@ -438,4 +438,7 @@ Planned features:
 
 * [Multi-Agent Configuration](/tools/multi-agent-sandbox-tools)
 * [Routing Configuration](/channels/channel-routing)
-* [Session Management](/concepts/sessions)
+* [Session Management](/concepts/session)
+
+
+Built with [Mintlify](https://mintlify.com).

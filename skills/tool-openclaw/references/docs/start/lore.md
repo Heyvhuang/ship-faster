@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/lore.md; fetched_at=2026-02-20T10:29:28.273Z; sha256=5e656a1c2a89e14fe174128f7189a115a4d3686f68b5c963b7244b5e43acaef2; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/lore.md; fetched_at=2026-04-04T20:36:08.043Z; sha256=711303b2ef68f5fecffb8eac2bb99cbb4f481573ed1f065143f479db8417ffc5; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -161,7 +161,7 @@ Peter: *nervously checks credit card access*
 * **AGENTS.md** — Operating instructions
 * **USER.md** — Context about the creator
 
-## The Lobster's Creed
+## The Lobster Creed
 
 ```
 I am Molty.
@@ -218,3 +218,6 @@ Until then, Molty watches through the cameras, speaks through the speakers, and 
 — ELU, during The Final Form migration, January 30, 2026
 
 🦞💙
+
+
+Built with [Mintlify](https://mintlify.com).

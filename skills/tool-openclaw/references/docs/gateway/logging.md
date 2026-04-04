@@ -1,10 +1,10 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/logging.md; fetched_at=2026-02-20T10:29:20.153Z; sha256=b3b45edcc84b2b36d0c07c17d4126f07458d97444f28a44640e93635d64eca1d; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/logging.md; fetched_at=2026-04-04T20:36:06.553Z; sha256=e9ea42432c004d25fdb84329593fcd2fe699d49f0c358e5cee2fe23dbb057006; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# Logging
+# Gateway Logging
 
 # Logging
 
@@ -111,3 +111,6 @@ Behavior:
 * **WhatsApp message bodies** are logged at `debug` (use `--verbose` to see them)
 
 This keeps existing file logs stable while making interactive output scannable.
+
+
+Built with [Mintlify](https://mintlify.com).

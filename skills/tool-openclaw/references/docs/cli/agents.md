@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/agents.md; fetched_at=2026-02-20T10:29:14.573Z; sha256=a645954f37a1d1b5cad50ea9897529cf026130ea07a503b3d180e34cf2a50329; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/agents.md; fetched_at=2026-04-04T20:36:05.656Z; sha256=4edf2697772831c0d2e3bb44f5c70ed5ce4fffc3a8ff1e593552975be6e9352e; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -14,16 +14,143 @@ Related:
 
 * Multi-agent routing: [Multi-Agent Routing](/concepts/multi-agent)
 * Agent workspace: [Agent workspace](/concepts/agent-workspace)
+* Skill visibility config: [Skills config](/tools/skills-config)
 
 ## Examples
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw agents list
+openclaw agents list --bindings
 openclaw agents add work --workspace ~/.openclaw/workspace-work
+openclaw agents add ops --workspace ~/.openclaw/workspace-ops --bind telegram:ops --non-interactive
+openclaw agents bindings
+openclaw agents bind --agent work --bind telegram:ops
+openclaw agents unbind --agent work --bind telegram:ops
 openclaw agents set-identity --workspace ~/.openclaw/workspace --from-identity
 openclaw agents set-identity --agent main --avatar avatars/openclaw.png
 openclaw agents delete work
 ```
+
+## Routing bindings
+
+Use routing bindings to pin inbound channel traffic to a specific agent.
+
+If you also want different visible skills per agent, configure
+`agents.defaults.skills` and `agents.list[].skills` in `openclaw.json`. See
+[Skills config](/tools/skills-config) and
+[Configuration Reference](/gateway/configuration-reference#agentsdefaultsskills).
+
+List bindings:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw agents bindings
+openclaw agents bindings --agent work
+openclaw agents bindings --json
+```
+
+Add bindings:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw agents bind --agent work --bind telegram:ops --bind discord:guild-a
+```
+
+If you omit `accountId` (`--bind <channel>`), OpenClaw resolves it from channel defaults and plugin setup hooks when available.
+
+If you omit `--agent` for `bind` or `unbind`, OpenClaw targets the current default agent.
+
+### Binding scope behavior
+
+* A binding without `accountId` matches the channel default account only.
+* `accountId: "*"` is the channel-wide fallback (all accounts) and is less specific than an explicit account binding.
+* If the same agent already has a matching channel binding without `accountId`, and you later bind with an explicit or resolved `accountId`, OpenClaw upgrades that existing binding in place instead of adding a duplicate.
+
+Example:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+# initial channel-only binding
+openclaw agents bind --agent work --bind telegram
+
+# later upgrade to account-scoped binding
+openclaw agents bind --agent work --bind telegram:ops
+```
+
+After the upgrade, routing for that binding is scoped to `telegram:ops`. If you also want default-account routing, add it explicitly (for example `--bind telegram:default`).
+
+Remove bindings:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw agents unbind --agent work --bind telegram:ops
+openclaw agents unbind --agent work --all
+```
+
+`unbind` accepts either `--all` or one or more `--bind` values, not both.
+
+## Command surface
+
+### `agents`
+
+Running `openclaw agents` with no subcommand is equivalent to `openclaw agents list`.
+
+### `agents list`
+
+Options:
+
+* `--json`
+* `--bindings`: include full routing rules, not only per-agent counts/summaries
+
+### `agents add [name]`
+
+Options:
+
+* `--workspace <dir>`
+* `--model <id>`
+* `--agent-dir <dir>`
+* `--bind <channel[:accountId]>` (repeatable)
+* `--non-interactive`
+* `--json`
+
+Notes:
+
+* Passing any explicit add flags switches the command into the non-interactive path.
+* Non-interactive mode requires both an agent name and `--workspace`.
+* `main` is reserved and cannot be used as the new agent id.
+
+### `agents bindings`
+
+Options:
+
+* `--agent <id>`
+* `--json`
+
+### `agents bind`
+
+Options:
+
+* `--agent <id>` (defaults to the current default agent)
+* `--bind <channel[:accountId]>` (repeatable)
+* `--json`
+
+### `agents unbind`
+
+Options:
+
+* `--agent <id>` (defaults to the current default agent)
+* `--bind <channel[:accountId]>` (repeatable)
+* `--all`
+* `--json`
+
+### `agents delete <id>`
+
+Options:
+
+* `--force`
+* `--json`
+
+Notes:
+
+* `main` cannot be deleted.
+* Without `--force`, interactive confirmation is required.
+* Workspace, agent state, and session transcript directories are moved to Trash, not hard-deleted.
 
 ## Identity files
 
@@ -42,6 +169,24 @@ Avatar paths resolve relative to the workspace root.
 * `theme`
 * `emoji`
 * `avatar` (workspace-relative path, http(s) URL, or data URI)
+
+Options:
+
+* `--agent <id>`
+* `--workspace <dir>`
+* `--identity-file <path>`
+* `--from-identity`
+* `--name <name>`
+* `--theme <theme>`
+* `--emoji <emoji>`
+* `--avatar <value>`
+* `--json`
+
+Notes:
+
+* `--agent` or `--workspace` can be used to select the target agent.
+* If you rely on `--workspace` and multiple agents share that workspace, the command fails and asks you to pass `--agent`.
+* When no explicit identity fields are provided, the command reads identity data from `IDENTITY.md`.
 
 Load from `IDENTITY.md`:
 
@@ -74,3 +219,6 @@ Config sample:
   },
 }
 ```
+
+
+Built with [Mintlify](https://mintlify.com).

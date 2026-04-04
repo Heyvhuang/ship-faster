@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/BOOT.md; fetched_at=2026-02-20T10:29:27.090Z; sha256=b801335b24843417736b4504317483f86440d0324aaba3520e57ff500c0053c5; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/BOOT.md; fetched_at=2026-04-04T20:36:07.875Z; sha256=04d04182ab864bbaa50faae0d8ccf97f5e764a0d5c59c3ff7c8e07e362b84ed4; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -10,3 +10,6 @@
 
 Add short, explicit instructions for what OpenClaw should do on startup (enable `hooks.internal.enabled`).
 If the task sends a message, use the message tool and then reply with NO\_REPLY.
+
+
+Built with [Mintlify](https://mintlify.com).

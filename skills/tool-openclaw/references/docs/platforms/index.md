@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/index.md; fetched_at=2026-02-20T10:29:23.898Z; sha256=af42624cd9b10049fdacd4d3c2a3ab77a6a8696c74d7d44ab808e59cb4699f20; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/index.md; fetched_at=2026-04-04T20:36:07.178Z; sha256=06dc7d2f445a3169233c82678787e1eebf6dbc4bc0b75cc418e30f50bd85fd6c; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -29,6 +29,7 @@ Native companion apps for Windows are also planned; the Gateway is recommended v
 * Fly.io: [Fly.io](/install/fly)
 * Hetzner (Docker): [Hetzner](/install/hetzner)
 * GCP (Compute Engine): [GCP](/install/gcp)
+* Azure (Linux VM): [Azure](/install/azure)
 * exe.dev (VM + HTTPS proxy): [exe.dev](/install/exe-dev)
 
 ## Common links
@@ -49,5 +50,9 @@ Use one of these (all supported):
 
 The service target depends on OS:
 
-* macOS: LaunchAgent (`bot.molt.gateway` or `bot.molt.<profile>`; legacy `com.openclaw.*`)
+* macOS: LaunchAgent (`ai.openclaw.gateway` or `ai.openclaw.<profile>`; legacy `com.openclaw.*`)
 * Linux/WSL2: systemd user service (`openclaw-gateway[-<profile>].service`)
+* Native Windows: Scheduled Task (`OpenClaw Gateway` or `OpenClaw Gateway (<profile>)`), with a per-user Startup-folder login item fallback if task creation is denied
+
+
+Built with [Mintlify](https://mintlify.com).

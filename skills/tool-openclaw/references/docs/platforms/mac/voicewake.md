@@ -1,10 +1,10 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/voicewake.md; fetched_at=2026-02-20T10:29:25.362Z; sha256=4875830a132f6d84c4081d613278b6b5afc4cfefe4317d08ca66ff3ae5e0bab1; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/voicewake.md; fetched_at=2026-04-04T20:36:07.293Z; sha256=78126dcd2a8ce7b1a032e9a64aab93b5efd239b912060b6b7e32bb1e6928b10f; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# Voice Wake
+# Voice Wake (macOS)
 
 # Voice Wake & Push-to-Talk
 
@@ -66,3 +66,6 @@ Hardening:
 
 * Toggle push-to-talk on, hold Cmd+Fn, speak, release: overlay should show partials then send.
 * While holding, menu-bar ears should stay enlarged (uses `triggerVoiceEars(ttl:nil)`); they drop after release.
+
+
+Built with [Mintlify](https://mintlify.com).

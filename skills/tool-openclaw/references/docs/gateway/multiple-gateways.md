@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/multiple-gateways.md; fetched_at=2026-02-20T10:29:20.243Z; sha256=101b0e3c6469860ecadf60bc5ebfa8ac6ededf5f645c4d1ff505303970edb58c; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/multiple-gateways.md; fetched_at=2026-04-04T20:36:06.556Z; sha256=2a20b58fc445c1b9933475c967648031afc0cf7c46b7f5f59c2d41a8e96e2f7c; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -70,7 +70,7 @@ openclaw --profile rescue onboard
 #   better choose completely different base port, like 19789,
 # - rest of the onboarding is the same as normal
 
-# To install the service (if not happened automatically during onboarding)
+# To install the service (if not happened automatically during setup)
 openclaw --profile rescue gateway install
 ```
 
@@ -106,7 +106,18 @@ openclaw gateway --port 19001
 ## Quick checks
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw --profile main gateway status --deep
+openclaw --profile rescue gateway status --deep
+openclaw --profile rescue gateway probe
 openclaw --profile main status
 openclaw --profile rescue status
 openclaw --profile rescue browser status
 ```
+
+Interpretation:
+
+* `gateway status --deep` helps catch stale launchd/systemd/schtasks services from older installs.
+* `gateway probe` warning text such as `multiple reachable gateways detected` is expected only when you intentionally run more than one isolated gateway.
+
+
+Built with [Mintlify](https://mintlify.com).

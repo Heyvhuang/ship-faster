@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/canvas.md; fetched_at=2026-02-20T10:29:24.057Z; sha256=d512084bde902c0f166abbf1014e9aaa1a5681b46c39d3d6ad549df38a450abb; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/canvas.md; fetched_at=2026-04-04T20:36:07.204Z; sha256=f876a80b6fabdcdcf0a9db5eebdcf3f1dee8cd11cee0516d919812e77978de2b; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -122,3 +122,6 @@ The app prompts for confirmation unless a valid key is provided.
 * Canvas scheme blocks directory traversal; files must live under the session root.
 * Local Canvas content uses a custom scheme (no loopback server required).
 * External `http(s)` URLs are allowed only when explicitly navigated.
+
+
+Built with [Mintlify](https://mintlify.com).

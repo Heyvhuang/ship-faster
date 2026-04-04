@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/session-management-compaction.md; fetched_at=2026-02-20T10:29:26.873Z; sha256=e0515d80ce84a2c62ae9e275c90944e0747b38cd3010edac905129c6da968bfe; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/session-management-compaction.md; fetched_at=2026-04-04T20:36:07.865Z; sha256=d3e400e5531fb1ac325f324dbab96585f0f17e5d91e2b89d5d2a90407528cad0; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -22,6 +22,8 @@ If you want a higher-level overview first, start with:
 
 * [/concepts/session](/concepts/session)
 * [/concepts/compaction](/concepts/compaction)
+* [/concepts/memory](/concepts/memory)
+* [/concepts/memory-search](/concepts/memory-search)
 * [/concepts/session-pruning](/concepts/session-pruning)
 * [/reference/transcript-hygiene](/reference/transcript-hygiene)
 
@@ -64,6 +66,44 @@ OpenClaw resolves these via `src/config/sessions.ts`.
 
 ***
 
+## Store maintenance and disk controls
+
+Session persistence has automatic maintenance controls (`session.maintenance`) for `sessions.json` and transcript artifacts:
+
+* `mode`: `warn` (default) or `enforce`
+* `pruneAfter`: stale-entry age cutoff (default `30d`)
+* `maxEntries`: cap entries in `sessions.json` (default `500`)
+* `rotateBytes`: rotate `sessions.json` when oversized (default `10mb`)
+* `resetArchiveRetention`: retention for `*.reset.<timestamp>` transcript archives (default: same as `pruneAfter`; `false` disables cleanup)
+* `maxDiskBytes`: optional sessions-directory budget
+* `highWaterBytes`: optional target after cleanup (default `80%` of `maxDiskBytes`)
+
+Enforcement order for disk budget cleanup (`mode: "enforce"`):
+
+1. Remove oldest archived or orphan transcript artifacts first.
+2. If still above the target, evict oldest session entries and their transcript files.
+3. Keep going until usage is at or below `highWaterBytes`.
+
+In `mode: "warn"`, OpenClaw reports potential evictions but does not mutate the store/files.
+
+Run maintenance on demand:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw sessions cleanup --dry-run
+openclaw sessions cleanup --enforce
+```
+
+***
+
+## Cron sessions and run logs
+
+Isolated cron runs also create session entries/transcripts, and they have dedicated retention controls:
+
+* `cron.sessionRetention` (default `24h`) prunes old isolated cron run sessions from the session store (`false` disables).
+* `cron.runLog.maxBytes` + `cron.runLog.keepLines` prune `~/.openclaw/cron/runs/<jobId>.jsonl` files (defaults: `2_000_000` bytes and `2000` lines).
+
+***
+
 ## Session keys (`sessionKey`)
 
 A `sessionKey` identifies *which conversation bucket* you’re in (routing + isolation).
@@ -89,6 +129,7 @@ Rules of thumb:
 * **Reset** (`/new`, `/reset`) creates a new `sessionId` for that `sessionKey`.
 * **Daily reset** (default 4:00 AM local time on the gateway host) creates a new `sessionId` on the next message after the reset boundary.
 * **Idle expiry** (`session.reset.idleMinutes` or legacy `session.idleMinutes`) creates a new `sessionId` when a message arrives after the idle window. When daily + idle are both configured, whichever expires first wins.
+* **Thread parent fork guard** (`session.parentForkMaxTokens`, default `100000`) skips parent transcript forking when the parent session is already too large; the new thread starts fresh. Set `0` to disable.
 
 Implementation detail: the decision happens in `initSessionState()` in `src/auto-reply/reply/session.ts`.
 
@@ -168,13 +209,30 @@ After compaction, future turns see:
 
 Compaction is **persistent** (unlike session pruning). See [/concepts/session-pruning](/concepts/session-pruning).
 
+## Compaction chunk boundaries and tool pairing
+
+When OpenClaw splits a long transcript into compaction chunks, it keeps
+assistant tool calls paired with their matching `toolResult` entries.
+
+* If the token-share split lands between a tool call and its result, OpenClaw
+  shifts the boundary to the assistant tool-call message instead of separating
+  the pair.
+* If a trailing tool-result block would otherwise push the chunk over target,
+  OpenClaw preserves that pending tool block and keeps the unsummarized tail
+  intact.
+* Aborted/error tool-call blocks do not hold a pending split open.
+
 ***
 
 ## When auto-compaction happens (Pi runtime)
 
 In the embedded Pi agent, auto-compaction triggers in two cases:
 
-1. **Overflow recovery**: the model returns a context overflow error → compact → retry.
+1. **Overflow recovery**: the model returns a context overflow error
+   (`request_too_large`, `context length exceeded`, `input exceeds the maximum
+   number of tokens`, `input token count exceeds the maximum number of input
+   tokens`, `input is too long for the model`, `ollama error: context length
+   exceeded`, and similar provider-shaped variants) → compact → retry.
 2. **Threshold maintenance**: after a successful turn, when:
 
 `contextTokens > contextWindow - reserveTokens`
@@ -235,12 +293,14 @@ Convention:
 
 * The assistant starts its output with `NO_REPLY` to indicate “do not deliver a reply to the user”.
 * OpenClaw strips/suppresses this in the delivery layer.
+* Exact silent-token suppression is case-insensitive, so `NO_REPLY` and
+  `no_reply` both count when the whole payload is just the silent token.
 
 As of `2026.1.10`, OpenClaw also suppresses **draft/typing streaming** when a partial chunk begins with `NO_REPLY`, so silent operations don’t leak partial output mid-turn.
 
 ***
 
-## Pre-compaction “memory flush” (implemented)
+## Pre-compaction "memory flush" (implemented)
 
 Goal: before auto-compaction happens, run a silent agentic turn that writes durable
 state to disk (e.g. `memory/YYYY-MM-DD.md` in the agent workspace) so compaction can’t
@@ -281,4 +341,7 @@ flush logic lives on the Gateway side today.
   * model context window (too small)
   * compaction settings (`reserveTokens` too high for the model window can cause earlier compaction)
   * tool-result bloat: enable/tune session pruning
-* Silent turns leaking? Confirm the reply starts with `NO_REPLY` (exact token) and you’re on a build that includes the streaming suppression fix.
+* Silent turns leaking? Confirm the reply starts with `NO_REPLY` (case-insensitive exact token) and you’re on a build that includes the streaming suppression fix.
+
+
+Built with [Mintlify](https://mintlify.com).

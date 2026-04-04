@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/sandbox-vs-tool-policy-vs-elevated.md; fetched_at=2026-02-20T10:29:20.474Z; sha256=2f7cbf33d4b8246ecec79f4a5e12199dac400522b624d388f65a07f752e3ced8; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/sandbox-vs-tool-policy-vs-elevated.md; fetched_at=2026-04-04T20:36:06.638Z; sha256=29395b6e752ee6acf2f9ef56b35ef785930d1ab7be6060963c5212fa92501187; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -12,7 +12,7 @@ OpenClaw has three related (but different) controls:
 
 1. **Sandbox** (`agents.defaults.sandbox.*` / `agents.list[].sandbox.*`) decides **where tools run** (Docker vs host).
 2. **Tool policy** (`tools.*`, `tools.sandbox.tools.*`, `agents.list[].tools.*`) decides **which tools are available/allowed**.
-3. **Elevated** (`tools.elevated.*`, `agents.list[].tools.elevated.*`) is an **exec-only escape hatch** to run on the host when you’re sandboxed.
+3. **Elevated** (`tools.elevated.*`, `agents.list[].tools.elevated.*`) is an **exec-only escape hatch** to run outside the sandbox when you’re sandboxed (`gateway` by default, or `node` when the exec target is configured to `node`).
 
 ## Quick debug
 
@@ -47,6 +47,8 @@ See [Sandboxing](/gateway/sandboxing) for the full matrix (scope, workspace moun
 * `docker.binds` *pierces* the sandbox filesystem: whatever you mount is visible inside the container with the mode you set (`:ro` or `:rw`).
 * Default is read-write if you omit the mode; prefer `:ro` for source/secrets.
 * `scope: "shared"` ignores per-agent binds (only global binds apply).
+* OpenClaw validates bind sources twice: first on the normalized source path, then again after resolving through the deepest existing ancestor. Symlink-parent escapes do not bypass blocked-path or allowed-root checks.
+* Non-existent leaf paths are still checked safely. If `/workspace/alias-out/new-file` resolves through a symlinked parent to a blocked path or outside the configured allowed roots, the bind is rejected.
 * Binding `/var/run/docker.sock` effectively hands host control to the sandbox; only do this intentionally.
 * Workspace access (`workspaceAccess: "ro"`/`"rw"`) is independent of bind modes.
 
@@ -66,7 +68,7 @@ Rules of thumb:
 * If `allow` is non-empty, everything else is treated as blocked.
 * Tool policy is the hard stop: `/exec` cannot override a denied `exec` tool.
 * `/exec` only changes session defaults for authorized senders; it does not grant tool access.
-  Provider tool keys accept either `provider` (e.g. `google-antigravity`) or `provider/model` (e.g. `openai/gpt-5.2`).
+  Provider tool keys accept either `provider` (e.g. `google-antigravity`) or `provider/model` (e.g. `openai/gpt-5.4`).
 
 ### Tool groups (shorthands)
 
@@ -86,24 +88,29 @@ Tool policies (global, agent, sandbox) support `group:*` entries that expand to 
 
 Available groups:
 
-* `group:runtime`: `exec`, `bash`, `process`
+* `group:runtime`: `exec`, `process`, `code_execution` (`bash` is accepted as
+  an alias for `exec`)
 * `group:fs`: `read`, `write`, `edit`, `apply_patch`
-* `group:sessions`: `sessions_list`, `sessions_history`, `sessions_send`, `sessions_spawn`, `session_status`
+* `group:sessions`: `sessions_list`, `sessions_history`, `sessions_send`, `sessions_spawn`, `sessions_yield`, `subagents`, `session_status`
 * `group:memory`: `memory_search`, `memory_get`
+* `group:web`: `web_search`, `x_search`, `web_fetch`
 * `group:ui`: `browser`, `canvas`
 * `group:automation`: `cron`, `gateway`
 * `group:messaging`: `message`
 * `group:nodes`: `nodes`
+* `group:agents`: `agents_list`
+* `group:media`: `image`, `image_generate`, `tts`
 * `group:openclaw`: all built-in OpenClaw tools (excludes provider plugins)
 
-## Elevated: exec-only “run on host”
+## Elevated: exec-only "run on host"
 
 Elevated does **not** grant extra tools; it only affects `exec`.
 
-* If you’re sandboxed, `/elevated on` (or `exec` with `elevated: true`) runs on the host (approvals may still apply).
+* If you’re sandboxed, `/elevated on` (or `exec` with `elevated: true`) runs outside the sandbox (approvals may still apply).
 * Use `/elevated full` to skip exec approvals for the session.
 * If you’re already running direct, elevated is effectively a no-op (still gated).
 * Elevated is **not** skill-scoped and does **not** override tool allow/deny.
+* Elevated does not grant arbitrary cross-host overrides from `host=auto`; it follows the normal exec target rules and only preserves `node` when the configured/session target is already `node`.
 * `/exec` is separate from elevated. It only adjusts per-session exec defaults for authorized senders.
 
 Gates:
@@ -113,9 +120,9 @@ Gates:
 
 See [Elevated Mode](/tools/elevated).
 
-## Common “sandbox jail” fixes
+## Common "sandbox jail" fixes
 
-### “Tool X blocked by sandbox tool policy”
+### "Tool X blocked by sandbox tool policy"
 
 Fix-it keys (pick one):
 
@@ -124,6 +131,15 @@ Fix-it keys (pick one):
   * remove it from `tools.sandbox.tools.deny` (or per-agent `agents.list[].tools.sandbox.tools.deny`)
   * or add it to `tools.sandbox.tools.allow` (or per-agent allow)
 
-### “I thought this was main, why is it sandboxed?”
+### "I thought this was main, why is it sandboxed?"
 
 In `"non-main"` mode, group/channel keys are *not* main. Use the main session key (shown by `sandbox explain`) or switch mode to `"off"`.
+
+## See also
+
+* [Sandboxing](/gateway/sandboxing) -- full sandbox reference (modes, scopes, backends, images)
+* [Multi-Agent Sandbox & Tools](/tools/multi-agent-sandbox-tools) -- per-agent overrides and precedence
+* [Elevated Mode](/tools/elevated)
+
+
+Built with [Mintlify](https://mintlify.com).

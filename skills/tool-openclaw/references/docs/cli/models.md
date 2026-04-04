@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/models.md; fetched_at=2026-02-20T10:29:15.507Z; sha256=ffacaf849de142c891db99d4ee27b413bb9639829abed4b04fd6fb38b7e47ca8; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/models.md; fetched_at=2026-04-04T20:36:05.890Z; sha256=262e01f2cf2d2ca5d55a314ed017f541725e1ece9fe03051ca99daa5f6b74159; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -25,19 +25,30 @@ openclaw models scan
 ```
 
 `openclaw models status` shows the resolved default/fallbacks plus an auth overview.
-When provider usage snapshots are available, the OAuth/token status section includes
-provider usage headers.
+When provider usage snapshots are available, the OAuth/API-key status section includes
+provider usage windows and quota snapshots.
+Current usage-window providers: Anthropic, GitHub Copilot, Gemini CLI, OpenAI
+Codex, MiniMax, Xiaomi, and z.ai. Usage auth comes from provider-specific hooks
+when available; otherwise OpenClaw falls back to matching OAuth/API-key
+credentials from auth profiles, env, or config.
 Add `--probe` to run live auth probes against each configured provider profile.
 Probes are real requests (may consume tokens and trigger rate limits).
 Use `--agent <id>` to inspect a configured agent’s model/auth state. When omitted,
 the command uses `OPENCLAW_AGENT_DIR`/`PI_CODING_AGENT_DIR` if set, otherwise the
 configured default agent.
+Probe rows can come from auth profiles, env credentials, or `models.json`.
 
 Notes:
 
 * `models set <model-or-alias>` accepts `provider/model` or an alias.
 * Model refs are parsed by splitting on the **first** `/`. If the model ID includes `/` (OpenRouter-style), include the provider prefix (example: `openrouter/moonshotai/kimi-k2`).
-* If you omit the provider, OpenClaw treats the input as an alias or a model for the **default provider** (only works when there is no `/` in the model ID).
+* If you omit the provider, OpenClaw resolves the input as an alias first, then
+  as a unique configured-provider match for that exact model id, and only then
+  falls back to the configured default provider with a deprecation warning.
+  If that provider no longer exposes the configured default model, OpenClaw
+  falls back to the first configured provider/model instead of surfacing a
+  stale removed-provider default.
+* `models status` may show `marker(<value>)` in auth output for non-secret placeholders (for example `OPENAI_API_KEY`, `secretref-managed`, `minimax-oauth`, `oauth:chutes`, `ollama-local`) instead of masking them as secrets.
 
 ### `models status`
 
@@ -54,6 +65,27 @@ Options:
 * `--probe-max-tokens <n>`
 * `--agent <id>` (configured agent id; overrides `OPENCLAW_AGENT_DIR`/`PI_CODING_AGENT_DIR`)
 
+Probe status buckets:
+
+* `ok`
+* `auth`
+* `rate_limit`
+* `billing`
+* `timeout`
+* `format`
+* `unknown`
+* `no_model`
+
+Probe detail/reason-code cases to expect:
+
+* `excluded_by_auth_order`: a stored profile exists, but explicit
+  `auth.order.<provider>` omitted it, so probe reports the exclusion instead of
+  trying it.
+* `missing_credential`, `invalid_expires`, `expired`, `unresolved_ref`:
+  profile is present but not eligible/resolvable.
+* `no_model`: provider auth exists, but OpenClaw could not resolve a probeable
+  model candidate for that provider.
+
 ## Aliases + fallbacks
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
@@ -66,14 +98,33 @@ openclaw models fallbacks list
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw models auth add
 openclaw models auth login --provider <id>
-openclaw models auth setup-token
+openclaw models auth setup-token --provider <id>
 openclaw models auth paste-token
 ```
+
+`models auth add` is the interactive auth helper. It can launch a provider auth
+flow (OAuth/API key) or guide you into manual token paste, depending on the
+provider you choose.
 
 `models auth login` runs a provider plugin’s auth flow (OAuth/API key). Use
 `openclaw plugins list` to see which providers are installed.
 
+Examples:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw models auth login --provider anthropic --method cli --set-default
+openclaw models auth login --provider openai-codex --set-default
+```
+
 Notes:
 
-* `setup-token` prompts for a setup-token value (generate it with `claude setup-token` on any machine).
+* `login --provider anthropic --method cli --set-default` reuses a local Claude
+  CLI login and rewrites the main Anthropic default-model path to `claude-cli/...`.
+* `setup-token` and `paste-token` remain generic token commands for providers
+  that expose token auth methods.
 * `paste-token` accepts a token string generated elsewhere or from automation.
+* Anthropic billing note: Anthropic changed third-party harness billing on **April 4, 2026 at 12:00 PM PT / 8:00 PM BST**. Anthropic says Claude subscription limits no longer cover OpenClaw, and Claude CLI traffic in OpenClaw now requires **Extra Usage** billed separately from the subscription.
+* Existing legacy Anthropic token profiles still run if already configured, but Anthropic no longer supports `setup-token` or `paste-token` as a new OpenClaw auth path.
+
+
+Built with [Mintlify](https://mintlify.com).

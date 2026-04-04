@@ -1,10 +1,12 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/remote-gateway-readme.md; fetched_at=2026-02-20T10:29:20.384Z; sha256=d42c6399f69950d32b48a0d86bf52635ec83915c71d8e7665ce0d541964b8870; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/remote-gateway-readme.md; fetched_at=2026-04-04T20:36:06.602Z; sha256=80fec8abcd94ea5627a99d03294caaf62c4dcdf4918b9d165af0a60ba52f2d0a; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
 # Remote Gateway Setup
+
+> This content has been merged into [Remote Access](/gateway/remote#macos-persistent-ssh-tunnel-via-launchagent). See that page for the current guide.
 
 # Running OpenClaw\.app with a Remote Gateway
 
@@ -57,11 +59,15 @@ Copy your public key to the remote machine (enter password once):
 ssh-copy-id -i ~/.ssh/id_rsa <REMOTE_USER>@<REMOTE_IP>
 ```
 
-### Step 3: Set Gateway Token
+### Step 3: Configure Remote Gateway Auth
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-launchctl setenv OPENCLAW_GATEWAY_TOKEN "<your-token>"
+openclaw config set gateway.remote.token "<your-token>"
 ```
+
+Use `gateway.remote.password` instead if your remote gateway uses password auth.
+`OPENCLAW_GATEWAY_TOKEN` is still valid as a shell-level override, but the durable
+remote-client setup is `gateway.remote.token` / `gateway.remote.password`.
 
 ### Step 4: Start SSH Tunnel
 
@@ -86,7 +92,7 @@ To have the SSH tunnel start automatically when you log in, create a Launch Agen
 
 ### Create the PLIST file
 
-Save this as `~/Library/LaunchAgents/bot.molt.ssh-tunnel.plist`:
+Save this as `~/Library/LaunchAgents/ai.openclaw.ssh-tunnel.plist`:
 
 ```xml  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -94,7 +100,7 @@ Save this as `~/Library/LaunchAgents/bot.molt.ssh-tunnel.plist`:
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>bot.molt.ssh-tunnel</string>
+    <string>ai.openclaw.ssh-tunnel</string>
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/ssh</string>
@@ -112,7 +118,7 @@ Save this as `~/Library/LaunchAgents/bot.molt.ssh-tunnel.plist`:
 ### Load the Launch Agent
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-launchctl bootstrap gui/$UID ~/Library/LaunchAgents/bot.molt.ssh-tunnel.plist
+launchctl bootstrap gui/$UID ~/Library/LaunchAgents/ai.openclaw.ssh-tunnel.plist
 ```
 
 The tunnel will now:
@@ -137,13 +143,13 @@ lsof -i :18789
 **Restart the tunnel:**
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-launchctl kickstart -k gui/$UID/bot.molt.ssh-tunnel
+launchctl kickstart -k gui/$UID/ai.openclaw.ssh-tunnel
 ```
 
 **Stop the tunnel:**
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-launchctl bootout gui/$UID/bot.molt.ssh-tunnel
+launchctl bootout gui/$UID/ai.openclaw.ssh-tunnel
 ```
 
 ***
@@ -158,3 +164,6 @@ launchctl bootout gui/$UID/bot.molt.ssh-tunnel
 | `RunAtLoad`                          | Starts tunnel when the agent loads                           |
 
 OpenClaw\.app connects to `ws://127.0.0.1:18789` on your client machine. The SSH tunnel forwards that connection to port 18789 on the remote machine where the Gateway is running.
+
+
+Built with [Mintlify](https://mintlify.com).

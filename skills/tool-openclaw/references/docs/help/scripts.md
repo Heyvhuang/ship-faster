@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/help/scripts.md; fetched_at=2026-02-20T10:29:21.681Z; sha256=3b7ee92b07584c5d6b2f59f347504f7eaccdc2395a7ae2dfbfcb285bbbedf835; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/help/scripts.md; fetched_at=2026-04-04T20:36:06.738Z; sha256=5edd1f6a6ca4823edb7a708e4a0e98fd3937da4392a8acd27da4032423107973; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -19,10 +19,12 @@ Use these when a task is clearly tied to a script; otherwise prefer the CLI.
 
 ## Auth monitoring scripts
 
-Auth monitoring scripts are documented here:
-[/automation/auth-monitoring](/automation/auth-monitoring)
+Auth monitoring is covered in [Authentication](/gateway/authentication). The scripts under `scripts/` are optional extras for systemd/Termux phone workflows.
 
 ## When adding scripts
 
 * Keep scripts focused and documented.
 * Add a short entry in the relevant doc (or create one if missing).
+
+
+Built with [Mintlify](https://mintlify.com).

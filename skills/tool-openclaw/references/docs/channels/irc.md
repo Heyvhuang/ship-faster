@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/irc.md; fetched_at=2026-02-20T10:29:13.411Z; sha256=753a38df82bf338502e7353bbb6d803f429e78310c95f88933f847457c7ca57d; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/irc.md; fetched_at=2026-04-04T20:36:05.444Z; sha256=431d7c1576a43c918bb68940a9e21b8a55ae6558399cacf268aa7100edd65f42; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -6,7 +6,7 @@
 
 # IRC
 
-> Connect OpenClaw to IRC channels and direct messages.
+# IRC
 
 Use IRC when you want OpenClaw in classic channels (`#room`) and direct messages.
 IRC ships as an extension plugin, but it is configured in the main config under `channels.irc`.
@@ -16,18 +16,18 @@ IRC ships as an extension plugin, but it is configured in the main config under 
 1. Enable IRC config in `~/.openclaw/openclaw.json`.
 2. Set at least:
 
-```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
-  "channels": {
-    "irc": {
-      "enabled": true,
-      "host": "irc.libera.chat",
-      "port": 6697,
-      "tls": true,
-      "nick": "openclaw-bot",
-      "channels": ["#openclaw"]
-    }
-  }
+  channels: {
+    irc: {
+      enabled: true,
+      host: "irc.libera.chat",
+      port: 6697,
+      tls: true,
+      nick: "openclaw-bot",
+      channels: ["#openclaw"],
+    },
+  },
 }
 ```
 
@@ -58,7 +58,8 @@ Config keys:
 * Per-channel controls (channel + sender + mention rules): `channels.irc.groups["#channel"]`
 * `channels.irc.groupPolicy="open"` allows unconfigured channels (**still mention-gated by default**)
 
-Allowlist entries can use nick or `nick!user@host` forms.
+Allowlist entries should use stable sender identities (`nick!user@host`).
+Bare nick matching is mutable and only enabled when `channels.irc.dangerouslyAllowNameMatching: true`.
 
 ### Common gotcha: `allowFrom` is for DMs, not channels
 
@@ -164,7 +165,7 @@ Use `toolsBySender` to apply a stricter policy to `"*"` and a looser one to your
             "*": {
               deny: ["group:runtime", "group:fs", "gateway", "nodes", "cron", "browser"],
             },
-            eigen: {
+            "id:eigen": {
               deny: ["gateway", "nodes", "cron"],
             },
           },
@@ -177,7 +178,9 @@ Use `toolsBySender` to apply a stricter policy to `"*"` and a looser one to your
 
 Notes:
 
-* `toolsBySender` keys can be a nick (e.g. `"eigen"`) or a full hostmask (`"eigen!~eigen@174.127.248.171"`) for stronger identity matching.
+* `toolsBySender` keys should use `id:` for IRC sender identity values:
+  `id:eigen` or `id:eigen!~eigen@174.127.248.171` for stronger matching.
+* Legacy unprefixed keys are still accepted and matched as `id:` only.
 * The first matching sender policy wins; `"*"` is the wildcard fallback.
 
 For more on group access vs mention-gating (and how they interact), see: [/channels/groups](/channels/groups).
@@ -186,32 +189,32 @@ For more on group access vs mention-gating (and how they interact), see: [/chann
 
 To identify with NickServ after connect:
 
-```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
-  "channels": {
-    "irc": {
-      "nickserv": {
-        "enabled": true,
-        "service": "NickServ",
-        "password": "your-nickserv-password"
-      }
-    }
-  }
+  channels: {
+    irc: {
+      nickserv: {
+        enabled: true,
+        service: "NickServ",
+        password: "your-nickserv-password",
+      },
+    },
+  },
 }
 ```
 
 Optional one-time registration on connect:
 
-```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
-  "channels": {
-    "irc": {
-      "nickserv": {
-        "register": true,
-        "registerEmail": "bot@example.com"
-      }
-    }
-  }
+  channels: {
+    irc: {
+      nickserv: {
+        register: true,
+        registerEmail: "bot@example.com",
+      },
+    },
+  },
 }
 ```
 
@@ -237,3 +240,14 @@ Default account supports:
 * If the bot connects but never replies in channels, verify `channels.irc.groups` **and** whether mention-gating is dropping messages (`missing-mention`). If you want it to reply without pings, set `requireMention:false` for the channel.
 * If login fails, verify nick availability and server password.
 * If TLS fails on a custom network, verify host/port and certificate setup.
+
+## Related
+
+* [Channels Overview](/channels) — all supported channels
+* [Pairing](/channels/pairing) — DM authentication and pairing flow
+* [Groups](/channels/groups) — group chat behavior and mention gating
+* [Channel Routing](/channels/channel-routing) — session routing for messages
+* [Security](/gateway/security) — access model and hardening
+
+
+Built with [Mintlify](https://mintlify.com).

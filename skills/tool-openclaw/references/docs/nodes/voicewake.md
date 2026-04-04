@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/voicewake.md; fetched_at=2026-02-20T10:29:23.567Z; sha256=68ef8d01d29ea45fd170b878dc95bc6d21125300fc5965ff2e68e45c8c256dff; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/voicewake.md; fetched_at=2026-04-04T20:36:07.155Z; sha256=a6570d724c9deb4870cabe36097e8f888ac9a613d7b3ebbcd77ccb0ca2ce5a8f; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -12,7 +12,8 @@ OpenClaw treats **wake words as a single global list** owned by the **Gateway**.
 
 * There are **no per-node custom wake words**.
 * **Any node/app UI may edit** the list; changes are persisted by the Gateway and broadcast to everyone.
-* Each device still keeps its own **Voice Wake enabled/disabled** toggle (local UX + permissions differ).
+* macOS and iOS keep local **Voice Wake enabled/disabled** toggles (local UX + permissions differ).
+* Android currently keeps Voice Wake off and uses a manual mic flow in the Voice tab.
 
 ## Storage (Gateway host)
 
@@ -61,5 +62,8 @@ Who receives it:
 
 ### Android node
 
-* Exposes a Wake Words editor in Settings.
-* Calls `voicewake.set` over the Gateway WS so edits sync everywhere.
+* Voice Wake is currently disabled in Android runtime/Settings.
+* Android voice uses manual mic capture in the Voice tab instead of wake-word triggers.
+
+
+Built with [Mintlify](https://mintlify.com).

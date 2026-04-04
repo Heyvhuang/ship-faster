@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/models.md; fetched_at=2026-02-20T10:29:25.860Z; sha256=e80f6c30e5eb889a923043e1095759c6e23a5af3dc3c3dec35e36f0f9bf0f690; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/models.md; fetched_at=2026-04-04T20:36:07.578Z; sha256=19adb55f40baa47ee7397702bb0a2dc25a39c4c02190fc45f76ea0b8a0d91102; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -10,15 +10,6 @@
 
 OpenClaw can use many LLM providers. Pick one, authenticate, then set the default
 model as `provider/model`.
-
-## Highlight: Venice (Venice AI)
-
-Venice is our recommended Venice AI setup for privacy-first inference with an option to use Opus for the hardest tasks.
-
-* Default: `venice/llama-3.3-70b`
-* Best overall: `venice/claude-opus-45` (Opus remains the strongest)
-
-See [Venice AI](/providers/venice).
 
 ## Quick start (two steps)
 
@@ -33,20 +24,35 @@ See [Venice AI](/providers/venice).
 
 ## Supported providers (starter set)
 
-* [OpenAI (API + Codex)](/providers/openai)
 * [Anthropic (API + Claude Code CLI)](/providers/anthropic)
-* [OpenRouter](/providers/openrouter)
-* [Vercel AI Gateway](/providers/vercel-ai-gateway)
+* [Amazon Bedrock](/providers/bedrock)
+* [BytePlus (International)](/concepts/model-providers#byteplus-international)
+* [Chutes](/providers/chutes)
 * [Cloudflare AI Gateway](/providers/cloudflare-ai-gateway)
-* [Moonshot AI (Kimi + Kimi Coding)](/providers/moonshot)
-* [Synthetic](/providers/synthetic)
-* [OpenCode Zen](/providers/opencode)
-* [Z.AI](/providers/zai)
 * [GLM models](/providers/glm)
 * [MiniMax](/providers/minimax)
-* [Venice (Venice AI)](/providers/venice)
-* [Amazon Bedrock](/providers/bedrock)
+* [Mistral](/providers/mistral)
+* [Moonshot AI (Kimi + Kimi Coding)](/providers/moonshot)
+* [OpenAI (API + Codex)](/providers/openai)
+* [OpenCode (Zen + Go)](/providers/opencode)
+* [OpenRouter](/providers/openrouter)
 * [Qianfan](/providers/qianfan)
+* [Qwen](/providers/qwen)
+* [StepFun](/providers/stepfun)
+* [Synthetic](/providers/synthetic)
+* [Vercel AI Gateway](/providers/vercel-ai-gateway)
+* [Venice (Venice AI)](/providers/venice)
+* [xAI](/providers/xai)
+* [Z.AI](/providers/zai)
+
+## Additional bundled provider variants
+
+* `anthropic-vertex` - implicit Anthropic on Google Vertex support when Vertex credentials are available; no separate onboarding auth choice
+* `copilot-proxy` - local VS Code Copilot Proxy bridge; use `openclaw onboard --auth-choice copilot-proxy`
+* `google-gemini-cli` - unofficial Gemini CLI OAuth flow; requires a local `gemini` install (`brew install gemini-cli` or `npm install -g @google/gemini-cli`); default model `google-gemini-cli/gemini-3.1-pro-preview`; use `openclaw onboard --auth-choice google-gemini-cli` or `openclaw models auth login --provider google-gemini-cli --set-default`
 
 For the full provider catalog (xAI, Groq, Mistral, etc.) and advanced configuration,
 see [Model providers](/concepts/model-providers).
+
+
+Built with [Mintlify](https://mintlify.com).

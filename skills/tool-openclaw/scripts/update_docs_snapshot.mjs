@@ -137,8 +137,18 @@ function looksLikeIndexMd(rel) {
   return rel.endsWith("/index.md") || rel === "index.md";
 }
 
+function relToRemotePath(rel) {
+  // Local snapshot files use .md so they stay searchable and indexable.
+  // For source URLs like openapi.json, preserve the original non-markdown
+  // extension when reconstructing the remote URL.
+  if (/\.[A-Za-z0-9]+\.md$/i.test(rel) && !/\.(md|txt)\.md$/i.test(rel)) {
+    return rel.replace(/\.md$/i, "");
+  }
+  return rel;
+}
+
 function buildUrlFromRel(rel, base) {
-  return `${normalizeBase(base)}/${rel}`;
+  return `${normalizeBase(base)}/${relToRemotePath(rel)}`;
 }
 
 function buildLocalizedUrlFromRel(rel, base, locale) {

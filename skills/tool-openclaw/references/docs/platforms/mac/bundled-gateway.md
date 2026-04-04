@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/bundled-gateway.md; fetched_at=2026-02-20T10:29:23.962Z; sha256=e891eb0be4373fb4bea4adee29d4dcdad927a6a44be2a33604400859c0d19c1f; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/bundled-gateway.md; fetched_at=2026-04-04T20:36:07.202Z; sha256=05c96a4966ab5a6cd4a30ed8bfdfe4aa0afc52cd5df9b5d2f08651572ff271b2; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -15,24 +15,26 @@ running (or attaches to an existing local Gateway if one is already running).
 
 ## Install the CLI (required for local mode)
 
-You need Node 22+ on the Mac, then install `openclaw` globally:
+Node 24 is the default runtime on the Mac. Node 22 LTS, currently `22.14+`, still works for compatibility. Then install `openclaw` globally:
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 npm install -g openclaw@<version>
 ```
 
-The macOS app’s **Install CLI** button runs the same flow via npm/pnpm (bun not recommended for Gateway runtime).
+The macOS app’s **Install CLI** button runs the same global install flow the app
+uses internally: it prefers npm first, then pnpm, then bun if that is the only
+detected package manager. Node remains the recommended Gateway runtime.
 
 ## Launchd (Gateway as LaunchAgent)
 
 Label:
 
-* `bot.molt.gateway` (or `bot.molt.<profile>`; legacy `com.openclaw.*` may remain)
+* `ai.openclaw.gateway` (or `ai.openclaw.<profile>`; legacy `com.openclaw.*` may remain)
 
 Plist location (per‑user):
 
-* `~/Library/LaunchAgents/bot.molt.gateway.plist`
-  (or `~/Library/LaunchAgents/bot.molt.<profile>.plist`)
+* `~/Library/LaunchAgents/ai.openclaw.gateway.plist`
+  (or `~/Library/LaunchAgents/ai.openclaw.<profile>.plist`)
 
 Manager:
 
@@ -70,3 +72,6 @@ Then:
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw gateway call health --url ws://127.0.0.1:18999 --timeout 3000
 ```
+
+
+Built with [Mintlify](https://mintlify.com).

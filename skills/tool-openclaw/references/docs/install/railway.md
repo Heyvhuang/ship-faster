@@ -1,22 +1,21 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/railway.md; fetched_at=2026-02-20T10:29:22.978Z; sha256=baff9729805340ac6a6458546de22502e51de5431b5fef42dfce87eed74b74dd; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/railway.md; fetched_at=2026-04-04T20:36:07.022Z; sha256=a134a4213aa9a57ff106e2fce0ccf492f8cf3db7c8d1973d1ee6a3fedf95fd08; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# Deploy on Railway
+# Railway
 
-Deploy OpenClaw on Railway with a one-click template and finish setup in your browser.
-This is the easiest “no terminal on the server” path: Railway runs the Gateway for you,
-and you configure everything via the `/setup` web wizard.
+Deploy OpenClaw on Railway with a one-click template and access it through the web Control UI.
+This is the easiest "no terminal on the server" path: Railway runs the Gateway for you.
 
 ## Quick checklist (new users)
 
 1. Click **Deploy on Railway** (below).
 2. Add a **Volume** mounted at `/data`.
-3. Set the required **Variables** (at least `SETUP_PASSWORD`).
+3. Set the required **Variables** (at least `OPENCLAW_GATEWAY_PORT` and `OPENCLAW_GATEWAY_TOKEN`).
 4. Enable **HTTP Proxy** on port `8080`.
-5. Open `https://<your-railway-domain>/setup` and finish the wizard.
+5. Open `https://<your-railway-domain>/openclaw` and connect using the configured shared secret. This template uses `OPENCLAW_GATEWAY_TOKEN` by default; if you replace it with password auth, use that password instead.
 
 ## One-click deploy
 
@@ -33,15 +32,14 @@ Railway will either:
 
 Then open:
 
-* `https://<your-railway-domain>/setup` — setup wizard (password protected)
 * `https://<your-railway-domain>/openclaw` — Control UI
 
 ## What you get
 
 * Hosted OpenClaw Gateway + Control UI
-* Web setup wizard at `/setup` (no terminal commands)
-* Persistent storage via Railway Volume (`/data`) so config/credentials/workspace survive redeploys
-* Backup export at `/setup/export` to migrate off Railway later
+* Persistent storage via Railway Volume (`/data`) so `openclaw.json`,
+  per-agent `auth-profiles.json`, channel/provider state, sessions, and
+  workspace survive redeploys
 
 ## Required Railway settings
 
@@ -61,43 +59,35 @@ Attach a volume mounted at:
 
 Set these variables on the service:
 
-* `SETUP_PASSWORD` (required)
-* `PORT=8080` (required — must match the port in Public Networking)
+* `OPENCLAW_GATEWAY_PORT=8080` (required — must match the port in Public Networking)
+* `OPENCLAW_GATEWAY_TOKEN` (required; treat as an admin secret)
 * `OPENCLAW_STATE_DIR=/data/.openclaw` (recommended)
 * `OPENCLAW_WORKSPACE_DIR=/data/workspace` (recommended)
-* `OPENCLAW_GATEWAY_TOKEN` (recommended; treat as an admin secret)
 
-## Setup flow
+## Connect a channel
 
-1. Visit `https://<your-railway-domain>/setup` and enter your `SETUP_PASSWORD`.
-2. Choose a model/auth provider and paste your key.
-3. (Optional) Add Telegram/Discord/Slack tokens.
-4. Click **Run setup**.
+Use the Control UI at `/openclaw` or run `openclaw onboard` via Railway's shell for channel setup instructions:
 
-If Telegram DMs are set to pairing, the setup wizard can approve the pairing code.
-
-## Getting chat tokens
-
-### Telegram bot token
-
-1. Message `@BotFather` in Telegram
-2. Run `/newbot`
-3. Copy the token (looks like `123456789:AA...`)
-4. Paste it into `/setup`
-
-### Discord bot token
-
-1. Go to [https://discord.com/developers/applications](https://discord.com/developers/applications)
-2. **New Application** → choose a name
-3. **Bot** → **Add Bot**
-4. **Enable MESSAGE CONTENT INTENT** under Bot → Privileged Gateway Intents (required or the bot will crash on startup)
-5. Copy the **Bot Token** and paste into `/setup`
-6. Invite the bot to your server (OAuth2 URL Generator; scopes: `bot`, `applications.commands`)
+* [Telegram](/channels/telegram) (fastest — just a bot token)
+* [Discord](/channels/discord)
+* [All channels](/channels)
 
 ## Backups & migration
 
-Download a backup at:
+Export your state, config, auth profiles, and workspace:
 
-* `https://<your-railway-domain>/setup/export`
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw backup create
+```
 
-This exports your OpenClaw state + workspace so you can migrate to another host without losing config or memory.
+This creates a portable backup archive with OpenClaw state plus any configured
+workspace. See [Backup](/cli/backup) for details.
+
+## Next steps
+
+* Set up messaging channels: [Channels](/channels)
+* Configure the Gateway: [Gateway configuration](/gateway/configuration)
+* Keep OpenClaw up to date: [Updating](/install/updating)
+
+
+Built with [Mintlify](https://mintlify.com).

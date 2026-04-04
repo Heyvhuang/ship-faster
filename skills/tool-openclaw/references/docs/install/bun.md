@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/bun.md; fetched_at=2026-02-20T10:29:21.567Z; sha256=94ac04377a25af4f4b31cc541d980bccce5f7545733a33865045aded6498c759; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/bun.md; fetched_at=2026-04-04T20:36:06.800Z; sha256=ea980f8c074dbf7d03d1a3b9b642a8ecd6675d5871be0033afe89ac0959841e8; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -6,49 +6,45 @@
 
 # Bun (Experimental)
 
-# Bun (experimental)
+# Bun (Experimental)
 
-Goal: run this repo with **Bun** (optional, not recommended for WhatsApp/Telegram)
-without diverging from pnpm workflows.
+<Warning>
+  Bun is **not recommended for gateway runtime** (known issues with WhatsApp and Telegram). Use Node for production.
+</Warning>
 
-⚠️ **Not recommended for Gateway runtime** (WhatsApp/Telegram bugs). Use Node for production.
-
-## Status
-
-* Bun is an optional local runtime for running TypeScript directly (`bun run …`, `bun --watch …`).
-* `pnpm` is the default for builds and remains fully supported (and used by some docs tooling).
-* Bun cannot use `pnpm-lock.yaml` and will ignore it.
+Bun is an optional local runtime for running TypeScript directly (`bun run ...`, `bun --watch ...`). The default package manager remains `pnpm`, which is fully supported and used by docs tooling. Bun cannot use `pnpm-lock.yaml` and will ignore it.
 
 ## Install
 
-Default:
+<Steps>
+  <Step title="Install dependencies">
+    ```sh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+    bun install
+    ```
 
-```sh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-bun install
-```
+    `bun.lock` / `bun.lockb` are gitignored, so there is no repo churn. To skip lockfile writes entirely:
 
-Note: `bun.lock`/`bun.lockb` are gitignored, so there’s no repo churn either way. If you want *no lockfile writes*:
+    ```sh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+    bun install --no-save
+    ```
+  </Step>
 
-```sh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-bun install --no-save
-```
+  <Step title="Build and test">
+    ```sh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+    bun run build
+    bun run vitest run
+    ```
+  </Step>
+</Steps>
 
-## Build / Test (Bun)
+## Lifecycle Scripts
 
-```sh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-bun run build
-bun run vitest run
-```
+Bun blocks dependency lifecycle scripts unless explicitly trusted. For this repo, the commonly blocked scripts are not required:
 
-## Bun lifecycle scripts (blocked by default)
+* `@whiskeysockets/baileys` `preinstall` -- checks Node major >= 20 (OpenClaw defaults to Node 24 and still supports Node 22 LTS, currently `22.14+`)
+* `protobufjs` `postinstall` -- emits warnings about incompatible version schemes (no build artifacts)
 
-Bun may block dependency lifecycle scripts unless explicitly trusted (`bun pm untrusted` / `bun pm trust`).
-For this repo, the commonly blocked scripts are not required:
-
-* `@whiskeysockets/baileys` `preinstall`: checks Node major >= 20 (we run Node 22+).
-* `protobufjs` `postinstall`: emits warnings about incompatible version schemes (no build artifacts).
-
-If you hit a real runtime issue that requires these scripts, trust them explicitly:
+If you hit a runtime issue that requires these scripts, trust them explicitly:
 
 ```sh  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 bun pm trust @whiskeysockets/baileys protobufjs
@@ -56,4 +52,7 @@ bun pm trust @whiskeysockets/baileys protobufjs
 
 ## Caveats
 
-* Some scripts still hardcode pnpm (e.g. `docs:build`, `ui:*`, `protocol:check`). Run those via pnpm for now.
+Some scripts still hardcode pnpm (for example `docs:build`, `ui:*`, `protocol:check`). Run those via pnpm for now.
+
+
+Built with [Mintlify](https://mintlify.com).

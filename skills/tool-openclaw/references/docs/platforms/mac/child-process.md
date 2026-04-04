@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/child-process.md; fetched_at=2026-02-20T10:29:24.770Z; sha256=acb0f3b65dcc8a58e72b565cdd98d444119ab9734c790dcd53275bd7d4deb566; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/child-process.md; fetched_at=2026-04-04T20:36:07.215Z; sha256=99de115b233bc8bc95543f87f6eda5997ae3d275a8d3b4447a88b41a2607a297; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -19,8 +19,8 @@ If you need tighter coupling to the UI, run the Gateway manually in a terminal.
 
 ## Default behavior (launchd)
 
-* The app installs a per‑user LaunchAgent labeled `bot.molt.gateway`
-  (or `bot.molt.<profile>` when using `--profile`/`OPENCLAW_PROFILE`; legacy `com.openclaw.*` is supported).
+* The app installs a per‑user LaunchAgent labeled `ai.openclaw.gateway`
+  (or `ai.openclaw.<profile>` when using `--profile`/`OPENCLAW_PROFILE`; legacy `com.openclaw.*` is supported).
 * When Local mode is enabled, the app ensures the LaunchAgent is loaded and
   starts the Gateway if needed.
 * Logs are written to the launchd gateway log path (visible in Debug Settings).
@@ -28,11 +28,11 @@ If you need tighter coupling to the UI, run the Gateway manually in a terminal.
 Common commands:
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-launchctl kickstart -k gui/$UID/bot.molt.gateway
-launchctl bootout gui/$UID/bot.molt.gateway
+launchctl kickstart -k gui/$UID/ai.openclaw.gateway
+launchctl bootout gui/$UID/ai.openclaw.gateway
 ```
 
-Replace the label with `bot.molt.<profile>` when running a named profile.
+Replace the label with `ai.openclaw.<profile>` when running a named profile.
 
 ## Unsigned dev builds
 
@@ -68,3 +68,6 @@ remote host and connects over that tunnel.
 
 If a true child‑process mode is ever needed again, it should be documented as a
 separate, explicit dev‑only mode.
+
+
+Built with [Mintlify](https://mintlify.com).

@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/location.md; fetched_at=2026-02-20T10:29:13.663Z; sha256=54759fd17e393cd7e1146a4f4b2abab7d3dcf9bc8259c38fceb2086490d20908; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/location.md; fetched_at=2026-04-04T20:36:05.465Z; sha256=68ce3b31e4df80f775773eb6debff05c5bd7590dfb91be27d949efc4f10cf8b1; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -54,3 +54,6 @@ When a location is present, these fields are added to `ctx`:
 * **Telegram**: venues map to `LocationName/LocationAddress`; live locations use `live_period`.
 * **WhatsApp**: `locationMessage.comment` and `liveLocationMessage.caption` are appended as the caption line.
 * **Matrix**: `geo_uri` is parsed as a pin location; altitude is ignored and `LocationIsLive` is always false.
+
+
+Built with [Mintlify](https://mintlify.com).

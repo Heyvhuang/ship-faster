@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/approvals.md; fetched_at=2026-02-20T10:29:14.654Z; sha256=fff1f795aaeb408680c223749d0cc60865aff22b466887d3033f187af78c21d0; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/approvals.md; fetched_at=2026-04-04T20:36:05.760Z; sha256=cacbfcc93b9cae340094f3bb9744ab995516437213ed73896f5f55de048897ac; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -10,6 +10,8 @@
 
 Manage exec approvals for the **local host**, **gateway host**, or a **node host**.
 By default, commands target the local approvals file on disk. Use `--gateway` to target the gateway, or `--node` to target a specific node.
+
+Alias: `openclaw exec-approvals`
 
 Related:
 
@@ -24,13 +26,79 @@ openclaw approvals get --node <id|name|ip>
 openclaw approvals get --gateway
 ```
 
+`openclaw approvals get` now shows the effective exec policy for local, gateway, and node targets:
+
+* requested `tools.exec` policy
+* host approvals-file policy
+* effective result after precedence rules are applied
+
+Precedence is intentional:
+
+* the host approvals file is the enforceable source of truth
+* requested `tools.exec` policy can narrow or broaden intent, but the effective result is still derived from the host rules
+* `--node` combines the node host approvals file with gateway `tools.exec` policy, because both still apply at runtime
+* if gateway config is unavailable, the CLI falls back to the node approvals snapshot and notes that the final runtime policy could not be computed
+
 ## Replace approvals from a file
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw approvals set --file ./exec-approvals.json
+openclaw approvals set --stdin <<'EOF'
+{ version: 1, defaults: { security: "full", ask: "off" } }
+EOF
 openclaw approvals set --node <id|name|ip> --file ./exec-approvals.json
 openclaw approvals set --gateway --file ./exec-approvals.json
 ```
+
+`set` accepts JSON5, not only strict JSON. Use either `--file` or `--stdin`, not both.
+
+## "Never prompt" / YOLO example
+
+For a host that should never stop on exec approvals, set the host approvals defaults to `full` + `off`:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw approvals set --stdin <<'EOF'
+{
+  version: 1,
+  defaults: {
+    security: "full",
+    ask: "off",
+    askFallback: "full"
+  }
+}
+EOF
+```
+
+Node variant:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw approvals set --node <id|name|ip> --stdin <<'EOF'
+{
+  version: 1,
+  defaults: {
+    security: "full",
+    ask: "off",
+    askFallback: "full"
+  }
+}
+EOF
+```
+
+This changes the **host approvals file** only. To keep the requested OpenClaw policy aligned, also set:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw config set tools.exec.host gateway
+openclaw config set tools.exec.security full
+openclaw config set tools.exec.ask off
+```
+
+Why `tools.exec.host=gateway` in this example:
+
+* `host=auto` still means "sandbox when available, otherwise gateway".
+* YOLO is about approvals, not routing.
+* If you want host exec even when a sandbox is configured, make the host choice explicit with `gateway` or `/exec host=gateway`.
+
+This matches the current host-default YOLO behavior. Tighten it if you want approvals.
 
 ## Allowlist helpers
 
@@ -42,9 +110,30 @@ openclaw approvals allowlist add --agent "*" "/usr/bin/uname"
 openclaw approvals allowlist remove "~/Projects/**/bin/rg"
 ```
 
+## Common options
+
+`get`, `set`, and `allowlist add|remove` all support:
+
+* `--node <id|name|ip>`
+* `--gateway`
+* shared node RPC options: `--url`, `--token`, `--timeout`, `--json`
+
+Targeting notes:
+
+* no target flags means the local approvals file on disk
+* `--gateway` targets the gateway host approvals file
+* `--node` targets one node host after resolving id, name, IP, or id prefix
+
+`allowlist add|remove` also supports:
+
+* `--agent <id>` (defaults to `*`)
+
 ## Notes
 
 * `--node` uses the same resolver as `openclaw nodes` (id, name, ip, or id prefix).
 * `--agent` defaults to `"*"`, which applies to all agents.
 * The node host must advertise `system.execApprovals.get/set` (macOS app or headless node host).
 * Approvals files are stored per host at `~/.openclaw/exec-approvals.json`.
+
+
+Built with [Mintlify](https://mintlify.com).

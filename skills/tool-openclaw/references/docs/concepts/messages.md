@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/messages.md; fetched_at=2026-02-20T10:29:17.380Z; sha256=52a9ad47629e5f1428d6f6de0dd81bea105aaac49b8ea765157169961eb073fb; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/messages.md; fetched_at=2026-04-04T20:36:06.241Z; sha256=3264c023d040b42cc3673fbfc81852211b1d49760c44ef622cfd4217fb7ec517; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -150,4 +150,14 @@ Outbound message formatting is centralized in `messages`:
 * `messages.responsePrefix`, `channels.<channel>.responsePrefix`, and `channels.<channel>.accounts.<id>.responsePrefix` (outbound prefix cascade), plus `channels.whatsapp.messagePrefix` (WhatsApp inbound prefix)
 * Reply threading via `replyToMode` and per-channel defaults
 
-Details: [Configuration](/gateway/configuration#messages) and channel docs.
+Details: [Configuration](/gateway/configuration-reference#messages) and channel docs.
+
+## Related
+
+* [Streaming](/concepts/streaming) — real-time message delivery
+* [Retry](/concepts/retry) — message delivery retry behavior
+* [Queue](/concepts/queue) — message processing queue
+* [Channels](/channels) — messaging platform integrations
+
+
+Built with [Mintlify](https://mintlify.com).

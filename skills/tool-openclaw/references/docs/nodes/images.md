@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/images.md; fetched_at=2026-02-20T10:29:23.319Z; sha256=8ef1cd8f3a81b9df31e3e0825eec2a0c7ca47b7cfcb36956a77f6ff94dc67a9e; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/images.md; fetched_at=2026-04-04T20:36:07.061Z; sha256=ebc325b2413f41a552b08c1da0a32d4577cf3c7e6de5d68c0d20d8b60a07823c; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -6,7 +6,7 @@
 
 # Image and Media Support
 
-# Image & Media Support — 2025-12-05
+# Image & Media Support (2025-12-05)
 
 The WhatsApp channel runs via **Baileys Web**. This document captures the current media handling rules for send, gateway, and agent replies.
 
@@ -26,7 +26,7 @@ The WhatsApp channel runs via **Baileys Web**. This document captures the curren
 
 * Input: local file path **or** HTTP(S) URL.
 * Flow: load into a Buffer, detect media kind, and build the correct payload:
-  * **Images:** resize & recompress to JPEG (max side 2048px) targeting `agents.defaults.mediaMaxMb` (default 5 MB), capped at 6 MB.
+  * **Images:** resize & recompress to JPEG (max side 2048px) targeting `channels.whatsapp.mediaMaxMb` (default: 50 MB).
   * **Audio/Voice/Video:** pass-through up to 16 MB; audio is sent as a voice note (`ptt: true`).
   * **Documents:** anything else, up to 100 MB, with filename preserved when available.
 * WhatsApp GIF-style playback: send an MP4 with `gifPlayback: true` (CLI: `--gif-playback`) so mobile clients loop inline.
@@ -49,13 +49,14 @@ The WhatsApp channel runs via **Baileys Web**. This document captures the curren
 * Media understanding (if configured via `tools.media.*` or shared `tools.media.models`) runs before templating and can insert `[Image]`, `[Audio]`, and `[Video]` blocks into `Body`.
   * Audio sets `{{Transcript}}` and uses the transcript for command parsing so slash commands still work.
   * Video and image descriptions preserve any caption text for command parsing.
+  * If the active primary image model already supports vision natively, OpenClaw skips the `[Image]` summary block and passes the original image to the model instead.
 * By default only the first matching image/audio/video attachment is processed; set `tools.media.<cap>.attachments` to process multiple attachments.
 
 ## Limits & Errors
 
 **Outbound send caps (WhatsApp web send)**
 
-* Images: \~6 MB cap after recompression.
+* Images: up to `channels.whatsapp.mediaMaxMb` (default: 50 MB) after recompression.
 * Audio/voice/video: 16 MB cap; documents: 100 MB cap.
 * Oversize or unreadable media → clear error in logs and the reply is skipped.
 
@@ -71,3 +72,6 @@ The WhatsApp channel runs via **Baileys Web**. This document captures the curren
 * Cover send + reply flows for image/audio/document cases.
 * Validate recompression for images (size bound) and voice-note flag for audio.
 * Ensure multi-media replies fan out as sequential sends.
+
+
+Built with [Mintlify](https://mintlify.com).

@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/logging.md; fetched_at=2026-02-20T10:29:24.414Z; sha256=8c5edb27bb2c6299a00a9a3b62f6df13c8539bac60289ec92f6b1372cfc647b4; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/logging.md; fetched_at=2026-04-04T20:36:07.247Z; sha256=c0425e9584e43daee2cf8ddd40107550eb79bd40fd6700a4532f580eed01d380; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -26,12 +26,12 @@ Notes:
 
 Unified logging redacts most payloads unless a subsystem opts into `privacy -off`. Per Peter's write-up on macOS [logging privacy shenanigans](https://steipete.me/posts/2025/logging-privacy-shenanigans) (2025) this is controlled by a plist in `/Library/Preferences/Logging/Subsystems/` keyed by the subsystem name. Only new log entries pick up the flag, so enable it before reproducing an issue.
 
-## Enable for OpenClaw (`bot.molt`)
+## Enable for OpenClaw (`ai.openclaw`)
 
 * Write the plist to a temp file first, then install it atomically as root:
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-cat <<'EOF' >/tmp/bot.molt.plist
+cat <<'EOF' >/tmp/ai.openclaw.plist
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -44,7 +44,7 @@ cat <<'EOF' >/tmp/bot.molt.plist
 </dict>
 </plist>
 EOF
-sudo install -m 644 -o root -g wheel /tmp/bot.molt.plist /Library/Preferences/Logging/Subsystems/bot.molt.plist
+sudo install -m 644 -o root -g wheel /tmp/ai.openclaw.plist /Library/Preferences/Logging/Subsystems/ai.openclaw.plist
 ```
 
 * No reboot is required; logd notices the file quickly, but only new log lines will include private payloads.
@@ -52,6 +52,9 @@ sudo install -m 644 -o root -g wheel /tmp/bot.molt.plist /Library/Preferences/Lo
 
 ## Disable after debugging
 
-* Remove the override: `sudo rm /Library/Preferences/Logging/Subsystems/bot.molt.plist`.
+* Remove the override: `sudo rm /Library/Preferences/Logging/Subsystems/ai.openclaw.plist`.
 * Optionally run `sudo log config --reload` to force logd to drop the override immediately.
 * Remember this surface can include phone numbers and message bodies; keep the plist in place only while you actively need the extra detail.
+
+
+Built with [Mintlify](https://mintlify.com).

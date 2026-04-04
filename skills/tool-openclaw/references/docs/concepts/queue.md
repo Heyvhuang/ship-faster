@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/queue.md; fetched_at=2026-02-20T10:29:17.782Z; sha256=adf79cef8e1c69400242907f631da364ea18631d48945e32253f3e4c46f5f991; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/queue.md; fetched_at=2026-04-04T20:36:06.322Z; sha256=75a7b096612bb12dde132c866d1681fd981dbbfebae2e6927afb761dd9292944; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -80,7 +80,7 @@ Defaults: `debounceMs: 1000`, `cap: 20`, `drop: summarize`.
 
 * Applies to auto-reply agent runs across all inbound channels that use the gateway reply pipeline (WhatsApp web, Telegram, Slack, Discord, Signal, iMessage, webchat, etc.).
 * Default lane (`main`) is process-wide for inbound + main heartbeats; set `agents.defaults.maxConcurrent` to allow multiple sessions in parallel.
-* Additional lanes may exist (e.g. `cron`, `subagent`) so background jobs can run in parallel without blocking inbound replies.
+* Additional lanes may exist (e.g. `cron`, `subagent`) so background jobs can run in parallel without blocking inbound replies. These detached runs are tracked as [background tasks](/automation/tasks).
 * Per-session lanes guarantee that only one agent run touches a given session at a time.
 * No external dependencies or background worker threads; pure TypeScript + promises.
 
@@ -88,3 +88,6 @@ Defaults: `debounceMs: 1000`, `cap: 20`, `drop: summarize`.
 
 * If commands seem stuck, enable verbose logs and look for “queued for …ms” lines to confirm the queue is draining.
 * If you need queue depth, enable verbose logs and watch for queue timing lines.
+
+
+Built with [Mintlify](https://mintlify.com).

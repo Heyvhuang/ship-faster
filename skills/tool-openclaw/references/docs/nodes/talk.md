@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/talk.md; fetched_at=2026-02-20T10:29:23.484Z; sha256=cbba024a45ff6ffd01171e77a29bf4ecc56f4ae09745f8e266236e455f8628b9; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/talk.md; fetched_at=2026-04-04T20:36:07.134Z; sha256=f4678e5d20a4e078ffba80f1530c228ac5ec0cf6715a6fb66687617fc33af823; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -56,6 +56,7 @@ Supported keys:
     modelId: "eleven_v3",
     outputFormat: "mp3_44100_128",
     apiKey: "elevenlabs_api_key",
+    silenceTimeoutMs: 1500,
     interruptOnSpeech: true,
   },
 }
@@ -64,6 +65,7 @@ Supported keys:
 Defaults:
 
 * `interruptOnSpeech`: true
+* `silenceTimeoutMs`: when unset, Talk keeps the platform default pause window before sending the transcript (`700 ms on macOS and Android, 900 ms on iOS`)
 * `voiceId`: falls back to `ELEVENLABS_VOICE_ID` / `SAG_VOICE_ID` (or first ElevenLabs voice when API key is available)
 * `modelId`: defaults to `eleven_v3` when unset
 * `apiKey`: falls back to `ELEVENLABS_API_KEY` (or gateway shell profile if available)
@@ -88,3 +90,6 @@ Defaults:
 * `stability` for `eleven_v3` is validated to `0.0`, `0.5`, or `1.0`; other models accept `0..1`.
 * `latency_tier` is validated to `0..4` when set.
 * Android supports `pcm_16000`, `pcm_22050`, `pcm_24000`, and `pcm_44100` output formats for low-latency AudioTrack streaming.
+
+
+Built with [Mintlify](https://mintlify.com).

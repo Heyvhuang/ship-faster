@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/AGENTS.md; fetched_at=2026-02-20T10:29:26.923Z; sha256=8894fac1368e4c406819dd45435bcdc2e26d1169ce0a6503c28076d29faa695a; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/AGENTS.md; fetched_at=2026-04-04T20:36:07.877Z; sha256=e3d9c5eb597d8a2014ebd7e1fd0d07ce1f9597b2348e4637b66ede1c306b5d22; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -14,7 +14,7 @@ This folder is home. Treat it that way.
 
 If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out who you are, then delete it. You won't need it again.
 
-## Every Session
+## Session Startup
 
 Before doing anything else:
 
@@ -53,7 +53,7 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 * When you make a mistake → document it so future-you doesn't repeat it
 * **Text > Brain** 📝
 
-## Safety
+## Red Lines
 
 * Don't exfiltrate private data. Ever.
 * Don't run destructive commands without asking.
@@ -218,3 +218,6 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+
+
+Built with [Mintlify](https://mintlify.com).

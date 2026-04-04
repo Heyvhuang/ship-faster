@@ -1,10 +1,12 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/credits.md; fetched_at=2026-02-20T10:29:26.731Z; sha256=bbfcb02be7f4a38615038383525e98213491e6a12fca5b25d402b6e7be4237f2; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/credits.md; fetched_at=2026-04-04T20:36:07.780Z; sha256=73e68ed6f6c2899570971365a7b3f25a9d0a02814ef6b3d4bb169b26ac8a4b9a; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
 # Credits
+
+# Credits and Acknowledgments
 
 ## The name
 
@@ -27,3 +29,6 @@ OpenClaw = CLAW + TARDIS, because every space lobster needs a time and space mac
 MIT - Free as a lobster in the ocean.
 
 > "We are all just playing with our own prompts." (An AI, probably high on tokens)
+
+
+Built with [Mintlify](https://mintlify.com).

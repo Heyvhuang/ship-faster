@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/peekaboo.md; fetched_at=2026-02-20T10:29:24.707Z; sha256=da531386311e9d49a745e5efd9fd322ae85a755b6c0841f45e8c5ce9065813d3; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/peekaboo.md; fetched_at=2026-04-04T20:36:07.257Z; sha256=a442458b969068e91334abba002b1e1fd96bc29c7ba32a984a086790dbb38e75; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -12,7 +12,7 @@ OpenClaw can host **PeekabooBridge** as a local, permission‑aware UI automatio
 broker. This lets the `peekaboo` CLI drive UI automation while reusing the
 macOS app’s TCC permissions.
 
-## What this is (and isn’t)
+## What this is (and is not)
 
 * **Host**: OpenClaw\.app can act as a PeekabooBridge host.
 * **Client**: use the `peekaboo` CLI (no separate `openclaw ui ...` surface).
@@ -62,3 +62,6 @@ If you need longer retention, re‑capture from the client.
   in **debug** mode only.
 * If no hosts are found, open one of the host apps (Peekaboo.app or OpenClaw\.app)
   and confirm permissions are granted.
+
+
+Built with [Mintlify](https://mintlify.com).

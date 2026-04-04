@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/rpc.md; fetched_at=2026-02-20T10:29:26.847Z; sha256=122c50b8cfe56d253303ec246a54301882c31db0daf72e66f19acae81df4a19d; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/rpc.md; fetched_at=2026-04-04T20:36:07.823Z; sha256=4ee0d1d2069b04b40c2423f27ca96204aa7588ecc6c7afd26d13f6cf546bcd70; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -41,3 +41,6 @@ See [iMessage](/channels/imessage) for legacy setup and addressing (`chat_id` pr
 * Gateway owns the process (start/stop tied to provider lifecycle).
 * Keep RPC clients resilient: timeouts, restart on exit.
 * Prefer stable IDs (e.g., `chat_id`) over display strings.
+
+
+Built with [Mintlify](https://mintlify.com).

@@ -1,10 +1,12 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/docs-directory.md; fetched_at=2026-02-20T10:29:27.770Z; sha256=615e60e5c6864ea4a011f71794fe59124ebb16a2a306f235ca3f33ed967d6aff; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/docs-directory.md; fetched_at=2026-04-04T20:36:08.009Z; sha256=e80c316709bac4cf52d9790da08c321ae2fda632bc58443cf03a039fa436f52d; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
 # Docs directory
+
+# Docs Directory
 
 <Note>
   This page is a curated index. If you are new, start with [Getting Started](/start/getting-started).
@@ -39,8 +41,9 @@
 * [Control UI (browser)](/web/control-ui)
 * [Telegram](/channels/telegram)
 * [Discord](/channels/discord)
-* [Mattermost (plugin)](/channels/mattermost)
+* [Mattermost](/channels/mattermost)
 * [BlueBubbles (iMessage)](/channels/bluebubbles)
+* [QQ Bot](/channels/qqbot)
 * [iMessage (legacy)](/channels/imessage)
 * [Groups](/channels/groups)
 * [WhatsApp group messages](/channels/group-messages)
@@ -59,7 +62,10 @@
 
 * [Sessions](/concepts/session)
 * [Cron jobs](/automation/cron-jobs)
-* [Webhooks](/automation/webhook)
-* [Gmail hooks (Pub/Sub)](/automation/gmail-pubsub)
+* [Webhooks](/automation/cron-jobs#webhooks)
+* [Gmail hooks (Pub/Sub)](/automation/cron-jobs#gmail-pubsub-integration)
 * [Security](/gateway/security)
 * [Troubleshooting](/gateway/troubleshooting)
+
+
+Built with [Mintlify](https://mintlify.com).

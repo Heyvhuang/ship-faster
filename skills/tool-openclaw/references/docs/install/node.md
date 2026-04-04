@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/node.md; fetched_at=2026-02-20T10:29:22.522Z; sha256=82d243223bbca0b292c0b7096783b3b5fbcfcc5204364de341ee94c1dadcedfb; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/node.md; fetched_at=2026-04-04T20:36:06.955Z; sha256=ca6707d88abc9b20cda552f3b457ba80f22359afdc14b1cad92cfbae943f26a5; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -8,7 +8,7 @@
 
 # Node.js
 
-OpenClaw requires **Node 22 or newer**. The [installer script](/install#install-methods) will detect and install Node automatically — this page is for when you want to set up Node yourself and make sure everything is wired up correctly (versions, PATH, global installs).
+OpenClaw requires **Node 22.14 or newer**. **Node 24 is the default and recommended runtime** for installs, CI, and release workflows. Node 22 remains supported via the active LTS line. The [installer script](/install#alternative-install-methods) will detect and install Node automatically — this page is for when you want to set up Node yourself and make sure everything is wired up correctly (versions, PATH, global installs).
 
 ## Check your version
 
@@ -16,7 +16,7 @@ OpenClaw requires **Node 22 or newer**. The [installer script](/install#install-
 node -v
 ```
 
-If this prints `v22.x.x` or higher, you're good. If Node isn't installed or the version is too old, pick an install method below.
+If this prints `v24.x.x` or higher, you're on the recommended default. If it prints `v22.14.x` or higher, you're on the supported Node 22 LTS path, but we still recommend upgrading to Node 24 when convenient. If Node isn't installed or the version is too old, pick an install method below.
 
 ## Install Node
 
@@ -35,7 +35,7 @@ If this prints `v22.x.x` or higher, you're good. If Node isn't installed or the 
     **Ubuntu / Debian:**
 
     ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-    curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+    curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
     sudo apt-get install -y nodejs
     ```
 
@@ -75,8 +75,8 @@ If this prints `v22.x.x` or higher, you're good. If Node isn't installed or the 
   Example with fnm:
 
   ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-  fnm install 22
-  fnm use 22
+  fnm install 24
+  fnm use 24
   ```
 
   <Warning>
@@ -135,3 +135,12 @@ export PATH="$HOME/.npm-global/bin:$PATH"
 ```
 
 Add the `export PATH=...` line to your `~/.bashrc` or `~/.zshrc` to make it permanent.
+
+## Related
+
+* [Install Overview](/install) — all installation methods
+* [Updating](/install/updating) — keeping OpenClaw up to date
+* [Getting Started](/start/getting-started) — first steps after install
+
+
+Built with [Mintlify](https://mintlify.com).

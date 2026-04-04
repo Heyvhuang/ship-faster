@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/index.md; fetched_at=2026-02-20T10:29:21.500Z; sha256=be5fc30be9fe46331eca6e4c7a55dfb839c2ca29a0682aad476a4f6ce5134d31; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/index.md; fetched_at=2026-04-04T20:36:06.772Z; sha256=c26d054e3a98e18e0ad7cac2f4fa0c48bd922f4f6e9f63eef7596a8848d5e0d8; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -9,16 +9,16 @@
 # OpenClaw 🦞
 
 <p align="center">
-  <img src="https://mintcdn.com/clawdhub/-t5HSeZ3Y_0_wH4i/assets/openclaw-logo-text-dark.png?fit=max&auto=format&n=-t5HSeZ3Y_0_wH4i&q=85&s=61797dcb0c37d6e9279b8c5ad2e850e4" alt="OpenClaw" width="500" class="dark:hidden" data-og-width="1769" data-og-height="363" data-path="assets/openclaw-logo-text-dark.png" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/clawdhub/-t5HSeZ3Y_0_wH4i/assets/openclaw-logo-text-dark.png?w=280&fit=max&auto=format&n=-t5HSeZ3Y_0_wH4i&q=85&s=4eb00205aad113b07614ce563373ca26 280w, https://mintcdn.com/clawdhub/-t5HSeZ3Y_0_wH4i/assets/openclaw-logo-text-dark.png?w=560&fit=max&auto=format&n=-t5HSeZ3Y_0_wH4i&q=85&s=d6b49e9c26ed303f84284140a482668d 560w, https://mintcdn.com/clawdhub/-t5HSeZ3Y_0_wH4i/assets/openclaw-logo-text-dark.png?w=840&fit=max&auto=format&n=-t5HSeZ3Y_0_wH4i&q=85&s=4d955541c50de4d43b761423a1f61e21 840w, https://mintcdn.com/clawdhub/-t5HSeZ3Y_0_wH4i/assets/openclaw-logo-text-dark.png?w=1100&fit=max&auto=format&n=-t5HSeZ3Y_0_wH4i&q=85&s=ed926636a9752c9ce39acccf51c3b271 1100w, https://mintcdn.com/clawdhub/-t5HSeZ3Y_0_wH4i/assets/openclaw-logo-text-dark.png?w=1650&fit=max&auto=format&n=-t5HSeZ3Y_0_wH4i&q=85&s=6eaae3d9d226837a0c97999308cc5774 1650w, https://mintcdn.com/clawdhub/-t5HSeZ3Y_0_wH4i/assets/openclaw-logo-text-dark.png?w=2500&fit=max&auto=format&n=-t5HSeZ3Y_0_wH4i&q=85&s=e7b1ad00141bc8497bee7df9e46ccebd 2500w" />
+  <img src="https://mintcdn.com/clawdhub/-t5HSeZ3Y_0_wH4i/assets/openclaw-logo-text-dark.png?fit=max&auto=format&n=-t5HSeZ3Y_0_wH4i&q=85&s=61797dcb0c37d6e9279b8c5ad2e850e4" alt="OpenClaw" width="500" class="dark:hidden" data-path="assets/openclaw-logo-text-dark.png" />
 
-  <img src="https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/assets/openclaw-logo-text.png?fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=d799bea41acb92d4c9fd1075c575879f" alt="OpenClaw" width="500" class="hidden dark:block" data-og-width="1768" data-og-height="363" data-path="assets/openclaw-logo-text.png" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/assets/openclaw-logo-text.png?w=280&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=d6a02fefee0fcacc5f045ee1016cd213 280w, https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/assets/openclaw-logo-text.png?w=560&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=b0c99fbfcae302b7e6796ae59e3b7b80 560w, https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/assets/openclaw-logo-text.png?w=840&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=6597187be4a207f22fcb94502b0b78be 840w, https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/assets/openclaw-logo-text.png?w=1100&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=88255cdd2554a6b341c89ae709743441 1100w, https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/assets/openclaw-logo-text.png?w=1650&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=e82a8bd9b834bec4f6e97303deb1735b 1650w, https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/assets/openclaw-logo-text.png?w=2500&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=23160e4a3cd4676702869ea051fd3f6e 2500w" />
+  <img src="https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/assets/openclaw-logo-text.png?fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=d799bea41acb92d4c9fd1075c575879f" alt="OpenClaw" width="500" class="hidden dark:block" data-path="assets/openclaw-logo-text.png" />
 </p>
 
 > *"EXFOLIATE! EXFOLIATE!"* — A space lobster, probably
 
 <p align="center">
-  <strong>Any OS gateway for AI agents across WhatsApp, Telegram, Discord, iMessage, and more.</strong><br />
-  Send a message, get an agent response from your pocket. Plugins add Mattermost and more.
+  <strong>Any OS gateway for AI agents across Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo, and more.</strong><br />
+  Send a message, get an agent response from your pocket. Run one Gateway across built-in channels, bundled channel plugins, WebChat, and mobile nodes.
 </p>
 
 <Columns>
@@ -26,7 +26,7 @@
     Install OpenClaw and bring up the Gateway in minutes.
   </Card>
 
-  <Card title="Run the Wizard" href="/start/wizard" icon="sparkles">
+  <Card title="Run Onboarding" href="/start/wizard" icon="sparkles">
     Guided setup with `openclaw onboard` and pairing flows.
   </Card>
 
@@ -37,18 +37,18 @@
 
 ## What is OpenClaw?
 
-OpenClaw is a **self-hosted gateway** that connects your favorite chat apps — WhatsApp, Telegram, Discord, iMessage, and more — to AI coding agents like Pi. You run a single Gateway process on your own machine (or a server), and it becomes the bridge between your messaging apps and an always-available AI assistant.
+OpenClaw is a **self-hosted gateway** that connects your favorite chat apps and channel surfaces — built-in channels plus bundled or external channel plugins such as Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo, and more — to AI coding agents like Pi. You run a single Gateway process on your own machine (or a server), and it becomes the bridge between your messaging apps and an always-available AI assistant.
 
 **Who is it for?** Developers and power users who want a personal AI assistant they can message from anywhere — without giving up control of their data or relying on a hosted service.
 
 **What makes it different?**
 
 * **Self-hosted**: runs on your hardware, your rules
-* **Multi-channel**: one Gateway serves WhatsApp, Telegram, Discord, and more simultaneously
+* **Multi-channel**: one Gateway serves built-in channels plus bundled or external channel plugins simultaneously
 * **Agent-native**: built for coding agents with tool use, sessions, memory, and multi-agent routing
 * **Open source**: MIT licensed, community-driven
 
-**What do you need?** Node 22+, an API key (Anthropic recommended), and 5 minutes.
+**What do you need?** Node 24 (recommended), or Node 22 LTS (`22.14+`) for compatibility, an API key from your chosen provider, and 5 minutes. For best quality and security, use the strongest latest-generation model available.
 
 ## How it works
 
@@ -68,11 +68,11 @@ The Gateway is the single source of truth for sessions, routing, and channel con
 
 <Columns>
   <Card title="Multi-channel gateway" icon="network">
-    WhatsApp, Telegram, Discord, and iMessage with a single Gateway process.
+    Discord, iMessage, Signal, Slack, Telegram, WhatsApp, WebChat, and more with a single Gateway process.
   </Card>
 
   <Card title="Plugin channels" icon="plug">
-    Add Mattermost and more with extension packages.
+    Bundled plugins add Matrix, Nostr, Twitch, Zalo, and more in normal current releases.
   </Card>
 
   <Card title="Multi-agent routing" icon="route">
@@ -88,7 +88,7 @@ The Gateway is the single source of truth for sessions, routing, and channel con
   </Card>
 
   <Card title="Mobile nodes" icon="smartphone">
-    Pair iOS and Android nodes with Canvas support.
+    Pair iOS and Android nodes for Canvas, camera, and voice-enabled workflows.
   </Card>
 </Columns>
 
@@ -107,15 +107,18 @@ The Gateway is the single source of truth for sessions, routing, and channel con
     ```
   </Step>
 
-  <Step title="Pair WhatsApp and start the Gateway">
+  <Step title="Chat">
+    Open the Control UI in your browser and send a message:
+
     ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-    openclaw channels login
-    openclaw gateway --port 18789
+    openclaw dashboard
     ```
+
+    Or connect a channel ([Telegram](/channels/telegram) is fastest) and chat from your phone.
   </Step>
 </Steps>
 
-Need the full install and dev setup? See [Quick start](/start/quickstart).
+Need the full install and dev setup? See [Getting Started](/start/getting-started).
 
 ## Dashboard
 
@@ -125,7 +128,7 @@ Open the browser Control UI after the Gateway starts.
 * Remote access: [Web surfaces](/web) and [Tailscale](/gateway/tailscale)
 
 <p align="center">
-  <img src="https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/whatsapp-openclaw.jpg?fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=b74a3630b0e971f466eff15fbdc642cb" alt="OpenClaw" width="420" data-og-width="471" data-og-height="1024" data-path="whatsapp-openclaw.jpg" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/whatsapp-openclaw.jpg?w=280&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=9529de32661772cb6e807012bd61af05 280w, https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/whatsapp-openclaw.jpg?w=560&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=c56c7120994a5221cc257ca747e90e59 560w, https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/whatsapp-openclaw.jpg?w=840&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=410f1066863dfec4e31274aebefe7de1 840w, https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/whatsapp-openclaw.jpg?w=1100&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=72f5064ba581433011975bde37c74964 1100w, https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/whatsapp-openclaw.jpg?w=1650&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=e07acd64b4f5b86bf7468cf5719883ef 1650w, https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/whatsapp-openclaw.jpg?w=2500&fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=7050f3dda374e9a1adedf3cd08357338 2500w" />
+  <img src="https://mintcdn.com/clawdhub/FaXdIfo7gPK_jSWb/whatsapp-openclaw.jpg?fit=max&auto=format&n=FaXdIfo7gPK_jSWb&q=85&s=b74a3630b0e971f466eff15fbdc642cb" alt="OpenClaw" width="420" data-path="whatsapp-openclaw.jpg" />
 </p>
 
 ## Configuration (optional)
@@ -165,11 +168,11 @@ Example:
   </Card>
 
   <Card title="Channels" href="/channels/telegram" icon="message-square">
-    Channel-specific setup for WhatsApp, Telegram, Discord, and more.
+    Channel-specific setup for Feishu, Microsoft Teams, WhatsApp, Telegram, Discord, and more.
   </Card>
 
   <Card title="Nodes" href="/nodes" icon="smartphone">
-    iOS and Android nodes with pairing and Canvas.
+    iOS and Android nodes with pairing, Canvas, camera, and device actions.
   </Card>
 
   <Card title="Help" href="/help" icon="life-buoy">
@@ -200,3 +203,6 @@ Example:
     Project origins, contributors, and license.
   </Card>
 </Columns>
+
+
+Built with [Mintlify](https://mintlify.com).

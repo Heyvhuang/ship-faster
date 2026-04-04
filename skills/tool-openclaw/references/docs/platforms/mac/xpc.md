@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/xpc.md; fetched_at=2026-02-20T10:29:25.070Z; sha256=aa89f3a3b270a51ecf37255a19f796aaf7cbf556159094ed7fbd119cdda774f2; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/xpc.md; fetched_at=2026-04-04T20:36:07.318Z; sha256=e9a7f67767fd880ebbe274a9a912af1bc3459d50078c8e6b7170fa4f59469941; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -60,3 +60,6 @@ Agent -> Gateway -> Node Service (WS)
 * All communication remains local-only; no network sockets are exposed.
 * TCC prompts originate only from the GUI app bundle; keep the signed bundle ID stable across rebuilds.
 * IPC hardening: socket mode `0600`, token, peer-UID checks, HMAC challenge/response, short TTL.
+
+
+Built with [Mintlify](https://mintlify.com).

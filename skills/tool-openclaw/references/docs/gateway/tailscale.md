@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/tailscale.md; fetched_at=2026-02-20T10:29:20.627Z; sha256=b9b284ed7343706c8d71a610c496acc996665853a9faa7671fbd0d9bb7d3dff8; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/tailscale.md; fetched_at=2026-04-04T20:36:06.678Z; sha256=9c610158589e7aa55e4819363b5f3217179feec87b90d846ff6c8d106d893713; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -22,19 +22,28 @@ Tailscale provides HTTPS, routing, and (for Serve) identity headers.
 
 Set `gateway.auth.mode` to control the handshake:
 
+* `none` (private ingress only)
 * `token` (default when `OPENCLAW_GATEWAY_TOKEN` is set)
 * `password` (shared secret via `OPENCLAW_GATEWAY_PASSWORD` or config)
+* `trusted-proxy` (identity-aware reverse proxy; see [Trusted Proxy Auth](/gateway/trusted-proxy-auth))
 
 When `tailscale.mode = "serve"` and `gateway.auth.allowTailscale` is `true`,
-valid Serve proxy requests can authenticate via Tailscale identity headers
+Control UI/WebSocket auth can use Tailscale identity headers
 (`tailscale-user-login`) without supplying a token/password. OpenClaw verifies
 the identity by resolving the `x-forwarded-for` address via the local Tailscale
 daemon (`tailscale whois`) and matching it to the header before accepting it.
 OpenClaw only treats a request as Serve when it arrives from loopback with
 Tailscale’s `x-forwarded-for`, `x-forwarded-proto`, and `x-forwarded-host`
 headers.
-To require explicit credentials, set `gateway.auth.allowTailscale: false` or
-force `gateway.auth.mode: "password"`.
+HTTP API endpoints (for example `/v1/*`, `/tools/invoke`, and `/api/channels/*`)
+do **not** use Tailscale identity-header auth. They still follow the gateway's
+normal HTTP auth mode: shared-secret auth by default, or an intentionally
+configured trusted-proxy / private-ingress `none` setup.
+This tokenless flow assumes the gateway host is trusted. If untrusted local code
+may run on the same host, disable `gateway.auth.allowTailscale` and require
+token/password auth instead.
+To require explicit shared-secret credentials, set `gateway.auth.allowTailscale: false`
+and use `gateway.auth.mode: "token"` or `"password"`.
 
 ## Config examples
 
@@ -125,3 +134,6 @@ Avoid Funnel for browser control; treat node pairing like operator access.
 * `tailscale serve` command: [https://tailscale.com/kb/1242/tailscale-serve](https://tailscale.com/kb/1242/tailscale-serve)
 * Tailscale Funnel overview: [https://tailscale.com/kb/1223/tailscale-funnel](https://tailscale.com/kb/1223/tailscale-funnel)
 * `tailscale funnel` command: [https://tailscale.com/kb/1311/tailscale-funnel](https://tailscale.com/kb/1311/tailscale-funnel)
+
+
+Built with [Mintlify](https://mintlify.com).

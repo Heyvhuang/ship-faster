@@ -1,10 +1,10 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/index.md; fetched_at=2026-02-20T10:29:25.798Z; sha256=ed58db9a9a3c05af3509146e8e3f1e9565811229b9af9a39efbfeb78c7a16c9c; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/index.md; fetched_at=2026-04-04T20:36:07.532Z; sha256=36438db455ebaab1e4d7a6879f19637a9d60ed55986612c1667921818070288d; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# Model Providers
+# Provider Directory
 
 # Model Providers
 
@@ -12,15 +12,6 @@ OpenClaw can use many LLM providers. Pick a provider, authenticate, then set the
 default model as `provider/model`.
 
 Looking for chat channel docs (WhatsApp/Telegram/Discord/Slack/Mattermost (plugin)/etc.)? See [Channels](/channels).
-
-## Highlight: Venice (Venice AI)
-
-Venice is our recommended Venice AI setup for privacy-first inference with an option to use Opus for hard tasks.
-
-* Default: `venice/llama-3.3-70b`
-* Best overall: `venice/claude-opus-45` (Opus remains the strongest)
-
-See [Venice AI](/providers/venice).
 
 ## Quick start
 
@@ -35,27 +26,47 @@ See [Venice AI](/providers/venice).
 
 ## Provider docs
 
-* [OpenAI (API + Codex)](/providers/openai)
-* [Anthropic (API + Claude Code CLI)](/providers/anthropic)
-* [Qwen (OAuth)](/providers/qwen)
-* [OpenRouter](/providers/openrouter)
-* [LiteLLM (unified gateway)](/providers/litellm)
-* [Vercel AI Gateway](/providers/vercel-ai-gateway)
-* [Together AI](/providers/together)
-* [Cloudflare AI Gateway](/providers/cloudflare-ai-gateway)
-* [Moonshot AI (Kimi + Kimi Coding)](/providers/moonshot)
-* [OpenCode Zen](/providers/opencode)
 * [Amazon Bedrock](/providers/bedrock)
-* [Z.AI](/providers/zai)
-* [Xiaomi](/providers/xiaomi)
+* [Anthropic (API + Claude Code CLI)](/providers/anthropic)
+* [BytePlus (International)](/concepts/model-providers#byteplus-international)
+* [Chutes](/providers/chutes)
+* [Cloudflare AI Gateway](/providers/cloudflare-ai-gateway)
+* [DeepSeek](/providers/deepseek)
+* [GitHub Copilot](/providers/github-copilot)
 * [GLM models](/providers/glm)
-* [MiniMax](/providers/minimax)
-* [Venice (Venice AI, privacy-focused)](/providers/venice)
+* [Google (Gemini)](/providers/google)
+* [Groq (LPU inference)](/providers/groq)
 * [Hugging Face (Inference)](/providers/huggingface)
-* [Ollama (local models)](/providers/ollama)
-* [vLLM (local models)](/providers/vllm)
-* [Qianfan](/providers/qianfan)
+* [Kilocode](/providers/kilocode)
+* [LiteLLM (unified gateway)](/providers/litellm)
+* [MiniMax](/providers/minimax)
+* [Mistral](/providers/mistral)
+* [Moonshot AI (Kimi + Kimi Coding)](/providers/moonshot)
 * [NVIDIA](/providers/nvidia)
+* [Ollama (cloud + local models)](/providers/ollama)
+* [OpenAI (API + Codex)](/providers/openai)
+* [OpenCode](/providers/opencode)
+* [OpenCode Go](/providers/opencode-go)
+* [OpenRouter](/providers/openrouter)
+* [Perplexity (web search)](/providers/perplexity-provider)
+* [Qianfan](/providers/qianfan)
+* [Qwen Cloud](/providers/qwen)
+* [Qwen / Model Studio (endpoint detail; `qwen-*` canonical, `modelstudio-*` legacy)](/providers/qwen_modelstudio)
+* [SGLang (local models)](/providers/sglang)
+* [StepFun](/providers/stepfun)
+* [Synthetic](/providers/synthetic)
+* [Together AI](/providers/together)
+* [Venice (Venice AI, privacy-focused)](/providers/venice)
+* [Vercel AI Gateway](/providers/vercel-ai-gateway)
+* [vLLM (local models)](/providers/vllm)
+* [Volcengine (Doubao)](/providers/volcengine)
+* [xAI](/providers/xai)
+* [Xiaomi](/providers/xiaomi)
+* [Z.AI](/providers/zai)
+
+## Shared overview pages
+
+* [Additional bundled variants](/providers/models#additional-bundled-provider-variants) - Anthropic Vertex, Copilot Proxy, and Gemini CLI OAuth
 
 ## Transcription providers
 
@@ -63,7 +74,10 @@ See [Venice AI](/providers/venice).
 
 ## Community tools
 
-* [Claude Max API Proxy](/providers/claude-max-api-proxy) - Use Claude Max/Pro subscription as an OpenAI-compatible API endpoint
+* [Claude Max API Proxy](/providers/claude-max-api-proxy) - Community proxy for Claude subscription credentials (verify Anthropic policy/terms before use)
 
 For the full provider catalog (xAI, Groq, Mistral, etc.) and advanced configuration,
 see [Model providers](/concepts/model-providers).
+
+
+Built with [Mintlify](https://mintlify.com).

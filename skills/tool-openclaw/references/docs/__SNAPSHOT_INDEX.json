@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-02-20T10:29:30.518Z",
+  "generated_at": "2026-04-04T20:36:08.594Z",
   "snapshot_root": "references/docs/",
-  "count": 265,
+  "count": 390,
   "categories": {
     "start": "Start / Onboarding",
     "install": "Install & Updates",
@@ -21,6 +21,34 @@
   },
   "entries": [
     {
+      "rel": "api-reference/openapi.json.md",
+      "title": "api reference: openapi.json",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "api",
+        "reference",
+        "openapi.json"
+      ],
+      "url": "https://docs.openclaw.ai/api-reference/openapi.json",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.327Z"
+    },
+    {
+      "rel": "auth-credential-semantics.md",
+      "title": "Auth Credential Semantics",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "auth",
+        "credential",
+        "semantics"
+      ],
+      "url": "https://docs.openclaw.ai/auth-credential-semantics.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.335Z"
+    },
+    {
       "rel": "automation/auth-monitoring.md",
       "title": "Auth Monitoring",
       "category": "automation",
@@ -31,12 +59,12 @@
         "monitoring"
       ],
       "url": "https://docs.openclaw.ai/automation/auth-monitoring.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:12.579Z"
     },
     {
       "rel": "automation/cron-jobs.md",
-      "title": "Cron Jobs",
+      "title": "Scheduled Tasks",
       "category": "automation",
       "categoryLabel": "Automation",
       "tags": [
@@ -46,7 +74,7 @@
       ],
       "url": "https://docs.openclaw.ai/automation/cron-jobs.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:12.751Z"
+      "fetchedAt": "2026-04-04T20:36:05.307Z"
     },
     {
       "rel": "automation/cron-vs-heartbeat.md",
@@ -60,7 +88,7 @@
         "heartbeat"
       ],
       "url": "https://docs.openclaw.ai/automation/cron-vs-heartbeat.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:12.535Z"
     },
     {
@@ -74,7 +102,7 @@
         "pubsub"
       ],
       "url": "https://docs.openclaw.ai/automation/gmail-pubsub.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:12.135Z"
     },
     {
@@ -88,7 +116,19 @@
       ],
       "url": "https://docs.openclaw.ai/automation/hooks.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:12.548Z"
+      "fetchedAt": "2026-04-04T20:36:05.316Z"
+    },
+    {
+      "rel": "automation/index.md",
+      "title": "Automation & Tasks",
+      "category": "automation",
+      "categoryLabel": "Automation",
+      "tags": [
+        "automation"
+      ],
+      "url": "https://docs.openclaw.ai/automation/index.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.350Z"
     },
     {
       "rel": "automation/poll.md",
@@ -100,8 +140,48 @@
         "poll"
       ],
       "url": "https://docs.openclaw.ai/automation/poll.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:12.561Z"
+    },
+    {
+      "rel": "automation/standing-orders.md",
+      "title": "Standing Orders",
+      "category": "automation",
+      "categoryLabel": "Automation",
+      "tags": [
+        "automation",
+        "standing",
+        "orders"
+      ],
+      "url": "https://docs.openclaw.ai/automation/standing-orders.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.350Z"
+    },
+    {
+      "rel": "automation/taskflow.md",
+      "title": "Task Flow",
+      "category": "automation",
+      "categoryLabel": "Automation",
+      "tags": [
+        "automation",
+        "taskflow"
+      ],
+      "url": "https://docs.openclaw.ai/automation/taskflow.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.350Z"
+    },
+    {
+      "rel": "automation/tasks.md",
+      "title": "Background Tasks",
+      "category": "automation",
+      "categoryLabel": "Automation",
+      "tags": [
+        "automation",
+        "tasks"
+      ],
+      "url": "https://docs.openclaw.ai/automation/tasks.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.361Z"
     },
     {
       "rel": "automation/troubleshooting.md",
@@ -113,7 +193,7 @@
         "troubleshooting"
       ],
       "url": "https://docs.openclaw.ai/automation/troubleshooting.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:12.589Z"
     },
     {
@@ -126,8 +206,21 @@
         "webhook"
       ],
       "url": "https://docs.openclaw.ai/automation/webhook.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:12.930Z"
+    },
+    {
+      "rel": "channels/bluebubbles.md",
+      "title": "BlueBubbles",
+      "category": "channels",
+      "categoryLabel": "Channels",
+      "tags": [
+        "channels",
+        "bluebubbles"
+      ],
+      "url": "https://docs.openclaw.ai/channels/bluebubbles.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.371Z"
     },
     {
       "rel": "channels/broadcast-groups.md",
@@ -141,7 +234,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/broadcast-groups.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.091Z"
+      "fetchedAt": "2026-04-04T20:36:05.380Z"
     },
     {
       "rel": "channels/channel-routing.md",
@@ -155,7 +248,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/channel-routing.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:12.814Z"
+      "fetchedAt": "2026-04-04T20:36:05.388Z"
     },
     {
       "rel": "channels/discord.md",
@@ -168,7 +261,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/discord.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:12.864Z"
+      "fetchedAt": "2026-04-04T20:36:05.398Z"
     },
     {
       "rel": "channels/feishu.md",
@@ -181,7 +274,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/feishu.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.051Z"
+      "fetchedAt": "2026-04-04T20:36:05.402Z"
     },
     {
       "rel": "channels/googlechat.md",
@@ -194,7 +287,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/googlechat.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.004Z"
+      "fetchedAt": "2026-04-04T20:36:05.447Z"
     },
     {
       "rel": "channels/grammy.md",
@@ -206,7 +299,7 @@
         "grammy"
       ],
       "url": "https://docs.openclaw.ai/channels/grammy.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:13.228Z"
     },
     {
@@ -221,7 +314,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/group-messages.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.322Z"
+      "fetchedAt": "2026-04-04T20:36:05.412Z"
     },
     {
       "rel": "channels/groups.md",
@@ -234,7 +327,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/groups.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.279Z"
+      "fetchedAt": "2026-04-04T20:36:05.420Z"
     },
     {
       "rel": "channels/imessage.md",
@@ -247,7 +340,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/imessage.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.237Z"
+      "fetchedAt": "2026-04-04T20:36:05.428Z"
     },
     {
       "rel": "channels/index.md",
@@ -259,7 +352,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.322Z"
+      "fetchedAt": "2026-04-04T20:36:05.438Z"
     },
     {
       "rel": "channels/irc.md",
@@ -272,7 +365,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/irc.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.411Z"
+      "fetchedAt": "2026-04-04T20:36:05.444Z"
     },
     {
       "rel": "channels/line.md",
@@ -285,7 +378,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/line.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.502Z"
+      "fetchedAt": "2026-04-04T20:36:05.456Z"
     },
     {
       "rel": "channels/location.md",
@@ -298,7 +391,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/location.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.663Z"
+      "fetchedAt": "2026-04-04T20:36:05.465Z"
     },
     {
       "rel": "channels/matrix.md",
@@ -311,7 +404,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/matrix.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.697Z"
+      "fetchedAt": "2026-04-04T20:36:05.499Z"
     },
     {
       "rel": "channels/mattermost.md",
@@ -324,7 +417,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/mattermost.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.746Z"
+      "fetchedAt": "2026-04-04T20:36:05.484Z"
     },
     {
       "rel": "channels/msteams.md",
@@ -337,7 +430,34 @@
       ],
       "url": "https://docs.openclaw.ai/channels/msteams.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.751Z"
+      "fetchedAt": "2026-04-04T20:36:05.503Z"
+    },
+    {
+      "rel": "channels/nextcloud-talk.md",
+      "title": "Nextcloud Talk",
+      "category": "channels",
+      "categoryLabel": "Channels",
+      "tags": [
+        "channels",
+        "nextcloud",
+        "talk"
+      ],
+      "url": "https://docs.openclaw.ai/channels/nextcloud-talk.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.488Z"
+    },
+    {
+      "rel": "channels/nostr.md",
+      "title": "Nostr",
+      "category": "channels",
+      "categoryLabel": "Channels",
+      "tags": [
+        "channels",
+        "nostr"
+      ],
+      "url": "https://docs.openclaw.ai/channels/nostr.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.496Z"
     },
     {
       "rel": "channels/pairing.md",
@@ -350,7 +470,20 @@
       ],
       "url": "https://docs.openclaw.ai/channels/pairing.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.823Z"
+      "fetchedAt": "2026-04-04T20:36:05.517Z"
+    },
+    {
+      "rel": "channels/qqbot.md",
+      "title": "QQ Bot",
+      "category": "channels",
+      "categoryLabel": "Channels",
+      "tags": [
+        "channels",
+        "qqbot"
+      ],
+      "url": "https://docs.openclaw.ai/channels/qqbot.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.554Z"
     },
     {
       "rel": "channels/signal.md",
@@ -363,7 +496,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/signal.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.922Z"
+      "fetchedAt": "2026-04-04T20:36:05.529Z"
     },
     {
       "rel": "channels/slack.md",
@@ -376,7 +509,21 @@
       ],
       "url": "https://docs.openclaw.ai/channels/slack.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.082Z"
+      "fetchedAt": "2026-04-04T20:36:05.552Z"
+    },
+    {
+      "rel": "channels/synology-chat.md",
+      "title": "Synology Chat",
+      "category": "channels",
+      "categoryLabel": "Channels",
+      "tags": [
+        "channels",
+        "synology",
+        "chat"
+      ],
+      "url": "https://docs.openclaw.ai/channels/synology-chat.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.564Z"
     },
     {
       "rel": "channels/telegram.md",
@@ -389,7 +536,20 @@
       ],
       "url": "https://docs.openclaw.ai/channels/telegram.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:13.972Z"
+      "fetchedAt": "2026-04-04T20:36:05.689Z"
+    },
+    {
+      "rel": "channels/tlon.md",
+      "title": "Tlon",
+      "category": "channels",
+      "categoryLabel": "Channels",
+      "tags": [
+        "channels",
+        "tlon"
+      ],
+      "url": "https://docs.openclaw.ai/channels/tlon.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.568Z"
     },
     {
       "rel": "channels/troubleshooting.md",
@@ -402,7 +562,20 @@
       ],
       "url": "https://docs.openclaw.ai/channels/troubleshooting.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.156Z"
+      "fetchedAt": "2026-04-04T20:36:05.573Z"
+    },
+    {
+      "rel": "channels/twitch.md",
+      "title": "Twitch",
+      "category": "channels",
+      "categoryLabel": "Channels",
+      "tags": [
+        "channels",
+        "twitch"
+      ],
+      "url": "https://docs.openclaw.ai/channels/twitch.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.592Z"
     },
     {
       "rel": "channels/whatsapp.md",
@@ -415,7 +588,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/whatsapp.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.215Z"
+      "fetchedAt": "2026-04-04T20:36:05.597Z"
     },
     {
       "rel": "channels/zalo.md",
@@ -428,7 +601,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/zalo.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.258Z"
+      "fetchedAt": "2026-04-04T20:36:05.613Z"
     },
     {
       "rel": "channels/zalouser.md",
@@ -441,7 +614,7 @@
       ],
       "url": "https://docs.openclaw.ai/channels/zalouser.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.334Z"
+      "fetchedAt": "2026-04-04T20:36:05.622Z"
     },
     {
       "rel": "ci.md",
@@ -453,7 +626,20 @@
       ],
       "url": "https://docs.openclaw.ai/ci.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.440Z"
+      "fetchedAt": "2026-04-04T20:36:05.626Z"
+    },
+    {
+      "rel": "cli/acp.md",
+      "title": "acp",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "acp"
+      ],
+      "url": "https://docs.openclaw.ai/cli/acp.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.652Z"
     },
     {
       "rel": "cli/agent.md",
@@ -466,7 +652,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/agent.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.324Z"
+      "fetchedAt": "2026-04-04T20:36:05.650Z"
     },
     {
       "rel": "cli/agents.md",
@@ -479,7 +665,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/agents.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.573Z"
+      "fetchedAt": "2026-04-04T20:36:05.656Z"
     },
     {
       "rel": "cli/approvals.md",
@@ -492,7 +678,20 @@
       ],
       "url": "https://docs.openclaw.ai/cli/approvals.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.654Z"
+      "fetchedAt": "2026-04-04T20:36:05.760Z"
+    },
+    {
+      "rel": "cli/backup.md",
+      "title": "backup",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "backup"
+      ],
+      "url": "https://docs.openclaw.ai/cli/backup.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.674Z"
     },
     {
       "rel": "cli/browser.md",
@@ -505,7 +704,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/browser.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.658Z"
+      "fetchedAt": "2026-04-04T20:36:05.698Z"
     },
     {
       "rel": "cli/channels.md",
@@ -518,7 +717,46 @@
       ],
       "url": "https://docs.openclaw.ai/cli/channels.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.746Z"
+      "fetchedAt": "2026-04-04T20:36:05.701Z"
+    },
+    {
+      "rel": "cli/clawbot.md",
+      "title": "clawbot",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "clawbot"
+      ],
+      "url": "https://docs.openclaw.ai/cli/clawbot.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.699Z"
+    },
+    {
+      "rel": "cli/completion.md",
+      "title": "completion",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "completion"
+      ],
+      "url": "https://docs.openclaw.ai/cli/completion.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.731Z"
+    },
+    {
+      "rel": "cli/config.md",
+      "title": "config",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "config"
+      ],
+      "url": "https://docs.openclaw.ai/cli/config.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.734Z"
     },
     {
       "rel": "cli/configure.md",
@@ -531,7 +769,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/configure.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.751Z"
+      "fetchedAt": "2026-04-04T20:36:05.742Z"
     },
     {
       "rel": "cli/cron.md",
@@ -544,7 +782,20 @@
       ],
       "url": "https://docs.openclaw.ai/cli/cron.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.838Z"
+      "fetchedAt": "2026-04-04T20:36:05.736Z"
+    },
+    {
+      "rel": "cli/daemon.md",
+      "title": "daemon",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "daemon"
+      ],
+      "url": "https://docs.openclaw.ai/cli/daemon.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.753Z"
     },
     {
       "rel": "cli/dashboard.md",
@@ -557,7 +808,20 @@
       ],
       "url": "https://docs.openclaw.ai/cli/dashboard.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:14.995Z"
+      "fetchedAt": "2026-04-04T20:36:05.776Z"
+    },
+    {
+      "rel": "cli/devices.md",
+      "title": "devices",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "devices"
+      ],
+      "url": "https://docs.openclaw.ai/cli/devices.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.776Z"
     },
     {
       "rel": "cli/directory.md",
@@ -570,7 +834,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/directory.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.093Z"
+      "fetchedAt": "2026-04-04T20:36:05.776Z"
     },
     {
       "rel": "cli/dns.md",
@@ -583,7 +847,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/dns.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.063Z"
+      "fetchedAt": "2026-04-04T20:36:05.790Z"
     },
     {
       "rel": "cli/docs.md",
@@ -596,7 +860,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/docs.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.166Z"
+      "fetchedAt": "2026-04-04T20:36:05.801Z"
     },
     {
       "rel": "cli/doctor.md",
@@ -609,7 +873,20 @@
       ],
       "url": "https://docs.openclaw.ai/cli/doctor.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.175Z"
+      "fetchedAt": "2026-04-04T20:36:05.866Z"
+    },
+    {
+      "rel": "cli/flows.md",
+      "title": "flows (redirect)",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "flows"
+      ],
+      "url": "https://docs.openclaw.ai/cli/flows.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.825Z"
     },
     {
       "rel": "cli/gateway.md",
@@ -622,7 +899,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/gateway.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.269Z"
+      "fetchedAt": "2026-04-04T20:36:05.846Z"
     },
     {
       "rel": "cli/health.md",
@@ -635,7 +912,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/health.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.239Z"
+      "fetchedAt": "2026-04-04T20:36:05.856Z"
     },
     {
       "rel": "cli/hooks.md",
@@ -648,7 +925,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/hooks.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.493Z"
+      "fetchedAt": "2026-04-04T20:36:05.833Z"
     },
     {
       "rel": "cli/index.md",
@@ -660,7 +937,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.766Z"
+      "fetchedAt": "2026-04-04T20:36:05.845Z"
     },
     {
       "rel": "cli/logs.md",
@@ -673,7 +950,20 @@
       ],
       "url": "https://docs.openclaw.ai/cli/logs.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.392Z"
+      "fetchedAt": "2026-04-04T20:36:05.863Z"
+    },
+    {
+      "rel": "cli/mcp.md",
+      "title": "mcp",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "mcp"
+      ],
+      "url": "https://docs.openclaw.ai/cli/mcp.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.887Z"
     },
     {
       "rel": "cli/memory.md",
@@ -686,7 +976,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/memory.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.598Z"
+      "fetchedAt": "2026-04-04T20:36:05.885Z"
     },
     {
       "rel": "cli/message.md",
@@ -699,7 +989,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/message.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.658Z"
+      "fetchedAt": "2026-04-04T20:36:05.895Z"
     },
     {
       "rel": "cli/models.md",
@@ -712,7 +1002,20 @@
       ],
       "url": "https://docs.openclaw.ai/cli/models.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.507Z"
+      "fetchedAt": "2026-04-04T20:36:05.890Z"
+    },
+    {
+      "rel": "cli/node.md",
+      "title": "node",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "node"
+      ],
+      "url": "https://docs.openclaw.ai/cli/node.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.904Z"
     },
     {
       "rel": "cli/nodes.md",
@@ -725,7 +1028,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/nodes.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.655Z"
+      "fetchedAt": "2026-04-04T20:36:06.114Z"
     },
     {
       "rel": "cli/onboard.md",
@@ -738,7 +1041,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/onboard.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.898Z"
+      "fetchedAt": "2026-04-04T20:36:05.929Z"
     },
     {
       "rel": "cli/pairing.md",
@@ -751,7 +1054,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/pairing.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.912Z"
+      "fetchedAt": "2026-04-04T20:36:05.936Z"
     },
     {
       "rel": "cli/plugins.md",
@@ -764,7 +1067,20 @@
       ],
       "url": "https://docs.openclaw.ai/cli/plugins.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.013Z"
+      "fetchedAt": "2026-04-04T20:36:05.938Z"
+    },
+    {
+      "rel": "cli/qr.md",
+      "title": "qr",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "qr"
+      ],
+      "url": "https://docs.openclaw.ai/cli/qr.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:05.934Z"
     },
     {
       "rel": "cli/reset.md",
@@ -777,7 +1093,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/reset.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:15.897Z"
+      "fetchedAt": "2026-04-04T20:36:05.962Z"
     },
     {
       "rel": "cli/sandbox.md",
@@ -790,7 +1106,20 @@
       ],
       "url": "https://docs.openclaw.ai/cli/sandbox.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.082Z"
+      "fetchedAt": "2026-04-04T20:36:05.966Z"
+    },
+    {
+      "rel": "cli/secrets.md",
+      "title": "secrets",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "secrets"
+      ],
+      "url": "https://docs.openclaw.ai/cli/secrets.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.041Z"
     },
     {
       "rel": "cli/security.md",
@@ -803,7 +1132,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/security.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.197Z"
+      "fetchedAt": "2026-04-04T20:36:05.979Z"
     },
     {
       "rel": "cli/sessions.md",
@@ -816,7 +1145,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/sessions.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.319Z"
+      "fetchedAt": "2026-04-04T20:36:05.978Z"
     },
     {
       "rel": "cli/setup.md",
@@ -829,7 +1158,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/setup.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.156Z"
+      "fetchedAt": "2026-04-04T20:36:06.009Z"
     },
     {
       "rel": "cli/skills.md",
@@ -842,7 +1171,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/skills.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.156Z"
+      "fetchedAt": "2026-04-04T20:36:06.017Z"
     },
     {
       "rel": "cli/status.md",
@@ -855,7 +1184,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/status.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.445Z"
+      "fetchedAt": "2026-04-04T20:36:06.020Z"
     },
     {
       "rel": "cli/system.md",
@@ -868,7 +1197,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/system.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.500Z"
+      "fetchedAt": "2026-04-04T20:36:06.018Z"
     },
     {
       "rel": "cli/tui.md",
@@ -881,7 +1210,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/tui.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.555Z"
+      "fetchedAt": "2026-04-04T20:36:06.050Z"
     },
     {
       "rel": "cli/uninstall.md",
@@ -894,7 +1223,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/uninstall.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.567Z"
+      "fetchedAt": "2026-04-04T20:36:06.085Z"
     },
     {
       "rel": "cli/update.md",
@@ -907,7 +1236,7 @@
       ],
       "url": "https://docs.openclaw.ai/cli/update.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.628Z"
+      "fetchedAt": "2026-04-04T20:36:06.062Z"
     },
     {
       "rel": "cli/voicecall.md",
@@ -920,7 +1249,20 @@
       ],
       "url": "https://docs.openclaw.ai/cli/voicecall.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.726Z"
+      "fetchedAt": "2026-04-04T20:36:06.092Z"
+    },
+    {
+      "rel": "cli/webhooks.md",
+      "title": "webhooks",
+      "category": "cli",
+      "categoryLabel": "CLI Reference",
+      "tags": [
+        "cli",
+        "webhooks"
+      ],
+      "url": "https://docs.openclaw.ai/cli/webhooks.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.084Z"
     },
     {
       "rel": "concepts/agent-loop.md",
@@ -934,7 +1276,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/agent-loop.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.870Z"
+      "fetchedAt": "2026-04-04T20:36:06.108Z"
     },
     {
       "rel": "concepts/agent-workspace.md",
@@ -948,7 +1290,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/agent-workspace.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.901Z"
+      "fetchedAt": "2026-04-04T20:36:06.110Z"
     },
     {
       "rel": "concepts/agent.md",
@@ -961,7 +1303,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/agent.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.969Z"
+      "fetchedAt": "2026-04-04T20:36:06.133Z"
     },
     {
       "rel": "concepts/architecture.md",
@@ -974,7 +1316,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/architecture.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:16.969Z"
+      "fetchedAt": "2026-04-04T20:36:06.144Z"
     },
     {
       "rel": "concepts/compaction.md",
@@ -987,7 +1329,21 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/compaction.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.092Z"
+      "fetchedAt": "2026-04-04T20:36:06.137Z"
+    },
+    {
+      "rel": "concepts/context-engine.md",
+      "title": "Context Engine",
+      "category": "concepts",
+      "categoryLabel": "Core Concepts",
+      "tags": [
+        "concepts",
+        "context",
+        "engine"
+      ],
+      "url": "https://docs.openclaw.ai/concepts/context-engine.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.163Z"
     },
     {
       "rel": "concepts/context.md",
@@ -1000,7 +1356,21 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/context.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.145Z"
+      "fetchedAt": "2026-04-04T20:36:06.158Z"
+    },
+    {
+      "rel": "concepts/delegate-architecture.md",
+      "title": "Delegate Architecture",
+      "category": "concepts",
+      "categoryLabel": "Core Concepts",
+      "tags": [
+        "concepts",
+        "delegate",
+        "architecture"
+      ],
+      "url": "https://docs.openclaw.ai/concepts/delegate-architecture.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.293Z"
     },
     {
       "rel": "concepts/features.md",
@@ -1013,7 +1383,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/features.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.108Z"
+      "fetchedAt": "2026-04-04T20:36:06.175Z"
     },
     {
       "rel": "concepts/markdown-formatting.md",
@@ -1027,11 +1397,81 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/markdown-formatting.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.149Z"
+      "fetchedAt": "2026-04-04T20:36:06.184Z"
+    },
+    {
+      "rel": "concepts/memory-builtin.md",
+      "title": "Builtin Memory Engine",
+      "category": "concepts",
+      "categoryLabel": "Core Concepts",
+      "tags": [
+        "concepts",
+        "memory",
+        "builtin"
+      ],
+      "url": "https://docs.openclaw.ai/concepts/memory-builtin.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.187Z"
+    },
+    {
+      "rel": "concepts/memory-dreaming.md",
+      "title": "Dreaming (experimental)",
+      "category": "concepts",
+      "categoryLabel": "Core Concepts",
+      "tags": [
+        "concepts",
+        "memory",
+        "dreaming"
+      ],
+      "url": "https://docs.openclaw.ai/concepts/memory-dreaming.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.203Z"
+    },
+    {
+      "rel": "concepts/memory-honcho.md",
+      "title": "Honcho Memory",
+      "category": "concepts",
+      "categoryLabel": "Core Concepts",
+      "tags": [
+        "concepts",
+        "memory",
+        "honcho"
+      ],
+      "url": "https://docs.openclaw.ai/concepts/memory-honcho.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.204Z"
+    },
+    {
+      "rel": "concepts/memory-qmd.md",
+      "title": "QMD Memory Engine",
+      "category": "concepts",
+      "categoryLabel": "Core Concepts",
+      "tags": [
+        "concepts",
+        "memory",
+        "qmd"
+      ],
+      "url": "https://docs.openclaw.ai/concepts/memory-qmd.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.223Z"
+    },
+    {
+      "rel": "concepts/memory-search.md",
+      "title": "Memory Search",
+      "category": "concepts",
+      "categoryLabel": "Core Concepts",
+      "tags": [
+        "concepts",
+        "memory",
+        "search"
+      ],
+      "url": "https://docs.openclaw.ai/concepts/memory-search.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.234Z"
     },
     {
       "rel": "concepts/memory.md",
-      "title": "Memory",
+      "title": "Memory Overview",
       "category": "concepts",
       "categoryLabel": "Core Concepts",
       "tags": [
@@ -1040,7 +1480,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/memory.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.380Z"
+      "fetchedAt": "2026-04-04T20:36:06.225Z"
     },
     {
       "rel": "concepts/messages.md",
@@ -1053,7 +1493,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/messages.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.380Z"
+      "fetchedAt": "2026-04-04T20:36:06.241Z"
     },
     {
       "rel": "concepts/model-failover.md",
@@ -1067,7 +1507,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/model-failover.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.337Z"
+      "fetchedAt": "2026-04-04T20:36:06.264Z"
     },
     {
       "rel": "concepts/model-providers.md",
@@ -1081,7 +1521,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/model-providers.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.533Z"
+      "fetchedAt": "2026-04-04T20:36:06.261Z"
     },
     {
       "rel": "concepts/models.md",
@@ -1094,7 +1534,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/models.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.546Z"
+      "fetchedAt": "2026-04-04T20:36:06.269Z"
     },
     {
       "rel": "concepts/multi-agent.md",
@@ -1108,7 +1548,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/multi-agent.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.409Z"
+      "fetchedAt": "2026-04-04T20:36:06.283Z"
     },
     {
       "rel": "concepts/oauth.md",
@@ -1121,7 +1561,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/oauth.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.589Z"
+      "fetchedAt": "2026-04-04T20:36:06.286Z"
     },
     {
       "rel": "concepts/presence.md",
@@ -1134,7 +1574,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/presence.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.771Z"
+      "fetchedAt": "2026-04-04T20:36:06.309Z"
     },
     {
       "rel": "concepts/queue.md",
@@ -1147,7 +1587,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/queue.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.782Z"
+      "fetchedAt": "2026-04-04T20:36:06.322Z"
     },
     {
       "rel": "concepts/retry.md",
@@ -1160,7 +1600,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/retry.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.841Z"
+      "fetchedAt": "2026-04-04T20:36:06.329Z"
     },
     {
       "rel": "concepts/session-pruning.md",
@@ -1174,7 +1614,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/session-pruning.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.946Z"
+      "fetchedAt": "2026-04-04T20:36:06.331Z"
     },
     {
       "rel": "concepts/session-tool.md",
@@ -1188,7 +1628,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/session-tool.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:17.943Z"
+      "fetchedAt": "2026-04-04T20:36:06.334Z"
     },
     {
       "rel": "concepts/session.md",
@@ -1201,7 +1641,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/session.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:18.033Z"
+      "fetchedAt": "2026-04-04T20:36:06.357Z"
     },
     {
       "rel": "concepts/sessions.md",
@@ -1213,8 +1653,21 @@
         "sessions"
       ],
       "url": "https://docs.openclaw.ai/concepts/sessions.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:18.011Z"
+    },
+    {
+      "rel": "concepts/soul.md",
+      "title": "SOUL.md Personality Guide",
+      "category": "concepts",
+      "categoryLabel": "Core Concepts",
+      "tags": [
+        "concepts",
+        "soul"
+      ],
+      "url": "https://docs.openclaw.ai/concepts/soul.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.354Z"
     },
     {
       "rel": "concepts/streaming.md",
@@ -1227,7 +1680,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/streaming.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:18.180Z"
+      "fetchedAt": "2026-04-04T20:36:06.367Z"
     },
     {
       "rel": "concepts/system-prompt.md",
@@ -1241,7 +1694,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/system-prompt.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:18.639Z"
+      "fetchedAt": "2026-04-04T20:36:06.372Z"
     },
     {
       "rel": "concepts/timezone.md",
@@ -1254,7 +1707,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/timezone.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:18.357Z"
+      "fetchedAt": "2026-04-04T20:36:06.376Z"
     },
     {
       "rel": "concepts/typebox.md",
@@ -1267,7 +1720,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/typebox.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:18.361Z"
+      "fetchedAt": "2026-04-04T20:36:06.377Z"
     },
     {
       "rel": "concepts/typing-indicators.md",
@@ -1281,7 +1734,7 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/typing-indicators.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:18.415Z"
+      "fetchedAt": "2026-04-04T20:36:06.401Z"
     },
     {
       "rel": "concepts/usage-tracking.md",
@@ -1295,7 +1748,47 @@
       ],
       "url": "https://docs.openclaw.ai/concepts/usage-tracking.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:18.289Z"
+      "fetchedAt": "2026-04-04T20:36:06.418Z"
+    },
+    {
+      "rel": "date-time.md",
+      "title": "Date and Time",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "date",
+        "time"
+      ],
+      "url": "https://docs.openclaw.ai/date-time.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.408Z"
+    },
+    {
+      "rel": "debug/node-issue.md",
+      "title": "Node + tsx Crash",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "debug",
+        "node",
+        "issue"
+      ],
+      "url": "https://docs.openclaw.ai/debug/node-issue.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.416Z"
+    },
+    {
+      "rel": "diagnostics/flags.md",
+      "title": "Diagnostics Flags",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "diagnostics",
+        "flags"
+      ],
+      "url": "https://docs.openclaw.ai/diagnostics/flags.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.423Z"
     },
     {
       "rel": "experiments/onboarding-config-protocol.md",
@@ -1309,7 +1802,7 @@
         "protocol"
       ],
       "url": "https://docs.openclaw.ai/experiments/onboarding-config-protocol.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:18.624Z"
     },
     {
@@ -1325,7 +1818,7 @@
         "hardening"
       ],
       "url": "https://docs.openclaw.ai/experiments/plans/cron-add-hardening.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:18.811Z"
     },
     {
@@ -1341,7 +1834,7 @@
         "hardening"
       ],
       "url": "https://docs.openclaw.ai/experiments/plans/group-policy-hardening.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:19.020Z"
     },
     {
@@ -1356,7 +1849,7 @@
         "config"
       ],
       "url": "https://docs.openclaw.ai/experiments/proposals/model-config.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:18.811Z"
     },
     {
@@ -1370,7 +1863,7 @@
         "memory"
       ],
       "url": "https://docs.openclaw.ai/experiments/research/memory.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:18.921Z"
     },
     {
@@ -1384,7 +1877,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/authentication.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.034Z"
+      "fetchedAt": "2026-04-04T20:36:06.430Z"
     },
     {
       "rel": "gateway/background-process.md",
@@ -1398,7 +1891,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/background-process.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.549Z"
+      "fetchedAt": "2026-04-04T20:36:06.466Z"
     },
     {
       "rel": "gateway/bonjour.md",
@@ -1411,7 +1904,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/bonjour.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.250Z"
+      "fetchedAt": "2026-04-04T20:36:06.453Z"
     },
     {
       "rel": "gateway/bridge-protocol.md",
@@ -1425,7 +1918,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/bridge-protocol.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.250Z"
+      "fetchedAt": "2026-04-04T20:36:06.481Z"
     },
     {
       "rel": "gateway/cli-backends.md",
@@ -1439,7 +1932,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/cli-backends.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.324Z"
+      "fetchedAt": "2026-04-04T20:36:06.458Z"
     },
     {
       "rel": "gateway/configuration-examples.md",
@@ -1453,7 +1946,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/configuration-examples.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.433Z"
+      "fetchedAt": "2026-04-04T20:36:06.466Z"
     },
     {
       "rel": "gateway/configuration-reference.md",
@@ -1467,7 +1960,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/configuration-reference.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.589Z"
+      "fetchedAt": "2026-04-04T20:36:06.473Z"
     },
     {
       "rel": "gateway/configuration.md",
@@ -1480,7 +1973,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/configuration.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.674Z"
+      "fetchedAt": "2026-04-04T20:36:06.497Z"
     },
     {
       "rel": "gateway/discovery.md",
@@ -1493,7 +1986,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/discovery.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.670Z"
+      "fetchedAt": "2026-04-04T20:36:06.497Z"
     },
     {
       "rel": "gateway/doctor.md",
@@ -1506,7 +1999,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/doctor.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.742Z"
+      "fetchedAt": "2026-04-04T20:36:06.510Z"
     },
     {
       "rel": "gateway/gateway-lock.md",
@@ -1519,7 +2012,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/gateway-lock.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.839Z"
+      "fetchedAt": "2026-04-04T20:36:06.506Z"
     },
     {
       "rel": "gateway/health.md",
@@ -1532,7 +2025,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/health.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:19.961Z"
+      "fetchedAt": "2026-04-04T20:36:06.521Z"
     },
     {
       "rel": "gateway/heartbeat.md",
@@ -1545,7 +2038,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/heartbeat.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.000Z"
+      "fetchedAt": "2026-04-04T20:36:06.521Z"
     },
     {
       "rel": "gateway/index.md",
@@ -1557,7 +2050,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.109Z"
+      "fetchedAt": "2026-04-04T20:36:06.553Z"
     },
     {
       "rel": "gateway/local-models.md",
@@ -1571,11 +2064,11 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/local-models.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.145Z"
+      "fetchedAt": "2026-04-04T20:36:06.540Z"
     },
     {
       "rel": "gateway/logging.md",
-      "title": "Logging",
+      "title": "Gateway Logging",
       "category": "gateway",
       "categoryLabel": "Gateway & Ops",
       "tags": [
@@ -1584,7 +2077,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/logging.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.153Z"
+      "fetchedAt": "2026-04-04T20:36:06.553Z"
     },
     {
       "rel": "gateway/multiple-gateways.md",
@@ -1598,7 +2091,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/multiple-gateways.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.243Z"
+      "fetchedAt": "2026-04-04T20:36:06.556Z"
     },
     {
       "rel": "gateway/network-model.md",
@@ -1612,7 +2105,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/network-model.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.384Z"
+      "fetchedAt": "2026-04-04T20:36:06.561Z"
     },
     {
       "rel": "gateway/openai-http-api.md",
@@ -1627,7 +2120,35 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/openai-http-api.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.230Z"
+      "fetchedAt": "2026-04-04T20:36:06.567Z"
+    },
+    {
+      "rel": "gateway/openresponses-http-api.md",
+      "title": "OpenResponses API",
+      "category": "gateway",
+      "categoryLabel": "Gateway & Ops",
+      "tags": [
+        "gateway",
+        "openresponses",
+        "http",
+        "api"
+      ],
+      "url": "https://docs.openclaw.ai/gateway/openresponses-http-api.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.581Z"
+    },
+    {
+      "rel": "gateway/openshell.md",
+      "title": "OpenShell",
+      "category": "gateway",
+      "categoryLabel": "Gateway & Ops",
+      "tags": [
+        "gateway",
+        "openshell"
+      ],
+      "url": "https://docs.openclaw.ai/gateway/openshell.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.595Z"
     },
     {
       "rel": "gateway/pairing.md",
@@ -1640,7 +2161,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/pairing.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.351Z"
+      "fetchedAt": "2026-04-04T20:36:06.602Z"
     },
     {
       "rel": "gateway/protocol.md",
@@ -1653,7 +2174,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/protocol.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.582Z"
+      "fetchedAt": "2026-04-04T20:36:06.626Z"
     },
     {
       "rel": "gateway/remote-gateway-readme.md",
@@ -1667,7 +2188,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/remote-gateway-readme.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.384Z"
+      "fetchedAt": "2026-04-04T20:36:06.602Z"
     },
     {
       "rel": "gateway/remote.md",
@@ -1680,7 +2201,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/remote.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.467Z"
+      "fetchedAt": "2026-04-04T20:36:06.638Z"
     },
     {
       "rel": "gateway/sandbox-vs-tool-policy-vs-elevated.md",
@@ -1697,7 +2218,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/sandbox-vs-tool-policy-vs-elevated.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.474Z"
+      "fetchedAt": "2026-04-04T20:36:06.638Z"
     },
     {
       "rel": "gateway/sandboxing.md",
@@ -1710,7 +2231,35 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/sandboxing.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.584Z"
+      "fetchedAt": "2026-04-04T20:36:06.635Z"
+    },
+    {
+      "rel": "gateway/secrets-plan-contract.md",
+      "title": "Secrets Apply Plan Contract",
+      "category": "gateway",
+      "categoryLabel": "Gateway & Ops",
+      "tags": [
+        "gateway",
+        "secrets",
+        "plan",
+        "contract"
+      ],
+      "url": "https://docs.openclaw.ai/gateway/secrets-plan-contract.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.641Z"
+    },
+    {
+      "rel": "gateway/secrets.md",
+      "title": "Secrets Management",
+      "category": "gateway",
+      "categoryLabel": "Gateway & Ops",
+      "tags": [
+        "gateway",
+        "secrets"
+      ],
+      "url": "https://docs.openclaw.ai/gateway/secrets.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.643Z"
     },
     {
       "rel": "gateway/security/index.md",
@@ -1723,7 +2272,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/security/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.887Z"
+      "fetchedAt": "2026-04-04T20:36:06.670Z"
     },
     {
       "rel": "gateway/tailscale.md",
@@ -1736,7 +2285,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/tailscale.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.627Z"
+      "fetchedAt": "2026-04-04T20:36:06.678Z"
     },
     {
       "rel": "gateway/tools-invoke-http-api.md",
@@ -1752,7 +2301,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/tools-invoke-http-api.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.709Z"
+      "fetchedAt": "2026-04-04T20:36:06.695Z"
     },
     {
       "rel": "gateway/troubleshooting.md",
@@ -1765,11 +2314,11 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/troubleshooting.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.706Z"
+      "fetchedAt": "2026-04-04T20:36:06.689Z"
     },
     {
       "rel": "gateway/trusted-proxy-auth.md",
-      "title": "null",
+      "title": "Trusted Proxy Auth",
       "category": "gateway",
       "categoryLabel": "Gateway & Ops",
       "tags": [
@@ -1780,7 +2329,7 @@
       ],
       "url": "https://docs.openclaw.ai/gateway/trusted-proxy-auth.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.041Z"
+      "fetchedAt": "2026-04-04T20:36:06.683Z"
     },
     {
       "rel": "help/debugging.md",
@@ -1793,7 +2342,7 @@
       ],
       "url": "https://docs.openclaw.ai/help/debugging.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.080Z"
+      "fetchedAt": "2026-04-04T20:36:06.693Z"
     },
     {
       "rel": "help/environment.md",
@@ -1806,7 +2355,7 @@
       ],
       "url": "https://docs.openclaw.ai/help/environment.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:20.859Z"
+      "fetchedAt": "2026-04-04T20:36:06.727Z"
     },
     {
       "rel": "help/faq.md",
@@ -1819,7 +2368,7 @@
       ],
       "url": "https://docs.openclaw.ai/help/faq.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.156Z"
+      "fetchedAt": "2026-04-04T20:36:06.727Z"
     },
     {
       "rel": "help/index.md",
@@ -1831,7 +2380,7 @@
       ],
       "url": "https://docs.openclaw.ai/help/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.116Z"
+      "fetchedAt": "2026-04-04T20:36:06.729Z"
     },
     {
       "rel": "help/scripts.md",
@@ -1844,7 +2393,7 @@
       ],
       "url": "https://docs.openclaw.ai/help/scripts.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.681Z"
+      "fetchedAt": "2026-04-04T20:36:06.738Z"
     },
     {
       "rel": "help/testing.md",
@@ -1857,11 +2406,11 @@
       ],
       "url": "https://docs.openclaw.ai/help/testing.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.505Z"
+      "fetchedAt": "2026-04-04T20:36:06.770Z"
     },
     {
       "rel": "help/troubleshooting.md",
-      "title": "Troubleshooting",
+      "title": "General Troubleshooting",
       "category": "help",
       "categoryLabel": "Help",
       "tags": [
@@ -1870,7 +2419,7 @@
       ],
       "url": "https://docs.openclaw.ai/help/troubleshooting.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.500Z"
+      "fetchedAt": "2026-04-04T20:36:06.746Z"
     },
     {
       "rel": "index.md",
@@ -1880,7 +2429,7 @@
       "tags": [],
       "url": "https://docs.openclaw.ai/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.500Z"
+      "fetchedAt": "2026-04-04T20:36:06.772Z"
     },
     {
       "rel": "install/ansible.md",
@@ -1893,7 +2442,20 @@
       ],
       "url": "https://docs.openclaw.ai/install/ansible.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.537Z"
+      "fetchedAt": "2026-04-04T20:36:06.782Z"
+    },
+    {
+      "rel": "install/azure.md",
+      "title": "Azure",
+      "category": "install",
+      "categoryLabel": "Install & Updates",
+      "tags": [
+        "install",
+        "azure"
+      ],
+      "url": "https://docs.openclaw.ai/install/azure.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.773Z"
     },
     {
       "rel": "install/bun.md",
@@ -1906,11 +2468,24 @@
       ],
       "url": "https://docs.openclaw.ai/install/bun.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.567Z"
+      "fetchedAt": "2026-04-04T20:36:06.800Z"
+    },
+    {
+      "rel": "install/clawdock.md",
+      "title": "ClawDock",
+      "category": "install",
+      "categoryLabel": "Install & Updates",
+      "tags": [
+        "install",
+        "clawdock"
+      ],
+      "url": "https://docs.openclaw.ai/install/clawdock.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.791Z"
     },
     {
       "rel": "install/development-channels.md",
-      "title": "Development Channels",
+      "title": "Release Channels",
       "category": "install",
       "categoryLabel": "Install & Updates",
       "tags": [
@@ -1920,7 +2495,35 @@
       ],
       "url": "https://docs.openclaw.ai/install/development-channels.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.941Z"
+      "fetchedAt": "2026-04-04T20:36:06.811Z"
+    },
+    {
+      "rel": "install/digitalocean.md",
+      "title": "DigitalOcean",
+      "category": "install",
+      "categoryLabel": "Install & Updates",
+      "tags": [
+        "install",
+        "digitalocean"
+      ],
+      "url": "https://docs.openclaw.ai/install/digitalocean.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.814Z"
+    },
+    {
+      "rel": "install/docker-vm-runtime.md",
+      "title": "Docker VM Runtime",
+      "category": "install",
+      "categoryLabel": "Install & Updates",
+      "tags": [
+        "install",
+        "docker",
+        "vm",
+        "runtime"
+      ],
+      "url": "https://docs.openclaw.ai/install/docker-vm-runtime.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.890Z"
     },
     {
       "rel": "install/docker.md",
@@ -1933,7 +2536,7 @@
       ],
       "url": "https://docs.openclaw.ai/install/docker.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.935Z"
+      "fetchedAt": "2026-04-04T20:36:06.830Z"
     },
     {
       "rel": "install/exe-dev.md",
@@ -1947,7 +2550,7 @@
       ],
       "url": "https://docs.openclaw.ai/install/exe-dev.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.958Z"
+      "fetchedAt": "2026-04-04T20:36:06.848Z"
     },
     {
       "rel": "install/fly.md",
@@ -1960,7 +2563,7 @@
       ],
       "url": "https://docs.openclaw.ai/install/fly.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.933Z"
+      "fetchedAt": "2026-04-04T20:36:06.843Z"
     },
     {
       "rel": "install/gcp.md",
@@ -1973,7 +2576,7 @@
       ],
       "url": "https://docs.openclaw.ai/install/gcp.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:21.962Z"
+      "fetchedAt": "2026-04-04T20:36:06.867Z"
     },
     {
       "rel": "install/hetzner.md",
@@ -1986,7 +2589,7 @@
       ],
       "url": "https://docs.openclaw.ai/install/hetzner.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:22.115Z"
+      "fetchedAt": "2026-04-04T20:36:06.949Z"
     },
     {
       "rel": "install/index.md",
@@ -1998,7 +2601,7 @@
       ],
       "url": "https://docs.openclaw.ai/install/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:22.364Z"
+      "fetchedAt": "2026-04-04T20:36:06.873Z"
     },
     {
       "rel": "install/installer.md",
@@ -2011,7 +2614,20 @@
       ],
       "url": "https://docs.openclaw.ai/install/installer.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:22.366Z"
+      "fetchedAt": "2026-04-04T20:36:06.887Z"
+    },
+    {
+      "rel": "install/kubernetes.md",
+      "title": "Kubernetes",
+      "category": "install",
+      "categoryLabel": "Install & Updates",
+      "tags": [
+        "install",
+        "kubernetes"
+      ],
+      "url": "https://docs.openclaw.ai/install/kubernetes.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.906Z"
     },
     {
       "rel": "install/macos-vm.md",
@@ -2025,7 +2641,21 @@
       ],
       "url": "https://docs.openclaw.ai/install/macos-vm.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:22.794Z"
+      "fetchedAt": "2026-04-04T20:36:06.913Z"
+    },
+    {
+      "rel": "install/migrating-matrix.md",
+      "title": "Matrix migration",
+      "category": "install",
+      "categoryLabel": "Install & Updates",
+      "tags": [
+        "install",
+        "migrating",
+        "matrix"
+      ],
+      "url": "https://docs.openclaw.ai/install/migrating-matrix.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.925Z"
     },
     {
       "rel": "install/migrating.md",
@@ -2038,7 +2668,7 @@
       ],
       "url": "https://docs.openclaw.ai/install/migrating.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:22.366Z"
+      "fetchedAt": "2026-04-04T20:36:06.929Z"
     },
     {
       "rel": "install/nix.md",
@@ -2051,7 +2681,7 @@
       ],
       "url": "https://docs.openclaw.ai/install/nix.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:22.364Z"
+      "fetchedAt": "2026-04-04T20:36:06.948Z"
     },
     {
       "rel": "install/node.md",
@@ -2064,11 +2694,11 @@
       ],
       "url": "https://docs.openclaw.ai/install/node.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:22.522Z"
+      "fetchedAt": "2026-04-04T20:36:06.955Z"
     },
     {
       "rel": "install/northflank.md",
-      "title": "Deploy on Northflank",
+      "title": "Northflank",
       "category": "install",
       "categoryLabel": "Install & Updates",
       "tags": [
@@ -2077,7 +2707,20 @@
       ],
       "url": "https://docs.openclaw.ai/install/northflank.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:22.775Z"
+      "fetchedAt": "2026-04-04T20:36:06.961Z"
+    },
+    {
+      "rel": "install/oracle.md",
+      "title": "Oracle Cloud",
+      "category": "install",
+      "categoryLabel": "Install & Updates",
+      "tags": [
+        "install",
+        "oracle"
+      ],
+      "url": "https://docs.openclaw.ai/install/oracle.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.970Z"
     },
     {
       "rel": "install/podman.md",
@@ -2090,11 +2733,11 @@
       ],
       "url": "https://docs.openclaw.ai/install/podman.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.249Z"
+      "fetchedAt": "2026-04-04T20:36:06.973Z"
     },
     {
       "rel": "install/railway.md",
-      "title": "Deploy on Railway",
+      "title": "Railway",
       "category": "install",
       "categoryLabel": "Install & Updates",
       "tags": [
@@ -2103,11 +2746,25 @@
       ],
       "url": "https://docs.openclaw.ai/install/railway.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:22.978Z"
+      "fetchedAt": "2026-04-04T20:36:07.022Z"
+    },
+    {
+      "rel": "install/raspberry-pi.md",
+      "title": "Raspberry Pi",
+      "category": "install",
+      "categoryLabel": "Install & Updates",
+      "tags": [
+        "install",
+        "raspberry",
+        "pi"
+      ],
+      "url": "https://docs.openclaw.ai/install/raspberry-pi.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:06.997Z"
     },
     {
       "rel": "install/render.md",
-      "title": "Deploy on Render",
+      "title": "Render",
       "category": "install",
       "categoryLabel": "Install & Updates",
       "tags": [
@@ -2116,7 +2773,7 @@
       ],
       "url": "https://docs.openclaw.ai/install/render.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:22.781Z"
+      "fetchedAt": "2026-04-04T20:36:07.002Z"
     },
     {
       "rel": "install/uninstall.md",
@@ -2129,7 +2786,7 @@
       ],
       "url": "https://docs.openclaw.ai/install/uninstall.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:22.915Z"
+      "fetchedAt": "2026-04-04T20:36:07.016Z"
     },
     {
       "rel": "install/updating.md",
@@ -2142,7 +2799,31 @@
       ],
       "url": "https://docs.openclaw.ai/install/updating.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.567Z"
+      "fetchedAt": "2026-04-04T20:36:07.032Z"
+    },
+    {
+      "rel": "logging.md",
+      "title": "Logging Overview",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "logging"
+      ],
+      "url": "https://docs.openclaw.ai/logging.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.015Z"
+    },
+    {
+      "rel": "network.md",
+      "title": "Network",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "network"
+      ],
+      "url": "https://docs.openclaw.ai/network.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.089Z"
     },
     {
       "rel": "nodes/audio.md",
@@ -2155,7 +2836,7 @@
       ],
       "url": "https://docs.openclaw.ai/nodes/audio.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.217Z"
+      "fetchedAt": "2026-04-04T20:36:07.048Z"
     },
     {
       "rel": "nodes/camera.md",
@@ -2168,7 +2849,7 @@
       ],
       "url": "https://docs.openclaw.ai/nodes/camera.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.314Z"
+      "fetchedAt": "2026-04-04T20:36:07.053Z"
     },
     {
       "rel": "nodes/images.md",
@@ -2181,7 +2862,7 @@
       ],
       "url": "https://docs.openclaw.ai/nodes/images.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.319Z"
+      "fetchedAt": "2026-04-04T20:36:07.061Z"
     },
     {
       "rel": "nodes/index.md",
@@ -2193,7 +2874,7 @@
       ],
       "url": "https://docs.openclaw.ai/nodes/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.385Z"
+      "fetchedAt": "2026-04-04T20:36:07.079Z"
     },
     {
       "rel": "nodes/location-command.md",
@@ -2207,7 +2888,21 @@
       ],
       "url": "https://docs.openclaw.ai/nodes/location-command.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.484Z"
+      "fetchedAt": "2026-04-04T20:36:07.079Z"
+    },
+    {
+      "rel": "nodes/media-understanding.md",
+      "title": "Media Understanding",
+      "category": "nodes",
+      "categoryLabel": "Nodes",
+      "tags": [
+        "nodes",
+        "media",
+        "understanding"
+      ],
+      "url": "https://docs.openclaw.ai/nodes/media-understanding.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.089Z"
     },
     {
       "rel": "nodes/talk.md",
@@ -2220,7 +2915,7 @@
       ],
       "url": "https://docs.openclaw.ai/nodes/talk.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.484Z"
+      "fetchedAt": "2026-04-04T20:36:07.134Z"
     },
     {
       "rel": "nodes/troubleshooting.md",
@@ -2233,7 +2928,7 @@
       ],
       "url": "https://docs.openclaw.ai/nodes/troubleshooting.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.894Z"
+      "fetchedAt": "2026-04-04T20:36:07.137Z"
     },
     {
       "rel": "nodes/voicewake.md",
@@ -2246,7 +2941,32 @@
       ],
       "url": "https://docs.openclaw.ai/nodes/voicewake.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.567Z"
+      "fetchedAt": "2026-04-04T20:36:07.155Z"
+    },
+    {
+      "rel": "pi-dev.md",
+      "title": "Pi Development Workflow",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "pi",
+        "dev"
+      ],
+      "url": "https://docs.openclaw.ai/pi-dev.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.129Z"
+    },
+    {
+      "rel": "pi.md",
+      "title": "Pi Integration Architecture",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "pi"
+      ],
+      "url": "https://docs.openclaw.ai/pi.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.170Z"
     },
     {
       "rel": "platforms/android.md",
@@ -2259,7 +2979,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/android.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.631Z"
+      "fetchedAt": "2026-04-04T20:36:07.148Z"
     },
     {
       "rel": "platforms/index.md",
@@ -2271,7 +2991,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.898Z"
+      "fetchedAt": "2026-04-04T20:36:07.178Z"
     },
     {
       "rel": "platforms/ios.md",
@@ -2284,7 +3004,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/ios.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.900Z"
+      "fetchedAt": "2026-04-04T20:36:07.193Z"
     },
     {
       "rel": "platforms/linux.md",
@@ -2297,7 +3017,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/linux.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.988Z"
+      "fetchedAt": "2026-04-04T20:36:07.202Z"
     },
     {
       "rel": "platforms/mac/bundled-gateway.md",
@@ -2312,7 +3032,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/bundled-gateway.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:23.962Z"
+      "fetchedAt": "2026-04-04T20:36:07.202Z"
     },
     {
       "rel": "platforms/mac/canvas.md",
@@ -2326,7 +3046,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/canvas.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.057Z"
+      "fetchedAt": "2026-04-04T20:36:07.204Z"
     },
     {
       "rel": "platforms/mac/child-process.md",
@@ -2341,7 +3061,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/child-process.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.770Z"
+      "fetchedAt": "2026-04-04T20:36:07.215Z"
     },
     {
       "rel": "platforms/mac/dev-setup.md",
@@ -2356,11 +3076,11 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/dev-setup.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.306Z"
+      "fetchedAt": "2026-04-04T20:36:07.227Z"
     },
     {
       "rel": "platforms/mac/health.md",
-      "title": "Health Checks",
+      "title": "Health Checks (macOS)",
       "category": "platforms",
       "categoryLabel": "Platforms",
       "tags": [
@@ -2370,7 +3090,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/health.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.319Z"
+      "fetchedAt": "2026-04-04T20:36:07.235Z"
     },
     {
       "rel": "platforms/mac/icon.md",
@@ -2384,7 +3104,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/icon.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.369Z"
+      "fetchedAt": "2026-04-04T20:36:07.247Z"
     },
     {
       "rel": "platforms/mac/logging.md",
@@ -2398,7 +3118,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/logging.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.414Z"
+      "fetchedAt": "2026-04-04T20:36:07.247Z"
     },
     {
       "rel": "platforms/mac/menu-bar.md",
@@ -2413,7 +3133,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/menu-bar.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.504Z"
+      "fetchedAt": "2026-04-04T20:36:07.241Z"
     },
     {
       "rel": "platforms/mac/peekaboo.md",
@@ -2427,7 +3147,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/peekaboo.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.707Z"
+      "fetchedAt": "2026-04-04T20:36:07.257Z"
     },
     {
       "rel": "platforms/mac/permissions.md",
@@ -2441,7 +3161,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/permissions.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.745Z"
+      "fetchedAt": "2026-04-04T20:36:07.268Z"
     },
     {
       "rel": "platforms/mac/release.md",
@@ -2454,7 +3174,7 @@
         "release"
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/release.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:24.791Z"
     },
     {
@@ -2469,7 +3189,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/remote.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.833Z"
+      "fetchedAt": "2026-04-04T20:36:07.272Z"
     },
     {
       "rel": "platforms/mac/signing.md",
@@ -2483,11 +3203,11 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/signing.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.902Z"
+      "fetchedAt": "2026-04-04T20:36:07.282Z"
     },
     {
       "rel": "platforms/mac/skills.md",
-      "title": "Skills",
+      "title": "Skills (macOS)",
       "category": "platforms",
       "categoryLabel": "Platforms",
       "tags": [
@@ -2497,7 +3217,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/skills.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.938Z"
+      "fetchedAt": "2026-04-04T20:36:07.289Z"
     },
     {
       "rel": "platforms/mac/voice-overlay.md",
@@ -2512,11 +3232,11 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/voice-overlay.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:24.983Z"
+      "fetchedAt": "2026-04-04T20:36:07.297Z"
     },
     {
       "rel": "platforms/mac/voicewake.md",
-      "title": "Voice Wake",
+      "title": "Voice Wake (macOS)",
       "category": "platforms",
       "categoryLabel": "Platforms",
       "tags": [
@@ -2526,11 +3246,11 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/voicewake.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.362Z"
+      "fetchedAt": "2026-04-04T20:36:07.293Z"
     },
     {
       "rel": "platforms/mac/webchat.md",
-      "title": "WebChat",
+      "title": "WebChat (macOS)",
       "category": "platforms",
       "categoryLabel": "Platforms",
       "tags": [
@@ -2540,7 +3260,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/webchat.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.221Z"
+      "fetchedAt": "2026-04-04T20:36:07.311Z"
     },
     {
       "rel": "platforms/mac/xpc.md",
@@ -2554,7 +3274,7 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/mac/xpc.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.070Z"
+      "fetchedAt": "2026-04-04T20:36:07.318Z"
     },
     {
       "rel": "platforms/macos.md",
@@ -2567,11 +3287,11 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/macos.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.149Z"
+      "fetchedAt": "2026-04-04T20:36:07.329Z"
     },
     {
       "rel": "platforms/windows.md",
-      "title": "Windows (WSL2)",
+      "title": "Windows",
       "category": "platforms",
       "categoryLabel": "Platforms",
       "tags": [
@@ -2580,11 +3300,50 @@
       ],
       "url": "https://docs.openclaw.ai/platforms/windows.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.161Z"
+      "fetchedAt": "2026-04-04T20:36:07.335Z"
+    },
+    {
+      "rel": "plugins/architecture.md",
+      "title": "Plugin Internals",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "architecture"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/architecture.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.337Z"
+    },
+    {
+      "rel": "plugins/building-plugins.md",
+      "title": "Building Plugins",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "building"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/building-plugins.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.353Z"
+    },
+    {
+      "rel": "plugins/bundles.md",
+      "title": "Plugin Bundles",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "bundles"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/bundles.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.353Z"
     },
     {
       "rel": "plugins/community.md",
-      "title": "Community plugins",
+      "title": "Community Plugins",
       "category": "misc",
       "categoryLabel": "Misc",
       "tags": [
@@ -2593,7 +3352,132 @@
       ],
       "url": "https://docs.openclaw.ai/plugins/community.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.670Z"
+      "fetchedAt": "2026-04-04T20:36:07.359Z"
+    },
+    {
+      "rel": "plugins/manifest.md",
+      "title": "Plugin Manifest",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "manifest"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/manifest.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.380Z"
+    },
+    {
+      "rel": "plugins/sdk-channel-plugins.md",
+      "title": "Building Channel Plugins",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "sdk",
+        "channel"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/sdk-channel-plugins.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.380Z"
+    },
+    {
+      "rel": "plugins/sdk-entrypoints.md",
+      "title": "Plugin Entry Points",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "sdk",
+        "entrypoints"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/sdk-entrypoints.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.381Z"
+    },
+    {
+      "rel": "plugins/sdk-migration.md",
+      "title": "Plugin SDK Migration",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "sdk",
+        "migration"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/sdk-migration.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.399Z"
+    },
+    {
+      "rel": "plugins/sdk-overview.md",
+      "title": "Plugin SDK Overview",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "sdk",
+        "overview"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/sdk-overview.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.398Z"
+    },
+    {
+      "rel": "plugins/sdk-provider-plugins.md",
+      "title": "Building Provider Plugins",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "sdk",
+        "provider"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/sdk-provider-plugins.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.402Z"
+    },
+    {
+      "rel": "plugins/sdk-runtime.md",
+      "title": "Plugin Runtime Helpers",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "sdk",
+        "runtime"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/sdk-runtime.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.426Z"
+    },
+    {
+      "rel": "plugins/sdk-setup.md",
+      "title": "Plugin Setup and Config",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "sdk",
+        "setup"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/sdk-setup.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.419Z"
+    },
+    {
+      "rel": "plugins/sdk-testing.md",
+      "title": "Plugin Testing",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "plugins",
+        "sdk",
+        "testing"
+      ],
+      "url": "https://docs.openclaw.ai/plugins/sdk-testing.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.427Z"
     },
     {
       "rel": "plugins/voice-call.md",
@@ -2607,7 +3491,7 @@
       ],
       "url": "https://docs.openclaw.ai/plugins/voice-call.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.479Z"
+      "fetchedAt": "2026-04-04T20:36:07.446Z"
     },
     {
       "rel": "plugins/zalouser.md",
@@ -2619,8 +3503,20 @@
         "zalouser"
       ],
       "url": "https://docs.openclaw.ai/plugins/zalouser.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:25.389Z"
+    },
+    {
+      "rel": "prose.md",
+      "title": "OpenProse",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "prose"
+      ],
+      "url": "https://docs.openclaw.ai/prose.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.439Z"
     },
     {
       "rel": "providers/anthropic.md",
@@ -2633,7 +3529,7 @@
       ],
       "url": "https://docs.openclaw.ai/providers/anthropic.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.628Z"
+      "fetchedAt": "2026-04-04T20:36:07.441Z"
     },
     {
       "rel": "providers/bedrock.md",
@@ -2646,7 +3542,91 @@
       ],
       "url": "https://docs.openclaw.ai/providers/bedrock.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.447Z"
+      "fetchedAt": "2026-04-04T20:36:07.460Z"
+    },
+    {
+      "rel": "providers/chutes.md",
+      "title": "Chutes",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "chutes"
+      ],
+      "url": "https://docs.openclaw.ai/providers/chutes.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.471Z"
+    },
+    {
+      "rel": "providers/claude-max-api-proxy.md",
+      "title": "Claude Max API Proxy",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "claude",
+        "max",
+        "api",
+        "proxy"
+      ],
+      "url": "https://docs.openclaw.ai/providers/claude-max-api-proxy.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.474Z"
+    },
+    {
+      "rel": "providers/cloudflare-ai-gateway.md",
+      "title": "Cloudflare AI Gateway",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "cloudflare",
+        "ai",
+        "gateway"
+      ],
+      "url": "https://docs.openclaw.ai/providers/cloudflare-ai-gateway.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.490Z"
+    },
+    {
+      "rel": "providers/deepgram.md",
+      "title": "Deepgram",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "deepgram"
+      ],
+      "url": "https://docs.openclaw.ai/providers/deepgram.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.479Z"
+    },
+    {
+      "rel": "providers/deepseek.md",
+      "title": "Deepseek",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "deepseek"
+      ],
+      "url": "https://docs.openclaw.ai/providers/deepseek.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.486Z"
+    },
+    {
+      "rel": "providers/github-copilot.md",
+      "title": "GitHub Copilot",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "github",
+        "copilot"
+      ],
+      "url": "https://docs.openclaw.ai/providers/github-copilot.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.511Z"
     },
     {
       "rel": "providers/glm.md",
@@ -2659,11 +3639,50 @@
       ],
       "url": "https://docs.openclaw.ai/providers/glm.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.669Z"
+      "fetchedAt": "2026-04-04T20:36:07.511Z"
+    },
+    {
+      "rel": "providers/google.md",
+      "title": "Google (Gemini)",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "google"
+      ],
+      "url": "https://docs.openclaw.ai/providers/google.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.526Z"
+    },
+    {
+      "rel": "providers/groq.md",
+      "title": "Groq",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "groq"
+      ],
+      "url": "https://docs.openclaw.ai/providers/groq.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.519Z"
+    },
+    {
+      "rel": "providers/huggingface.md",
+      "title": "Hugging Face (Inference)",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "huggingface"
+      ],
+      "url": "https://docs.openclaw.ai/providers/huggingface.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.528Z"
     },
     {
       "rel": "providers/index.md",
-      "title": "Model Providers",
+      "title": "Provider Directory",
       "category": "providers",
       "categoryLabel": "Model Providers",
       "tags": [
@@ -2671,11 +3690,24 @@
       ],
       "url": "https://docs.openclaw.ai/providers/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.798Z"
+      "fetchedAt": "2026-04-04T20:36:07.532Z"
+    },
+    {
+      "rel": "providers/kilocode.md",
+      "title": "Kilo Gateway",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "kilocode"
+      ],
+      "url": "https://docs.openclaw.ai/providers/kilocode.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.554Z"
     },
     {
       "rel": "providers/litellm.md",
-      "title": "null",
+      "title": "LiteLLM",
       "category": "providers",
       "categoryLabel": "Model Providers",
       "tags": [
@@ -2684,7 +3716,7 @@
       ],
       "url": "https://docs.openclaw.ai/providers/litellm.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.864Z"
+      "fetchedAt": "2026-04-04T20:36:07.568Z"
     },
     {
       "rel": "providers/minimax.md",
@@ -2697,7 +3729,20 @@
       ],
       "url": "https://docs.openclaw.ai/providers/minimax.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.899Z"
+      "fetchedAt": "2026-04-04T20:36:07.576Z"
+    },
+    {
+      "rel": "providers/mistral.md",
+      "title": "Mistral",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "mistral"
+      ],
+      "url": "https://docs.openclaw.ai/providers/mistral.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.571Z"
     },
     {
       "rel": "providers/models.md",
@@ -2710,7 +3755,7 @@
       ],
       "url": "https://docs.openclaw.ai/providers/models.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:25.860Z"
+      "fetchedAt": "2026-04-04T20:36:07.578Z"
     },
     {
       "rel": "providers/moonshot.md",
@@ -2723,7 +3768,33 @@
       ],
       "url": "https://docs.openclaw.ai/providers/moonshot.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.105Z"
+      "fetchedAt": "2026-04-04T20:36:07.573Z"
+    },
+    {
+      "rel": "providers/nvidia.md",
+      "title": "NVIDIA",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "nvidia"
+      ],
+      "url": "https://docs.openclaw.ai/providers/nvidia.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.600Z"
+    },
+    {
+      "rel": "providers/ollama.md",
+      "title": "Ollama",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "ollama"
+      ],
+      "url": "https://docs.openclaw.ai/providers/ollama.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.639Z"
     },
     {
       "rel": "providers/openai.md",
@@ -2736,11 +3807,25 @@
       ],
       "url": "https://docs.openclaw.ai/providers/openai.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.084Z"
+      "fetchedAt": "2026-04-04T20:36:07.619Z"
+    },
+    {
+      "rel": "providers/opencode-go.md",
+      "title": "OpenCode Go",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "opencode",
+        "go"
+      ],
+      "url": "https://docs.openclaw.ai/providers/opencode-go.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.613Z"
     },
     {
       "rel": "providers/opencode.md",
-      "title": "OpenCode Zen",
+      "title": "OpenCode",
       "category": "providers",
       "categoryLabel": "Model Providers",
       "tags": [
@@ -2749,7 +3834,7 @@
       ],
       "url": "https://docs.openclaw.ai/providers/opencode.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.231Z"
+      "fetchedAt": "2026-04-04T20:36:07.642Z"
     },
     {
       "rel": "providers/openrouter.md",
@@ -2762,7 +3847,21 @@
       ],
       "url": "https://docs.openclaw.ai/providers/openrouter.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.255Z"
+      "fetchedAt": "2026-04-04T20:36:07.647Z"
+    },
+    {
+      "rel": "providers/perplexity-provider.md",
+      "title": "Perplexity (Provider)",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "perplexity",
+        "provider"
+      ],
+      "url": "https://docs.openclaw.ai/providers/perplexity-provider.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.639Z"
     },
     {
       "rel": "providers/qianfan.md",
@@ -2775,7 +3874,60 @@
       ],
       "url": "https://docs.openclaw.ai/providers/qianfan.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.363Z"
+      "fetchedAt": "2026-04-04T20:36:07.678Z"
+    },
+    {
+      "rel": "providers/qwen_modelstudio.md",
+      "title": "Qwen modelstudio",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "qwen",
+        "modelstudio"
+      ],
+      "url": "https://docs.openclaw.ai/providers/qwen_modelstudio.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.699Z"
+    },
+    {
+      "rel": "providers/qwen.md",
+      "title": "Qwen",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "qwen"
+      ],
+      "url": "https://docs.openclaw.ai/providers/qwen.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.660Z"
+    },
+    {
+      "rel": "providers/sglang.md",
+      "title": "SGLang",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "sglang"
+      ],
+      "url": "https://docs.openclaw.ai/providers/sglang.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.686Z"
+    },
+    {
+      "rel": "providers/stepfun.md",
+      "title": "StepFun",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "stepfun"
+      ],
+      "url": "https://docs.openclaw.ai/providers/stepfun.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.694Z"
     },
     {
       "rel": "providers/synthetic.md",
@@ -2788,7 +3940,33 @@
       ],
       "url": "https://docs.openclaw.ai/providers/synthetic.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.306Z"
+      "fetchedAt": "2026-04-04T20:36:07.689Z"
+    },
+    {
+      "rel": "providers/together.md",
+      "title": "Together AI",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "together"
+      ],
+      "url": "https://docs.openclaw.ai/providers/together.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.701Z"
+    },
+    {
+      "rel": "providers/venice.md",
+      "title": "Venice AI",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "venice"
+      ],
+      "url": "https://docs.openclaw.ai/providers/venice.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.723Z"
     },
     {
       "rel": "providers/vercel-ai-gateway.md",
@@ -2803,7 +3981,59 @@
       ],
       "url": "https://docs.openclaw.ai/providers/vercel-ai-gateway.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.512Z"
+      "fetchedAt": "2026-04-04T20:36:07.730Z"
+    },
+    {
+      "rel": "providers/vllm.md",
+      "title": "vLLM",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "vllm"
+      ],
+      "url": "https://docs.openclaw.ai/providers/vllm.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.735Z"
+    },
+    {
+      "rel": "providers/volcengine.md",
+      "title": "Volcengine (Doubao)",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "volcengine"
+      ],
+      "url": "https://docs.openclaw.ai/providers/volcengine.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.741Z"
+    },
+    {
+      "rel": "providers/xai.md",
+      "title": "xAI",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "xai"
+      ],
+      "url": "https://docs.openclaw.ai/providers/xai.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.737Z"
+    },
+    {
+      "rel": "providers/xiaomi.md",
+      "title": "Xiaomi MiMo",
+      "category": "providers",
+      "categoryLabel": "Model Providers",
+      "tags": [
+        "providers",
+        "xiaomi"
+      ],
+      "url": "https://docs.openclaw.ai/providers/xiaomi.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.773Z"
     },
     {
       "rel": "providers/zai.md",
@@ -2816,7 +4046,7 @@
       ],
       "url": "https://docs.openclaw.ai/providers/zai.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.412Z"
+      "fetchedAt": "2026-04-04T20:36:07.776Z"
     },
     {
       "rel": "reference/AGENTS.default.md",
@@ -2827,9 +4057,24 @@
         "reference",
         "agents.default"
       ],
-      "url": "https://docs.openclaw.ai/reference/AGENTS.default.md",
+      "url": "https://docs.openclaw.ai/reference/AGENTS.default",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.463Z"
+      "fetchedAt": "2026-04-04T20:36:08.001Z"
+    },
+    {
+      "rel": "reference/api-usage-costs.md",
+      "title": "API Usage and Costs",
+      "category": "reference",
+      "categoryLabel": "Reference & Templates",
+      "tags": [
+        "reference",
+        "api",
+        "usage",
+        "costs"
+      ],
+      "url": "https://docs.openclaw.ai/reference/api-usage-costs.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.786Z"
     },
     {
       "rel": "reference/credits.md",
@@ -2842,7 +4087,7 @@
       ],
       "url": "https://docs.openclaw.ai/reference/credits.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.731Z"
+      "fetchedAt": "2026-04-04T20:36:07.780Z"
     },
     {
       "rel": "reference/device-models.md",
@@ -2856,11 +4101,39 @@
       ],
       "url": "https://docs.openclaw.ai/reference/device-models.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.762Z"
+      "fetchedAt": "2026-04-04T20:36:07.822Z"
+    },
+    {
+      "rel": "reference/memory-config.md",
+      "title": "Memory configuration reference",
+      "category": "reference",
+      "categoryLabel": "Reference & Templates",
+      "tags": [
+        "reference",
+        "memory",
+        "config"
+      ],
+      "url": "https://docs.openclaw.ai/reference/memory-config.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.827Z"
+    },
+    {
+      "rel": "reference/prompt-caching.md",
+      "title": "Prompt Caching",
+      "category": "reference",
+      "categoryLabel": "Reference & Templates",
+      "tags": [
+        "reference",
+        "prompt",
+        "caching"
+      ],
+      "url": "https://docs.openclaw.ai/reference/prompt-caching.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.831Z"
     },
     {
       "rel": "reference/RELEASING.md",
-      "title": "Release Checklist",
+      "title": "Release Policy",
       "category": "reference",
       "categoryLabel": "Reference & Templates",
       "tags": [
@@ -2869,7 +4142,7 @@
       ],
       "url": "https://docs.openclaw.ai/reference/RELEASING.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.674Z"
+      "fetchedAt": "2026-04-04T20:36:07.786Z"
     },
     {
       "rel": "reference/rpc.md",
@@ -2882,7 +4155,22 @@
       ],
       "url": "https://docs.openclaw.ai/reference/rpc.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.847Z"
+      "fetchedAt": "2026-04-04T20:36:07.823Z"
+    },
+    {
+      "rel": "reference/secretref-credential-surface.md",
+      "title": "SecretRef Credential Surface",
+      "category": "reference",
+      "categoryLabel": "Reference & Templates",
+      "tags": [
+        "reference",
+        "secretref",
+        "credential",
+        "surface"
+      ],
+      "url": "https://docs.openclaw.ai/reference/secretref-credential-surface.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.831Z"
     },
     {
       "rel": "reference/session-management-compaction.md",
@@ -2897,7 +4185,7 @@
       ],
       "url": "https://docs.openclaw.ai/reference/session-management-compaction.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.873Z"
+      "fetchedAt": "2026-04-04T20:36:07.865Z"
     },
     {
       "rel": "reference/templates/AGENTS.md",
@@ -2911,7 +4199,7 @@
       ],
       "url": "https://docs.openclaw.ai/reference/templates/AGENTS.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:26.923Z"
+      "fetchedAt": "2026-04-04T20:36:07.877Z"
     },
     {
       "rel": "reference/templates/BOOT.md",
@@ -2925,7 +4213,7 @@
       ],
       "url": "https://docs.openclaw.ai/reference/templates/BOOT.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.090Z"
+      "fetchedAt": "2026-04-04T20:36:07.875Z"
     },
     {
       "rel": "reference/templates/BOOTSTRAP.md",
@@ -2939,7 +4227,7 @@
       ],
       "url": "https://docs.openclaw.ai/reference/templates/BOOTSTRAP.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.142Z"
+      "fetchedAt": "2026-04-04T20:36:07.877Z"
     },
     {
       "rel": "reference/templates/HEARTBEAT.md",
@@ -2953,11 +4241,11 @@
       ],
       "url": "https://docs.openclaw.ai/reference/templates/HEARTBEAT.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.157Z"
+      "fetchedAt": "2026-04-04T20:36:07.875Z"
     },
     {
       "rel": "reference/templates/IDENTITY.md",
-      "title": "null",
+      "title": "IDENTITY Template",
       "category": "reference",
       "categoryLabel": "Reference & Templates",
       "tags": [
@@ -2967,7 +4255,7 @@
       ],
       "url": "https://docs.openclaw.ai/reference/templates/IDENTITY.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.157Z"
+      "fetchedAt": "2026-04-04T20:36:07.918Z"
     },
     {
       "rel": "reference/templates/SOUL.md",
@@ -2981,7 +4269,7 @@
       ],
       "url": "https://docs.openclaw.ai/reference/templates/SOUL.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.286Z"
+      "fetchedAt": "2026-04-04T20:36:07.916Z"
     },
     {
       "rel": "reference/templates/TOOLS.md",
@@ -2995,11 +4283,11 @@
       ],
       "url": "https://docs.openclaw.ai/reference/templates/TOOLS.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.337Z"
+      "fetchedAt": "2026-04-04T20:36:07.918Z"
     },
     {
       "rel": "reference/templates/USER.md",
-      "title": "null",
+      "title": "USER Template",
       "category": "reference",
       "categoryLabel": "Reference & Templates",
       "tags": [
@@ -3009,7 +4297,7 @@
       ],
       "url": "https://docs.openclaw.ai/reference/templates/USER.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.335Z"
+      "fetchedAt": "2026-04-04T20:36:07.920Z"
     },
     {
       "rel": "reference/test.md",
@@ -3022,7 +4310,7 @@
       ],
       "url": "https://docs.openclaw.ai/reference/test.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.576Z"
+      "fetchedAt": "2026-04-04T20:36:07.920Z"
     },
     {
       "rel": "reference/token-use.md",
@@ -3036,11 +4324,25 @@
       ],
       "url": "https://docs.openclaw.ai/reference/token-use.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.627Z"
+      "fetchedAt": "2026-04-04T20:36:07.956Z"
+    },
+    {
+      "rel": "reference/transcript-hygiene.md",
+      "title": "Transcript Hygiene",
+      "category": "reference",
+      "categoryLabel": "Reference & Templates",
+      "tags": [
+        "reference",
+        "transcript",
+        "hygiene"
+      ],
+      "url": "https://docs.openclaw.ai/reference/transcript-hygiene.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.980Z"
     },
     {
       "rel": "reference/wizard.md",
-      "title": "Onboarding Wizard Reference",
+      "title": "Onboarding Reference",
       "category": "reference",
       "categoryLabel": "Reference & Templates",
       "tags": [
@@ -3049,7 +4351,22 @@
       ],
       "url": "https://docs.openclaw.ai/reference/wizard.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.583Z"
+      "fetchedAt": "2026-04-04T20:36:07.964Z"
+    },
+    {
+      "rel": "security/CONTRIBUTING-THREAT-MODEL.md",
+      "title": "Contributing to the Threat Model",
+      "category": "security",
+      "categoryLabel": "Security",
+      "tags": [
+        "security",
+        "contributing",
+        "threat",
+        "model"
+      ],
+      "url": "https://docs.openclaw.ai/security/CONTRIBUTING-THREAT-MODEL.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.965Z"
     },
     {
       "rel": "security/formal-verification.md",
@@ -3063,7 +4380,22 @@
       ],
       "url": "https://docs.openclaw.ai/security/formal-verification.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.695Z"
+      "fetchedAt": "2026-04-04T20:36:08.005Z"
+    },
+    {
+      "rel": "security/THREAT-MODEL-ATLAS.md",
+      "title": "Threat Model (MITRE ATLAS)",
+      "category": "security",
+      "categoryLabel": "Security",
+      "tags": [
+        "security",
+        "threat",
+        "model",
+        "atlas"
+      ],
+      "url": "https://docs.openclaw.ai/security/THREAT-MODEL-ATLAS.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:07.968Z"
     },
     {
       "rel": "start/bootstrapping.md",
@@ -3076,7 +4408,7 @@
       ],
       "url": "https://docs.openclaw.ai/start/bootstrapping.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.734Z"
+      "fetchedAt": "2026-04-04T20:36:08.003Z"
     },
     {
       "rel": "start/docs-directory.md",
@@ -3090,7 +4422,7 @@
       ],
       "url": "https://docs.openclaw.ai/start/docs-directory.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.770Z"
+      "fetchedAt": "2026-04-04T20:36:08.009Z"
     },
     {
       "rel": "start/getting-started.md",
@@ -3104,7 +4436,7 @@
       ],
       "url": "https://docs.openclaw.ai/start/getting-started.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.985Z"
+      "fetchedAt": "2026-04-04T20:36:08.020Z"
     },
     {
       "rel": "start/hubs.md",
@@ -3117,7 +4449,7 @@
       ],
       "url": "https://docs.openclaw.ai/start/hubs.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:27.985Z"
+      "fetchedAt": "2026-04-04T20:36:08.026Z"
     },
     {
       "rel": "start/lore.md",
@@ -3130,7 +4462,7 @@
       ],
       "url": "https://docs.openclaw.ai/start/lore.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.273Z"
+      "fetchedAt": "2026-04-04T20:36:08.043Z"
     },
     {
       "rel": "start/onboarding-overview.md",
@@ -3144,7 +4476,7 @@
       ],
       "url": "https://docs.openclaw.ai/start/onboarding-overview.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.215Z"
+      "fetchedAt": "2026-04-04T20:36:08.045Z"
     },
     {
       "rel": "start/onboarding.md",
@@ -3157,7 +4489,7 @@
       ],
       "url": "https://docs.openclaw.ai/start/onboarding.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.149Z"
+      "fetchedAt": "2026-04-04T20:36:08.050Z"
     },
     {
       "rel": "start/openclaw.md",
@@ -3170,7 +4502,7 @@
       ],
       "url": "https://docs.openclaw.ai/start/openclaw.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.182Z"
+      "fetchedAt": "2026-04-04T20:36:08.058Z"
     },
     {
       "rel": "start/setup.md",
@@ -3183,7 +4515,7 @@
       ],
       "url": "https://docs.openclaw.ai/start/setup.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.394Z"
+      "fetchedAt": "2026-04-04T20:36:08.068Z"
     },
     {
       "rel": "start/showcase.md",
@@ -3196,11 +4528,41 @@
       ],
       "url": "https://docs.openclaw.ai/start/showcase.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.378Z"
+      "fetchedAt": "2026-04-04T20:36:08.078Z"
+    },
+    {
+      "rel": "start/wizard-cli-automation.md",
+      "title": "CLI Automation",
+      "category": "start",
+      "categoryLabel": "Start / Onboarding",
+      "tags": [
+        "start",
+        "wizard",
+        "cli",
+        "automation"
+      ],
+      "url": "https://docs.openclaw.ai/start/wizard-cli-automation.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.090Z"
+    },
+    {
+      "rel": "start/wizard-cli-reference.md",
+      "title": "CLI Setup Reference",
+      "category": "start",
+      "categoryLabel": "Start / Onboarding",
+      "tags": [
+        "start",
+        "wizard",
+        "cli",
+        "reference"
+      ],
+      "url": "https://docs.openclaw.ai/start/wizard-cli-reference.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.090Z"
     },
     {
       "rel": "start/wizard.md",
-      "title": "Onboarding Wizard (CLI)",
+      "title": "Onboarding (CLI)",
       "category": "start",
       "categoryLabel": "Start / Onboarding",
       "tags": [
@@ -3209,7 +4571,21 @@
       ],
       "url": "https://docs.openclaw.ai/start/wizard.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.557Z"
+      "fetchedAt": "2026-04-04T20:36:08.099Z"
+    },
+    {
+      "rel": "tools/acp-agents.md",
+      "title": "ACP Agents",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "acp",
+        "agents"
+      ],
+      "url": "https://docs.openclaw.ai/tools/acp-agents.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.109Z"
     },
     {
       "rel": "tools/agent-send.md",
@@ -3223,7 +4599,7 @@
       ],
       "url": "https://docs.openclaw.ai/tools/agent-send.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.601Z"
+      "fetchedAt": "2026-04-04T20:36:08.115Z"
     },
     {
       "rel": "tools/apply-patch.md",
@@ -3237,7 +4613,21 @@
       ],
       "url": "https://docs.openclaw.ai/tools/apply-patch.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.629Z"
+      "fetchedAt": "2026-04-04T20:36:08.122Z"
+    },
+    {
+      "rel": "tools/brave-search.md",
+      "title": "Brave Search",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "brave",
+        "search"
+      ],
+      "url": "https://docs.openclaw.ai/tools/brave-search.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.141Z"
     },
     {
       "rel": "tools/browser-linux-troubleshooting.md",
@@ -3252,7 +4642,7 @@
       ],
       "url": "https://docs.openclaw.ai/tools/browser-linux-troubleshooting.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.788Z"
+      "fetchedAt": "2026-04-04T20:36:08.149Z"
     },
     {
       "rel": "tools/browser-login.md",
@@ -3266,7 +4656,25 @@
       ],
       "url": "https://docs.openclaw.ai/tools/browser-login.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.785Z"
+      "fetchedAt": "2026-04-04T20:36:08.135Z"
+    },
+    {
+      "rel": "tools/browser-wsl2-windows-remote-cdp-troubleshooting.md",
+      "title": "WSL2 + Windows + remote Chrome CDP troubleshooting",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "browser",
+        "wsl2",
+        "windows",
+        "remote",
+        "cdp",
+        "troubleshooting"
+      ],
+      "url": "https://docs.openclaw.ai/tools/browser-wsl2-windows-remote-cdp-troubleshooting.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.159Z"
     },
     {
       "rel": "tools/browser.md",
@@ -3279,7 +4687,20 @@
       ],
       "url": "https://docs.openclaw.ai/tools/browser.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:28.797Z"
+      "fetchedAt": "2026-04-04T20:36:08.183Z"
+    },
+    {
+      "rel": "tools/btw.md",
+      "title": "BTW Side Questions",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "btw"
+      ],
+      "url": "https://docs.openclaw.ai/tools/btw.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.162Z"
     },
     {
       "rel": "tools/chrome-extension.md",
@@ -3292,7 +4713,7 @@
         "extension"
       ],
       "url": "https://docs.openclaw.ai/tools/chrome-extension.md",
-      "status": "ok",
+      "status": "stale-local",
       "fetchedAt": "2026-02-20T10:29:28.966Z"
     },
     {
@@ -3306,7 +4727,62 @@
       ],
       "url": "https://docs.openclaw.ai/tools/clawhub.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.017Z"
+      "fetchedAt": "2026-04-04T20:36:08.177Z"
+    },
+    {
+      "rel": "tools/code-execution.md",
+      "title": "Code Execution",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "code",
+        "execution"
+      ],
+      "url": "https://docs.openclaw.ai/tools/code-execution.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.188Z"
+    },
+    {
+      "rel": "tools/creating-skills.md",
+      "title": "Creating Skills",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "creating",
+        "skills"
+      ],
+      "url": "https://docs.openclaw.ai/tools/creating-skills.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.204Z"
+    },
+    {
+      "rel": "tools/diffs.md",
+      "title": "Diffs",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "diffs"
+      ],
+      "url": "https://docs.openclaw.ai/tools/diffs.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.216Z"
+    },
+    {
+      "rel": "tools/duckduckgo-search.md",
+      "title": "DuckDuckGo Search",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "duckduckgo",
+        "search"
+      ],
+      "url": "https://docs.openclaw.ai/tools/duckduckgo-search.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.213Z"
     },
     {
       "rel": "tools/elevated.md",
@@ -3319,7 +4795,35 @@
       ],
       "url": "https://docs.openclaw.ai/tools/elevated.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.037Z"
+      "fetchedAt": "2026-04-04T20:36:08.217Z"
+    },
+    {
+      "rel": "tools/exa-search.md",
+      "title": "Exa Search",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "exa",
+        "search"
+      ],
+      "url": "https://docs.openclaw.ai/tools/exa-search.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.224Z"
+    },
+    {
+      "rel": "tools/exec-approvals.md",
+      "title": "Exec Approvals",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "exec",
+        "approvals"
+      ],
+      "url": "https://docs.openclaw.ai/tools/exec-approvals.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.256Z"
     },
     {
       "rel": "tools/exec.md",
@@ -3332,11 +4836,66 @@
       ],
       "url": "https://docs.openclaw.ai/tools/exec.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.216Z"
+      "fetchedAt": "2026-04-04T20:36:08.264Z"
+    },
+    {
+      "rel": "tools/firecrawl.md",
+      "title": "Firecrawl",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "firecrawl"
+      ],
+      "url": "https://docs.openclaw.ai/tools/firecrawl.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.255Z"
+    },
+    {
+      "rel": "tools/gemini-search.md",
+      "title": "Gemini Search",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "gemini",
+        "search"
+      ],
+      "url": "https://docs.openclaw.ai/tools/gemini-search.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.295Z"
+    },
+    {
+      "rel": "tools/grok-search.md",
+      "title": "Grok Search",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "grok",
+        "search"
+      ],
+      "url": "https://docs.openclaw.ai/tools/grok-search.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.265Z"
+    },
+    {
+      "rel": "tools/image-generation.md",
+      "title": "Image Generation",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "image",
+        "generation"
+      ],
+      "url": "https://docs.openclaw.ai/tools/image-generation.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.267Z"
     },
     {
       "rel": "tools/index.md",
-      "title": "Tools",
+      "title": "Tools and Plugins",
       "category": "tools",
       "categoryLabel": "Tools & Skills",
       "tags": [
@@ -3344,7 +4903,21 @@
       ],
       "url": "https://docs.openclaw.ai/tools/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.677Z"
+      "fetchedAt": "2026-04-04T20:36:08.302Z"
+    },
+    {
+      "rel": "tools/kimi-search.md",
+      "title": "Kimi Search",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "kimi",
+        "search"
+      ],
+      "url": "https://docs.openclaw.ai/tools/kimi-search.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.308Z"
     },
     {
       "rel": "tools/llm-task.md",
@@ -3358,7 +4931,7 @@
       ],
       "url": "https://docs.openclaw.ai/tools/llm-task.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.044Z"
+      "fetchedAt": "2026-04-04T20:36:08.307Z"
     },
     {
       "rel": "tools/lobster.md",
@@ -3371,7 +4944,21 @@
       ],
       "url": "https://docs.openclaw.ai/tools/lobster.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.388Z"
+      "fetchedAt": "2026-04-04T20:36:08.310Z"
+    },
+    {
+      "rel": "tools/loop-detection.md",
+      "title": "Tool-loop detection",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "loop",
+        "detection"
+      ],
+      "url": "https://docs.openclaw.ai/tools/loop-detection.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.323Z"
     },
     {
       "rel": "tools/multi-agent-sandbox-tools.md",
@@ -3386,7 +4973,48 @@
       ],
       "url": "https://docs.openclaw.ai/tools/multi-agent-sandbox-tools.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.460Z"
+      "fetchedAt": "2026-04-04T20:36:08.345Z"
+    },
+    {
+      "rel": "tools/ollama-search.md",
+      "title": "Ollama Web Search",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "ollama",
+        "search"
+      ],
+      "url": "https://docs.openclaw.ai/tools/ollama-search.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.341Z"
+    },
+    {
+      "rel": "tools/pdf.md",
+      "title": "PDF Tool",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "pdf"
+      ],
+      "url": "https://docs.openclaw.ai/tools/pdf.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.416Z"
+    },
+    {
+      "rel": "tools/perplexity-search.md",
+      "title": "Perplexity Search",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "perplexity",
+        "search"
+      ],
+      "url": "https://docs.openclaw.ai/tools/perplexity-search.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.362Z"
     },
     {
       "rel": "tools/plugin.md",
@@ -3399,7 +5027,7 @@
       ],
       "url": "https://docs.openclaw.ai/tools/plugin.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.457Z"
+      "fetchedAt": "2026-04-04T20:36:08.375Z"
     },
     {
       "rel": "tools/reactions.md",
@@ -3412,7 +5040,21 @@
       ],
       "url": "https://docs.openclaw.ai/tools/reactions.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.469Z"
+      "fetchedAt": "2026-04-04T20:36:08.368Z"
+    },
+    {
+      "rel": "tools/searxng-search.md",
+      "title": "SearXNG Search",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "searxng",
+        "search"
+      ],
+      "url": "https://docs.openclaw.ai/tools/searxng-search.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.391Z"
     },
     {
       "rel": "tools/skills-config.md",
@@ -3426,7 +5068,7 @@
       ],
       "url": "https://docs.openclaw.ai/tools/skills-config.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.608Z"
+      "fetchedAt": "2026-04-04T20:36:08.389Z"
     },
     {
       "rel": "tools/skills.md",
@@ -3439,7 +5081,7 @@
       ],
       "url": "https://docs.openclaw.ai/tools/skills.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.795Z"
+      "fetchedAt": "2026-04-04T20:36:08.407Z"
     },
     {
       "rel": "tools/slash-commands.md",
@@ -3453,7 +5095,7 @@
       ],
       "url": "https://docs.openclaw.ai/tools/slash-commands.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:30.084Z"
+      "fetchedAt": "2026-04-04T20:36:08.413Z"
     },
     {
       "rel": "tools/subagents.md",
@@ -3466,7 +5108,20 @@
       ],
       "url": "https://docs.openclaw.ai/tools/subagents.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.698Z"
+      "fetchedAt": "2026-04-04T20:36:08.414Z"
+    },
+    {
+      "rel": "tools/tavily.md",
+      "title": "Tavily",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "tavily"
+      ],
+      "url": "https://docs.openclaw.ai/tools/tavily.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.429Z"
     },
     {
       "rel": "tools/thinking.md",
@@ -3479,11 +5134,38 @@
       ],
       "url": "https://docs.openclaw.ai/tools/thinking.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:29.880Z"
+      "fetchedAt": "2026-04-04T20:36:08.432Z"
+    },
+    {
+      "rel": "tools/tts.md",
+      "title": "Text-to-Speech",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "tts"
+      ],
+      "url": "https://docs.openclaw.ai/tools/tts.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.457Z"
+    },
+    {
+      "rel": "tools/web-fetch.md",
+      "title": "Web Fetch",
+      "category": "tools",
+      "categoryLabel": "Tools & Skills",
+      "tags": [
+        "tools",
+        "web",
+        "fetch"
+      ],
+      "url": "https://docs.openclaw.ai/tools/web-fetch.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.473Z"
     },
     {
       "rel": "tools/web.md",
-      "title": "Web Tools",
+      "title": "Web Search",
       "category": "tools",
       "categoryLabel": "Tools & Skills",
       "tags": [
@@ -3492,7 +5174,19 @@
       ],
       "url": "https://docs.openclaw.ai/tools/web.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:30.041Z"
+      "fetchedAt": "2026-04-04T20:36:08.459Z"
+    },
+    {
+      "rel": "vps.md",
+      "title": "Linux Server",
+      "category": "misc",
+      "categoryLabel": "Misc",
+      "tags": [
+        "vps"
+      ],
+      "url": "https://docs.openclaw.ai/vps.md",
+      "status": "ok",
+      "fetchedAt": "2026-04-04T20:36:08.462Z"
     },
     {
       "rel": "web/control-ui.md",
@@ -3506,7 +5200,7 @@
       ],
       "url": "https://docs.openclaw.ai/web/control-ui.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:30.156Z"
+      "fetchedAt": "2026-04-04T20:36:08.476Z"
     },
     {
       "rel": "web/dashboard.md",
@@ -3519,7 +5213,7 @@
       ],
       "url": "https://docs.openclaw.ai/web/dashboard.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:30.115Z"
+      "fetchedAt": "2026-04-04T20:36:08.485Z"
     },
     {
       "rel": "web/index.md",
@@ -3531,7 +5225,7 @@
       ],
       "url": "https://docs.openclaw.ai/web/index.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:30.041Z"
+      "fetchedAt": "2026-04-04T20:36:08.500Z"
     },
     {
       "rel": "web/tui.md",
@@ -3544,7 +5238,7 @@
       ],
       "url": "https://docs.openclaw.ai/web/tui.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:30.325Z"
+      "fetchedAt": "2026-04-04T20:36:08.531Z"
     },
     {
       "rel": "web/webchat.md",
@@ -3557,7 +5251,7 @@
       ],
       "url": "https://docs.openclaw.ai/web/webchat.md",
       "status": "ok",
-      "fetchedAt": "2026-02-20T10:29:30.464Z"
+      "fetchedAt": "2026-04-04T20:36:08.534Z"
     }
   ]
 }

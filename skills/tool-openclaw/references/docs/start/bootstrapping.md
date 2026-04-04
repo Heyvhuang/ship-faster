@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/bootstrapping.md; fetched_at=2026-02-20T10:29:27.734Z; sha256=d44d1f03d46cbf5fc9c8a1c478ee1cf8e82df8123b3a7f3ea362f1b96622c705; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/bootstrapping.md; fetched_at=2026-04-04T20:36:08.003Z; sha256=b938f1cffee25d49701e526d5b7665ef241ef65b266dc87076419f1b8c1b2895; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -37,3 +37,6 @@ machine.
 
 * macOS app onboarding: [Onboarding](/start/onboarding)
 * Workspace layout: [Agent workspace](/concepts/agent-workspace)
+
+
+Built with [Mintlify](https://mintlify.com).

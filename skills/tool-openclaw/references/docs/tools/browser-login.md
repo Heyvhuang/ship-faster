@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/browser-login.md; fetched_at=2026-02-20T10:29:28.785Z; sha256=7904097c201e25742271c043e47223ae079967e311e5ed9784ffb9ab3d217341; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/browser-login.md; fetched_at=2026-04-04T20:36:08.135Z; sha256=7386a6ed63bd26c3c927af78e0c1b526e5ec1bd1b3124143e1f49290ff6a8d31; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -19,6 +19,12 @@ Back to the main browser docs: [Browser](/tools/browser).
 ## Which Chrome profile is used?
 
 OpenClaw controls a **dedicated Chrome profile** (named `openclaw`, orange‑tinted UI). This is separate from your daily browser profile.
+
+For agent browser tool calls:
+
+* Default choice: the agent should use its isolated `openclaw` browser.
+* Use `profile="user"` only when existing logged-in sessions matter and the user is at the computer to click/approve any attach prompt.
+* If you have multiple user-browser profiles, specify the profile explicitly instead of guessing.
 
 Two easy ways to access it:
 
@@ -65,3 +71,6 @@ openclaw browser open https://x.com --browser-profile openclaw --target host
 ```
 
 Or disable sandboxing for the agent that posts updates.
+
+
+Built with [Mintlify](https://mintlify.com).

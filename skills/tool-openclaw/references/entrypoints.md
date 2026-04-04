@@ -65,3 +65,18 @@ Related channel routing/group docs:
 - `references/docs/concepts/session.md`
 - `references/docs/concepts/streaming.md`
 - `references/docs/concepts/oauth.md`
+
+## Model Migration / Provider Swap
+
+- `references/model-migration-audit.md`
+- `references/docs/start/wizard-cli-reference.md`
+- `references/docs/cli/models.md`
+- `references/docs/gateway/authentication.md`
+- `references/docs/gateway/cli-backends.md`
+- `references/docs/providers/anthropic.md`
+- `references/docs/providers/openai.md`
+- `references/docs/providers/minimax.md`
+- `references/docs/providers/zai.md`
+- `references/docs/concepts/agent-workspace.md`
+- `references/docs/reference/templates/AGENTS.md`
+- `references/docs/reference/templates/SOUL.md`

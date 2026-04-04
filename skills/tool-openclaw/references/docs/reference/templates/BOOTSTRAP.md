@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/BOOTSTRAP.md; fetched_at=2026-02-20T10:29:27.142Z; sha256=22de4ed2a6c99263465a4b2efa1d3318b43eced0c86d62c266f28fbcfa029302; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/BOOTSTRAP.md; fetched_at=2026-04-04T20:36:07.877Z; sha256=d4d159124e4685544ec4f8b9959e7475f9c6c7bf3eb4c8da644c99a238051ccd; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -54,10 +54,13 @@ Ask how they want to reach you:
 
 Guide them through whichever they pick.
 
-## When You're Done
+## When you are done
 
 Delete this file. You don't need a bootstrap script anymore — you're you now.
 
 ***
 
 *Good luck out there. Make it count.*
+
+
+Built with [Mintlify](https://mintlify.com).

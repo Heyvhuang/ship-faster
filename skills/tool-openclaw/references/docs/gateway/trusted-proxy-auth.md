@@ -1,10 +1,10 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/trusted-proxy-auth.md; fetched_at=2026-02-20T10:29:21.041Z; sha256=85e154355953fc7f9d173265ac7d5bcccfdf814c8329b3e5475ed97bd44ff031; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/trusted-proxy-auth.md; fetched_at=2026-04-04T20:36:06.683Z; sha256=804b4bb0b33ad5a8333baeecd5b9e7d888e0281eccc9e75c9c6f43e149cd094d; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# null
+# Trusted Proxy Auth
 
 # Trusted Proxy Auth
 
@@ -34,12 +34,24 @@ Use `trusted-proxy` auth mode when:
 4. OpenClaw extracts the user identity from the configured header
 5. If everything checks out, the request is authorized
 
+## Control UI Pairing Behavior
+
+When `gateway.auth.mode = "trusted-proxy"` is active and the request passes
+trusted-proxy checks, Control UI WebSocket sessions can connect without device
+pairing identity.
+
+Implications:
+
+* Pairing is no longer the primary gate for Control UI access in this mode.
+* Your reverse proxy auth policy and `allowUsers` become the effective access control.
+* Keep gateway ingress locked to trusted proxy IPs only (`gateway.trustedProxies` + firewall).
+
 ## Configuration
 
 ```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   gateway: {
-    // Must bind to network interface (not loopback)
+    // Trusted-proxy auth expects requests from a non-loopback trusted proxy source
     bind: "lan",
 
     // CRITICAL: Only add your proxy's IP(s) here
@@ -62,6 +74,13 @@ Use `trusted-proxy` auth mode when:
 }
 ```
 
+Important runtime rule:
+
+* Trusted-proxy auth rejects loopback-source requests (`127.0.0.1`, `::1`, loopback CIDRs).
+* Same-host loopback reverse proxies do **not** satisfy trusted-proxy auth.
+* For same-host loopback proxy setups, use token/password auth instead, or route through a non-loopback trusted proxy address that OpenClaw can verify.
+* Non-loopback Control UI deployments still need explicit `gateway.controlUi.allowedOrigins`.
+
 ### Configuration Reference
 
 | Field                                       | Required | Description                                                                 |
@@ -71,6 +90,52 @@ Use `trusted-proxy` auth mode when:
 | `gateway.auth.trustedProxy.userHeader`      | Yes      | Header name containing the authenticated user identity                      |
 | `gateway.auth.trustedProxy.requiredHeaders` | No       | Additional headers that must be present for the request to be trusted       |
 | `gateway.auth.trustedProxy.allowUsers`      | No       | Allowlist of user identities. Empty means allow all authenticated users.    |
+
+## TLS termination and HSTS
+
+Use one TLS termination point and apply HSTS there.
+
+### Recommended pattern: proxy TLS termination
+
+When your reverse proxy handles HTTPS for `https://control.example.com`, set
+`Strict-Transport-Security` at the proxy for that domain.
+
+* Good fit for internet-facing deployments.
+* Keeps certificate + HTTP hardening policy in one place.
+* OpenClaw can stay on loopback HTTP behind the proxy.
+
+Example header value:
+
+```text  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+
+### Gateway TLS termination
+
+If OpenClaw itself serves HTTPS directly (no TLS-terminating proxy), set:
+
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{
+  gateway: {
+    tls: { enabled: true },
+    http: {
+      securityHeaders: {
+        strictTransportSecurity: "max-age=31536000; includeSubDomains",
+      },
+    },
+  },
+}
+```
+
+`strictTransportSecurity` accepts a string header value, or `false` to disable explicitly.
+
+### Rollout guidance
+
+* Start with a short max age first (for example `max-age=300`) while validating traffic.
+* Increase to long-lived values (for example `max-age=31536000`) only after confidence is high.
+* Add `includeSubDomains` only if every subdomain is HTTPS-ready.
+* Use preload only if you intentionally meet preload requirements for your full domain set.
+* Loopback-only local development does not benefit from HSTS.
 
 ## Proxy Setup Examples
 
@@ -116,7 +181,7 @@ Caddy with the `caddy-security` plugin can authenticate users and pass identity 
 {
   gateway: {
     bind: "lan",
-    trustedProxies: ["127.0.0.1"], // Caddy's IP (if on same host)
+    trustedProxies: ["10.0.0.1"], // Caddy/sidecar proxy IP
     auth: {
       mode: "trusted-proxy",
       trustedProxy: {
@@ -191,15 +256,54 @@ location / {
 }
 ```
 
+## Mixed token configuration
+
+OpenClaw rejects ambiguous configurations where both a `gateway.auth.token` (or `OPENCLAW_GATEWAY_TOKEN`) and `trusted-proxy` mode are active at the same time. Mixed token configs can cause loopback requests to silently authenticate on the wrong auth path.
+
+If you see a `mixed_trusted_proxy_token` error on startup:
+
+* Remove the shared token when using trusted-proxy mode, or
+* Switch `gateway.auth.mode` to `"token"` if you intend token-based auth.
+
+Loopback trusted-proxy auth also fails closed: same-host callers must supply the configured identity headers through a trusted proxy instead of being silently authenticated.
+
+## Operator scopes header
+
+Trusted-proxy auth is an **identity-bearing** HTTP mode, so callers may
+optionally declare operator scopes with `x-openclaw-scopes`.
+
+Examples:
+
+* `x-openclaw-scopes: operator.read`
+* `x-openclaw-scopes: operator.read,operator.write`
+* `x-openclaw-scopes: operator.admin,operator.write`
+
+Behavior:
+
+* When the header is present, OpenClaw honors the declared scope set.
+* When the header is present but empty, the request declares **no** operator scopes.
+* When the header is absent, normal identity-bearing HTTP APIs fall back to the standard operator default scope set.
+* Gateway-auth **plugin HTTP routes** are narrower by default: when `x-openclaw-scopes` is absent, their runtime scope falls back to `operator.write`.
+* Browser-origin HTTP requests still have to pass `gateway.controlUi.allowedOrigins` (or deliberate Host-header fallback mode) even after trusted-proxy auth succeeds.
+
+Practical rule:
+
+* Send `x-openclaw-scopes` explicitly when you want a trusted-proxy request to
+  be narrower than the defaults, or when a gateway-auth plugin route needs
+  something stronger than write scope.
+
 ## Security Checklist
 
 Before enabling trusted-proxy auth, verify:
 
 * [ ] **Proxy is the only path**: The Gateway port is firewalled from everything except your proxy
 * [ ] **trustedProxies is minimal**: Only your actual proxy IPs, not entire subnets
+* [ ] **No loopback proxy source**: trusted-proxy auth fails closed for loopback-source requests
 * [ ] **Proxy strips headers**: Your proxy overwrites (not appends) `x-forwarded-*` headers from clients
 * [ ] **TLS termination**: Your proxy handles TLS; users connect via HTTPS
+* [ ] **allowedOrigins is explicit**: Non-loopback Control UI uses explicit `gateway.controlUi.allowedOrigins`
 * [ ] **allowUsers is set** (recommended): Restrict to known users rather than allowing anyone authenticated
+* [ ] **No mixed token config**: Do not set both `gateway.auth.token` and `gateway.auth.mode: "trusted-proxy"`
 
 ## Security Audit
 
@@ -207,9 +311,11 @@ Before enabling trusted-proxy auth, verify:
 
 The audit checks for:
 
+* Base `gateway.trusted_proxy_auth` warning/critical reminder
 * Missing `trustedProxies` configuration
 * Missing `userHeader` configuration
 * Empty `allowUsers` (allows any authenticated user)
+* Wildcard or missing browser-origin policy on exposed Control UI surfaces
 
 ## Troubleshooting
 
@@ -220,6 +326,20 @@ The request didn't come from an IP in `gateway.trustedProxies`. Check:
 * Is the proxy IP correct? (Docker container IPs can change)
 * Is there a load balancer in front of your proxy?
 * Use `docker inspect` or `kubectl get pods -o wide` to find actual IPs
+
+### "trusted\_proxy\_loopback\_source"
+
+OpenClaw rejected a loopback-source trusted-proxy request.
+
+Check:
+
+* Is the proxy connecting from `127.0.0.1` / `::1`?
+* Are you trying to use trusted-proxy auth with a same-host loopback reverse proxy?
+
+Fix:
+
+* Use token/password auth for same-host loopback proxy setups, or
+* Route through a non-loopback trusted proxy address and keep that IP in `gateway.trustedProxies`.
 
 ### "trusted\_proxy\_user\_missing"
 
@@ -239,6 +359,16 @@ A required header wasn't present. Check:
 ### "trusted\_proxy\_user\_not\_allowed"
 
 The user is authenticated but not in `allowUsers`. Either add them or remove the allowlist.
+
+### "trusted\_proxy\_origin\_not\_allowed"
+
+Trusted-proxy auth succeeded, but the browser `Origin` header did not pass Control UI origin checks.
+
+Check:
+
+* `gateway.controlUi.allowedOrigins` includes the exact browser origin
+* You are not relying on wildcard origins unless you intentionally want allow-all behavior
+* If you intentionally use Host-header fallback mode, `gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback=true` is set deliberately
 
 ### WebSocket Still Failing
 
@@ -265,3 +395,6 @@ If you're moving from token auth to trusted-proxy:
 * [Configuration](/gateway/configuration) — config reference
 * [Remote Access](/gateway/remote) — other remote access patterns
 * [Tailscale](/gateway/tailscale) — simpler alternative for tailnet-only access
+
+
+Built with [Mintlify](https://mintlify.com).

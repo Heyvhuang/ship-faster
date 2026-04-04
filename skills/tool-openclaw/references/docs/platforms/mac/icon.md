@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/icon.md; fetched_at=2026-02-20T10:29:24.369Z; sha256=770d1956628707cf18e41919c889bbc4ebb0309c043d493ae7ac708ae090c1ab; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/icon.md; fetched_at=2026-04-04T20:36:07.247Z; sha256=62f6225c926fd361063767a55fb1f325c2a9a0a62f638865a9405f31c9b3e1e1; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -30,3 +30,6 @@ Behavioral notes
 
 * No external CLI/broker toggle for ears/working; keep it internal to the app’s own signals to avoid accidental flapping.
 * Keep TTLs short (\<10s) so the icon returns to baseline quickly if a job hangs.
+
+
+Built with [Mintlify](https://mintlify.com).

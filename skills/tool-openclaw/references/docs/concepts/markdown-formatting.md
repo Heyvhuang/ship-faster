@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/markdown-formatting.md; fetched_at=2026-02-20T10:29:17.149Z; sha256=d4b89d1961f2f3a696f6cf617b52fb8f85fbb9796d4366c3698283ad962d9ab3; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/markdown-formatting.md; fetched_at=2026-04-04T20:36:06.184Z; sha256=6277cf024d182c6ac6ff32878340a279b5604cef195deb7994316bc8c5c98262; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -56,7 +56,7 @@ IR (schematic):
 ## Where it is used
 
 * Slack, Telegram, and Signal outbound adapters render from the IR.
-* Other channels (WhatsApp, iMessage, MS Teams, Discord) still use plain text or
+* Other channels (WhatsApp, iMessage, Microsoft Teams, Discord) still use plain text or
   their own formatting rules, with Markdown table conversion applied before
   chunking when enabled.
 
@@ -127,3 +127,6 @@ SPOILER style ranges. Other channels treat them as plain text.
 * Signal style ranges depend on UTF-16 offsets; do not use code point offsets.
 * Preserve trailing newlines for fenced code blocks so closing markers land on
   their own line.
+
+
+Built with [Mintlify](https://mintlify.com).

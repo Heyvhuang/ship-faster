@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/lobster.md; fetched_at=2026-02-20T10:29:29.388Z; sha256=a967d15e283b415261cd863cc3db6b6cc7889730cee4178a8b25ca71b0c3e1c0; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/lobster.md; fetched_at=2026-04-04T20:36:08.310Z; sha256=1d6488a2871d8035ab892e92ab618846703fb3de131408e66638c10e749b254a; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -6,11 +6,11 @@
 
 # Lobster
 
-> Typed workflow runtime for OpenClaw — composable pipelines with approval gates.
-
 # Lobster
 
 Lobster is a workflow shell that lets OpenClaw run multi-step tool sequences as a single, deterministic operation with explicit approval checkpoints.
+
+Lobster is one authoring layer above detached background work. For flow orchestration above individual tasks, see [Task Flow](/automation/taskflow) (`openclaw tasks flow`). For the task activity ledger, see [`openclaw tasks`](/automation/tasks).
 
 ## Hook
 
@@ -107,6 +107,7 @@ Use it in a pipeline:
 ```lobster  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw.invoke --tool llm-task --action json --args-json '{
   "prompt": "Given the input email, return intent and draft.",
+  "thinking": "low",
   "input": { "subject": "Hello", "body": "Can you help?" },
   "schema": {
     "type": "object",
@@ -331,7 +332,7 @@ OpenProse pairs well with Lobster: use `/prose` to orchestrate multi-agent prep,
 ## Learn more
 
 * [Plugins](/tools/plugin)
-* [Plugin tool authoring](/plugins/agent-tools)
+* [Plugin tool authoring](/plugins/building-plugins#registering-agent-tools)
 
 ## Case study: community workflows
 
@@ -339,3 +340,12 @@ One public example: a “second brain” CLI + Lobster pipelines that manage thr
 
 * Thread: [https://x.com/plattenschieber/status/2014508656335770033](https://x.com/plattenschieber/status/2014508656335770033)
 * Repo: [https://github.com/bloomedai/brain-cli](https://github.com/bloomedai/brain-cli)
+
+## Related
+
+* [Automation & Tasks](/automation) — scheduling Lobster workflows
+* [Automation Overview](/automation) — all automation mechanisms
+* [Tools Overview](/tools) — all available agent tools
+
+
+Built with [Mintlify](https://mintlify.com).

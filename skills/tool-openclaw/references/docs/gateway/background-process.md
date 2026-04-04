@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/background-process.md; fetched_at=2026-02-20T10:29:19.549Z; sha256=38bb910f65f0af0b172a17ba8a91a7c32264e7d2b2ed2d157bfc8dbd18b7727d; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/gateway/background-process.md; fetched_at=2026-04-04T20:36:06.466Z; sha256=348162dd5bcc2b844f28dff4057d27f805a84657ffa4eba884e31e887a945d91; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -18,7 +18,7 @@ Key parameters:
 * `yieldMs` (default 10000): auto‑background after this delay
 * `background` (bool): background immediately
 * `timeout` (seconds, default 1800): kill the process after this timeout
-* `elevated` (bool): run on host if elevated mode is enabled/allowed
+* `elevated` (bool): run outside the sandbox if elevated mode is enabled/allowed (`gateway` by default, or `node` when the exec target is `node`)
 * Need a real TTY? Set `pty: true`.
 * `workdir`, `env`
 
@@ -28,6 +28,14 @@ Behavior:
 * When backgrounded (explicit or timeout), the tool returns `status: "running"` + `sessionId` and a short tail.
 * Output is kept in memory until the session is polled or cleared.
 * If the `process` tool is disallowed, `exec` runs synchronously and ignores `yieldMs`/`background`.
+* Spawned exec commands receive `OPENCLAW_SHELL=exec` for context-aware shell/profile rules.
+* For long-running work that starts now, start it once and rely on automatic
+  completion wake when it is enabled and the command emits output or fails.
+* If automatic completion wake is unavailable, or you need quiet-success
+  confirmation for a command that exited cleanly without output, use `process`
+  to confirm completion.
+* Do not emulate reminders or delayed follow-ups with `sleep` loops or repeated
+  polling; use cron for future work.
 
 ## Child process bridging
 
@@ -56,6 +64,9 @@ Actions:
 * `poll`: drain new output for a session (also reports exit status)
 * `log`: read the aggregated output (supports `offset` + `limit`)
 * `write`: send stdin (`data`, optional `eof`)
+* `send-keys`: send explicit key tokens or bytes to a PTY-backed session
+* `submit`: send Enter / carriage return to a PTY-backed session
+* `paste`: send literal text, optionally wrapped in bracketed paste mode
 * `kill`: terminate a background session
 * `clear`: remove a finished session from memory
 * `remove`: kill if running, otherwise clear if finished
@@ -66,10 +77,16 @@ Notes:
 * Sessions are lost on process restart (no disk persistence).
 * Session logs are only saved to chat history if you run `process poll/log` and the tool result is recorded.
 * `process` is scoped per agent; it only sees sessions started by that agent.
+* Use `poll` / `log` for status, logs, quiet-success confirmation, or
+  completion confirmation when automatic completion wake is unavailable.
+* Use `write` / `send-keys` / `submit` / `paste` / `kill` when you need input
+  or intervention.
 * `process list` includes a derived `name` (command verb + target) for quick scans.
 * `process log` uses line-based `offset`/`limit`.
 * When both `offset` and `limit` are omitted, it returns the last 200 lines and includes a paging hint.
 * When `offset` is provided and `limit` is omitted, it returns from `offset` to the end (not capped to 200).
+* Polling is for on-demand status, not wait-loop scheduling. If the work should
+  happen later, use cron instead.
 
 ## Examples
 
@@ -94,3 +111,24 @@ Send stdin:
 ```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 { "tool": "process", "action": "write", "sessionId": "<id>", "data": "y\n" }
 ```
+
+Send PTY keys:
+
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{ "tool": "process", "action": "send-keys", "sessionId": "<id>", "keys": ["C-c"] }
+```
+
+Submit current line:
+
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{ "tool": "process", "action": "submit", "sessionId": "<id>" }
+```
+
+Paste literal text:
+
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{ "tool": "process", "action": "paste", "sessionId": "<id>", "text": "line1\nline2\n" }
+```
+
+
+Built with [Mintlify](https://mintlify.com).

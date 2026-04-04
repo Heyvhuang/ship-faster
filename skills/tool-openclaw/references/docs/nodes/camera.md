@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/camera.md; fetched_at=2026-02-20T10:29:23.314Z; sha256=93ac15be9ca163701725eb97b13481ae819f7f073268b5c582f98199e78c291a; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/nodes/camera.md; fetched_at=2026-04-04T20:36:07.053Z; sha256=d9fd285807299f870317ff0dc2f20f8ad0e3f7e9fba25bba4ae98b7b434c2b62; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -100,6 +100,12 @@ If permissions are missing, the app will prompt when possible; if denied, `camer
 
 Like `canvas.*`, the Android node only allows `camera.*` commands in the **foreground**. Background invocations return `NODE_BACKGROUND_UNAVAILABLE`.
 
+### Android commands (via Gateway `node.invoke`)
+
+* `camera.list`
+  * Response payload:
+    * `devices`: array of `{ id, name, position, deviceType }`
+
 ### Payload guard
 
 Photos are recompressed to keep the base64 payload under 5 MB.
@@ -154,3 +160,6 @@ openclaw nodes screen record --node <id> --duration 10s --fps 15   # prints MEDI
 Notes:
 
 * Requires macOS **Screen Recording** permission (TCC).
+
+
+Built with [Mintlify](https://mintlify.com).

@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/device-models.md; fetched_at=2026-02-20T10:29:26.762Z; sha256=7c1a72a6db678d22af5331b11d1c04c3253187fc65cd7fe1a839756e4f6b56a6; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/device-models.md; fetched_at=2026-04-04T20:36:07.822Z; sha256=35c5ba1feeb97668d4ba09a2476a23502058c059ea9fab3e50379615526253c4; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -45,3 +45,6 @@ curl -fsSL "https://raw.githubusercontent.com/kyle-seongwoo-jun/apple-device-ide
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 swift build --package-path apps/macos
 ```
+
+
+Built with [Mintlify](https://mintlify.com).

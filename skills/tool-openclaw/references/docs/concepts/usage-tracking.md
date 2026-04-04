@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/usage-tracking.md; fetched_at=2026-02-20T10:29:18.289Z; sha256=13f92bc0b9277a7e349be195542919a19b47287b733d114f92e8c35a69c12f34; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/usage-tracking.md; fetched_at=2026-04-04T20:36:06.418Z; sha256=8ea8aa886d6b297cec70fe2d4bd4c7581e353a24d48b5cb37ffeee47a0b22286; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -12,10 +12,17 @@
 
 * Pulls provider usage/quota directly from their usage endpoints.
 * No estimated costs; only the provider-reported windows.
+* Human-readable status output is normalized to `X% left`, even when an
+  upstream API reports consumed quota, remaining quota, or only raw counts.
+* Session-level `/status` and `session_status` can fall back to the latest
+  transcript usage entry when the live session snapshot is sparse. That
+  fallback fills missing token/cache counters, can recover the active runtime
+  model label, and prefers the larger prompt-oriented total when session
+  metadata is missing or smaller. Existing nonzero live values still win.
 
 ## Where it shows up
 
-* `/status` in chats: emoji‑rich status card with session tokens + estimated cost (API key only). Provider usage shows for the **current model provider** when available.
+* `/status` in chats: emoji‑rich status card with session tokens + estimated cost (API key only). Provider usage shows for the **current model provider** when available as a normalized `X% left` window.
 * `/usage off|tokens|full` in chats: per-response usage footer (OAuth shows tokens only).
 * `/usage cost` in chats: local cost summary aggregated from OpenClaw session logs.
 * CLI: `openclaw status --usage` prints a full per-provider breakdown.
@@ -27,9 +34,29 @@
 * **Anthropic (Claude)**: OAuth tokens in auth profiles.
 * **GitHub Copilot**: OAuth tokens in auth profiles.
 * **Gemini CLI**: OAuth tokens in auth profiles.
-* **Antigravity**: OAuth tokens in auth profiles.
+  * JSON usage falls back to `stats`; `stats.cached` is normalized into
+    `cacheRead`.
 * **OpenAI Codex**: OAuth tokens in auth profiles (accountId used when present).
-* **MiniMax**: API key (coding plan key; `MINIMAX_CODE_PLAN_KEY` or `MINIMAX_API_KEY`); uses the 5‑hour coding plan window.
+* **MiniMax**: API key or MiniMax OAuth auth profile. OpenClaw treats
+  `minimax`, `minimax-cn`, and `minimax-portal` as the same MiniMax quota
+  surface, prefers stored MiniMax OAuth when present, and otherwise falls back
+  to `MINIMAX_CODE_PLAN_KEY`, `MINIMAX_CODING_API_KEY`, or `MINIMAX_API_KEY`.
+  MiniMax's raw `usage_percent` / `usagePercent` fields mean **remaining**
+  quota, so OpenClaw inverts them before display; count-based fields win when
+  present.
+  * Coding-plan window labels come from provider hours/minutes fields when
+    present, then fall back to the `start_time` / `end_time` span.
+  * If the coding-plan endpoint returns `model_remains`, OpenClaw prefers the
+    chat-model entry, derives the window label from timestamps when explicit
+    `window_hours` / `window_minutes` fields are absent, and includes the model
+    name in the plan label.
+* **Xiaomi MiMo**: API key via env/config/auth store (`XIAOMI_API_KEY`).
 * **z.ai**: API key via env/config/auth store.
 
-Usage is hidden if no matching OAuth/API credentials exist.
+Usage is hidden when no usable provider usage auth can be resolved. Providers
+can supply plugin-specific usage auth logic; otherwise OpenClaw falls back to
+matching OAuth/API-key credentials from auth profiles, environment variables,
+or config.
+
+
+Built with [Mintlify](https://mintlify.com).

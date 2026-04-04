@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/apply-patch.md; fetched_at=2026-02-20T10:29:28.629Z; sha256=a178053a92794650b1e38e6c8721c83d00ae3b5bd4b1cb4d294c8c5476ec9527; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/apply-patch.md; fetched_at=2026-04-04T20:36:08.122Z; sha256=a8160be0c0c1dcb405a651bac544475413faf6542d568e66f45eb3dac51e6497; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -36,8 +36,9 @@ The tool accepts a single `input` string that wraps one or more file operations:
 * `tools.exec.applyPatch.workspaceOnly` defaults to `true` (workspace-contained). Set it to `false` only if you intentionally want `apply_patch` to write/delete outside the workspace directory.
 * Use `*** Move to:` within an `*** Update File:` hunk to rename files.
 * `*** End of File` marks an EOF-only insert when needed.
-* Experimental and disabled by default. Enable with `tools.exec.applyPatch.enabled`.
-* OpenAI-only (including OpenAI Codex). Optionally gate by model via
+* Available by default for OpenAI and OpenAI Codex models. Set
+  `tools.exec.applyPatch.enabled: false` to disable it.
+* Optionally gate by model via
   `tools.exec.applyPatch.allowModels`.
 * Config is only under `tools.exec`.
 
@@ -49,3 +50,6 @@ The tool accepts a single `input` string that wraps one or more file operations:
   "input": "*** Begin Patch\n*** Update File: src/index.ts\n@@\n-const foo = 1\n+const foo = 2\n*** End Patch"
 }
 ```
+
+
+Built with [Mintlify](https://mintlify.com).

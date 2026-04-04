@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/directory.md; fetched_at=2026-02-20T10:29:15.093Z; sha256=e27fb00031ab9aec4a6d3209f160c5c3669e4852ee933c6639f32bce9d198e37; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/directory.md; fetched_at=2026-04-04T20:36:05.776Z; sha256=5bdbaa7f1b239b8877eeb887350ec2645bfd67bf1866dca70f394afa5c1b5ed0; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -40,7 +40,7 @@ openclaw message send --channel slack --target user:U012ABCDEF --message "hello"
 * Zalo (plugin): user id (Bot API)
 * Zalo Personal / `zalouser` (plugin): thread id (DM/group) from `zca` (`me`, `friend list`, `group list`)
 
-## Self (“me”)
+## Self ("me")
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw directory self --channel zalouser
@@ -61,3 +61,6 @@ openclaw directory groups list --channel zalouser
 openclaw directory groups list --channel zalouser --query "work"
 openclaw directory groups members --channel zalouser --group-id <id>
 ```
+
+
+Built with [Mintlify](https://mintlify.com).

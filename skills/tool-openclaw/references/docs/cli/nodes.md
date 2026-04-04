@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/nodes.md; fetched_at=2026-02-20T10:29:15.655Z; sha256=c01d2539ebb8b12d8fec29845e531cf80645de5e3c85ad7ab17684b07bc6ae26; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/nodes.md; fetched_at=2026-04-04T20:36:06.114Z; sha256=6130a1ac220de03a157b523b169782ecee4e2460236e022e3e372ad288aed1d9; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -28,6 +28,8 @@ openclaw nodes list --connected
 openclaw nodes list --last-connected 24h
 openclaw nodes pending
 openclaw nodes approve <requestId>
+openclaw nodes reject <requestId>
+openclaw nodes rename --node <id|name|ip> --name <displayName>
 openclaw nodes status
 openclaw nodes status --connected
 openclaw nodes status --last-connected 24h
@@ -37,13 +39,19 @@ openclaw nodes status --last-connected 24h
 Use `--connected` to only show currently-connected nodes. Use `--last-connected <duration>` to
 filter to nodes that connected within a duration (e.g. `24h`, `7d`).
 
-## Invoke / run
+Approval note:
+
+* `openclaw nodes pending` only needs pairing scope.
+* `openclaw nodes approve <requestId>` inherits extra scope requirements from the
+  pending request:
+  * commandless request: pairing only
+  * non-exec node commands: pairing + write
+  * `system.run` / `system.run.prepare` / `system.which`: pairing + admin
+
+## Invoke
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw nodes invoke --node <id|name|ip> --command <command> --params <json>
-openclaw nodes run --node <id|name|ip> <command...>
-openclaw nodes run --raw "git status"
-openclaw nodes run --agent main --node <id|name|ip> --raw "git status"
 ```
 
 Invoke flags:
@@ -51,23 +59,11 @@ Invoke flags:
 * `--params <json>`: JSON object string (default `{}`).
 * `--invoke-timeout <ms>`: node invoke timeout (default `15000`).
 * `--idempotency-key <key>`: optional idempotency key.
+* `system.run` and `system.run.prepare` are blocked here; use the `exec` tool with `host=node` for shell execution.
 
-### Exec-style defaults
+For shell execution on a node, use the `exec` tool with `host=node` instead of `openclaw nodes run`.
+The `nodes` CLI is now capability-focused: direct RPC via `nodes invoke`, plus pairing, camera,
+screen, location, canvas, and notifications.
 
-`nodes run` mirrors the model’s exec behavior (defaults + approvals):
 
-* Reads `tools.exec.*` (plus `agents.list[].tools.exec.*` overrides).
-* Uses exec approvals (`exec.approval.request`) before invoking `system.run`.
-* `--node` can be omitted when `tools.exec.node` is set.
-* Requires a node that advertises `system.run` (macOS companion app or headless node host).
-
-Flags:
-
-* `--cwd <path>`: working directory.
-* `--env <key=val>`: env override (repeatable). Note: node hosts ignore `PATH` overrides (and `tools.exec.pathPrepend` is not applied to node hosts).
-* `--command-timeout <ms>`: command timeout.
-* `--invoke-timeout <ms>`: node invoke timeout (default `30000`).
-* `--needs-screen-recording`: require screen recording permission.
-* `--raw <command>`: run a shell string (`/bin/sh -lc` or `cmd.exe /c`).
-* `--agent <id>`: agent-scoped approvals/allowlists (defaults to configured agent).
-* `--ask <off|on-miss|always>`, `--security <deny|allowlist|full>`: overrides.
+Built with [Mintlify](https://mintlify.com).

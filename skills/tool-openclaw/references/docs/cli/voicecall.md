@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/voicecall.md; fetched_at=2026-02-20T10:29:16.726Z; sha256=5252c3702e7c8f5e6f8d7ec6596848be6f5b46162921b9c3a9122f0045ce6075; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/voicecall.md; fetched_at=2026-04-04T20:36:06.092Z; sha256=37a6f5380fc5d20a56708c238ac60e3981cfd13131e6b14244ceb357ff82d43a; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -28,7 +28,10 @@ openclaw voicecall end --call-id <id>
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw voicecall expose --mode serve
 openclaw voicecall expose --mode funnel
-openclaw voicecall unexpose
+openclaw voicecall expose --mode off
 ```
 
 Security note: only expose the webhook endpoint to networks you trust. Prefer Tailscale Serve over Funnel when possible.
+
+
+Built with [Mintlify](https://mintlify.com).

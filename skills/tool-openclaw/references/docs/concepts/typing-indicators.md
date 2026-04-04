@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/typing-indicators.md; fetched_at=2026-02-20T10:29:18.415Z; sha256=2931e9b79f0836c765357fa0e5cf5dc43fddc716d0729a4b18d3c34c8cac4a80; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/typing-indicators.md; fetched_at=2026-04-04T20:36:06.401Z; sha256=26a323e9644747e5b682b24728b490e93e61e7dd9b42f079435820796d17b024; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -60,10 +60,14 @@ You can override mode or cadence per session:
 
 ## Notes
 
-* `message` mode won’t show typing for silent-only replies (e.g. the `NO_REPLY`
-  token used to suppress output).
+* `message` mode won’t show typing for silent-only replies (for example
+  `NO_REPLY` / `no_reply`, which are treated case-insensitively for exact
+  silent-token suppression).
 * `thinking` only fires if the run streams reasoning (`reasoningLevel: "stream"`).
   If the model doesn’t emit reasoning deltas, typing won’t start.
 * Heartbeats never show typing, regardless of mode.
 * `typingIntervalSeconds` controls the **refresh cadence**, not the start time.
   The default is 6 seconds.
+
+
+Built with [Mintlify](https://mintlify.com).

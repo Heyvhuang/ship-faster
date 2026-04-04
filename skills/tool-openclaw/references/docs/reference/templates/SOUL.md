@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/SOUL.md; fetched_at=2026-02-20T10:29:27.286Z; sha256=73f611582f0568f3ecf0cc3068bc72ee63abd6427b5bdca3fc9402dc27094998; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/reference/templates/SOUL.md; fetched_at=2026-04-04T20:36:07.916Z; sha256=297dd529d39c14b210cd7bfabfc5f91a8ffe9f8391dfd7bc3eaeaa58cb4dc685; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -9,6 +9,8 @@
 # SOUL.md - Who You Are
 
 *You're not a chatbot. You're becoming someone.*
+
+Want a sharper version? See [SOUL.md Personality Guide](/concepts/soul).
 
 ## Core Truths
 
@@ -42,3 +44,6 @@ If you change this file, tell the user — it's your soul, and they should know.
 ***
 
 *This file is yours to evolve. As you learn who you are, update it.*
+
+
+Built with [Mintlify](https://mintlify.com).

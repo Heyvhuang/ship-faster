@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/getting-started.md; fetched_at=2026-02-20T10:29:27.985Z; sha256=6a6afa003cda1025ec0a8a3b808508eb87169d1836b9ef163eb4a7194acc63ec; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/getting-started.md; fetched_at=2026-04-04T20:36:08.020Z; sha256=cb927de45d353de2279de9c0784738d8f6b8940c47c0bf92d101e4bd0da64b39; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -8,34 +8,33 @@
 
 # Getting Started
 
-Goal: go from zero to a first working chat with minimal setup.
+Install OpenClaw, run onboarding, and chat with your AI assistant — all in
+about 5 minutes. By the end you will have a running Gateway, configured auth,
+and a working chat session.
 
-<Info>
-  Fastest chat: open the Control UI (no channel setup needed). Run `openclaw dashboard`
-  and chat in the browser, or open `http://127.0.0.1:18789/` on the
-  <Tooltip headline="Gateway host" tip="The machine running the OpenClaw gateway service.">gateway host</Tooltip>.
-  Docs: [Dashboard](/web/dashboard) and [Control UI](/web/control-ui).
-</Info>
+## What you need
 
-## Prereqs
-
-* Node 22 or newer
+* **Node.js** — Node 24 recommended (Node 22.14+ also supported)
+* **An API key** from a model provider (Anthropic, OpenAI, Google, etc.) — onboarding will prompt you
 
 <Tip>
-  Check your Node version with `node --version` if you are unsure.
+  Check your Node version with `node --version`.
+  **Windows users:** both native Windows and WSL2 are supported. WSL2 is more
+  stable and recommended for the full experience. See [Windows](/platforms/windows).
+  Need to install Node? See [Node setup](/install/node).
 </Tip>
 
-## Quick setup (CLI)
+## Quick setup
 
 <Steps>
-  <Step title="Install OpenClaw (recommended)">
+  <Step title="Install OpenClaw">
     <Tabs>
-      <Tab title="macOS/Linux">
+      <Tab title="macOS / Linux">
         ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
         curl -fsSL https://openclaw.ai/install.sh | bash
         ```
 
-        <img src="https://mintcdn.com/clawdhub/DcF5CJtMKie_d1BE/assets/install-script.svg?fit=max&auto=format&n=DcF5CJtMKie_d1BE&q=85&s=67b9d67d83f92aac2e86943901c3aad4" alt="Install Script Process" className="rounded-lg" data-og-width="1370" width="1370" data-og-height="581" height="581" data-path="assets/install-script.svg" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/clawdhub/DcF5CJtMKie_d1BE/assets/install-script.svg?w=280&fit=max&auto=format&n=DcF5CJtMKie_d1BE&q=85&s=0fe715a9cfdc51e3928c94bc9ebc75eb 280w, https://mintcdn.com/clawdhub/DcF5CJtMKie_d1BE/assets/install-script.svg?w=560&fit=max&auto=format&n=DcF5CJtMKie_d1BE&q=85&s=b17ebb898963bae2ef06f57a69646049 560w, https://mintcdn.com/clawdhub/DcF5CJtMKie_d1BE/assets/install-script.svg?w=840&fit=max&auto=format&n=DcF5CJtMKie_d1BE&q=85&s=74c0c7fd15b198a3f802331b09f84efc 840w, https://mintcdn.com/clawdhub/DcF5CJtMKie_d1BE/assets/install-script.svg?w=1100&fit=max&auto=format&n=DcF5CJtMKie_d1BE&q=85&s=256bb25463d6735a534feb24fb2f9eb9 1100w, https://mintcdn.com/clawdhub/DcF5CJtMKie_d1BE/assets/install-script.svg?w=1650&fit=max&auto=format&n=DcF5CJtMKie_d1BE&q=85&s=7a73d188623a151c7306471bc0f23929 1650w, https://mintcdn.com/clawdhub/DcF5CJtMKie_d1BE/assets/install-script.svg?w=2500&fit=max&auto=format&n=DcF5CJtMKie_d1BE&q=85&s=c9241587f86670a2eefff62c2189f425 2500w" />
+        <img src="https://mintcdn.com/clawdhub/U8jr7qEbUc9OU9YR/assets/install-script.svg?fit=max&auto=format&n=U8jr7qEbUc9OU9YR&q=85&s=50706f81e3210a610262f14facb11f65" alt="Install Script Process" className="rounded-lg" width="1370" height="581" data-path="assets/install-script.svg" />
       </Tab>
 
       <Tab title="Windows (PowerShell)">
@@ -46,88 +45,75 @@ Goal: go from zero to a first working chat with minimal setup.
     </Tabs>
 
     <Note>
-      Other install methods and requirements: [Install](/install).
+      Other install methods (Docker, Nix, npm): [Install](/install).
     </Note>
   </Step>
 
-  <Step title="Run the onboarding wizard">
+  <Step title="Run onboarding">
     ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
     openclaw onboard --install-daemon
     ```
 
-    The wizard configures auth, gateway settings, and optional channels.
-    See [Onboarding Wizard](/start/wizard) for details.
+    The wizard walks you through choosing a model provider, setting an API key,
+    and configuring the Gateway. It takes about 2 minutes.
+
+    See [Onboarding (CLI)](/start/wizard) for the full reference.
   </Step>
 
-  <Step title="Check the Gateway">
-    If you installed the service, it should already be running:
-
+  <Step title="Verify the Gateway is running">
     ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
     openclaw gateway status
     ```
+
+    You should see the Gateway listening on port 18789.
   </Step>
 
-  <Step title="Open the Control UI">
+  <Step title="Open the dashboard">
     ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
     openclaw dashboard
     ```
+
+    This opens the Control UI in your browser. If it loads, everything is working.
+  </Step>
+
+  <Step title="Send your first message">
+    Type a message in the Control UI chat and you should get an AI reply.
+
+    Want to chat from your phone instead? The fastest channel to set up is
+    [Telegram](/channels/telegram) (just a bot token). See [Channels](/channels)
+    for all options.
   </Step>
 </Steps>
 
-<Check>
-  If the Control UI loads, your Gateway is ready for use.
-</Check>
-
-## Optional checks and extras
-
-<AccordionGroup>
-  <Accordion title="Run the Gateway in the foreground">
-    Useful for quick tests or troubleshooting.
-
-    ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-    openclaw gateway --port 18789
-    ```
-  </Accordion>
-
-  <Accordion title="Send a test message">
-    Requires a configured channel.
-
-    ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-    openclaw message send --target +15555550123 --message "Hello from OpenClaw"
-    ```
-  </Accordion>
-</AccordionGroup>
-
-## Useful environment variables
-
-If you run OpenClaw as a service account or want custom config/state locations:
-
-* `OPENCLAW_HOME` sets the home directory used for internal path resolution.
-* `OPENCLAW_STATE_DIR` overrides the state directory.
-* `OPENCLAW_CONFIG_PATH` overrides the config file path.
-
-Full environment variable reference: [Environment vars](/help/environment).
-
-## Go deeper
+## What to do next
 
 <Columns>
-  <Card title="Onboarding Wizard (details)" href="/start/wizard">
-    Full CLI wizard reference and advanced options.
+  <Card title="Connect a channel" href="/channels" icon="message-square">
+    Discord, Feishu, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo, and more.
   </Card>
 
-  <Card title="macOS app onboarding" href="/start/onboarding">
-    First run flow for the macOS app.
+  <Card title="Pairing and safety" href="/channels/pairing" icon="shield">
+    Control who can message your agent.
+  </Card>
+
+  <Card title="Configure the Gateway" href="/gateway/configuration" icon="settings">
+    Models, tools, sandbox, and advanced settings.
+  </Card>
+
+  <Card title="Browse tools" href="/tools" icon="wrench">
+    Browser, exec, web search, skills, and plugins.
   </Card>
 </Columns>
 
-## What you will have
+<Accordion title="Advanced: environment variables">
+  If you run OpenClaw as a service account or want custom paths:
 
-* A running Gateway
-* Auth configured
-* Control UI access or a connected channel
+  * `OPENCLAW_HOME` — home directory for internal path resolution
+  * `OPENCLAW_STATE_DIR` — override the state directory
+  * `OPENCLAW_CONFIG_PATH` — override the config file path
 
-## Next steps
+  Full reference: [Environment variables](/help/environment).
+</Accordion>
 
-* DM safety and approvals: [Pairing](/channels/pairing)
-* Connect more channels: [Channels](/channels)
-* Advanced workflows and from source: [Setup](/start/setup)
+
+Built with [Mintlify](https://mintlify.com).

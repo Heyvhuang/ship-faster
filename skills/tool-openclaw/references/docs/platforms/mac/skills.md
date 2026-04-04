@@ -1,10 +1,10 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/skills.md; fetched_at=2026-02-20T10:29:24.938Z; sha256=c57df29ff36784fa2b5daa0a06adc2e327288776c1147b3b7a35a6caf969e56c; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/skills.md; fetched_at=2026-04-04T20:36:07.289Z; sha256=9d8cd9722e77fe5cc871eb532ce09439211ff894277cda0bf0b964cbaad646d2; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# Skills
+# Skills (macOS)
 
 # Skills (macOS)
 
@@ -20,8 +20,15 @@ The macOS app surfaces OpenClaw skills via the gateway; it does not parse skills
 
 * `metadata.openclaw.install` defines install options (brew/node/go/uv).
 * The app calls `skills.install` to run installers on the gateway host.
-* The gateway surfaces only one preferred installer when multiple are provided
-  (brew when available, otherwise node manager from `skills.install`, default npm).
+* Built-in dangerous-code `critical` findings block `skills.install` by default; suspicious findings still warn only. The dangerous override exists on the gateway request, but the default app flow stays fail-closed.
+* If every install option is `download`, the gateway surfaces all download
+  choices.
+* Otherwise, the gateway picks one preferred installer using the current
+  install preferences and host binaries: Homebrew first when
+  `skills.install.preferBrew` is enabled and `brew` exists, then `uv`, then the
+  configured node manager from `skills.install.nodeManager`, then later
+  fallbacks like `go` or `download`.
+* Node install labels reflect the configured node manager, including `yarn`.
 
 ## Env/API keys
 
@@ -31,3 +38,6 @@ The macOS app surfaces OpenClaw skills via the gateway; it does not parse skills
 ## Remote mode
 
 * Install + config updates happen on the gateway host (not the local Mac).
+
+
+Built with [Mintlify](https://mintlify.com).

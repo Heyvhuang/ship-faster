@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/models.md; fetched_at=2026-02-20T10:29:17.546Z; sha256=647de022a27fabd0b2dd1fa3caf409b3f0d0763c72dcba7737e682a8b5109f65; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/models.md; fetched_at=2026-04-04T20:36:06.269Z; sha256=3b5ada277e9a2939213b906700e6dcaa9c4f5eea5e09ddc1819967c6de22ad8d; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -25,39 +25,47 @@ Related:
 
 * `agents.defaults.models` is the allowlist/catalog of models OpenClaw can use (plus aliases).
 * `agents.defaults.imageModel` is used **only when** the primary model can’t accept images.
+* `agents.defaults.pdfModel` is used by the `pdf` tool. If omitted, the tool
+  falls back to `agents.defaults.imageModel`, then the resolved session/default
+  model.
+* `agents.defaults.imageGenerationModel` is used by the shared image-generation capability. If omitted, `image_generate` can still infer an auth-backed provider default. It tries the current default provider first, then the remaining registered image-generation providers in provider-id order. If you set a specific provider/model, also configure that provider's auth/API key.
+* `agents.defaults.videoGenerationModel` is used by the shared video-generation capability. Unlike image generation, this does not infer a provider default today. Set an explicit `provider/model` such as `qwen/wan2.6-t2v`, and configure that provider's auth/API key too.
 * Per-agent defaults can override `agents.defaults.model` via `agents.list[].model` plus bindings (see [/concepts/multi-agent](/concepts/multi-agent)).
 
-## Quick model picks (anecdotal)
+## Quick model policy
 
-* **GLM**: a bit better for coding/tool calling.
-* **MiniMax**: better for writing and vibes.
+* Set your primary to the strongest latest-generation model available to you.
+* Use fallbacks for cost/latency-sensitive tasks and lower-stakes chat.
+* For tool-enabled agents or untrusted inputs, avoid older/weaker model tiers.
 
-## Setup wizard (recommended)
+## Onboarding (recommended)
 
-If you don’t want to hand-edit config, run the onboarding wizard:
+If you don’t want to hand-edit config, run onboarding:
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw onboard
 ```
 
 It can set up model + auth for common providers, including **OpenAI Code (Codex)
-subscription** (OAuth) and **Anthropic** (API key recommended; `claude
-setup-token` also supported).
+subscription** (OAuth) and **Anthropic** (API key or Claude CLI).
 
 ## Config keys (overview)
 
 * `agents.defaults.model.primary` and `agents.defaults.model.fallbacks`
 * `agents.defaults.imageModel.primary` and `agents.defaults.imageModel.fallbacks`
+* `agents.defaults.pdfModel.primary` and `agents.defaults.pdfModel.fallbacks`
+* `agents.defaults.imageGenerationModel.primary` and `agents.defaults.imageGenerationModel.fallbacks`
+* `agents.defaults.videoGenerationModel.primary` and `agents.defaults.videoGenerationModel.fallbacks`
 * `agents.defaults.models` (allowlist + aliases + provider params)
 * `models.providers` (custom providers written into `models.json`)
 
 Model refs are normalized to lowercase. Provider aliases like `z.ai/*` normalize
 to `zai/*`.
 
-Provider configuration examples (including OpenCode Zen) live in
-[/gateway/configuration](/gateway/configuration#opencode-zen-multi-model-proxy).
+Provider configuration examples (including OpenCode) live in
+[/providers/opencode](/providers/opencode).
 
-## “Model is not allowed” (and why replies stop)
+## "Model is not allowed" (and why replies stop)
 
 If `agents.defaults.models` is set, it becomes the **allowlist** for `/model` and for
 session overrides. When a user selects a model that isn’t in that allowlist,
@@ -79,9 +87,9 @@ Example allowlist config:
 ```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
   agent: {
-    model: { primary: "anthropic/claude-sonnet-4-5" },
+    model: { primary: "anthropic/claude-sonnet-4-6" },
     models: {
-      "anthropic/claude-sonnet-4-5": { alias: "Sonnet" },
+      "anthropic/claude-sonnet-4-6": { alias: "Sonnet" },
       "anthropic/claude-opus-4-6": { alias: "Opus" },
     },
   },
@@ -96,18 +104,29 @@ You can switch models for the current session without restarting:
 /model
 /model list
 /model 3
-/model openai/gpt-5.2
+/model openai/gpt-5.4
 /model status
 ```
 
 Notes:
 
 * `/model` (and `/model list`) is a compact, numbered picker (model family + available providers).
+* On Discord, `/model` and `/models` open an interactive picker with provider and model dropdowns plus a Submit step.
 * `/model <#>` selects from that picker.
+* `/model` persists the new session selection immediately.
+* If the agent is idle, the next run uses the new model right away.
+* If a run is already active, OpenClaw marks a live switch as pending and only restarts into the new model at a clean retry point.
+* If tool activity or reply output has already started, the pending switch can stay queued until a later retry opportunity or the next user turn.
 * `/model status` is the detailed view (auth candidates and, when configured, provider endpoint `baseUrl` + `api` mode).
 * Model refs are parsed by splitting on the **first** `/`. Use `provider/model` when typing `/model <ref>`.
 * If the model ID itself contains `/` (OpenRouter-style), you must include the provider prefix (example: `/model openrouter/moonshotai/kimi-k2`).
-* If you omit the provider, OpenClaw treats the input as an alias or a model for the **default provider** (only works when there is no `/` in the model ID).
+* If you omit the provider, OpenClaw resolves the input in this order:
+  1. alias match
+  2. unique configured-provider match for that exact unprefixed model id
+  3. deprecated fallback to the configured default provider
+     If that provider no longer exposes the configured default model, OpenClaw
+     instead falls back to the first configured provider/model to avoid
+     surfacing a stale removed-provider default.
 
 Full command behavior/config: [Slash commands](/tools/slash-commands).
 
@@ -157,11 +176,20 @@ provider has no credentials, `models status` prints a **Missing auth** section.
 JSON includes `auth.oauth` (warn window + profiles) and `auth.providers`
 (effective auth per provider).
 Use `--check` for automation (exit `1` when missing/expired, `2` when expiring).
+Use `--probe` for live auth checks; probe rows can come from auth profiles, env
+credentials, or `models.json`.
+If explicit `auth.order.<provider>` omits a stored profile, probe reports
+`excluded_by_auth_order` instead of trying it. If auth exists but no probeable
+model can be resolved for that provider, probe reports `status: no_model`.
 
-Preferred Anthropic auth is the Claude Code CLI setup-token (run anywhere; paste on the gateway host if needed):
+Auth choice is provider/account dependent. For always-on gateway hosts, API
+keys are usually the most predictable; Claude CLI reuse and existing legacy
+Anthropic token profiles are also supported.
+
+Example (Claude CLI):
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-claude setup-token
+claude auth login
 openclaw models status
 ```
 
@@ -203,5 +231,27 @@ mode, pass `--yes` to accept defaults.
 ## Models registry (`models.json`)
 
 Custom providers in `models.providers` are written into `models.json` under the
-agent directory (default `~/.openclaw/agents/<agentId>/models.json`). This file
+agent directory (default `~/.openclaw/agents/<agentId>/agent/models.json`). This file
 is merged by default unless `models.mode` is set to `replace`.
+
+Merge mode precedence for matching provider IDs:
+
+* Non-empty `baseUrl` already present in the agent `models.json` wins.
+* Non-empty `apiKey` in the agent `models.json` wins only when that provider is not SecretRef-managed in current config/auth-profile context.
+* SecretRef-managed provider `apiKey` values are refreshed from source markers (`ENV_VAR_NAME` for env refs, `secretref-managed` for file/exec refs) instead of persisting resolved secrets.
+* SecretRef-managed provider header values are refreshed from source markers (`secretref-env:ENV_VAR_NAME` for env refs, `secretref-managed` for file/exec refs).
+* Empty or missing agent `apiKey`/`baseUrl` fall back to config `models.providers`.
+* Other provider fields are refreshed from config and normalized catalog data.
+
+Marker persistence is source-authoritative: OpenClaw writes markers from the active source config snapshot (pre-resolution), not from resolved runtime secret values.
+This applies whenever OpenClaw regenerates `models.json`, including command-driven paths like `openclaw agent`.
+
+## Related
+
+* [Model Providers](/concepts/model-providers) — provider routing and auth
+* [Model Failover](/concepts/model-failover) — fallback chains
+* [Image Generation](/tools/image-generation) — image model configuration
+* [Configuration Reference](/gateway/configuration-reference#agent-defaults) — model config keys
+
+
+Built with [Mintlify](https://mintlify.com).

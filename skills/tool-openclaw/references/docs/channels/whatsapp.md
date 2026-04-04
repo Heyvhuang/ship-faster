@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/whatsapp.md; fetched_at=2026-02-20T10:29:14.215Z; sha256=3f30e43cc818227d9b43eb7b808a1cbc4f14cd8aac3798fbce45ca18da40b4e1; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/channels/whatsapp.md; fetched_at=2026-04-04T20:36:05.597Z; sha256=ed0a12fff864f7482d3018b19ba6e3dc95f304c9e32a7def14030241db4033b9; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -9,6 +9,21 @@
 # WhatsApp (Web channel)
 
 Status: production-ready via WhatsApp Web (Baileys). Gateway owns linked session(s).
+
+## Install (on demand)
+
+* Onboarding (`openclaw onboard`) and `openclaw channels add --channel whatsapp`
+  prompt to install the WhatsApp plugin the first time you select it.
+* `openclaw channels login --channel whatsapp` also offers the install flow when
+  the plugin is not present yet.
+* Dev channel + git checkout: defaults to the local plugin path.
+* Stable/Beta: defaults to the npm package `@openclaw/whatsapp`.
+
+Manual install stays available:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw plugins install @openclaw/whatsapp
+```
 
 <CardGroup cols={3}>
   <Card title="Pairing" icon="link" href="/channels/pairing">
@@ -71,7 +86,7 @@ Status: production-ready via WhatsApp Web (Baileys). Gateway owns linked session
 </Steps>
 
 <Note>
-  OpenClaw recommends running WhatsApp on a separate number when possible. (The channel metadata and onboarding flow are optimized for that setup, but personal-number setups are also supported.)
+  OpenClaw recommends running WhatsApp on a separate number when possible. (The channel metadata and setup flow are optimized for that setup, but personal-number setups are also supported.)
 </Note>
 
 ## Deployment patterns
@@ -162,7 +177,7 @@ Status: production-ready via WhatsApp Web (Baileys). Gateway owns linked session
     * if `groupAllowFrom` is unset, runtime falls back to `allowFrom` when available
     * sender allowlists are evaluated before mention/reply activation
 
-    Note: if no `channels.whatsapp` block exists at all, runtime group-policy fallback is effectively `open`.
+    Note: if no `channels.whatsapp` block exists at all, runtime group-policy fallback is `allowlist` (with a warning log), even if `channels.defaults.groupPolicy` is set.
   </Tab>
 
   <Tab title="Mentions + /activation">
@@ -293,15 +308,42 @@ When the linked self number is also present in `allowFrom`, WhatsApp self-chat s
 
   <Accordion title="Media size limits and fallback behavior">
     * inbound media save cap: `channels.whatsapp.mediaMaxMb` (default `50`)
-    * outbound media cap for auto-replies: `agents.defaults.mediaMaxMb` (default `5MB`)
+    * outbound media send cap: `channels.whatsapp.mediaMaxMb` (default `50`)
+    * per-account overrides use `channels.whatsapp.accounts.<accountId>.mediaMaxMb`
     * images are auto-optimized (resize/quality sweep) to fit limits
     * on media send failure, first-item fallback sends text warning instead of dropping the response silently
   </Accordion>
 </AccordionGroup>
 
+## Reaction level
+
+`channels.whatsapp.reactionLevel` controls how broadly the agent uses emoji reactions on WhatsApp:
+
+| Level         | Ack reactions | Agent-initiated reactions | Description                                      |
+| ------------- | ------------- | ------------------------- | ------------------------------------------------ |
+| `"off"`       | No            | No                        | No reactions at all                              |
+| `"ack"`       | Yes           | No                        | Ack reactions only (pre-reply receipt)           |
+| `"minimal"`   | Yes           | Yes (conservative)        | Ack + agent reactions with conservative guidance |
+| `"extensive"` | Yes           | Yes (encouraged)          | Ack + agent reactions with encouraged guidance   |
+
+Default: `"minimal"`.
+
+Per-account overrides use `channels.whatsapp.accounts.<id>.reactionLevel`.
+
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{
+  channels: {
+    whatsapp: {
+      reactionLevel: "ack",
+    },
+  },
+}
+```
+
 ## Acknowledgment reactions
 
 WhatsApp supports immediate ack reactions on inbound receipt via `channels.whatsapp.ackReaction`.
+Ack reactions are gated by `reactionLevel` — they are suppressed when `reactionLevel` is `"off"`.
 
 ```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
@@ -411,7 +453,7 @@ Primary reference:
 High-signal WhatsApp fields:
 
 * access: `dmPolicy`, `allowFrom`, `groupPolicy`, `groupAllowFrom`, `groups`
-* delivery: `textChunkLimit`, `chunkMode`, `mediaMaxMb`, `sendReadReceipts`, `ackReaction`
+* delivery: `textChunkLimit`, `chunkMode`, `mediaMaxMb`, `sendReadReceipts`, `ackReaction`, `reactionLevel`
 * multi-account: `accounts.<id>.enabled`, `accounts.<id>.authDir`, account-level overrides
 * operations: `configWrites`, `debounceMs`, `web.enabled`, `web.heartbeatSeconds`, `web.reconnect.*`
 * session behavior: `session.dmScope`, `historyLimit`, `dmHistoryLimit`, `dms.<id>.historyLimit`
@@ -419,6 +461,11 @@ High-signal WhatsApp fields:
 ## Related
 
 * [Pairing](/channels/pairing)
+* [Groups](/channels/groups)
+* [Security](/gateway/security)
 * [Channel routing](/channels/channel-routing)
 * [Multi-agent routing](/concepts/multi-agent)
 * [Troubleshooting](/channels/troubleshooting)
+
+
+Built with [Mintlify](https://mintlify.com).

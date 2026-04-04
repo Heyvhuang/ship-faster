@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/clawhub.md; fetched_at=2026-02-20T10:29:29.017Z; sha256=0c3c206d1e19dee9f71c18f9ec83158df3f9991edea06a444f624a38cda41eba; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/tools/clawhub.md; fetched_at=2026-04-04T20:36:08.177Z; sha256=308a1e885a8ba0795dda3c67932ec92580cdb1f3c643a733f5d3ac644adc4ea2; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -8,13 +8,52 @@
 
 # ClawHub
 
-ClawHub is the **public skill registry for OpenClaw**. It is a free service: all skills are public, open, and visible to everyone for sharing and reuse. A skill is just a folder with a `SKILL.md` file (plus supporting text files). You can browse skills in the web app or use the CLI to search, install, update, and publish skills.
+ClawHub is the public registry for **OpenClaw skills and plugins**.
+
+* Use native `openclaw` commands to search/install/update skills and install
+  plugins from ClawHub.
+* Use the separate `clawhub` CLI when you need registry auth, publish, delete,
+  undelete, or sync workflows.
 
 Site: [clawhub.ai](https://clawhub.ai)
 
+## Native OpenClaw flows
+
+Skills:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw skills search "calendar"
+openclaw skills install <skill-slug>
+openclaw skills update --all
+```
+
+Plugins:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw plugins install clawhub:<package>
+openclaw plugins update --all
+```
+
+Bare npm-safe plugin specs are also tried against ClawHub before npm:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw plugins install openclaw-codex-app-server
+```
+
+Native `openclaw` commands install into your active workspace and persist source
+metadata so later `update` calls can stay on ClawHub.
+
+Plugin installs validate advertised `pluginApi` and `minGatewayVersion`
+compatibility before archive install runs, so incompatible hosts fail closed
+early instead of partially installing the package.
+
+`openclaw plugins install clawhub:...` only accepts installable plugin families.
+If a ClawHub package is actually a skill, OpenClaw stops and points you at
+`openclaw skills install <slug>` instead.
+
 ## What ClawHub is
 
-* A public registry for OpenClaw skills.
+* A public registry for OpenClaw skills and plugins.
 * A versioned store of skill bundles and metadata.
 * A discovery surface for search, tags, and usage signals.
 
@@ -44,16 +83,17 @@ If you want to add new capabilities to your OpenClaw agent, ClawHub is the easie
 
 ## Quick start (non-technical)
 
-1. Install the CLI (see next section).
-2. Search for something you need:
-   * `clawhub search "calendar"`
-3. Install a skill:
-   * `clawhub install <skill-slug>`
-4. Start a new OpenClaw session so it picks up the new skill.
+1. Search for something you need:
+   * `openclaw skills search "calendar"`
+2. Install a skill:
+   * `openclaw skills install <skill-slug>`
+3. Start a new OpenClaw session so it picks up the new skill.
+4. If you want to publish or manage registry auth, install the separate
+   `clawhub` CLI too.
 
-## Install the CLI
+## Install the ClawHub CLI
 
-Pick one:
+You only need this for registry-authenticated workflows such as publish/sync:
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 npm i -g clawhub
@@ -65,7 +105,20 @@ pnpm add -g clawhub
 
 ## How it fits into OpenClaw
 
-By default, the CLI installs skills into `./skills` under your current working directory. If a OpenClaw workspace is configured, `clawhub` falls back to that workspace unless you override `--workdir` (or `CLAWHUB_WORKDIR`). OpenClaw loads workspace skills from `<workspace>/skills` and will pick them up in the **next** session. If you already use `~/.openclaw/skills` or bundled skills, workspace skills take precedence.
+Native `openclaw skills install` installs into the active workspace `skills/`
+directory. `openclaw plugins install clawhub:...` records a normal managed
+plugin install plus ClawHub source metadata for updates.
+
+Anonymous ClawHub plugin installs also fail closed for private packages.
+Community or other non-official channels can still install, but OpenClaw warns
+so operators can review source and verification before enabling them.
+
+The separate `clawhub` CLI also installs skills into `./skills` under your
+current working directory. If an OpenClaw workspace is configured, `clawhub`
+falls back to that workspace unless you override `--workdir` (or
+`CLAWHUB_WORKDIR`). OpenClaw loads workspace skills from `<workspace>/skills`
+and will pick them up in the **next** session. If you already use
+`~/.openclaw/skills` or bundled skills, workspace skills take precedence.
 
 For more detail on how skills are loaded, shared, and gated, see
 [Skills](/tools/skills).
@@ -159,14 +212,22 @@ List:
 
 * `clawhub list` (reads `.clawhub/lock.json`)
 
-Publish:
+Publish skills:
 
-* `clawhub publish <path>`
+* `clawhub skill publish <path>`
 * `--slug <slug>`: Skill slug.
 * `--name <name>`: Display name.
 * `--version <version>`: Semver version.
 * `--changelog <text>`: Changelog text (can be empty).
 * `--tags <tags>`: Comma-separated tags (default: `latest`).
+
+Publish plugins:
+
+* `clawhub package publish <source>`
+* `<source>` can be a local folder, `owner/repo`, `owner/repo@ref`, or a GitHub URL.
+* `--dry-run`: Build the exact publish plan without uploading anything.
+* `--json`: Emit machine-readable output for CI.
+* `--source-repo`, `--source-commit`, `--source-ref`: Optional overrides when auto-detection is not enough.
 
 Delete/undelete (owner/admin only):
 
@@ -209,13 +270,43 @@ clawhub update --all
 For a single skill folder:
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-clawhub publish ./my-skill --slug my-skill --name "My Skill" --version 1.0.0 --tags latest
+clawhub skill publish ./my-skill --slug my-skill --name "My Skill" --version 1.0.0 --tags latest
 ```
 
 To scan and back up many skills at once:
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 clawhub sync --all
+```
+
+### Publish a plugin from GitHub
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+clawhub package publish your-org/your-plugin --dry-run
+clawhub package publish your-org/your-plugin
+clawhub package publish your-org/your-plugin@v1.0.0
+clawhub package publish https://github.com/your-org/your-plugin
+```
+
+Code plugins must include the required OpenClaw metadata in `package.json`:
+
+```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{
+  "name": "@myorg/openclaw-my-plugin",
+  "version": "1.0.0",
+  "type": "module",
+  "openclaw": {
+    "extensions": ["./index.ts"],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "minGatewayVersion": "2026.3.24-beta.2"
+    },
+    "build": {
+      "openclawVersion": "2026.3.24-beta.2",
+      "pluginSdkVersion": "2026.3.24-beta.2"
+    }
+  }
+}
 ```
 
 ## Advanced details (technical)
@@ -254,3 +345,6 @@ export CLAWHUB_DISABLE_TELEMETRY=1
 * `CLAWHUB_CONFIG_PATH`: Override where the CLI stores the token/config.
 * `CLAWHUB_WORKDIR`: Override the default workdir.
 * `CLAWHUB_DISABLE_TELEMETRY=1`: Disable telemetry on `sync`.
+
+
+Built with [Mintlify](https://mintlify.com).

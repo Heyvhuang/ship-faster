@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/remote.md; fetched_at=2026-02-20T10:29:24.833Z; sha256=db952eb6034689c33b6f1905f6a4283bb78ba37a6c8324bc79f12fbcedcda619; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/remote.md; fetched_at=2026-04-04T20:36:07.272Z; sha256=0b533ca5ee8955a2a36faed1da3ded480dcbdaa0b49a3bb8824f6335ffcaee41; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -8,7 +8,7 @@
 
 # Remote OpenClaw (macOS ⇄ remote host)
 
-This flow lets the macOS app act as a full remote control for a OpenClaw gateway running on another host (desktop/server). It’s the app’s **Remote over SSH** (remote run) feature. All features—health checks, Voice Wake forwarding, and Web Chat—reuse the same remote SSH configuration from *Settings → General*.
+This flow lets the macOS app act as a full remote control for an OpenClaw gateway running on another host (desktop/server). It’s the app’s **Remote over SSH** (remote run) feature. All features—health checks, Voice Wake forwarding, and Web Chat—reuse the same remote SSH configuration from *Settings → General*.
 
 ## Modes
 
@@ -58,7 +58,7 @@ Remote mode supports two transports:
 
 * Prefer loopback binds on the remote host and connect via SSH or Tailscale.
 * SSH tunneling uses strict host-key checking; trust the host key first so it exists in `~/.ssh/known_hosts`.
-* If you bind the Gateway to a non-loopback interface, require token/password auth.
+* If you bind the Gateway to a non-loopback interface, require valid Gateway auth: token, password, or an identity-aware reverse proxy with `gateway.auth.mode: "trusted-proxy"`.
 * See [Security](/gateway/security) and [Tailscale](/gateway/tailscale).
 
 ## WhatsApp login flow (remote)
@@ -83,3 +83,6 @@ openclaw nodes notify --node <id> --title "Ping" --body "Remote gateway ready" -
 ```
 
 There is no global “default sound” toggle in the app anymore; callers choose a sound (or none) per request.
+
+
+Built with [Mintlify](https://mintlify.com).

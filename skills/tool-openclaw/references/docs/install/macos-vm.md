@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/macos-vm.md; fetched_at=2026-02-20T10:29:22.794Z; sha256=8c7464256966b2fd684427af163207c667b28e20c96e027c13e833e21d33dc3e; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/macos-vm.md; fetched_at=2026-04-04T20:36:06.913Z; sha256=36ab6e36f09bb79f7eaa21502c8a61e74293894d60b2c86bdde8b92b2db6cdc6; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -110,7 +110,7 @@ After setup completes, enable SSH:
 
 ***
 
-## 4) Get the VM's IP address
+## 4) Get the VM IP address
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 lume get openclaw
@@ -153,17 +153,17 @@ nano ~/.openclaw/openclaw.json
 
 Add your channels:
 
-```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
-  "channels": {
-    "whatsapp": {
-      "dmPolicy": "allowlist",
-      "allowFrom": ["+15551234567"]
+  channels: {
+    whatsapp: {
+      dmPolicy: "allowlist",
+      allowFrom: ["+15551234567"],
     },
-    "telegram": {
-      "botToken": "YOUR_BOT_TOKEN"
-    }
-  }
+    telegram: {
+      botToken: "YOUR_BOT_TOKEN",
+    },
+  },
 }
 ```
 
@@ -207,15 +207,15 @@ Inside the VM:
 
 Add to your OpenClaw config:
 
-```json  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 {
-  "channels": {
-    "bluebubbles": {
-      "serverUrl": "http://localhost:1234",
-      "password": "your-api-password",
-      "webhookPath": "/bluebubbles-webhook"
-    }
-  }
+  channels: {
+    bluebubbles: {
+      serverUrl: "http://localhost:1234",
+      password: "your-api-password",
+      webhookPath: "/bluebubbles-webhook",
+    },
+  },
 }
 ```
 
@@ -277,3 +277,6 @@ For true always-on, consider a dedicated Mac mini or a small VPS. See [VPS hosti
 * [Lume CLI Reference](https://cua.ai/docs/lume/reference/cli-reference)
 * [Unattended VM Setup](https://cua.ai/docs/lume/guide/fundamentals/unattended-setup) (advanced)
 * [Docker Sandboxing](/install/docker) (alternative isolation approach)
+
+
+Built with [Mintlify](https://mintlify.com).

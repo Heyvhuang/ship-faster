@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/presence.md; fetched_at=2026-02-20T10:29:17.771Z; sha256=a8aab1ab5be9eb030865a36403e8f824f614ac63c4c354c9f7108a640e5d078c; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/concepts/presence.md; fetched_at=2026-04-04T20:36:06.309Z; sha256=d9fda3b9fd805f6d6467cb7c817e0bd74b199c88b6877a166b19e4e3abd1b376; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -44,7 +44,7 @@ even before any clients connect.
 Every WS client begins with a `connect` request. On successful handshake the
 Gateway upserts a presence entry for that connection.
 
-#### Why one‑off CLI commands don’t show up
+#### Why one-off CLI commands do not show up
 
 The CLI often connects for short, one‑off commands. To avoid spamming the
 Instances list, `client.mode === "cli"` is **not** turned into a presence entry.
@@ -99,3 +99,6 @@ indicator (Active/Idle/Stale) based on the age of the last update.
   * confirm clients send a stable `client.instanceId` in the handshake
   * confirm periodic beacons use the same `instanceId`
   * check whether the connection‑derived entry is missing `instanceId` (duplicates are expected)
+
+
+Built with [Mintlify](https://mintlify.com).

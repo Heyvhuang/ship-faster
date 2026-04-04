@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/agent.md; fetched_at=2026-02-20T10:29:14.324Z; sha256=17083edd128b7944178fb441e21cb349c4690723f06682a3b4701684c6ce3a4d; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/cli/agent.md; fetched_at=2026-04-04T20:36:05.650Z; sha256=1acad854f1f80b936bda3b88583a3e257e9aa9a6d0c848d42f2b5865399b61b8; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -11,9 +11,32 @@
 Run an agent turn via the Gateway (use `--local` for embedded).
 Use `--agent <id>` to target a configured agent directly.
 
+Pass at least one session selector:
+
+* `--to <dest>`
+* `--session-id <id>`
+* `--agent <id>`
+
 Related:
 
 * Agent send tool: [Agent send](/tools/agent-send)
+
+## Options
+
+* `-m, --message <text>`: required message body
+* `-t, --to <dest>`: recipient used to derive the session key
+* `--session-id <id>`: explicit session id
+* `--agent <id>`: agent id; overrides routing bindings
+* `--thinking <off|minimal|low|medium|high|xhigh>`: agent thinking level
+* `--verbose <on|off>`: persist verbose level for the session
+* `--channel <channel>`: delivery channel; omit to use the main session channel
+* `--reply-to <target>`: delivery target override
+* `--reply-channel <channel>`: delivery channel override
+* `--reply-account <id>`: delivery account override
+* `--local`: run the embedded agent directly (after plugin registry preload)
+* `--deliver`: send the reply back to the selected channel/target
+* `--timeout <seconds>`: override agent timeout (default 600 or config value)
+* `--json`: output JSON
 
 ## Examples
 
@@ -21,5 +44,18 @@ Related:
 openclaw agent --to +15555550123 --message "status update" --deliver
 openclaw agent --agent ops --message "Summarize logs"
 openclaw agent --session-id 1234 --message "Summarize inbox" --thinking medium
+openclaw agent --to +15555550123 --message "Trace logs" --verbose on --json
 openclaw agent --agent ops --message "Generate report" --deliver --reply-channel slack --reply-to "#reports"
+openclaw agent --agent ops --message "Run locally" --local
 ```
+
+## Notes
+
+* Gateway mode falls back to the embedded agent when the Gateway request fails. Use `--local` to force embedded execution up front.
+* `--local` still preloads the plugin registry first, so plugin-provided providers, tools, and channels stay available during embedded runs.
+* `--channel`, `--reply-channel`, and `--reply-account` affect reply delivery, not session routing.
+* When this command triggers `models.json` regeneration, SecretRef-managed provider credentials are persisted as non-secret markers (for example env var names, `secretref-env:ENV_VAR_NAME`, or `secretref-managed`), not resolved secret plaintext.
+* Marker writes are source-authoritative: OpenClaw persists markers from the active source config snapshot, not from resolved runtime secret values.
+
+
+Built with [Mintlify](https://mintlify.com).

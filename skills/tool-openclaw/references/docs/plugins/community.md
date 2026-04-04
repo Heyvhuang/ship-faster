@@ -1,44 +1,146 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/plugins/community.md; fetched_at=2026-02-20T10:29:25.670Z; sha256=305f12cfa751c7812b6bcad1a8918f47cf4491ec89bfaced5a13080e7da11bbb; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/plugins/community.md; fetched_at=2026-04-04T20:36:07.359Z; sha256=7da0e2043d0ef96a168eb695f4d9adf5282d8c49192f491f3abc434bfe7a3624; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# Community plugins
+# Community Plugins
 
-# Community plugins
+# Community Plugins
 
-This page tracks high-quality **community-maintained plugins** for OpenClaw.
+Community plugins are third-party packages that extend OpenClaw with new
+channels, tools, providers, or other capabilities. They are built and maintained
+by the community, published on [ClawHub](/tools/clawhub) or npm, and
+installable with a single command.
 
-We accept PRs that add community plugins here when they meet the quality bar.
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw plugins install <package-name>
+```
 
-## Required for listing
+OpenClaw checks ClawHub first and falls back to npm automatically.
 
-* Plugin package is published on npmjs (installable via `openclaw plugins install <npm-spec>`).
-* Source code is hosted on GitHub (public repository).
-* Repository includes setup/use docs and an issue tracker.
-* Plugin has a clear maintenance signal (active maintainer, recent updates, or responsive issue handling).
+## Listed plugins
 
-## How to submit
+### Codex App Server Bridge
 
-Open a PR that adds your plugin to this page with:
+Independent OpenClaw bridge for Codex App Server conversations. Bind a chat to
+a Codex thread, talk to it with plain text, and control it with chat-native
+commands for resume, planning, review, model selection, compaction, and more.
 
-* Plugin name
-* npm package name
-* GitHub repository URL
-* One-line description
-* Install command
+* **npm:** `openclaw-codex-app-server`
+* **repo:** [github.com/pwrdrvr/openclaw-codex-app-server](https://github.com/pwrdrvr/openclaw-codex-app-server)
 
-## Review bar
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw plugins install openclaw-codex-app-server
+```
 
-We prefer plugins that are useful, documented, and safe to operate.
+### DingTalk
+
+Enterprise robot integration using Stream mode. Supports text, images, and
+file messages via any DingTalk client.
+
+* **npm:** `@largezhou/ddingtalk`
+* **repo:** [github.com/largezhou/openclaw-dingtalk](https://github.com/largezhou/openclaw-dingtalk)
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw plugins install @largezhou/ddingtalk
+```
+
+### Lossless Claw (LCM)
+
+Lossless Context Management plugin for OpenClaw. DAG-based conversation
+summarization with incremental compaction — preserves full context fidelity
+while reducing token usage.
+
+* **npm:** `@martian-engineering/lossless-claw`
+* **repo:** [github.com/Martian-Engineering/lossless-claw](https://github.com/Martian-Engineering/lossless-claw)
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw plugins install @martian-engineering/lossless-claw
+```
+
+### Opik
+
+Official plugin that exports agent traces to Opik. Monitor agent behavior,
+cost, tokens, errors, and more.
+
+* **npm:** `@opik/opik-openclaw`
+* **repo:** [github.com/comet-ml/opik-openclaw](https://github.com/comet-ml/opik-openclaw)
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw plugins install @opik/opik-openclaw
+```
+
+### QQbot
+
+Connect OpenClaw to QQ via the QQ Bot API. Supports private chats, group
+mentions, channel messages, and rich media including voice, images, videos,
+and files.
+
+* **npm:** `@tencent-connect/openclaw-qqbot`
+* **repo:** [github.com/tencent-connect/openclaw-qqbot](https://github.com/tencent-connect/openclaw-qqbot)
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw plugins install @tencent-connect/openclaw-qqbot
+```
+
+### wecom
+
+WeCom channel plugin for OpenClaw by the Tencent WeCom team. Powered by
+WeCom Bot WebSocket persistent connections, it supports direct messages & group
+chats, streaming replies, proactive messaging, image/file processing, Markdown
+formatting, built-in access control, and document/meeting/messaging skills.
+
+* **npm:** `@wecom/wecom-openclaw-plugin`
+* **repo:** [github.com/WecomTeam/wecom-openclaw-plugin](https://github.com/WecomTeam/wecom-openclaw-plugin)
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw plugins install @wecom/wecom-openclaw-plugin
+```
+
+## Submit your plugin
+
+We welcome community plugins that are useful, documented, and safe to operate.
+
+<Steps>
+  <Step title="Publish to ClawHub or npm">
+    Your plugin must be installable via `openclaw plugins install \<package-name\>`.
+    Publish to [ClawHub](/tools/clawhub) (preferred) or npm.
+    See [Building Plugins](/plugins/building-plugins) for the full guide.
+  </Step>
+
+  <Step title="Host on GitHub">
+    Source code must be in a public repository with setup docs and an issue
+    tracker.
+  </Step>
+
+  <Step title="Open a PR">
+    Add your plugin to this page with:
+
+    * Plugin name
+    * npm package name
+    * GitHub repository URL
+    * One-line description
+    * Install command
+  </Step>
+</Steps>
+
+## Quality bar
+
+| Requirement                 | Why                                           |
+| --------------------------- | --------------------------------------------- |
+| Published on ClawHub or npm | Users need `openclaw plugins install` to work |
+| Public GitHub repo          | Source review, issue tracking, transparency   |
+| Setup and usage docs        | Users need to know how to configure it        |
+| Active maintenance          | Recent updates or responsive issue handling   |
+
 Low-effort wrappers, unclear ownership, or unmaintained packages may be declined.
 
-## Candidate format
+## Related
 
-Use this format when adding entries:
+* [Install and Configure Plugins](/tools/plugin) — how to install any plugin
+* [Building Plugins](/plugins/building-plugins) — create your own
+* [Plugin Manifest](/plugins/manifest) — manifest schema
 
-* **Plugin Name** — short description
-  npm: `@scope/package`
-  repo: `https://github.com/org/repo`
-  install: `openclaw plugins install @scope/package`
+
+Built with [Mintlify](https://mintlify.com).

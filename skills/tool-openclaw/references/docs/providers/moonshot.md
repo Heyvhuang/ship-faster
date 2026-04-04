@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/moonshot.md; fetched_at=2026-02-20T10:29:26.105Z; sha256=c64eb3bb59b045dc9f0ef33c608715848b3824d3f0b68a6f99f2987e1deb70f5; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/providers/moonshot.md; fetched_at=2026-04-04T20:36:07.573Z; sha256=211965ff4f7b3a8c2577c9cb45df853b38bb2162b7201f7056ed2dc9fd8f217f; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -10,21 +10,23 @@
 
 Moonshot provides the Kimi API with OpenAI-compatible endpoints. Configure the
 provider and set the default model to `moonshot/kimi-k2.5`, or use
-Kimi Coding with `kimi-coding/k2p5`.
+Kimi Coding with `kimi/kimi-code`.
 
 Current Kimi K2 model IDs:
 
-{/_moonshot-kimi-k2-ids:start_/ && null}
+[//]: # "moonshot-kimi-k2-ids:start"
 
 * `kimi-k2.5`
-* `kimi-k2-0905-preview`
-* `kimi-k2-turbo-preview`
 * `kimi-k2-thinking`
 * `kimi-k2-thinking-turbo`
-  {/_moonshot-kimi-k2-ids:end_/ && null}
+* `kimi-k2-turbo`
+
+[//]: # "moonshot-kimi-k2-ids:end"
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw onboard --auth-choice moonshot-api-key
+# or
+openclaw onboard --auth-choice moonshot-api-key-cn
 ```
 
 Kimi Coding:
@@ -33,7 +35,16 @@ Kimi Coding:
 openclaw onboard --auth-choice kimi-code-api-key
 ```
 
-Note: Moonshot and Kimi Coding are separate providers. Keys are not interchangeable, endpoints differ, and model refs differ (Moonshot uses `moonshot/...`, Kimi Coding uses `kimi-coding/...`).
+Note: Moonshot and Kimi Coding are separate providers. Keys are not interchangeable, endpoints differ, and model refs differ (Moonshot uses `moonshot/...`, Kimi Coding uses `kimi/...`).
+
+Kimi web search uses the Moonshot plugin too:
+
+```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+openclaw configure --section web
+```
+
+Choose **Kimi** in the web-search section to store
+`plugins.entries.moonshot.config.webSearch.*`.
 
 ## Config snippet (Moonshot API)
 
@@ -46,10 +57,9 @@ Note: Moonshot and Kimi Coding are separate providers. Keys are not interchangea
       models: {
         // moonshot-kimi-k2-aliases:start
         "moonshot/kimi-k2.5": { alias: "Kimi K2.5" },
-        "moonshot/kimi-k2-0905-preview": { alias: "Kimi K2" },
-        "moonshot/kimi-k2-turbo-preview": { alias: "Kimi K2 Turbo" },
         "moonshot/kimi-k2-thinking": { alias: "Kimi K2 Thinking" },
         "moonshot/kimi-k2-thinking-turbo": { alias: "Kimi K2 Thinking Turbo" },
+        "moonshot/kimi-k2-turbo": { alias: "Kimi K2 Turbo" },
         // moonshot-kimi-k2-aliases:end
       },
     },
@@ -67,28 +77,10 @@ Note: Moonshot and Kimi Coding are separate providers. Keys are not interchangea
             id: "kimi-k2.5",
             name: "Kimi K2.5",
             reasoning: false,
-            input: ["text"],
+            input: ["text", "image"],
             cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
-            contextWindow: 256000,
-            maxTokens: 8192,
-          },
-          {
-            id: "kimi-k2-0905-preview",
-            name: "Kimi K2 0905 Preview",
-            reasoning: false,
-            input: ["text"],
-            cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
-            contextWindow: 256000,
-            maxTokens: 8192,
-          },
-          {
-            id: "kimi-k2-turbo-preview",
-            name: "Kimi K2 Turbo",
-            reasoning: false,
-            input: ["text"],
-            cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
-            contextWindow: 256000,
-            maxTokens: 8192,
+            contextWindow: 262144,
+            maxTokens: 262144,
           },
           {
             id: "kimi-k2-thinking",
@@ -96,8 +88,8 @@ Note: Moonshot and Kimi Coding are separate providers. Keys are not interchangea
             reasoning: true,
             input: ["text"],
             cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
-            contextWindow: 256000,
-            maxTokens: 8192,
+            contextWindow: 262144,
+            maxTokens: 262144,
           },
           {
             id: "kimi-k2-thinking-turbo",
@@ -105,8 +97,17 @@ Note: Moonshot and Kimi Coding are separate providers. Keys are not interchangea
             reasoning: true,
             input: ["text"],
             cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+            contextWindow: 262144,
+            maxTokens: 262144,
+          },
+          {
+            id: "kimi-k2-turbo",
+            name: "Kimi K2 Turbo",
+            reasoning: false,
+            input: ["text"],
+            cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
             contextWindow: 256000,
-            maxTokens: 8192,
+            maxTokens: 16384,
           },
           // moonshot-kimi-k2-models:end
         ],
@@ -123,9 +124,48 @@ Note: Moonshot and Kimi Coding are separate providers. Keys are not interchangea
   env: { KIMI_API_KEY: "sk-..." },
   agents: {
     defaults: {
-      model: { primary: "kimi-coding/k2p5" },
+      model: { primary: "kimi/kimi-code" },
       models: {
-        "kimi-coding/k2p5": { alias: "Kimi K2.5" },
+        "kimi/kimi-code": { alias: "Kimi" },
+      },
+    },
+  },
+}
+```
+
+## Kimi web search
+
+OpenClaw also ships **Kimi** as a `web_search` provider, backed by Moonshot web
+search.
+
+Interactive setup can prompt for:
+
+* the Moonshot API region:
+  * `https://api.moonshot.ai/v1`
+  * `https://api.moonshot.cn/v1`
+* the default Kimi web-search model (defaults to `kimi-k2.5`)
+
+Config lives under `plugins.entries.moonshot.config.webSearch`:
+
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{
+  plugins: {
+    entries: {
+      moonshot: {
+        config: {
+          webSearch: {
+            apiKey: "sk-...", // or use KIMI_API_KEY / MOONSHOT_API_KEY
+            baseUrl: "https://api.moonshot.ai/v1",
+            model: "kimi-k2.5",
+          },
+        },
+      },
+    },
+  },
+  tools: {
+    web: {
+      search: {
+        provider: "kimi",
       },
     },
   },
@@ -134,8 +174,53 @@ Note: Moonshot and Kimi Coding are separate providers. Keys are not interchangea
 
 ## Notes
 
-* Moonshot model refs use `moonshot/<modelId>`. Kimi Coding model refs use `kimi-coding/<modelId>`.
+* Moonshot model refs use `moonshot/<modelId>`. Kimi Coding model refs use `kimi/<modelId>`.
+* Current Kimi Coding default model ref is `kimi/kimi-code`. Legacy `kimi/k2p5` remains accepted as a compatibility model id.
+* Kimi web search uses `KIMI_API_KEY` or `MOONSHOT_API_KEY`, and defaults to `https://api.moonshot.ai/v1` with model `kimi-k2.5`.
+* Native Moonshot endpoints (`https://api.moonshot.ai/v1` and
+  `https://api.moonshot.cn/v1`) advertise streaming usage compatibility on the
+  shared `openai-completions` transport. OpenClaw now keys that off endpoint
+  capabilities, so compatible custom provider ids targeting the same native
+  Moonshot hosts inherit the same streaming-usage behavior.
 * Override pricing and context metadata in `models.providers` if needed.
 * If Moonshot publishes different context limits for a model, adjust
   `contextWindow` accordingly.
 * Use `https://api.moonshot.ai/v1` for the international endpoint, and `https://api.moonshot.cn/v1` for the China endpoint.
+* Onboarding choices:
+  * `moonshot-api-key` for `https://api.moonshot.ai/v1`
+  * `moonshot-api-key-cn` for `https://api.moonshot.cn/v1`
+
+## Native thinking mode (Moonshot)
+
+Moonshot Kimi supports binary native thinking:
+
+* `thinking: { type: "enabled" }`
+* `thinking: { type: "disabled" }`
+
+Configure it per model via `agents.defaults.models.<provider/model>.params`:
+
+```json5  theme={"theme":{"light":"min-light","dark":"min-dark"}}
+{
+  agents: {
+    defaults: {
+      models: {
+        "moonshot/kimi-k2.5": {
+          params: {
+            thinking: { type: "disabled" },
+          },
+        },
+      },
+    },
+  },
+}
+```
+
+OpenClaw also maps runtime `/think` levels for Moonshot:
+
+* `/think off` -> `thinking.type=disabled`
+* any non-off thinking level -> `thinking.type=enabled`
+
+When Moonshot thinking is enabled, `tool_choice` must be `auto` or `none`. OpenClaw normalizes incompatible `tool_choice` values to `auto` for compatibility.
+
+
+Built with [Mintlify](https://mintlify.com).

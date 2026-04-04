@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/menu-bar.md; fetched_at=2026-02-20T10:29:24.504Z; sha256=2c66bc730dda506564bf963a2a81c8c4d86b69524885902d04ec13676e4f527f; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/platforms/mac/menu-bar.md; fetched_at=2026-04-04T20:36:07.241Z; sha256=2ddf296b9ca176a1a3e8e8506b950a533b407acebddf98ec060eca093618e5db; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -80,3 +80,6 @@
 * Start main while other active: icon flips to main instantly.
 * Rapid tool bursts: ensure badge does not flicker (TTL grace on tool results).
 * Health row reappears once all sessions idle.
+
+
+Built with [Mintlify](https://mintlify.com).

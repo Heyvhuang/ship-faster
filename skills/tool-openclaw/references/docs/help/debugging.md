@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/help/debugging.md; fetched_at=2026-02-20T10:29:21.080Z; sha256=09dd78933659428d0710ae76b5ad9c1a4b9afde7b9c4bb1bcbf94b6ce9b9b1bd; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/help/debugging.md; fetched_at=2026-04-04T20:36:06.693Z; sha256=a7795b342f92252e551988a74d95f19193e2a5ceb791788220458e6bdabdf422; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -39,11 +39,17 @@ pnpm gateway:watch
 This maps to:
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-node --watch-path src --watch-path tsconfig.json --watch-path package.json --watch-preserve-output scripts/run-node.mjs gateway --force
+node scripts/watch-node.mjs gateway --force
 ```
 
-Add any gateway CLI flags after `gateway:watch` and they will be passed through
-on each restart.
+The watcher restarts on build-relevant files under `src/`, extension source files,
+extension `package.json` and `openclaw.plugin.json` metadata, `tsconfig.json`,
+`package.json`, and `tsdown.config.ts`. Extension metadata changes restart the
+gateway without forcing a `tsdown` rebuild; source and config changes still
+rebuild `dist` first.
+
+Add any gateway CLI flags after `gateway:watch` and they will be passed through on
+each restart.
 
 ## Dev profile + dev gateway (--dev)
 
@@ -159,3 +165,6 @@ Default file:
 * Raw stream logs can include full prompts, tool output, and user data.
 * Keep logs local and delete them after debugging.
 * If you share logs, scrub secrets and PII first.
+
+
+Built with [Mintlify](https://mintlify.com).

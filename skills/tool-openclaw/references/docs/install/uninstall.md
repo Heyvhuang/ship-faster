@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/uninstall.md; fetched_at=2026-02-20T10:29:22.915Z; sha256=e4b328c4a045fc5f1e6c69c463cb7e1ac96a25ea3d3938bd732b2a282e637a8a; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/install/uninstall.md; fetched_at=2026-04-04T20:36:07.016Z; sha256=6a13b90c2530fc8040a75a96dfbee540f49887c41b8a5b2858be82ae35616ba0; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -81,14 +81,14 @@ Use this if the gateway service keeps running but `openclaw` is missing.
 
 ### macOS (launchd)
 
-Default label is `bot.molt.gateway` (or `bot.molt.<profile>`; legacy `com.openclaw.*` may still exist):
+Default label is `ai.openclaw.gateway` (or `ai.openclaw.<profile>`; legacy `com.openclaw.*` may still exist):
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
-launchctl bootout gui/$UID/bot.molt.gateway
-rm -f ~/Library/LaunchAgents/bot.molt.gateway.plist
+launchctl bootout gui/$UID/ai.openclaw.gateway
+rm -f ~/Library/LaunchAgents/ai.openclaw.gateway.plist
 ```
 
-If you used a profile, replace the label and plist name with `bot.molt.<profile>`. Remove any legacy `com.openclaw.*` plists if present.
+If you used a profile, replace the label and plist name with `ai.openclaw.<profile>`. Remove any legacy `com.openclaw.*` plists if present.
 
 ### Linux (systemd user unit)
 
@@ -126,3 +126,6 @@ If you run from a repo checkout (`git clone` + `openclaw ...` / `bun run opencla
 1. Uninstall the gateway service **before** deleting the repo (use the easy path above or manual service removal).
 2. Delete the repo directory.
 3. Remove state + workspace as shown above.
+
+
+Built with [Mintlify](https://mintlify.com).

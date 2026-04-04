@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/security/formal-verification.md; fetched_at=2026-02-20T10:29:27.695Z; sha256=2545055cbf3201f89b9fedce69c72387a1c2f8302368a7c6c4c1f99a3881d86e; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/security/formal-verification.md; fetched_at=2026-04-04T20:36:08.005Z; sha256=b8d809062e98229e09ca21934f44bd8fc492d540c32e50c6bda4ec0d27f620e2; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -64,9 +64,9 @@ make <target>
 
 See also: `docs/gateway-exposure-matrix.md` in the models repo.
 
-### Nodes.run pipeline (highest-risk capability)
+### Node exec pipeline (highest-risk capability)
 
-**Claim:** `nodes.run` requires (a) node command allowlist plus declared commands and (b) live approval when configured; approvals are tokenized to prevent replay (in the model).
+**Claim:** `exec host=node` requires (a) node command allowlist plus declared commands and (b) live approval when configured; approvals are tokenized to prevent replay (in the model).
 
 * Green runs:
   * `make nodes-pipeline`
@@ -171,3 +171,6 @@ What it means:
 * Red (expected):
   * `make routing-precedence-negative`
   * `make routing-identitylinks-negative`
+
+
+Built with [Mintlify](https://mintlify.com).

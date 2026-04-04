@@ -1,6 +1,6 @@
 ---
 name: tool-openclaw
-description: "Help users install, configure, and operate OpenClaw (gateway, channels, nodes, plugins). Use when answering OpenClaw setup/debug questions; use the local docs snapshot bundled with this skill as the source of truth. Triggers: openclaw, clawdbot, clawd, clawdhub, gateway, onboard, channels login, whatsapp, telegram, discord, mattermost, pairing, nodes, sandboxing, tailscale."
+description: "Help users install, configure, operate, and migrate OpenClaw (gateway, channels, nodes, plugins, model/auth setup). Use when answering OpenClaw setup/debug questions or model migration questions; use the local docs snapshot bundled with this skill as the source of truth. Triggers: openclaw, clawdbot, clawd, clawdhub, gateway, onboard, channels login, whatsapp, telegram, discord, mattermost, pairing, nodes, sandboxing, tailscale, provider migration, Claude to GPT, model swap."
 ---
 
 # OpenClaw Expert
@@ -15,6 +15,7 @@ Reads (primary):
 
 - `references/docs/**` (offline mirror of `https://docs.openclaw.ai/*.md`)
 - `references/entrypoints.md` (curated map)
+- `references/model-migration-audit.md` (short + full audit prompts and report shape for provider/model migrations)
 - `references/troubleshooting.md` (routing/playbook)
 
 Writes:
@@ -32,6 +33,7 @@ Writes:
 - nodes / web surfaces
 - remote access (ssh/tailscale)
 - auth / oauth
+- model migration / provider swap
 - sandboxing / tools policy
 
 2) Search the snapshot before responding.
@@ -41,6 +43,15 @@ Writes:
 - Open 1-2 relevant pages and extract the exact command/config fields.
 
 3) Respond using the template below and cite the docs you consulted.
+
+4) If the user is asking about a model/provider migration:
+
+- inspect the local environment before recommending changes
+- identify current model paths, auth mode, and meaningful agent/runtime lanes
+- separate public personas from backing runtimes and service accounts
+- assess migration as a lane problem, not just a model-id problem
+- use `references/model-migration-audit.md` for the short prompt, full prompt, and report shape
+- keep the operator-facing prompt short; let this skill carry the workflow
 
 ## Safety Notes (Required)
 
@@ -82,7 +93,16 @@ If the snapshot looks stale or missing pages, refresh it (see `references/docs_s
 
 - `references/docs/start/getting-started.md`
 - `references/docs/start/wizard.md`
+- `references/docs/start/wizard-cli-reference.md`
 - `references/docs/gateway/configuration.md`
+- `references/docs/gateway/authentication.md`
+- `references/docs/gateway/cli-backends.md`
+- `references/docs/providers/anthropic.md`
+- `references/docs/providers/openai.md`
+- `references/docs/providers/minimax.md`
+- `references/docs/providers/zai.md`
+- `references/docs/concepts/oauth.md`
+- `references/docs/concepts/agent-workspace.md`
 - `references/docs/gateway/troubleshooting.md`
 - `references/docs/help/troubleshooting.md`
 
@@ -173,5 +193,6 @@ Install found skills: `npx clawdhub@latest install <skill-slug>`
 ## Resources
 
 - Curated map into the snapshot: `references/entrypoints.md`
+- Migration audit prompts + report shape: `references/model-migration-audit.md`
 - Troubleshooting playbook: `references/troubleshooting.md`
 - Snapshot notes + refresh: `references/docs_snapshot.md`

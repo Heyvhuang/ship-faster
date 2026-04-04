@@ -1,4 +1,4 @@
-<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/onboarding-overview.md; fetched_at=2026-02-20T10:29:28.215Z; sha256=e4891279f4e672f9da7e3f45f6df9dedbfdc39e617f76588146d3ce6bcc59c54; content_type=text/markdown; charset=utf-8; status=ok -->
+<!-- SNAPSHOT: source_url=https://docs.openclaw.ai/start/onboarding-overview.md; fetched_at=2026-04-04T20:36:08.045Z; sha256=6a25cb301c046d1f39b052d8cb696df5eab10862d461a5ce9d1166f878f75754; content_type=text/markdown; charset=utf-8; status=ok -->
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://docs.openclaw.ai/llms.txt
@@ -8,43 +8,64 @@
 
 # Onboarding Overview
 
-OpenClaw supports multiple onboarding paths depending on where the Gateway runs
-and how you prefer to configure providers.
+OpenClaw has two onboarding paths. Both configure auth, the Gateway, and
+optional chat channels — they just differ in how you interact with the setup.
 
-## Choose your onboarding path
+## Which path should I use?
 
-* **CLI wizard** for macOS, Linux, and Windows (via WSL2).
-* **macOS app** for a guided first run on Apple silicon or Intel Macs.
+|                | CLI onboarding                         | macOS app onboarding      |
+| -------------- | -------------------------------------- | ------------------------- |
+| **Platforms**  | macOS, Linux, Windows (native or WSL2) | macOS only                |
+| **Interface**  | Terminal wizard                        | Guided UI in the app      |
+| **Best for**   | Servers, headless, full control        | Desktop Mac, visual setup |
+| **Automation** | `--non-interactive` for scripts        | Manual only               |
+| **Command**    | `openclaw onboard`                     | Launch the app            |
 
-## CLI onboarding wizard
+Most users should start with **CLI onboarding** — it works everywhere and gives
+you the most control.
 
-Run the wizard in a terminal:
+## What onboarding configures
+
+Regardless of which path you choose, onboarding sets up:
+
+1. **Model provider and auth** — API key, OAuth, or setup token for your chosen provider
+2. **Workspace** — directory for agent files, bootstrap templates, and memory
+3. **Gateway** — port, bind address, auth mode
+4. **Channels** (optional) — built-in and bundled chat channels such as
+   BlueBubbles, Discord, Feishu, Google Chat, Mattermost, Microsoft Teams,
+   Telegram, WhatsApp, and more
+5. **Daemon** (optional) — background service so the Gateway starts automatically
+
+## CLI onboarding
+
+Run in any terminal:
 
 ```bash  theme={"theme":{"light":"min-light","dark":"min-dark"}}
 openclaw onboard
 ```
 
-Use the CLI wizard when you want full control of the Gateway, workspace,
-channels, and skills. Docs:
+Add `--install-daemon` to also install the background service in one step.
 
-* [Onboarding Wizard (CLI)](/start/wizard)
-* [`openclaw onboard` command](/cli/onboard)
+Full reference: [Onboarding (CLI)](/start/wizard)
+CLI command docs: [`openclaw onboard`](/cli/onboard)
 
 ## macOS app onboarding
 
-Use the OpenClaw app when you want a fully guided setup on macOS. Docs:
+Open the OpenClaw app. The first-run wizard walks you through the same steps
+with a visual interface.
 
-* [Onboarding (macOS App)](/start/onboarding)
+Full reference: [Onboarding (macOS App)](/start/onboarding)
 
-## Custom Provider
+## Custom or unlisted providers
 
-If you need an endpoint that is not listed, including hosted providers that
-expose standard OpenAI or Anthropic APIs, choose **Custom Provider** in the
-CLI wizard. You will be asked to:
+If your provider is not listed in onboarding, choose **Custom Provider** and
+enter:
 
-* Pick OpenAI-compatible, Anthropic-compatible, or **Unknown** (auto-detect).
-* Enter a base URL and API key (if required by the provider).
-* Provide a model ID and optional alias.
-* Choose an Endpoint ID so multiple custom endpoints can coexist.
+* API compatibility mode (OpenAI-compatible, Anthropic-compatible, or auto-detect)
+* Base URL and API key
+* Model ID and optional alias
 
-For detailed steps, follow the CLI onboarding docs above.
+Multiple custom endpoints can coexist — each gets its own endpoint ID.
+
+
+Built with [Mintlify](https://mintlify.com).
