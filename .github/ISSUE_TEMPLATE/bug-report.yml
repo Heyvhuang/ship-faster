@@ -1,0 +1,11 @@
+name: Bug report
+description: Report a broken pack, doc, or example
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+    validations:
+      required: true

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "shape": "agent",
+  "slug": "timeline-forager",
+  "name": "Timeline Forager",
+  "category": "creator",
+  "description": "Turn a messy timeline or niche into a ranked list of article angles, evidence, and launch hooks.",
+  "audience": "Founders and creators who need proof-backed angles before writing on X.",
+  "sourceRecord": "seed:builder-pack:timeline-forager",
+  "generatedBy": "voxyz-ship-faster-export"
+}

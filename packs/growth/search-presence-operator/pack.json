@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "shape": "agent",
+  "slug": "search-presence-operator",
+  "name": "Search Presence Operator",
+  "category": "growth",
+  "description": "Turn product truth into directories, comparison pages, answer pages, and measurement hooks.",
+  "audience": "Indie products that need useful SEO/GEO assets without content spam.",
+  "sourceRecord": "seed:builder-pack:search-presence-operator",
+  "generatedBy": "voxyz-ship-faster-export"
+}

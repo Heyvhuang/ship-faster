@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "shape": "agent",
+  "slug": "codebase-cartographer",
+  "name": "Codebase Cartographer",
+  "category": "developer",
+  "description": "Map the product surface, key files, commands, risks, and first safe change in one pass.",
+  "audience": "Builders joining an unfamiliar repo or preparing an AI coding session.",
+  "sourceRecord": "seed:builder-pack:codebase-cartographer",
+  "generatedBy": "voxyz-ship-faster-export"
+}

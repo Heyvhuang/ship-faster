@@ -1,0 +1,12 @@
+name: Pack request
+description: Request a new Agent Pack
+title: "Pack request: "
+labels: ["pack-request"]
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: What should this pack help a builder finish?
+    validations:
+      required: true
