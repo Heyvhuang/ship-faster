@@ -1,5 +1,7 @@
 # Examples
 
-No shipped public examples are exported yet.
+This folder is for curated outputs and approved source briefs.
 
-Ship Faster defaults to shipped `real_build` proof from Voxyz Radar. Until an example is approved, use the packs and the brief-to-HTML tool as the active surface.
+Raw static HTML pages generated from Voxyz Radar live in [`generated-sites/`](../generated-sites/). Those files are source proof for live demos, not cloneable starter templates.
+
+For reusable work, start from [`packs/`](../packs/) or [`tools/brief-to-html-page/`](../tools/brief-to-html-page/).

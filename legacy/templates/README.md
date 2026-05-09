@@ -1,6 +1,8 @@
-# Templates
+# Legacy Templates
 
-Templates are runnable, full projects you can start from. Each template is self-contained and includes its own entry documentation.
+These are archived runnable projects kept for history. Each project is self-contained and includes its own entry documentation.
+
+New reusable work should start from [`packs/`](../../packs/), [`tools/`](../../tools/), or curated [`examples/`](../../examples/). Radar-generated static source files live in [`generated-sites/`](../../generated-sites/) and are not starter templates.
 
 ## Available templates
 
@@ -124,10 +126,10 @@ Templates are runnable, full projects you can start from. Each template is self-
 
 ## Usage
 
-1. Enter a template directory (example: `templates/001-copyback-studio`).
+1. Enter a legacy template directory (example: `legacy/templates/001-copyback-studio`).
 2. Follow the template README for install/build instructions.
 
 ## Back
 
-- Repo home: [`../`](../)
-- Skills index: [`../skills/`](../skills/)
+- Repo home: [`../../`](../../)
+- Packs: [`../../packs/`](../../packs/)

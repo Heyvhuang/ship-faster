@@ -16,7 +16,8 @@ demand signal
 | Need | Go |
 |------|----|
 | Use a serious builder pack | [Packs](./packs/) |
-| See shipped outputs | [Examples](./examples/) |
+| See curated examples and briefs | [Examples](./examples/) |
+| Inspect Radar-generated HTML sources | [Generated Sites](./generated-sites/) |
 | Turn a brief into a simple page | [Brief to HTML Page](./tools/brief-to-html-page/) |
 | Understand the pack shape | [What is an Agent Pack?](./docs/what-is-an-agent-pack.md) |
 | Run with Codex | [Codex guide](./docs/run-with-codex.md) |
@@ -42,9 +43,10 @@ demand signal
 ```text
 packs/      open agent packs
 examples/   shipped outputs and approved source briefs
+generated-sites/ Radar/tool-generated static HTML sources; not starter templates
 tools/      small public utilities
 docs/       usage notes
 legacy/     old skills/templates kept for history
 ```
 
-The old root `skills/`, `templates/`, and `pixel-office-kit/` paths are archived under `legacy/`. New work should start from `packs/`, `examples/`, and `tools/`.
+The old root `skills/`, `templates/`, and `pixel-office-kit/` paths are archived under `legacy/`. New reusable work should start from `packs/`, `examples/`, and `tools/`; generated proof pages live under `generated-sites/`.
