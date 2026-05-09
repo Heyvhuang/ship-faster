@@ -1,0 +1,21 @@
+{
+  "proof_version": 1,
+  "capsule_id": "agent-eval-regression-inbox-0aadc761",
+  "radar_hotspot_id": "h2026050903",
+  "radar_artifact_id": "704b5b04-ae00-49f5-b704-54e857c6500e",
+  "stage": "shipped",
+  "source_kind": "real_build",
+  "source_hash": "c83e12a0f1fff960fff48e4a",
+  "voxyz_url": "https://www.voxyz.ai/radar?hotspot=h2026050903",
+  "ship_faster_path": "examples/agent-eval-regression-inbox-0aadc761/",
+  "github_url": null,
+  "gate_version": "ship-faster-auto-gate-2026-05-09",
+  "gate_status": "eligible",
+  "redaction_status": "not_required",
+  "utm_campaign": "ship_faster_proof_capsule",
+  "cta_targets": [
+    "https://www.voxyz.ai/radar?hotspot=h2026050903",
+    "https://h2026050903-1778342657002.vercel.app/"
+  ],
+  "exported_at": null
+}

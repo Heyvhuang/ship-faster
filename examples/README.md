@@ -1,7 +1,7 @@
 # Examples
 
-This folder is for curated outputs and approved source briefs.
+These are shipped outputs exported from Voxyz proof records.
 
-Raw static HTML pages generated from Voxyz Radar live in [`generated-sites/`](../generated-sites/). Those files are source proof for live demos, not cloneable starter templates.
-
-For reusable work, start from [`packs/`](../packs/) or [`tools/brief-to-html-page/`](../tools/brief-to-html-page/).
+| Example | Output | Source |
+|---------|--------|--------|
+| [Agent Eval Regression Inbox](./agent-eval-regression-inbox-0aadc761/README.md) | [Visit Site](https://h2026050903-1778342657002.vercel.app/) | 704b5b04-ae00-49f5-b704-54e857c6500e |
