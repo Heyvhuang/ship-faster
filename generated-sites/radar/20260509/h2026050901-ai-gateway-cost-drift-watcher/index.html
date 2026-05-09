@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Gateway Cost Drift Watcher | Precision Monitoring</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#0d1c2d",
+                        "surface-bright": "#363942",
+                        "surface-tint": "#b0c6ff",
+                        "primary-fixed-dim": "#b0c6ff",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e0e2ee",
+                        "on-primary-container": "#002661",
+                        "inverse-primary": "#0058cb",
+                        "tertiary-fixed-dim": "#ffb599",
+                        "on-surface-variant": "#c2c6d8",
+                        "on-tertiary": "#5a1c00",
+                        "secondary-fixed": "#d4e4fa",
+                        "on-primary-fixed": "#001945",
+                        "surface-container": "#1c1f28",
+                        "surface-dim": "#10131b",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#2d3039",
+                        "primary-container": "#568dff",
+                        "on-surface": "#e0e2ee",
+                        "primary": "#b0c6ff",
+                        "secondary": "#b9c8de",
+                        "on-secondary": "#233143",
+                        "surface-container-low": "#181b24",
+                        "secondary-container": "#39485a",
+                        "tertiary-fixed": "#ffdbce",
+                        "on-primary": "#002d6f",
+                        "error-container": "#93000a",
+                        "on-background": "#e0e2ee",
+                        "on-tertiary-container": "#4f1700",
+                        "tertiary-container": "#f36420",
+                        "on-tertiary-fixed": "#370e00",
+                        "background": "#10131b",
+                        "tertiary": "#ffb599",
+                        "secondary-fixed-dim": "#b9c8de",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed-variant": "#39485a",
+                        "on-primary-fixed-variant": "#00429c",
+                        "primary-fixed": "#d9e2ff",
+                        "outline": "#8c90a1",
+                        "on-tertiary-fixed-variant": "#7f2b00",
+                        "on-secondary-container": "#a7b6cc",
+                        "surface-variant": "#32353e",
+                        "surface": "#10131b",
+                        "surface-container-highest": "#32353e",
+                        "outline-variant": "#424655",
+                        "surface-container-lowest": "#0b0e16",
+                        "surface-container-high": "#272a33"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "margin-mobile": "16px",
+                        "md": "24px",
+                        "xl": "64px",
+                        "xs": "4px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Geist"],
+                        "label-sm": ["JetBrains Mono"],
+                        "display-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #10131b;
+            color: #e0e2ee;
+            font-family: 'Geist', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-card {
+            background: rgba(28, 31, 40, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(66, 70, 85, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- TopNavBar -->
+<nav class="bg-surface-container fixed top-0 w-full z-50 border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-20 max-w-screen-2xl mx-auto">
+<div class="font-headline-md text-headline-md font-semibold text-on-surface">AI Gateway</div>
+<div class="hidden md:flex gap-lg">
+<a class="text-primary border-b-2 border-primary pb-1 font-body-md" href="#">Product</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Pricing</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Docs</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Enterprise</a>
+</div>
+<div class="flex gap-md">
+<button class="text-on-surface-variant font-body-md hover:text-on-surface transition-colors">Log In</button>
+<button class="bg-primary text-on-primary px-24px py-base font-label-md rounded-lg hover:opacity-90 transition-opacity">Get Started</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative overflow-hidden px-margin-mobile md:px-margin-desktop py-xl md:py-[120px] flex flex-col items-center text-center max-w-screen-xl mx-auto">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-10 pointer-events-none">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
+</div>
+<div class="inline-flex items-center gap-xs px-sm py-xs bg-secondary-container rounded-full text-primary-fixed mb-md border border-outline-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-sm text-label-sm">v2.4 Just Released: Advanced Drift Detection</span>
+</div>
+<h1 class="font-display-lg text-display-lg max-w-4xl tracking-tight mb-md">AI Gateway Cost Drift Watcher</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-lg">
+                Stop spending surprises. Real-time drift monitoring for Vercel AI Gateway users. Get granular visibility into your LLM pipeline before the invoice arrives.
+            </p>
+<div class="flex flex-col md:flex-row gap-md">
+<button class="bg-primary text-on-primary px-lg py-md rounded-xl font-label-md text-headline-md active:scale-95 transition-transform shadow-lg shadow-primary/10">Start monitoring</button>
+<button class="bg-surface-container text-on-surface border border-outline-variant px-lg py-md rounded-xl font-label-md active:scale-95 transition-transform hover:bg-surface-container-high transition-colors">View sample report</button>
+</div>
+</section>
+<!-- Dashboard Preview (Bento/Card) -->
+<section class="px-margin-mobile md:px-margin-desktop mb-xl max-w-screen-2xl mx-auto">
+<div class="surface-container rounded-xl border border-outline-variant p-md md:p-lg shadow-2xl relative">
+<!-- Dashboard Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-lg border-b border-outline-variant pb-md">
+<div class="flex items-center gap-md">
+<div class="w-base h-base bg-error rounded-full animate-pulse"></div>
+<h3 class="font-headline-md text-headline-md">Live Dashboard</h3>
+<span class="bg-surface-container-high text-on-surface-variant px-sm py-xs rounded font-label-sm border border-outline-variant">ID: VC-GW-092</span>
+</div>
+<div class="flex gap-sm">
+<div class="glass-card px-md py-sm rounded-lg flex flex-col">
+<span class="text-label-sm text-on-surface-variant">BUDGET RISK</span>
+<span class="text-error font-headline-md">HIGH</span>
+</div>
+<div class="glass-card px-md py-sm rounded-lg flex flex-col">
+<span class="text-label-sm text-on-surface-variant">DAILY SPEND</span>
+<span class="text-primary font-headline-md">$1,240.12</span>
+</div>
+</div>
+</div>
+<!-- Dashboard Content -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Daily Spend Chart -->
+<div class="md:col-span-8 bg-surface-container-low rounded-xl p-md border border-outline-variant flex flex-col min-h-[300px]">
+<div class="flex justify-between mb-md">
+<span class="font-label-md text-on-surface">Daily Spend Trend</span>
+<span class="text-error text-label-sm flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> +14% above baseline</span>
+</div>
+<div class="flex-grow relative flex items-end gap-[2%] pt-md">
+<div class="w-[8%] bg-primary-container/20 h-[40%] rounded-t-sm"></div>
+<div class="w-[8%] bg-primary-container/20 h-[45%] rounded-t-sm"></div>
+<div class="w-[8%] bg-primary-container/20 h-[38%] rounded-t-sm"></div>
+<div class="w-[8%] bg-primary-container/20 h-[50%] rounded-t-sm"></div>
+<div class="w-[8%] bg-primary-container/40 h-[65%] rounded-t-sm"></div>
+<div class="w-[8%] bg-primary h-[85%] rounded-t-sm relative">
+<div class="absolute -top-base left-1/2 -translate-x-1/2 w-2 h-2 bg-error rounded-full border-2 border-white"></div>
+</div>
+<div class="w-[8%] bg-primary h-[95%] rounded-t-sm border-t-2 border-error"></div>
+<div class="absolute w-full h-[1px] bg-error/30 top-[40%] border-dashed border-t border-error"></div>
+</div>
+</div>
+<!-- Model Mix Donut -->
+<div class="md:col-span-4 bg-surface-container-low rounded-xl p-md border border-outline-variant flex flex-col items-center justify-center min-h-[300px]">
+<span class="font-label-md text-on-surface self-start mb-md">Model/Provider Mix</span>
+<div class="relative w-32 h-32 md:w-48 md:h-48 rounded-full border-[12px] md:border-[20px] border-surface-container-highest flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-[12px] md:border-[20px] border-primary border-r-transparent border-b-transparent rotate-12"></div>
+<div class="absolute inset-0 rounded-full border-[12px] md:border-[20px] border-tertiary border-l-transparent border-t-transparent -rotate-45"></div>
+<div class="text-center">
+<span class="font-label-sm text-on-surface-variant block uppercase">Total</span>
+<span class="font-headline-md text-on-surface">3.2M req</span>
+</div>
+</div>
+<div class="mt-md w-full grid grid-cols-2 gap-sm">
+<div class="flex items-center gap-xs text-label-sm"><div class="w-xs h-xs bg-primary rounded-full"></div> GPT-4o (64%)</div>
+<div class="flex items-center gap-xs text-label-sm"><div class="w-xs h-xs bg-tertiary rounded-full"></div> Claude 3.5 (28%)</div>
+</div>
+</div>
+<!-- Latency Bar -->
+<div class="md:col-span-12 bg-surface-container-low rounded-xl p-md border border-outline-variant">
+<span class="font-label-md text-on-surface mb-md block">Latency Benchmarking (P95 ms)</span>
+<div class="space-y-sm">
+<div class="flex items-center gap-md">
+<span class="w-24 text-label-sm text-on-surface-variant">US-East-1</span>
+<div class="flex-grow bg-surface-container-highest h-base rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[45%]"></div>
+</div>
+<span class="font-label-sm text-on-surface w-12">420ms</span>
+</div>
+<div class="flex items-center gap-md">
+<span class="w-24 text-label-sm text-on-surface-variant">EU-West-1</span>
+<div class="flex-grow bg-surface-container-highest h-base rounded-full overflow-hidden">
+<div class="bg-error h-full w-[85%]"></div>
+</div>
+<span class="font-label-sm text-error w-12">1240ms</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Evidence Strip -->
+<section class="bg-surface-dim py-lg border-y border-outline-variant">
+<div class="px-margin-mobile md:px-margin-desktop flex flex-wrap justify-center items-center gap-xl opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="cloud_queue">cloud_queue</span>
+<span class="font-headline-md font-bold text-on-surface">Vercel</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+<span class="font-headline-md font-bold text-on-surface">OpenAI</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span class="font-headline-md font-bold text-on-surface">Anthropic</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+<span class="font-headline-md font-bold text-on-surface">LangChain</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="memory">memory</span>
+<span class="font-headline-md font-bold text-on-surface">LlamaIndex</span>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="px-margin-mobile md:px-margin-desktop py-xl max-w-screen-2xl mx-auto">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg mb-md">Technical Precision in Every Metric</h2>
+<p class="font-body-md text-on-surface-variant">Deep observability purpose-built for the AI Gateway architecture.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="glass-card p-lg rounded-xl flex flex-col gap-md">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="query_stats">query_stats</span>
+<h3 class="font-headline-md text-headline-md">Provider Mix Tracking</h3>
+<p class="font-body-md text-on-surface-variant">Monitor unplanned shifts between OpenAI, Anthropic, and Llama that occur during automated fallback events.</p>
+</div>
+<div class="glass-card p-lg rounded-xl flex flex-col gap-md">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="speed">speed</span>
+<h3 class="font-headline-md text-headline-md">Latency Benchmarking</h3>
+<p class="font-body-md text-on-surface-variant">Identify performance degradation in real-time. Detect slow providers before they impact your user experience.</p>
+</div>
+<div class="glass-card p-lg rounded-xl flex flex-col gap-md">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="account_tree">account_tree</span>
+<h3 class="font-headline-md text-headline-md">Fallback Analysis</h3>
+<p class="font-body-md text-on-surface-variant">Track how often high-cost fallbacks are triggered and calculate the true cost of reliability.</p>
+</div>
+<div class="glass-card p-lg rounded-xl flex flex-col gap-md">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="gpp_maybe">gpp_maybe</span>
+<h3 class="font-headline-md text-headline-md">Budget Guardrails</h3>
+<p class="font-body-md text-on-surface-variant">Get notified instantly via Slack or PagerDuty before you hit your spend limits or daily quotas.</p>
+</div>
+</div>
+</section>
+<!-- Workflow Section -->
+<section class="bg-surface-container-low py-xl px-margin-mobile md:px-margin-desktop border-y border-outline-variant">
+<div class="max-w-screen-xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg mb-xl text-center">Intelligent Drift Response</h2>
+<div class="flex flex-col md:flex-row justify-between items-center gap-xl relative">
+<!-- Connector Line -->
+<div class="hidden md:block absolute top-12 left-0 w-full h-xs bg-outline-variant/30 -z-0"></div>
+<div class="flex flex-col items-center gap-md z-10 text-center">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center border-2 border-primary text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="search_check">search_check</span>
+</div>
+<div>
+<p class="font-label-sm text-primary mb-xs">STEP 1</p>
+<h4 class="font-headline-md text-on-surface">Detect Drift</h4>
+</div>
+</div>
+<div class="flex flex-col items-center gap-md z-10 text-center">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center border-2 border-primary text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="analytics">analytics</span>
+</div>
+<div>
+<p class="font-label-sm text-primary mb-xs">STEP 2</p>
+<h4 class="font-headline-md text-on-surface">Analyze Cause</h4>
+</div>
+</div>
+<div class="flex flex-col items-center gap-md z-10 text-center">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center border-2 border-primary text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="notifications_active">notifications_active</span>
+</div>
+<div>
+<p class="font-label-sm text-primary mb-xs">STEP 3</p>
+<h4 class="font-headline-md text-on-surface">Notify Team</h4>
+</div>
+</div>
+<div class="flex flex-col items-center gap-md z-10 text-center">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center border-2 border-tertiary text-tertiary">
+<span class="material-symbols-outlined text-[32px]" data-icon="settings_suggest">settings_suggest</span>
+</div>
+<div>
+<p class="font-label-sm text-tertiary mb-xs">STEP 4</p>
+<h4 class="font-headline-md text-on-surface">Auto-Adjust</h4>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-xl max-w-screen-2xl mx-auto">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg mb-md">Scalable Precision Pricing</h2>
+<p class="font-body-md text-on-surface-variant">Simple usage-based plans that grow with your AI operations.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter items-end">
+<!-- Free -->
+<div class="bg-surface-container p-lg rounded-xl border border-outline-variant flex flex-col gap-md">
+<span class="font-label-md text-on-surface-variant">FREE</span>
+<h3 class="font-display-lg text-display-lg">$0<span class="text-headline-md font-body-md">/mo</span></h3>
+<ul class="space-y-sm font-body-md text-on-surface-variant">
+<li class="flex gap-sm items-center"><span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span> 100k requests/mo</li>
+<li class="flex gap-sm items-center"><span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span> 24h retention</li>
+<li class="flex gap-sm items-center"><span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span> Email Alerts</li>
+</ul>
+<button class="w-full py-md border border-outline-variant rounded-lg font-label-md hover:bg-surface-container-high transition-colors">Choose Free</button>
+</div>
+<!-- Pro -->
+<div class="bg-surface-container p-lg rounded-xl border-2 border-primary flex flex-col gap-md relative scale-105 shadow-2xl">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-sm py-xs rounded-full font-label-sm">MOST POPULAR</div>
+<span class="font-label-md text-primary">PRO</span>
+<h3 class="font-display-lg text-display-lg">$49<span class="text-headline-md font-body-md">/mo</span></h3>
+<ul class="space-y-sm font-body-md text-on-surface">
+<li class="flex gap-sm items-center"><span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span> 5M requests/mo</li>
+<li class="flex gap-sm items-center"><span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span> 30-day retention</li>
+<li class="flex gap-sm items-center"><span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span> Slack &amp; PagerDuty</li>
+<li class="flex gap-sm items-center"><span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span> Custom Drift Baselines</li>
+</ul>
+<button class="w-full py-md bg-primary text-on-primary rounded-lg font-label-md hover:opacity-90 transition-opacity">Start Pro Trial</button>
+</div>
+<!-- Enterprise -->
+<div class="bg-surface-container p-lg rounded-xl border border-outline-variant flex flex-col gap-md">
+<span class="font-label-md text-on-surface-variant">ENTERPRISE</span>
+<h3 class="font-display-lg text-display-lg">Custom</h3>
+<ul class="space-y-sm font-body-md text-on-surface-variant">
+<li class="flex gap-sm items-center"><span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span> Unlimited requests</li>
+<li class="flex gap-sm items-center"><span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span> 1-year retention</li>
+<li class="flex gap-sm items-center"><span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span> Auto-Correction Hooks</li>
+</ul>
+<button class="w-full py-md border border-outline-variant rounded-lg font-label-md hover:bg-surface-container-high transition-colors">Contact Sales</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-xl flex flex-col md:flex-row justify-between items-center gap-md border-t border-outline-variant bg-surface-dim">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">AI Gateway</span>
+<p class="font-body-md text-on-surface-variant text-center md:text-left opacity-80">© 2024 AI Gateway. Precision monitoring for LLM operations.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="text-on-surface-variant font-label-sm hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-label-sm hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-label-sm hover:text-on-surface transition-colors" href="#">Status</a>
+<a class="text-on-surface-variant font-label-sm hover:text-on-surface transition-colors" href="#">Contact</a>
+<a class="text-on-surface-variant font-label-sm hover:text-on-surface transition-colors" href="#">Security</a>
+</div>
+</footer>
+</body></html>

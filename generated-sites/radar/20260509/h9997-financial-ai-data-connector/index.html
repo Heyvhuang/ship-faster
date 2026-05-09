@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MarketPipe - Financial AI Data Connector</title>
+  <meta name="description" content="SEC filings, transcripts, and fundamentals as cited JSON for finance agents." />
+  <meta property="og:title" content="MarketPipe - Financial AI Data Connector" />
+  <meta property="og:description" content="SEC filings, transcripts, and fundamentals as cited JSON for finance agents." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap');
+    :root { --ink:#07110d; --muted:#526159; --paper:#fbfaf1; --panel:#fffff7; --line:#d9ded1; --accent:#1ee28a; --dark:#07120e; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing:0; }
+    a { color:inherit; text-decoration:none; }
+    .shell { min-height:100vh; overflow:hidden; }
+    .nav { height:68px; display:flex; align-items:center; justify-content:space-between; padding:0 clamp(18px,4vw,64px); border-bottom:1px solid var(--line); background:rgba(251,250,241,.88); backdrop-filter:blur(14px); position:sticky; top:0; z-index:10; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:900; }
+    .mark { width:18px; height:18px; border-radius:5px; background:var(--accent); box-shadow:5px 5px 0 var(--ink); }
+    .navlinks { display:flex; align-items:center; gap:18px; font-size:13px; color:var(--muted); font-weight:800; }
+    .navlinks a:last-child { color:var(--ink); border:1px solid var(--ink); border-radius:999px; padding:9px 14px; background:white; }
+    .hero { min-height:calc(100vh - 68px); display:grid; grid-template-columns:minmax(0,1fr) minmax(340px,.9fr); gap:clamp(28px,5vw,72px); align-items:center; padding:clamp(40px,7vw,88px) clamp(18px,4vw,64px) clamp(28px,5vw,64px); }
+    .eyebrow { font-family:'IBM Plex Mono', ui-monospace, monospace; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); font-size:12px; font-weight:700; margin-bottom:18px; }
+    h1 { margin:0; max-width:760px; font-size:clamp(42px,5.7vw,74px); line-height:.94; letter-spacing:-.055em; text-wrap:balance; }
+    .lead { max-width:620px; margin:22px 0 0; color:var(--muted); font-size:clamp(17px,1.7vw,22px); line-height:1.45; font-weight:600; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 18px; border-radius:12px; border:2px solid var(--ink); font-weight:900; box-shadow:4px 4px 0 var(--ink); }
+    .btn.primary { background:var(--accent); color:#06100b; }
+    .btn.secondary { background:white; }
+    .mini-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; }
+    .pill { border:1px solid var(--line); background:rgba(255,255,255,.72); border-radius:999px; padding:8px 11px; color:var(--muted); font-size:12px; font-weight:800; }
+    .panel { background:var(--panel); border:1px solid var(--line); border-radius:28px; box-shadow:0 24px 70px rgba(7,17,13,.12); overflow:hidden; }
+    .panel-dark { background:var(--dark); color:white; border-color:#193228; }
+    .panel-head { height:44px; display:flex; align-items:center; gap:8px; padding:0 18px; border-bottom:1px solid rgba(127,140,130,.25); font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:12px; color:var(--muted); font-weight:700; }
+    .dot { width:10px; height:10px; border-radius:50%; background:#ff6868; } .dot:nth-child(2){background:#ffbd45;} .dot:nth-child(3){background:#21c770;}
+    .section { padding:72px clamp(18px,4vw,64px); border-top:1px solid var(--line); }
+    .section h2 { margin:0 0 18px; font-size:clamp(28px,4vw,44px); letter-spacing:-.04em; line-height:1; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .card { background:rgba(255,255,255,.76); border:1px solid var(--line); border-radius:22px; padding:22px; min-height:160px; }
+    .card strong { display:block; font-size:15px; margin-bottom:12px; }
+    .card p { margin:0; color:var(--muted); line-height:1.45; font-weight:600; }
+    @media (max-width: 820px) {
+      .nav { height:60px; }
+      .navlinks a:not(:last-child) { display:none; }
+      .hero { min-height:auto; grid-template-columns:1fr; padding-top:36px; }
+      h1 { font-size:clamp(38px,12vw,56px); max-width:11ch; }
+      .grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="nav"><div class="brand"><span class="mark"></span>MarketPipe</div><div class="navlinks"><a href="#connectors">Connectors</a><a href="#proof">Sample JSON</a><a href="#pricing">Pricing</a><a href="#pilot">Get API key</a></div></nav>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Financial AI data connector</div>
+        <h1>Clean market facts for agent workflows.</h1>
+        <p class="lead">MarketPipe turns filings, transcripts, and fundamentals into cited context blocks your AI agent can retrieve without scraping messy PDFs.</p>
+        <div class="actions"><a class="btn primary" href="#pilot">Start with 100 calls</a><a class="btn secondary" href="#proof">View JSON sample</a></div>
+        <div class="mini-row"><span class="pill">SEC 10-K + 10-Q</span><span class="pill">Earnings transcripts</span><span class="pill">Cited JSON chunks</span></div>
+      </div>
+      <aside class="panel panel-dark" id="proof">
+        <div class="panel-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span style="margin-left:auto;color:#9eb0a5">marketpipe.py</span></div>
+        <div style="padding:26px;font-family:'IBM Plex Mono',monospace;font-size:14px;line-height:1.7;color:#d8ffe6">
+          <div style="color:#7dffb4">pip install marketpipe</div>
+          <br />ctx = marketpipe.company("AAPL")<br />ctx.sec("10-K").section("risk_factors")<br />ctx.earnings().sentiment()<br /><br />
+          <span style="color:#f8d36a">returns:</span> cited JSON chunks<br />
+          <span style="color:#f8d36a">ready for:</span> agent memory + RAG
+        </div>
+      </aside>
+    </section>
+    <section class="section" id="connectors">
+      <h2>Built for finance agents that need proof.</h2>
+      <div class="grid">
+        <div class="card"><strong>Filing sections</strong><p>MD&A, risk factors, notes, and business segments extracted with source anchors intact.</p></div>
+        <div class="card"><strong>Transcript memory</strong><p>Speaker turns, guidance changes, and sentiment markers compressed into agent-friendly slices.</p></div>
+        <div class="card"><strong>Context budgets</strong><p>Each response includes token estimates and a suggested prompt block for downstream agents.</p></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-high": "#272a33",
+            "surface-container-lowest": "#0b0e16",
+            "outline-variant": "#424655",
+            "surface-container-highest": "#32353e",
+            "surface": "#10131b",
+            "surface-variant": "#32353e",
+            "on-secondary-container": "#a7b6cc",
+            "outline": "#8c90a1",
+            "on-tertiary-fixed-variant": "#7f2b00",
+            "primary-fixed": "#d9e2ff",
+            "on-primary-fixed-variant": "#00429c",
+            "on-secondary-fixed-variant": "#39485a",
+            "error": "#ffb4ab",
+            "tertiary": "#ffb599",
+            "secondary-fixed-dim": "#b9c8de",
+            "tertiary-container": "#f36420",
+            "on-tertiary-fixed": "#370e00",
+            "background": "#10131b",
+            "on-tertiary-container": "#4f1700",
+            "on-background": "#e0e2ee",
+            "on-primary": "#002d6f",
+            "error-container": "#93000a",
+            "tertiary-fixed": "#ffdbce",
+            "surface-container-low": "#181b24",
+            "secondary-container": "#39485a",
+            "secondary": "#b9c8de",
+            "on-secondary": "#233143",
+            "primary": "#b0c6ff",
+            "on-surface": "#e0e2ee",
+            "primary-container": "#568dff",
+            "inverse-on-surface": "#2d3039",
+            "on-error-container": "#ffdad6",
+            "surface-dim": "#10131b",
+            "surface-container": "#1c1f28",
+            "on-primary-fixed": "#001945",
+            "secondary-fixed": "#d4e4fa",
+            "on-tertiary": "#5a1c00",
+            "on-surface-variant": "#c2c6d8",
+            "tertiary-fixed-dim": "#ffb599",
+            "inverse-primary": "#0058cb",
+            "on-primary-container": "#002661",
+            "primary-fixed-dim": "#b0c6ff",
+            "on-error": "#690005",
+            "inverse-surface": "#e0e2ee",
+            "surface-tint": "#b0c6ff",
+            "surface-bright": "#363942",
+            "on-secondary-fixed": "#0d1c2d"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "base": "8px",
+            "xs": "4px",
+            "xl": "64px",
+            "md": "24px",
+            "margin-mobile": "16px",
+            "sm": "12px",
+            "margin-desktop": "48px",
+            "gutter": "24px",
+            "lg": "40px"
+          },
+          "fontFamily": {
+            "label-md": ["JetBrains Mono"],
+            "body-lg": ["Geist"],
+            "headline-md": ["Geist"],
+            "headline-lg-mobile": ["Geist"],
+            "headline-lg": ["Geist"],
+            "display-lg": ["Geist"],
+            "body-md": ["Geist"],
+            "label-sm": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+            "headline-lg-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+            "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar Navigation Shell -->
+<nav class="bg-surface sticky top-0 z-50 border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin-desktop h-20 max-w-[1440px] mx-auto">
+<div class="text-headline-md font-headline-md font-bold text-on-surface tracking-tight">
+        MCP Auditor
+      </div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Product</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Features</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Compliance</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Pricing</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="px-md h-10 font-label-md text-on-surface hover:text-primary transition-colors active:scale-95">Login</button>
+<button class="bg-primary-container text-on-primary-container px-md h-10 rounded-lg font-label-md hover:brightness-110 active:scale-95 transition-all">Run Audit</button>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative pt-xl pb-32 overflow-hidden px-margin-desktop">
+<div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
+<div>
+<div class="inline-flex items-center gap-xs px-sm py-xs bg-surface-container-high rounded-full border border-outline-variant mb-md">
+<span class="material-symbols-outlined text-primary text-[18px]">security</span>
+<span class="font-label-sm text-on-surface-variant">V1.4 SECURITY PATCH LIVE</span>
+</div>
+<h1 class="font-display-lg text-display-lg mb-md leading-tight">
+            Audit MCP Permissions <br/>
+<span class="text-primary">Before You Ship</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-lg">
+            Ensure agent security with automated audits of OAuth bindings, token handling, and scope creep. Prevent over-privileged tools from accessing critical file systems or sensitive network layers.
+          </p>
+<div class="flex flex-wrap gap-md">
+<button class="bg-[#0070FF] text-white px-xl h-[56px] rounded font-label-md flex items-center gap-sm active:scale-95 transition-transform">
+              Run audit
+              <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="border border-outline-variant bg-surface-container hover:bg-surface-container-high text-on-surface px-xl h-[56px] rounded font-label-md active:scale-95 transition-transform">
+              See sample report
+            </button>
+</div>
+</div>
+<!-- Dashboard Preview -->
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-tertiary opacity-10 blur-xl group-hover:opacity-20 transition-opacity duration-500"></div>
+<div class="relative bg-surface-container border border-outline-variant rounded-xl overflow-hidden shadow-2xl">
+<div class="bg-surface-container-highest px-md py-sm flex items-center justify-between border-b border-outline-variant">
+<div class="flex gap-xs">
+<div class="w-3 h-3 rounded-full bg-error/40"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary/40"></div>
+<div class="w-3 h-3 rounded-full bg-primary/40"></div>
+</div>
+<div class="font-label-sm text-outline">audit-report-v0.2.1-alpha.json</div>
+<div class="w-8"></div>
+</div>
+<div class="p-md space-y-md">
+<div class="flex items-center justify-between bg-surface-container-low p-md rounded-lg border border-outline-variant">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-error-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<div>
+<div class="font-label-md text-on-surface">Critical Permission Alert</div>
+<div class="font-label-sm text-outline">Unbound File System Write Access</div>
+</div>
+</div>
+<div class="px-sm py-xs bg-error-container text-on-error-container rounded-full font-label-sm">High Risk</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="bg-surface-container-lowest p-md rounded-lg border border-outline-variant h-40">
+<div class="font-label-sm text-outline mb-sm">Scope Distribution</div>
+<div class="h-24 flex items-end gap-xs px-xs">
+<div class="w-full bg-primary h-[80%] rounded-t-xs"></div>
+<div class="w-full bg-primary-container h-[40%] rounded-t-xs"></div>
+<div class="w-full bg-tertiary h-[60%] rounded-t-xs"></div>
+<div class="w-full bg-error h-[90%] rounded-t-xs"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-lg border border-outline-variant h-40">
+<div class="font-label-sm text-outline mb-sm">OAuth Token Lifecycle</div>
+<div class="space-y-sm pt-xs">
+<div class="h-1.5 w-full bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[70%]"></div>
+</div>
+<div class="h-1.5 w-full bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[30%]"></div>
+</div>
+<div class="h-1.5 w-full bg-outline-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[55%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Features Section -->
+<section class="py-xl px-margin-desktop bg-surface-container-lowest">
+<div class="max-w-[1440px] mx-auto">
+<h2 class="font-headline-lg text-headline-lg mb-xl text-center">Engineered for Security-First Teams</h2>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Permission Diff -->
+<div class="md:col-span-8 bg-surface border border-outline-variant rounded-xl overflow-hidden min-h-[400px] flex flex-col">
+<div class="p-md border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">difference</span>
+<h3 class="font-headline-md text-headline-md">Permission Diff</h3>
+</div>
+<span class="font-label-sm text-outline px-sm py-xs bg-surface-variant rounded">JSON Comparison</span>
+</div>
+<div class="flex-grow grid grid-cols-2 font-label-md divide-x divide-outline-variant">
+<div class="p-md bg-surface">
+<div class="text-error mb-md font-bold uppercase tracking-widest text-[10px]">Requested Scopes</div>
+<pre class="text-on-surface-variant text-sm leading-relaxed">{
+  "permissions": [
+    "fs.read.*",
+    "fs.write.*",
+    "network.all",
+    "user.profile",
+    "env.all"
+  ]
+}</pre>
+</div>
+<div class="p-md bg-surface-container-low">
+<div class="text-primary mb-md font-bold uppercase tracking-widest text-[10px]">Recommended Scopes</div>
+<pre class="text-on-surface text-sm leading-relaxed">{
+  "permissions": [
+    "fs.read./tmp/*",
+    "network.github.com",
+    "user.id"
+  ],
+  "policy": "least-privilege"
+}</pre>
+</div>
+</div>
+</div>
+<!-- Risk Checklist -->
+<div class="md:col-span-4 bg-surface border border-outline-variant rounded-xl p-md">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-tertiary">checklist</span>
+<h3 class="font-headline-md text-headline-md">Risk Checklist</h3>
+</div>
+<div class="space-y-md">
+<div class="flex items-start gap-md p-sm bg-surface-container-high rounded-lg">
+<span class="material-symbols-outlined text-error mt-0.5" data-weight="fill">error</span>
+<div>
+<div class="font-label-md text-on-surface">Network Access</div>
+<p class="font-label-sm text-outline">Unrestricted outbound traffic detected on port 443.</p>
+</div>
+</div>
+<div class="flex items-start gap-md p-sm bg-surface-container-high rounded-lg">
+<span class="material-symbols-outlined text-tertiary mt-0.5" data-weight="fill">warning</span>
+<div>
+<div class="font-label-md text-on-surface">File System read/write</div>
+<p class="font-label-sm text-outline">Write permissions requested for root directories.</p>
+</div>
+</div>
+<div class="flex items-start gap-md p-sm bg-surface-container-high rounded-lg">
+<span class="material-symbols-outlined text-primary mt-0.5" data-weight="fill">check_circle</span>
+<div>
+<div class="font-label-md text-on-surface">Risky Descriptions</div>
+<p class="font-label-sm text-outline">Metadata strings sanitized and validated.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Compliance Evidence -->
+<div class="md:col-span-12 lg:col-span-12 bg-surface-container border border-outline-variant rounded-xl p-md">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<div class="flex flex-col justify-center items-center text-center p-md border-r border-outline-variant">
+<div class="text-display-lg font-headline-lg text-primary mb-xs">98.4</div>
+<div class="font-label-md text-on-surface">Launch Readiness Score</div>
+<div class="mt-md px-sm py-xs bg-primary/10 text-primary border border-primary/20 rounded-full font-label-sm">Compliance Met</div>
+</div>
+<div class="md:col-span-2 space-y-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md">Compliance Evidence</h3>
+<button class="font-label-sm text-primary flex items-center gap-xs hover:underline">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Export Audit Logs
+                  </button>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<table class="w-full text-left font-label-sm">
+<thead>
+<tr class="bg-surface-container-highest text-outline">
+<th class="p-sm font-medium">Timestamp</th>
+<th class="p-sm font-medium">Action</th>
+<th class="p-sm font-medium">Actor</th>
+<th class="p-sm font-medium">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant text-on-surface-variant">
+<tr>
+<td class="p-sm">2024-05-24 14:22:01</td>
+<td class="p-sm">OAuth Scope Validation</td>
+<td class="p-sm">System-Audit</td>
+<td class="p-sm text-primary">PASSED</td>
+</tr>
+<tr>
+<td class="p-sm">2024-05-24 14:21:44</td>
+<td class="p-sm">Token Storage Encryption</td>
+<td class="p-sm">Security-Bot</td>
+<td class="p-sm text-primary">PASSED</td>
+</tr>
+<tr>
+<td class="p-sm">2024-05-24 14:20:12</td>
+<td class="p-sm">CORS Policy Check</td>
+<td class="p-sm">System-Audit</td>
+<td class="p-sm text-tertiary">PENDING</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats / Social Proof -->
+<section class="py-xl bg-surface px-margin-desktop">
+<div class="max-w-[1440px] mx-auto border-y border-outline-variant py-xl grid grid-cols-2 md:grid-cols-4 gap-lg text-center">
+<div>
+<div class="font-display-lg text-headline-lg text-on-surface">500+</div>
+<div class="font-label-md text-outline">MCP Tools Audited</div>
+</div>
+<div>
+<div class="font-display-lg text-headline-lg text-on-surface">12k</div>
+<div class="font-label-md text-outline">Vulnerabilities Blocked</div>
+</div>
+<div>
+<div class="font-display-lg text-headline-lg text-on-surface">SOC2</div>
+<div class="font-label-md text-outline">Audit Readiness</div>
+</div>
+<div>
+<div class="font-display-lg text-headline-lg text-on-surface">&lt;2s</div>
+<div class="font-label-md text-outline">Audit Latency</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-xl px-margin-desktop relative">
+<div class="max-w-4xl mx-auto bg-primary-container rounded-xl p-xl text-center relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-display-lg text-headline-lg text-on-primary-container mb-md">Ready to secure your MCP agent?</h2>
+<p class="font-body-lg text-on-primary-container/80 mb-lg">Join the hundreds of security teams automating their tool permission lifecycle.</p>
+<div class="flex flex-wrap justify-center gap-md">
+<button class="bg-on-primary-container text-primary-container px-xl h-[56px] rounded font-label-md hover:scale-105 transition-transform active:scale-95">Get Started Free</button>
+<button class="border border-on-primary-container/30 text-on-primary-container px-xl h-[56px] rounded font-label-md hover:bg-on-primary-container/10 transition-colors">Book a Demo</button>
+</div>
+</div>
+<div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl"></div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-surface-container-low border-t border-outline-variant py-xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-[1440px] mx-auto">
+<div class="space-y-md">
+<div class="text-headline-sm font-headline-md font-bold text-on-surface">MCP Auditor</div>
+<p class="font-label-sm text-on-surface-variant max-w-[200px]">The industry standard for Model Context Protocol security auditing and permission management.</p>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface mb-md">Product</h4>
+<ul class="space-y-sm">
+<li><a class="font-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Features</a></li>
+<li><a class="font-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Documentation</a></li>
+<li><a class="font-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Status</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface mb-md">Company</h4>
+<ul class="space-y-sm">
+<li><a class="font-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Security</a></li>
+<li><a class="font-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface mb-md">Contact</h4>
+<ul class="space-y-sm">
+<li><a class="font-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Contact Support</a></li>
+<li><a class="font-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Sales</a></li>
+<li><a class="font-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Twitter / X</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-xl pt-lg border-t border-outline-variant px-margin-desktop max-w-[1440px] mx-auto flex justify-between items-center">
+<p class="font-label-sm text-on-surface-variant">© 2024 MCP Tool Permission Auditor. All rights reserved.</p>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-outline text-[20px]">language</span>
+<span class="font-label-sm text-outline">EN-US</span>
+</div>
+</div>
+</footer>
+</body></html>
