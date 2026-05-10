@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GitHub Review Summarizer | Radar Concept</title>
+  <style>
+    :root {
+      --ink: #272625;
+      --muted: #68635d;
+      --paper: #fffaf0;
+      --line: #272625;
+      --accent: #f08cff;
+      --accent-soft: #fae6ff;
+      --accent-dark: #7a247f;
+      --green: #19d982;
+      --yellow: #ffe066;
+      --blue-soft: #dfeeff;
+      --shadow: 8px 8px 0 #272625;
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--paper); }
+    body {
+      margin: 0;
+      min-height: 100%;
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 1px 1px, rgba(39,38,37,.12) 1px, transparent 0) 0 0 / 22px 22px,
+        linear-gradient(180deg, #fffdf8 0%, #fff5de 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .page { max-width: 1180px; margin: 0 auto; padding: 22px 22px 56px; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 58px;
+      border: 3px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,.82);
+      padding: 10px 16px;
+      box-shadow: 4px 4px 0 rgba(39,38,37,.92);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 950; letter-spacing: -.02em; }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 3px solid var(--line);
+      border-radius: 50%;
+      background: var(--ink);
+      color: white;
+      font-size: 16px;
+    }
+    .nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav span, .nav a {
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: white;
+      font-size: 12px;
+      font-weight: 850;
+    }
+    .nav .stage { background: var(--accent); }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr);
+      gap: 28px;
+      align-items: stretch;
+      padding: 54px 0 34px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+    h1 {
+      margin: 18px 0 14px;
+      max-width: 760px;
+      font-size: clamp(44px, 7vw, 86px);
+      line-height: .92;
+      letter-spacing: -0.02em;
+    }
+    .lede {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: clamp(18px, 2.6vw, 25px);
+      line-height: 1.38;
+      font-weight: 680;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      border: 3px solid var(--line);
+      border-radius: 16px;
+      padding: 12px 18px;
+      background: var(--yellow);
+      box-shadow: 4px 4px 0 var(--line);
+      font-weight: 950;
+    }
+    .button.secondary { background: white; box-shadow: none; }
+    .panel {
+      border: 3px solid var(--line);
+      border-radius: 24px;
+      background: white;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .mock-header {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 3px solid var(--line);
+      background: var(--ink);
+      color: white;
+      padding: 12px 14px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .mock-body { padding: 18px; background: linear-gradient(135deg, var(--accent-soft), #ffffff 64%); }
+    .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .metric {
+      min-height: 94px;
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.88);
+      padding: 12px;
+    }
+    .metric strong { display: block; font-size: 30px; line-height: 1; }
+    .metric span { display: block; margin-top: 8px; color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; letter-spacing: .08em; }
+    .demo-card {
+      margin-top: 14px;
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      background: white;
+      padding: 14px;
+    }
+    .demo-card h2 { margin: 0 0 8px; font-size: 24px; }
+    .demo-card p { margin: 0; color: var(--muted); line-height: 1.48; font-weight: 650; }
+    .section { padding: 18px 0; }
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .section-title h2 { margin: 0; font-size: clamp(28px, 4vw, 42px); letter-spacing: -.02em; }
+    .section-title span {
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      background: var(--green);
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .proof-row {
+      min-height: 178px;
+      border: 3px solid var(--line);
+      border-radius: 18px;
+      background: white;
+      padding: 14px;
+      box-shadow: 4px 4px 0 rgba(39,38,37,.92);
+    }
+    .proof-row span {
+      display: inline-block;
+      margin-bottom: 12px;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+    }
+    .proof-row p { margin: 0; color: var(--muted); line-height: 1.45; font-weight: 650; }
+    .sources {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 30px;
+      border-top: 2px dashed rgba(39,38,37,.32);
+      padding-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+    .source-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .source-links a {
+      border: 2px solid rgba(39,38,37,.45);
+      border-radius: 999px;
+      background: white;
+      padding: 7px 10px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 850;
+    }
+    @media (max-width: 860px) {
+      .page { padding: 14px 14px 40px; }
+      .topbar { align-items: flex-start; border-radius: 18px; }
+      .hero { grid-template-columns: 1fr; padding-top: 32px; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .sources { align-items: flex-start; flex-direction: column; }
+      .source-links { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <a class="brand" href="/radar">
+        <span class="brand-mark">V</span>
+        <span>Voxyz AI Radar</span>
+      </a>
+      <nav class="nav" aria-label="Concept navigation">
+        <span class="stage">Concept Live</span>
+        <span>10 May 2026, 19:49 UTC</span>
+        <a href="https://github.com/trending" target="_blank" rel="noopener noreferrer">Source proof</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Public concept sample</span>
+        <h1>GitHub Review Summarizer</h1>
+        <p class="lede">GitHub Review Summarizer</p>
+        <div class="actions">
+          <a class="button" href="/radar">Vote to validate</a>
+          <a class="button secondary" href="https://github.com/trending" target="_blank" rel="noopener noreferrer">Read evidence</a>
+        </div>
+      </div>
+
+      <aside class="panel" aria-label="Concept dashboard">
+        <div class="mock-header">
+          <span>Concept sample</span>
+          <span>Scout research desk</span>
+        </div>
+        <div class="mock-body">
+          <div class="metric-grid">
+            <div class="metric"><strong>0</strong><span>Heat</span></div>
+            <div class="metric"><strong>3</strong><span>Confidence</span></div>
+            <div class="metric"><strong>0</strong><span>Votes</span></div>
+            <div class="metric"><strong>0</strong><span>Prompt copies</span></div>
+          </div>
+          <article class="demo-card">
+            <h2>agents</h2>
+            <p>Auto-summarizes GitHub PRs and issues in one sentence—helps maintainers scan quickly without reading full threads.</p>
+          </article>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>What the agent found</h2>
+        <span>Concept Live</span>
+      </div>
+      <div class="proof-grid">
+        
+      <article class="proof-row">
+        <span>Who needs it</span>
+        <p>Solo founders and product teams validating GitHub workflow tools</p>
+      </article>
+    
+      <article class="proof-row">
+        <span>Pain to test</span>
+        <p>Auto-summarizes GitHub PRs and issues in one sentence—helps maintainers scan quickly without reading full threads.</p>
+      </article>
+    
+      <article class="proof-row">
+        <span>Offer</span>
+        <p>GitHub Review Summarizer</p>
+      </article>
+    
+      <article class="proof-row">
+        <span>Evidence</span>
+        <p>https://github.com/trending</p>
+      </article>
+    
+      <article class="proof-row">
+        <span>Next proof</span>
+        <p>- Ship functional browser extension in 3 days - Submit to Chrome Web Store and GitHub Marketplace - Track install count and 7-day retention - Collect feedback via inline &quot;Was this</p>
+      </article>
+    
+      </div>
+    </section>
+
+    <footer class="sources">
+      <span>Generated from Radar evidence. This is a concept page, not a shipped product.</span>
+      <div class="source-links"><a href="https://github.com/trending" target="_blank" rel="noopener noreferrer">Original source</a></div>
+    </footer>
+  </main>
+</body>
+</html>
